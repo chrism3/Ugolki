@@ -1,0 +1,102 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+html, body{
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    height: 100%;
+    min-height: 100%;
+    background-color: black;
+    border-bottom: none;
+    overflow: hidden;
+}
+
+main{
+    background: #DEB887;
+    height: 100%;
+    width: 100%;
+}
+
+button{
+    float: left;
+    background: white;
+    border: 1px solid maroon;
+    font-weight: bold;
+    height: 10%;
+    width: 25%;
+    margin-right: 2%;
+}
+
+#test_page{
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+#new_game_page{
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+// will need this later
+#game_board{
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+#test_board{
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+.white_square{
+    fill: rgb(255, 255, 255);
+    stroke-width: 0.5%;
+    stroke: rgb(0,0,0);
+}
+
+.brown_square{
+    fill: rgb(101,67,33);
+    stroke-width: 0.5%;
+    stroke: rgb(0,0,0);
+}
+
+.white_circles{
+    fill: rgb(255, 235, 205);
+    stroke-width: 0.5%;
+    stroke: rgb(0,0,0)
+}
+
+.brown_circles{
+    fill: rgb(205,92,92);
+    stroke-width: 0.5%;
+    stroke: rgb(0,0,0)
+}
+
+#white_circle{
+    fill: rgb(255, 255, 255);
+    stroke-width: 0.5%;
+    stroke: rgb(0,0,0);
+}
+
+rect{
+    float: left;
+}
+
+svg{
+    height: 100%;
+    width: 100%;
+}
+
+#game_menu{
+    height: 100%;
+    width: 100%;
+    display: block;
+}

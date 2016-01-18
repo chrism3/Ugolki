@@ -1,0 +1,84 @@
+<html>
+    
+    <head>
+        <title> Ugolki App </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <link rel="icon" sizes="192x192" href="images/ugolki.png" />
+        <link rel="apple-touch-icon" href="images/ugolki.png" />
+        <link rel="shortcut icon" href="images/ugolki.png" type="image/x-icon" />
+                
+        <link rel="stylesheet" type="text/css" href="ugolki_style.css">
+                
+    </head>
+
+    <body>
+    <main id ="main">    	
+	        
+        <div id ="test_page">
+           <svg id = "svg">
+                               
+                <rect id ="square" height ="100" width ="100" x="200" y ="300"/>
+                <circle id ="white_circle" cx ="100" cy ="100"
+                        r = "50"/>
+           </svg>    
+        </div>
+        
+        <div id ="game_menu">
+            <button id ="new_game_button">New Game</button>
+            <button id ="test_button"> Test Page</button>
+            <button id ="test_button_2"> Test Page 2</button>
+        </div>
+        
+        <div id ="new_game_page">
+            <button id ="two_by_two"> 2*2 </button>
+             <button id ="four_by_four"> 4*4 </button>
+        </div>
+        
+         <div id ="test_board">
+            <svg id ="draw_board">
+                <rect class = "brown_square" id ="test_square_1" x ="50" y ="50" height ="100" width ="100" />
+                <rect class = "white_square" id ='test_square_2' x ="150" y ="50" height ="100" width ="100" />
+                <rect class = "white_square" id ="test_square_3" x ="50" y ="150" height ="100" width ="100" />
+                <rect class = "brown_square" id ="test_square_4" x ="150" y ="150" height ="100" width ="100" />
+                
+                <!-- all squares before this worked fine-->
+                <rect class ="brown_square" id ="test_square_5" x ="250" y="50" height ="100" width="100" />
+                <rect class ="white_square" id ="test_square_6" x ="250" y="150" height ="100" width ="100" />
+                <rect class ="brown_square" id ="test_square_7" x ="50" y="250" height="100" width ="100" />
+                <rect class ="white_square" id ="test_square_8" x ="150" y="250" height="100" width="100" />
+                <rect class ="brown_square" id="test_square_9" x ="250" y="250" height ="100" width ="100" />
+                                
+                <circle class ="white_circles" id ="test_circle" cx ="100" cy ="100" r = "45"/>
+                <circle class ="brown_circles" id ="test_circle_2" cx="200" cy ="100" r =" 45"/>
+                                
+            </svg>
+        </div>
+        
+        <div id ="game_board">
+            <!-- may need some implementation here -->
+            <svg id ="draw_board">
+            </svg>
+        </div>
+        
+       
+        
+    </main>
+        
+        <script type="text/javascript" src ="GamePieces.js"></script>
+        <script type="text/javascript" src ="PossibleMove.js"></script>
+        <script type="text/javascript" src ="view.js"></script>
+        <script type="text/javascript" src ="model.js"></script>
+        <script type="text/javascript" src ="controller.js"></script>
+        
+        <!-- will need to delete this later -->
+        <script type="text/javascript" src ="TestModel.js"></script>
+        <script type="text/javascript" src ="TestView.js"></script>        
+        <script type="text/javascript" src ="TestController.js"></script>        
+        
+    </body>
+    
+    
+    
+</html>

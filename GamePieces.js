@@ -43,10 +43,10 @@ function gamePieces(){
     //may need to include set methods, don't think so though
     this.setXCoord = function (new_x){
         x_coord = new_x;
-    }
+    };
     this.setYCoord = function (new_y) {
         y_coord = new_y;
     };
 }
-
+    
 
