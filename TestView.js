@@ -169,12 +169,27 @@ function testView(){
            brown_squares[i].setAttribute("width", scale_size);
        }
        // this for loop sets the size of all the white circles on the board
+       var count = 0;
+       /* 
+        *  the white circles need an offset to place them at the bottom 
+        *  left hand corner of the screen
+        */
+       var white_circle_offset = 3; // this number relates to the number of rows, will need to amend later
        for(var i = 0; i < white_circles.length; i++){
            white_circles[i].setAttribute("r", 0.48 * (scale_size));
-           white_circles[i].setAttribute("cx", ((0.1 * scale_size) + offset) +
-                                        (0.5 * ((0.1 * scale_size) + (0.65 * offset))));
-           white_circles[i].setAttribute("cy",  ((0.1 * scale_size) + offset) +
-                                        (0.5 * ((0.1 * scale_size) + (0.65 *offset))));
+        // this shouldn't use a hard coded value, should use number of pieces   
+            if (count < 1) {
+                white_circles[i].setAttribute("cx", (count * ((scale_size)) + offset) + (0.52 * scale_size));
+                white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset) + (0.52 * scale_size));
+                count++;
+            }
+            else {
+                count = 0;
+                white_circle_offset--;
+                white_circles[i].setAttribute("cx", (count * ((scale_size)) + offset) + (0.52 * scale_size));
+                white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset) + (0.52 * scale_size));
+                count++;
+            }
        }
        // this for loop sets the size of all the brown circles on the baord
        for(var i = 0; i < brown_circles.length; i++){
@@ -189,7 +204,7 @@ function testView(){
                 all_squares[i].style.x = (col_count * scale_size) + offset;
                 all_squares[i].style.y = (row_count) * scale_size + offset;
                 col_count ++;
-                console.log(col_count * scale_size + " , " + (row_count) * scale_size);
+                //console.log(col_count * scale_size + " , " + (row_count) * scale_size);
             }
             else {
                 col_count = 0;
