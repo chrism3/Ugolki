@@ -141,6 +141,7 @@ function testView(){
         // to move the square off the corner of the screen
         var offset = 0.1* screen_width;
         // these if statements mean that the app may be able to rescale on rotation
+        // might not be needed
         var scale_size;
         if(screen_height < screen_width){
             scale_size = 0.1 * screen_height;
@@ -159,21 +160,25 @@ function testView(){
         var all_squares = document.getElementsByTagName("rect");
         // this for loop sets the size of all the white squares on the board
         for(var i = 0; i < white_squares.length; i++){
-            white_squares[i].style.width = scale_size;
-            white_squares[i].style.height = scale_size;
+            white_squares[i].setAttribute("width", scale_size);
+            white_squares[i].setAttribute("height", scale_size);
         }
        // this for loop sets the size of all the brown squares on the board
        for(var i = 0; i < brown_squares.length; i++){
-           brown_squares[i].style.width = scale_size;
-           brown_squares[i].style.height = scale_size;
+           brown_squares[i].setAttribute("height", scale_size);
+           brown_squares[i].setAttribute("width", scale_size);
        }
        // this for loop sets the size of all the white circles on the board
        for(var i = 0; i < white_circles.length; i++){
-           white_circles[i].style.r = 0.48 * (scale_size);
+           white_circles[i].setAttribute("r", 0.48 * (scale_size));
+           white_circles[i].setAttribute("cx", ((0.1 * scale_size) + offset) +
+                                        (0.5 * ((0.1 * scale_size) + (0.65 * offset))));
+           white_circles[i].setAttribute("cy",  ((0.1 * scale_size) + offset) +
+                                        (0.5 * ((0.1 * scale_size) + (0.65 *offset))));
        }
        // this for loop sets the size of all the brown circles on the baord
        for(var i = 0; i < brown_circles.length; i++){
-           brown_circles[i].style.r = 0.48 * (scale_size);
+           brown_circles[i].setAttribute ("r", 0.48 * (scale_size));
        }
        
        // for loops positions the sqaures on the board

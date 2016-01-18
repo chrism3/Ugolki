@@ -108,14 +108,9 @@ function testController(){
         
         
         test_view.setCircleClickCallback(function() {
-            //console.log("working this far");
-            //moves = test_model.findMoves(0,0);
             test_view.setSelectedPiece(test_view.getCircleOne());
-            //var x = test_view.getCircleOneXCoord();
-            //var y = test_view.getCircleOneYCoord();
             var x = test_view.getCircleOne().attributes.cx.value;
-            var y = test_view.getCircleOne().attributes.cy.value;
-            
+            var y = test_view.getCircleOne().attributes.cy.value;            
             x=parseInt((x/100)-1);
             y=parseInt((y/100)-1);
             moves = test_model.findMoves2(x,y);
@@ -145,8 +140,7 @@ function testController(){
                 var x_coord = moves[i].getX(),
                     y_coord = moves[i].getY(),
                     toUpdate = "" + x_coord + "" + y_coord;
-                    //console.log(toUpdate);
-                test_view.updateBoardWithMoves(toUpdate);
+                    test_view.updateBoardWithMoves(toUpdate);
             }
         });
     };
