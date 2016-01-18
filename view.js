@@ -20,11 +20,11 @@ function UgolkiView(){
         
     
    this.setCircleClickCallback = function (callback) {
-        circle.addEventListener("click", callback);
+//        circle.addEventListener("click", callback);
     };
     
     this.setSquareClickCallback = function (callback) {
-        square.addEventListener("click", callback);
+        //square.addEventListener("click", callback);
     };
     
     this.setTestButtonCallback = function (callback) {

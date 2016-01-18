@@ -7,7 +7,11 @@ function testController(){
              moves = new Array();
              test_model.init();
              test_model.setScreenSize();
-             test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth());
+             /*
+              * needs to know number of squares per row, may be able to pass in a value later, 
+              * currently it is hard coded in scaleBoardToScreen
+              */
+             test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
 
     this.init = function() {
         

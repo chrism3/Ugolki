@@ -131,9 +131,13 @@ function testView(){
     
     
      // this is a method to scale the board to the correct size
-    this.scaleBoardToScreen = function(screen_height, screen_width){
+    this.scaleBoardToScreen = function(screen_height, screen_width, squares_per_row){
         console.log("got this far");
         console.log("screen height: " + screen_height);
+        
+        
+        // currently hard coded, will need to change this at some point
+        squares_per_row = 3;
         
         // these if statements mean that the app may be able to rescale on rotation
         var scale_size;
@@ -151,6 +155,7 @@ function testView(){
         var brown_squares = document.getElementsByClassName("brown_square");
         var white_circles = document.getElementsByClassName("white_circles");
         var brown_circles = document.getElementsByClassName("brown_circles");
+        var all_squares = document.getElementsByTagName("rect");
         // this for loop sets the size of all the white squares on the board
         for(var i = 0; i < white_squares.length; i++){
             white_squares[i].style.width = scale_size;
@@ -168,6 +173,25 @@ function testView(){
        // this for loop sets the size of all the brown circles on the baord
        for(var i = 0; i < brown_circles.length; i++){
            brown_circles[i].style.r = 0.48 * (scale_size);
+       }
+       
+       // for loops positions the sqaures on the board
+       var col_count = 0;
+       var row_count = 0;
+       for(var i = 0; i < all_squares.length; i++){
+            if(col_count < squares_per_row){
+                all_squares[i].style.x = col_count * scale_size;
+                all_squares[i].style.y = (row_count) * scale_size;
+                col_count ++;
+                console.log(col_count * scale_size + " , " + (row_count) * scale_size);
+            }
+            else {
+                col_count = 0;
+                row_count++;
+                all_squares[i].style.x = col_count * scale_size;
+                all_squares[i].style.y = (row_count) * scale_size;
+                col_count++;
+            }
        }
        
         
