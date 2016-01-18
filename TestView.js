@@ -130,7 +130,48 @@ function testView(){
     };
     
     
-    
+     // this is a method to scale the board to the correct size
+    this.scaleBoardToScreen = function(screen_height, screen_width){
+        console.log("got this far");
+        console.log("screen height: " + screen_height);
+        
+        // these if statements mean that the app may be able to rescale on rotation
+        var scale_size;
+        if(screen_height < screen_width){
+            scale_size = 0.1 * screen_height;
+        }
+        else if(screen_width < screen_height){
+            scale_size = 0.1* screen_width;
+        }
+        else{
+            scale_size = 0.1 * screen_width;
+        }
+        
+        var white_squares = document.getElementsByClassName("white_square");
+        var brown_squares = document.getElementsByClassName("brown_square");
+        var white_circles = document.getElementsByClassName("white_circles");
+        var brown_circles = document.getElementsByClassName("brown_circles");
+        // this for loop sets the size of all the white squares on the board
+        for(var i = 0; i < white_squares.length; i++){
+            white_squares[i].style.width = scale_size;
+            white_squares[i].style.height = scale_size;
+        }
+       // this for loop sets the size of all the brown squares on the board
+       for(var i = 0; i < brown_squares.length; i++){
+           brown_squares[i].style.width = scale_size;
+           brown_squares[i].style.height = scale_size;
+       }
+       // this for loop sets the size of all the white circles on the board
+       for(var i = 0; i < white_circles.length; i++){
+           white_circles[i].style.r = 0.48 * (scale_size);
+       }
+       // this for loop sets the size of all the brown circles on the baord
+       for(var i = 0; i < brown_circles.length; i++){
+           brown_circles[i].style.r = 0.48 * (scale_size);
+       }
+       
+        
+    };
     
     
     /*

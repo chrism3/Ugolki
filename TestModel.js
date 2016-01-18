@@ -15,6 +15,10 @@ function testModel() {
     var current_player_colour = "white";
     var current_piece;
     
+    // variables to set the screen sizes
+    var screen_width = 0,
+    screen_height = 0;
+    
    this.init = function () {
         possible_moves = new Array();
         for (var i = 0; i < 3; i++) {
@@ -29,6 +33,10 @@ function testModel() {
         test_board[1][0] = p2;
     };
 
+    this.setScreenSize = function(){
+        screen_width = window.innerWidth;
+        screen_height = window.innerWidth;
+    };
 
     // will eventaully need piece_x_coord and piece_y_coord, i think?
     this.findMoves = function (piece_x_coord, piece_y_coord) {
@@ -244,6 +252,14 @@ function testModel() {
     this.getCurrentPlayerColour = function (){
         return current_player_colour;
     };
+    
+    this.getScreenHeight = function(){
+        return screen_height;
+    };
+    
+    this.getScreenWidth = function() {
+        return screen_width;
+    }
 }
 
 

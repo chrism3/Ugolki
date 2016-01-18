@@ -60,24 +60,30 @@ button{
     fill: rgb(255, 255, 255);
     stroke-width: 0.5%;
     stroke: rgb(0,0,0);
+    height: 0;
+    width: 0;
 }
 
 .brown_square{
     fill: rgb(101,67,33);
     stroke-width: 0.5%;
     stroke: rgb(0,0,0);
+    height: 0;
+    width: 0;
 }
 
 .white_circles{
     fill: rgb(255, 235, 205);
     stroke-width: 0.5%;
-    stroke: rgb(0,0,0)
+    stroke: rgb(0,0,0);
+    r: 0;
 }
 
 .brown_circles{
     fill: rgb(205,92,92);
     stroke-width: 0.5%;
-    stroke: rgb(0,0,0)
+    stroke: rgb(0,0,0);
+    r: 0;
 }
 
 #white_circle{

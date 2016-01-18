@@ -101,4 +101,8 @@ function UgolkiView(){
         var new_y = square.attributes.y.value + ((square.attributes.width.value)/2);
         return new_y;
     };   
+    
+    
+    
+
 }

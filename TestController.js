@@ -6,6 +6,8 @@ function testController(){
              test_model = new testModel(),
              moves = new Array();
              test_model.init();
+             test_model.setScreenSize();
+             test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth());
 
     this.init = function() {
         
