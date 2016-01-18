@@ -133,12 +133,13 @@ function testView(){
      // this is a method to scale the board to the correct size
     this.scaleBoardToScreen = function(screen_height, screen_width, squares_per_row){
         console.log("got this far");
-        console.log("screen height: " + screen_height);
-        
+        console.log("screen height: " + screen_height);       
         
         // currently hard coded, will need to change this at some point
         squares_per_row = 3;
         
+        // to move the square off the corner of the screen
+        var offset = 0.1* screen_width;
         // these if statements mean that the app may be able to rescale on rotation
         var scale_size;
         if(screen_height < screen_width){
@@ -180,16 +181,16 @@ function testView(){
        var row_count = 0;
        for(var i = 0; i < all_squares.length; i++){
             if(col_count < squares_per_row){
-                all_squares[i].style.x = col_count * scale_size;
-                all_squares[i].style.y = (row_count) * scale_size;
+                all_squares[i].style.x = (col_count * scale_size) + offset;
+                all_squares[i].style.y = (row_count) * scale_size + offset;
                 col_count ++;
                 console.log(col_count * scale_size + " , " + (row_count) * scale_size);
             }
             else {
                 col_count = 0;
                 row_count++;
-                all_squares[i].style.x = col_count * scale_size;
-                all_squares[i].style.y = (row_count) * scale_size;
+                all_squares[i].style.x = (col_count * scale_size) + offset;
+                all_squares[i].style.y = (row_count) * scale_size + offset;
                 col_count++;
             }
        }
