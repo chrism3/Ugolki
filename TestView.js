@@ -13,8 +13,11 @@ function testView(){
         square_eight = document.getElementById("test_square_8"),
         square_nine = document.getElementById("test_square_9"),
         //circles, the game pieces
-        circle = document.getElementById("test_circle"),
+        circle = document.getElementById("white_circle_1"),
         circle_two = document.getElementById("test_circle_2"),
+        
+        white_circles = document.getElementsByClassName("white_circles"),
+        
         // not sure this will actualy help
         screen_to_board_map = new Array(8);
 
@@ -25,7 +28,9 @@ function testView(){
     this.setMouseCoord = function(e) {
         console.log(e.clientX);
     };
-        
+     
+    
+    
     this.squareOneClickCallback = function (callback) {
         square_one.addEventListener("click", callback);
     };
@@ -55,7 +60,7 @@ function testView(){
     };
 
     
-    this.setCircleClickCallback = function (callback) {
+    this.setWhiteCircleOneClickCallback = function (callback) {
         circle.addEventListener("click", callback);
     };
     this.setCircleTwoClickCallBack = function (callback){

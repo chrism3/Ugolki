@@ -12,7 +12,7 @@ function testModel() {
     
     
     var test_board = new Array(8);
-    var possible_moves;
+    var possible_moves = new Array();
     var new_x_coord = 0;
     var new_y_coord = 0;
     var isPieceSelected = false;
@@ -31,11 +31,11 @@ function testModel() {
            for(var j = 0; j < test_board.length; j++){
                if(screen_to_board_map[i][j] !== undefined){
                    if(screen_to_board_map[i][j][1] === "white"){
-                       var piece = new GamePieces("player_one", "white", i, j);
+                       var piece = new gamePieces("player_one", "white", i, j);
                        test_board[i][j] = piece;
                    }
                    else if(screen_to_board_map[i][j][1] === "black"){
-                       var piece = new GamePieces("player_two", "brown", i, j);
+                       var piece = new gamePieces("player_two", "brown", i, j);
                        test_board[i][j] = piece;
                    }
                }

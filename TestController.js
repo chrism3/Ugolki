@@ -5,15 +5,20 @@ function testController(){
      var test_view = new testView(),
              test_model = new testModel(),
              moves = new Array();
-             test_model.init();
+             //test_model.init();
              test_model.setScreenSize();
              /*
               * needs to know number of squares per row, may be able to pass in a value later, 
               * currently it is hard coded in scaleBoardToScreen
               */
              test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
+             test_model.setTestBoard(test_view.getScreenToBoardMap());
 
     this.init = function() {
+        
+//        test_view.whiteCirclesClickCallback(function() {
+//           console.log("white circle clicked");
+//        });
         
         test_view.squareOneClickCallback(function() {
             var square_x = test_view.getSquareOne().attributes.x.value;
@@ -107,7 +112,7 @@ function testController(){
         });
         
         
-        test_view.setCircleClickCallback(function() {
+        test_view.setWhiteCircleOneClickCallback(function() {
             test_view.setSelectedPiece(test_view.getCircleOne());
             var x = test_view.getSelectedPieceX();
             var y = test_view.getCircleOne().attributes.cy.value; 
@@ -132,6 +137,7 @@ function testController(){
                 test_view.updateBoardWithMoves(toUpdate, colour);
             }
         });
+        
         test_view.setCircleTwoClickCallBack(function() {
             test_view.setSelectedPiece(test_view.getCircleTwo());
             var x = test_view.getCircleTwo().attributes.cx.value;
