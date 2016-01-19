@@ -136,10 +136,11 @@ function testView(){
         console.log("screen height: " + screen_height);       
         
         // currently hard coded, will need to change this at some point
-        squares_per_row = 3;
+        squares_per_row = 8;
         
         // to move the square off the corner of the screen
-        var offset = 0.1* screen_width;
+        var left_offset = 0.1* screen_width;
+        var top_offset = 0.15 * screen_height;
         // these if statements mean that the app may be able to rescale on rotation
         // might not be needed
         var scale_size;
@@ -174,20 +175,20 @@ function testView(){
         *  the white circles need an offset to place them at the bottom 
         *  left hand corner of the screen
         */
-       var white_circle_offset = 3; // this number relates to the number of rows, will need to amend later
+       var white_circle_offset = 7; // this number relates to the number of rows, will need to amend later
        for(var i = 0; i < white_circles.length; i++){
            white_circles[i].setAttribute("r", 0.4 * (scale_size));
         // this shouldn't use a hard coded value, should use number of pieces   
-            if (count < 1) {
-                white_circles[i].setAttribute("cx", (count * ((scale_size)) + offset) + (0.5 * scale_size));
-                white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset) + (0.5 * scale_size));
+            if (count < 4) {
+                white_circles[i].setAttribute("cx", (count * ((scale_size)) + left_offset) + (0.5 * scale_size));
+                white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset + (top_offset)) + (0.5 * scale_size));
                 count++;
             }
             else {
                 count = 0;
                 white_circle_offset--;
-                white_circles[i].setAttribute("cx", (count * ((scale_size)) + offset) + (0.5 * scale_size));
-                white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset) + (0.5 * scale_size));
+                white_circles[i].setAttribute("cx", (count * ((scale_size)) + left_offset) + (0.5 * scale_size));
+                white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset + (top_offset)) + (0.5 * scale_size));
                 count++;
             }
        }
@@ -198,22 +199,22 @@ function testView(){
         * brown circles need an offset to place them at the top right
         * hand corner of the board
         */
-       var brown_circle_offset = 3;  // this number relates to the number of collumns, hopefully change
+       var brown_circle_offset = 7;  // this number relates to the number of collumns, hopefully change
                                      // this from being hardcoded
        // this for loop sets the size of all the brown circles on the baord
        for(var i = 0; i < brown_circles.length; i++){
            brown_circles[i].setAttribute ("r", 0.4 * (scale_size));
            
-           if(count < 1){ // value 1 needs to be changed to 0.5 * no_of_cols
-               brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset) + (0.5 * scale_size));
-               brown_circles[i].setAttribute("cy", (count * ((scale_size)) + offset) + (0.5 * scale_size));
+           if(count < 4){ // value 1 needs to be changed to 0.5 * no_of_cols
+               brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset + (left_offset)) + (0.5 * scale_size));
+               brown_circles[i].setAttribute("cy", (count * ((scale_size)) + top_offset) + (0.5 * scale_size));
                count++;
            }
            else{
                count = 0;
                brown_circle_offset--;
-               brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset) + (0.5 * scale_size));
-               brown_circles[i].setAttribute("cy", (count * ((scale_size)) + offset) + (0.5 * scale_size));
+               brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset +(left_offset)) + (0.5 * scale_size));
+               brown_circles[i].setAttribute("cy", (count * ((scale_size)) + top_offset) + (0.5 * scale_size));
                count++;
            }
            
@@ -224,21 +225,19 @@ function testView(){
        var row_count = 0;
        for(var i = 0; i < all_squares.length; i++){
             if(col_count < squares_per_row){
-                all_squares[i].style.x = (col_count * scale_size) + offset;
-                all_squares[i].style.y = (row_count) * scale_size + offset;
+                all_squares[i].style.x = (col_count * scale_size) + left_offset;
+                all_squares[i].style.y = (row_count) * scale_size + top_offset;
                 col_count ++;
                 //console.log(col_count * scale_size + " , " + (row_count) * scale_size);
             }
             else {
                 col_count = 0;
                 row_count++;
-                all_squares[i].style.x = (col_count * scale_size) + offset;
-                all_squares[i].style.y = (row_count) * scale_size + offset;
+                all_squares[i].style.x = (col_count * scale_size) + left_offset;
+                all_squares[i].style.y = (row_count) * scale_size + top_offset;
                 col_count++;
             }
-       }
-       
-        
+       }        
     };
     
     

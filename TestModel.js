@@ -3,10 +3,14 @@
 "use strict";
 
 function testModel() {
+    // need to create all of the pieces for the game
     var p = new gamePieces();
     p.newGamePiece("player_one", "white", 1, 0, 0);
     var p2 = new gamePieces();
     p2.newGamePiece("player_two", "black", 2, 1, 0);
+    
+    
+    
     var test_board = new Array(3);
     var possible_moves;
     var new_x_coord = 0;
@@ -21,7 +25,8 @@ function testModel() {
     
    this.init = function () {
         possible_moves = new Array();
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 3; i++) { // the value 3 here is hard coded
+                                      // it should depend on the number of rows/collums
             test_board[i] = new Array(3);
             for (var j = 0; j < 3; j++) {
                 test_board[i][j] = 0;
