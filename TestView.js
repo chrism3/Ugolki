@@ -14,7 +14,9 @@ function testView(){
         square_nine = document.getElementById("test_square_9"),
         //circles, the game pieces
         circle = document.getElementById("test_circle"),
-        circle_two = document.getElementById("test_circle_2");
+        circle_two = document.getElementById("test_circle_2"),
+        // not sure this will actualy help
+        screen_to_board_map = new Array(8);
 
     // keeping this separate because i don't like it
     var selected_piece,
@@ -138,6 +140,10 @@ function testView(){
         // currently hard coded, will need to change this at some point
         squares_per_row = 8;
         
+        for(var i = 0; i < screen_to_board_map.length; i++){
+            screen_to_board_map[i] = new Array(8);
+        }
+        
         // to move the square off the corner of the screen
         var left_offset = 0.1* screen_width;
         var top_offset = 0.15 * screen_height;
@@ -175,6 +181,17 @@ function testView(){
         *  the white circles need an offset to place them at the bottom 
         *  left hand corner of the screen
         */
+       
+       
+       /*
+        * 
+        * delete this christopher
+        */
+       for(var i = 0; i < white_circles.length; i++){
+           console.log(white_circles[i].attributes.id.value);
+       }
+       
+       
        var white_circle_offset = 7; // this number relates to the number of rows, will need to amend later
        for(var i = 0; i < white_circles.length; i++){
            white_circles[i].setAttribute("r", 0.4 * (scale_size));
@@ -182,6 +199,12 @@ function testView(){
             if (count < 4) {
                 white_circles[i].setAttribute("cx", (count * ((scale_size)) + left_offset) + (0.5 * scale_size));
                 white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset + (top_offset)) + (0.5 * scale_size));
+                
+                // add the value to the map
+                screen_to_board_map[count][white_circle_offset] = new Array(white_circles[i], "white");
+               // console.log(screen_to_board_map[count][white_circle_offset+1]);
+               //console.log(count + "    " + white_circle_offset);
+               //console.log(screen_to_board_map[count][white_circle_offset][0].attributes.id.value);
                 count++;
             }
             else {
@@ -189,8 +212,12 @@ function testView(){
                 white_circle_offset--;
                 white_circles[i].setAttribute("cx", (count * ((scale_size)) + left_offset) + (0.5 * scale_size));
                 white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset + (top_offset)) + (0.5 * scale_size));
+                //add the circle to the map
+                screen_to_board_map[count][white_circle_offset] = new Array(white_circles[i], "white");
+                //console.log(count + "    " + white_circle_offset);
+                //console.log(screen_to_board_map[count][white_circle_offset][0].attributes.id.value);
                 count++;
-            }
+            }            
        }
        
        // reset the value of count to be used again for the brown circles
@@ -208,6 +235,7 @@ function testView(){
            if(count < 4){ // value 1 needs to be changed to 0.5 * no_of_cols
                brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset + (left_offset)) + (0.5 * scale_size));
                brown_circles[i].setAttribute("cy", (count * ((scale_size)) + top_offset) + (0.5 * scale_size));
+               screen_to_board_map[brown_circle_offset][count] = new Array(brown_circles[i], "black");
                count++;
            }
            else{
@@ -215,6 +243,7 @@ function testView(){
                brown_circle_offset--;
                brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset +(left_offset)) + (0.5 * scale_size));
                brown_circles[i].setAttribute("cy", (count * ((scale_size)) + top_offset) + (0.5 * scale_size));
+               screen_to_board_map[brown_circle_offset+1][count] = new Array(brown_circles[i], "black");
                count++;
            }
            
@@ -308,7 +337,11 @@ function testView(){
     };
     
     this.getSelectedPieceX = function(){
-        return selected_piece.attributes.cx;
+        return selected_piece.attributes.cx.value;
+    };
+    
+    this.getScreenToBoardMap = function(){
+        return screen_to_board_map;
     };
 }
 

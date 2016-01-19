@@ -11,7 +11,7 @@ function testModel() {
     
     
     
-    var test_board = new Array(3);
+    var test_board = new Array(8);
     var possible_moves;
     var new_x_coord = 0;
     var new_y_coord = 0;
@@ -22,6 +22,26 @@ function testModel() {
     // variables to set the screen sizes
     var screen_width = 0,
     screen_height = 0;
+    
+    //please rename test_board
+   this.setTestBoard = function(screen_to_board_map){
+       
+       for(var i = 0; i < test_board.length; i++){
+           test_board[i] = new Array(8);
+           for(var j = 0; j < test_board.length; j++){
+               if(screen_to_board_map[i][j] !== undefined){
+                   if(screen_to_board_map[i][j][1] === "white"){
+                       var piece = new GamePieces("player_one", "white", i, j);
+                       test_board[i][j] = piece;
+                   }
+                   else if(screen_to_board_map[i][j][1] === "black"){
+                       var piece = new GamePieces("player_two", "brown", i, j);
+                       test_board[i][j] = piece;
+                   }
+               }
+           }
+       }
+   };
     
    this.init = function () {
         possible_moves = new Array();
