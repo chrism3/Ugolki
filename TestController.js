@@ -109,10 +109,16 @@ function testController(){
         
         test_view.setCircleClickCallback(function() {
             test_view.setSelectedPiece(test_view.getCircleOne());
-            var x = test_view.getCircleOne().attributes.cx.value;
-            var y = test_view.getCircleOne().attributes.cy.value;            
+            var x = test_view.getSelectedPieceX();
+            var y = test_view.getCircleOne().attributes.cy.value; 
+            
+            console.log(x);
+            
             x=parseInt((x/100)-1);
             y=parseInt((y/100)-1);
+            
+            console.log("x being passed: " + x);
+            
             moves = test_model.findMoves2(x,y);
             
             console.log("moves length " + moves.length);

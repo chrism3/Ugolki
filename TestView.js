@@ -306,6 +306,10 @@ function testView(){
     this.setSelectedPiece = function(piece) {
         selected_piece = piece;
     };
+    
+    this.getSelectedPieceX = function(){
+        return selected_piece.attributes.cx;
+    };
 }
 
 

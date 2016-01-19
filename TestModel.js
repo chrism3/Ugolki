@@ -139,6 +139,8 @@ function testModel() {
             possible_moves.splice(i, possible_moves.length);
         }
         // check the piece is the right players piece
+//        console.log(x_coord);
+//        console.log(y_coord);
         current_piece = test_board[x_coord][y_coord];
         if (current_piece.getPieceColour() === current_player_colour) {
             var above = parseInt((test_board[x_coord][y_coord].getYCoord()) - 1);
