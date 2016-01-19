@@ -176,24 +176,47 @@ function testView(){
         */
        var white_circle_offset = 3; // this number relates to the number of rows, will need to amend later
        for(var i = 0; i < white_circles.length; i++){
-           white_circles[i].setAttribute("r", 0.48 * (scale_size));
+           white_circles[i].setAttribute("r", 0.4 * (scale_size));
         // this shouldn't use a hard coded value, should use number of pieces   
             if (count < 1) {
-                white_circles[i].setAttribute("cx", (count * ((scale_size)) + offset) + (0.52 * scale_size));
-                white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset) + (0.52 * scale_size));
+                white_circles[i].setAttribute("cx", (count * ((scale_size)) + offset) + (0.5 * scale_size));
+                white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset) + (0.5 * scale_size));
                 count++;
             }
             else {
                 count = 0;
                 white_circle_offset--;
-                white_circles[i].setAttribute("cx", (count * ((scale_size)) + offset) + (0.52 * scale_size));
-                white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset) + (0.52 * scale_size));
+                white_circles[i].setAttribute("cx", (count * ((scale_size)) + offset) + (0.5 * scale_size));
+                white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset) + (0.5 * scale_size));
                 count++;
             }
        }
+       
+       // reset the value of count to be used again for the brown circles
+       count = 0;
+       /*
+        * brown circles need an offset to place them at the top right
+        * hand corner of the board
+        */
+       var brown_circle_offset = 3;  // this number relates to the number of collumns, hopefully change
+                                     // this from being hardcoded
        // this for loop sets the size of all the brown circles on the baord
        for(var i = 0; i < brown_circles.length; i++){
-           brown_circles[i].setAttribute ("r", 0.48 * (scale_size));
+           brown_circles[i].setAttribute ("r", 0.4 * (scale_size));
+           
+           if(count < 1){ // value 1 needs to be changed to 0.5 * no_of_cols
+               brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset) + (0.5 * scale_size));
+               brown_circles[i].setAttribute("cy", (count * ((scale_size)) + offset) + (0.5 * scale_size));
+               count++;
+           }
+           else{
+               count = 0;
+               brown_circle_offset--;
+               brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset) + (0.5 * scale_size));
+               brown_circles[i].setAttribute("cy", (count * ((scale_size)) + offset) + (0.5 * scale_size));
+               count++;
+           }
+           
        }
        
        // for loops positions the sqaures on the board
