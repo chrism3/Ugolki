@@ -4,15 +4,17 @@
 function testController(){
      var test_view = new testView(),
              test_model = new testModel(),
-             moves = new Array();
+             moves = new Array(),
+             square = new Array();
              //test_model.init();
-             test_model.setScreenSize();
+             test_model.setScreenSize();             
              /*
               * needs to know number of squares per row, may be able to pass in a value later, 
               * currently it is hard coded in scaleBoardToScreen
               */
              test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
              test_model.setTestBoard(test_view.getScreenToBoardMap());
+
 
     this.init = function() {
         
@@ -111,6 +113,12 @@ function testController(){
             test_view.movePiece(x, y);
         });
         
+        test_view.square28ClickCallback(function(){
+           console.log("square 28 clicked");
+           square = test_view.getSquare28ScreenMap();
+           handleMovePiece();
+        });
+        
         
         test_view.setWhiteCircleOneClickCallback(function() {
             test_view.setSelectedPiece(test_view.getCircleOne());
@@ -177,7 +185,9 @@ function testController(){
                 y_coord = 0;
 
         console.log(screen_to_board_map[0][7][0].attributes.id.value);
-
+            moves = [];
+            test_view.resetDefaultBoardColours();
+            console.log("length of moves: " + moves.length);
             for(var i = 0; i < 8; i++){
                 for(var j = 0; j < 8; j++){
                     if(screen_to_board_map[i][j] !== undefined){
@@ -198,6 +208,14 @@ function testController(){
                     y_coord = moves[i].getY();
                 test_view.updateBoardWithMoves2(x_coord, y_coord);
             }
+        };
+        
+        this.handleMovePiece = function() {                     
+           var square_x = square[0];
+           var square_y = square[1];
+           test_model.movePiece(square_x, square_y);
+           test_view.movePiece(test_model.getNewX(), test_model.getNewY());
+           test_view.resetDefaultBoardColours();
         };
     };
 }

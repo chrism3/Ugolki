@@ -18,6 +18,9 @@ function testView(){
         white_circle_12 = document.getElementById("white_circle_12"),
         white_circle_16 = document.getElementById("white_circle_16"),
         
+        
+        //need to get the other squares & rename them
+        square_28 = document.getElementById("test_square_28"),
 
         screen_to_board_map = new Array(8),
         squares_array = new Array(8);
@@ -58,6 +61,11 @@ function testView(){
     };
     this.squareNineClickCallback = function (callback) {
         square_nine.addEventListener("click", callback);
+    };
+    
+    
+    this.square28ClickCallback = function (callback) {
+        square_28.addEventListener("click", callback);
     };
 
     
@@ -155,6 +163,12 @@ function testView(){
           square_nine.style.fill = "rgb(101,67,33)";
     };
     
+    this.movePiece2 = function(new_x, new_y){
+          selected_piece.style.stroke = "rgb(0,0,0)";
+          selected_piece.setAttribute("cx", new_x);
+          selected_piece.setAttribute("cy", new_y);
+    }
+    
     
      // this is a method to scale the board to the correct size
     this.scaleBoardToScreen = function(screen_height, screen_width, squares_per_row){
@@ -206,13 +220,6 @@ function testView(){
         *  the white circles need an offset to place them at the bottom 
         *  left hand corner of the screen
         */
-       
-       
-       /*
-        * 
-        * delete this christopher
-        */
-      
        var white_circle_offset = 7; // this number relates to the number of rows, will need to amend later
        for(var i = 0; i < white_circles.length; i++){
            white_circles[i].setAttribute("r", 0.4 * (scale_size));
@@ -295,16 +302,16 @@ function testView(){
                 col_count++;
             }
        }  
-       for(var i = 0; i < 8; i++){
-           for(var j = 0; j < 8; j++){
-               if(squares_array[i][j] !== undefined){
-                   console.log("[" + i + "][" + j + "] = " + squares_array[i][j].attributes.id.value);
-               }
-               else{
-                   console.log("[" + i + "][" + j + "] = undefined");
-               }
-           }
-       }
+//       for(var i = 0; i < 8; i++){
+//           for(var j = 0; j < 8; j++){
+//               if(squares_array[i][j] !== undefined){
+//                   console.log("[" + i + "][" + j + "] = " + squares_array[i][j].attributes.id.value);
+//               }
+//               else{
+//                   console.log("[" + i + "][" + j + "] = undefined");
+//               }
+//           }
+//       }
     };
     
     
@@ -372,6 +379,14 @@ function testView(){
         return square_nine;
     };
     
+    // there must be a better way of doing this
+    this.getSquare28ScreenMap = function() {
+       var index_values = new Array();
+       index_values[0] = 3;
+       index_values[1] = 3;
+       return index_values;
+    };
+    
     
     // not sure yet where to use this method
     this.setSelectedSquare = function(square) {
@@ -391,6 +406,29 @@ function testView(){
     
     this.getScreenToBoardMap = function(){
         return screen_to_board_map;
+    };
+
+    this.resetDefaultBoardColours = function (){
+        var white_squares = document.getElementsByClassName("white_square");
+        var brown_squares = document.getElementsByClassName("brown_square"); 
+        var all_circles = document.getElementsByTagName("circle");
+        for(var i = 0; i < white_squares.length; i++){
+            white_squares[i].style.fill = "rgb(255, 255, 255)";
+            brown_squares[i].style.fill = "rgb(101, 67, 33)";
+        }
+        
+        // not sure why this would be needed, might change it. 
+        for(var i = 0; i < all_circles.length; i++){
+            if(all_circles[i].attributes.class.value === "white_circles"){
+                console.log("this circle is white");
+                all_circles[i].style.fill = "rgb(255, 235, 205);";
+            }
+            else{
+                all_circles[i].style.fill = "rgb(205,92,92)";
+            }
+            all_circles[i].style.stroke = "rgb(0,0,0)";
+
+        }
     };
 }
 

@@ -155,13 +155,10 @@ function testModel() {
 
     // second, hopefully better version of this method
     this.findMoves2 = function (x_coord, y_coord) {
-        
         // set isPieceSelected to true
         isPieceSelected = true;
         // this loop is used to clear the possible moves array
-        for (var i = 0; i < possible_moves.length; i++) {
-            possible_moves.splice(i, possible_moves.length);
-        }
+        possible_moves = [];
         // check the piece is the right players piece
 //        console.log(x_coord);
 //        console.log(y_coord);
@@ -248,6 +245,7 @@ function testModel() {
 
     this.movePiece = function (choosen_square_x, choosen_square_y) {
         //console.log(choosen_square);
+        console.log(isPieceSelected);
         if (isPieceSelected) {
             for (var i = 0; i < possible_moves.length; i++) {
 
