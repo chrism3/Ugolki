@@ -15,11 +15,12 @@ function testView(){
         //circles, the game pieces
         white_circle = document.getElementById("white_circle_1"),
         circle_two = document.getElementById("test_circle_2"),
-        
+        white_circle_12 = document.getElementById("white_circle_12"),
         white_circle_16 = document.getElementById("white_circle_16"),
         
 
-        screen_to_board_map = new Array(8);
+        screen_to_board_map = new Array(8),
+        squares_array = new Array(8);
 
     // keeping this separate because i don't like it
     var selected_piece,
@@ -64,6 +65,9 @@ function testView(){
         white_circle.addEventListener("click", callback);
     };
     // add in the other white circles here
+    this.setWhiteCircle12ClickCallback = function(callback){
+        white_circle_12.addEventListener("click", callback);
+    };
     this.setWhiteCircle16ClickCallback = function(callback){
         white_circle_16.addEventListener("click", callback);
     };
@@ -72,7 +76,17 @@ function testView(){
         circle_two.addEventListener("click", callback);
     };
     
-   
+    
+    this.highlightSelectedPiece = function(){
+        selected_piece.style.stroke = "rgb(210, 33, 33)";
+    };
+    
+    this.updateBoardWithMoves2 = function(x_coord, y_coord){
+        console.log(x_coord + "    " + y_coord);
+        squares_array[x_coord][y_coord].style.fill = "rgb(76, 240, 25)";
+        
+
+    };
     
     this.updateBoardWithMoves = function(toUpdate, colour){
         var stroke, fill;
@@ -170,6 +184,7 @@ function testView(){
             scale_size = 0.1 * screen_width;
         }
         
+        
         var white_squares = document.getElementsByClassName("white_square");
         var brown_squares = document.getElementsByClassName("brown_square");
         var white_circles = document.getElementsByClassName("white_circles");
@@ -255,6 +270,11 @@ function testView(){
            
        }
        
+       // initialise the array that holds the squares, will be needed when moving pieces
+       for(var i = 0; i < squares_array.length; i++){
+           squares_array[i] = new Array(8);
+       }
+       
        // for loops positions the sqaures on the board
        var col_count = 0;
        var row_count = 0;
@@ -262,6 +282,7 @@ function testView(){
             if(col_count < squares_per_row){
                 all_squares[i].style.x = (col_count * scale_size) + left_offset;
                 all_squares[i].style.y = (row_count) * scale_size + top_offset;
+                squares_array[col_count][row_count] = all_squares[i];
                 col_count ++;
                 //console.log(col_count * scale_size + " , " + (row_count) * scale_size);
             }
@@ -270,19 +291,20 @@ function testView(){
                 row_count++;
                 all_squares[i].style.x = (col_count * scale_size) + left_offset;
                 all_squares[i].style.y = (row_count) * scale_size + top_offset;
+                squares_array[col_count][row_count] = all_squares[i];
                 col_count++;
             }
        }  
-//       for(var i = 0; i < 8; i++){
-//           for(var j = 0; j < 8; j++){
-//               if(screen_to_board_map[i][j] !== undefined){
-//                   console.log("[" + i + "][" + j + "] = " + screen_to_board_map[i][j][0].attributes.id.value);
-//               }
-//               else{
-//                   console.log("[" + i + "][" + j + "] = undefined");
-//               }
-//           }
-//       }
+       for(var i = 0; i < 8; i++){
+           for(var j = 0; j < 8; j++){
+               if(squares_array[i][j] !== undefined){
+                   console.log("[" + i + "][" + j + "] = " + squares_array[i][j].attributes.id.value);
+               }
+               else{
+                   console.log("[" + i + "][" + j + "] = undefined");
+               }
+           }
+       }
     };
     
     
@@ -309,6 +331,9 @@ function testView(){
     // getters for the circles
     this.getCircleOne = function() {
         return white_circle;
+    };
+    this.getWhiteCircle12 = function (){
+        return white_circle_12;
     };
     this.getWhiteCircle16 = function () {
         return white_circle_16;

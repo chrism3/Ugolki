@@ -140,6 +140,10 @@ function testController(){
 //                test_view.updateBoardWithMoves(toUpdate, colour);
 //            }
         });
+        test_view.setWhiteCircle12ClickCallback(function (){
+           test_view.setSelectedPiece(test_view.getWhiteCircle12());
+           performPieceSelection();
+        });
         test_view.setWhiteCircle16ClickCallback(function (){
            test_view.setSelectedPiece(test_view.getWhiteCircle16());
            performPieceSelection();
@@ -163,32 +167,38 @@ function testController(){
             }
         });
         
-            this.performPieceSelection = function(){
-                console.log("got this far");
-                var current_piece = test_view.getSelectedPiece();
-                var id = current_piece.attributes.id.value,
-                    screen_to_board_map = test_view.getScreenToBoardMap(),
-                    x_coord = 0,
-                    y_coord = 0;
-            
-            console.log(screen_to_board_map[0][7][0].attributes.id.value);
-            
-                for(var i = 0; i < 8; i++){
-                    for(var j = 0; j < 8; j++){
-                        if(screen_to_board_map[i][j] !== undefined){
-                            if(screen_to_board_map[i][j][0].attributes.id.value === id){
-                                x_coord = i;
-                                y_coord = j;
-                            }
-                            else{
-                                //console.log("[" + i + "][" + j + "]");
-                            }
+    this.performPieceSelection = function(){
+            console.log("got this far");
+            test_view.highlightSelectedPiece();
+            var current_piece = test_view.getSelectedPiece();
+            var id = current_piece.attributes.id.value,
+                screen_to_board_map = test_view.getScreenToBoardMap(),
+                x_coord = 0,
+                y_coord = 0;
+
+        console.log(screen_to_board_map[0][7][0].attributes.id.value);
+
+            for(var i = 0; i < 8; i++){
+                for(var j = 0; j < 8; j++){
+                    if(screen_to_board_map[i][j] !== undefined){
+                        if(screen_to_board_map[i][j][0].attributes.id.value === id){
+                            x_coord = i;
+                            y_coord = j;
+                        }
+                        else{
+                            //console.log("[" + i + "][" + j + "]");
                         }
                     }
                 }
-                moves = test_model.findMoves2(x_coord, y_coord);
-                console.log(moves.length);
-            };
+            }
+            moves = test_model.findMoves2(x_coord, y_coord);
+            //console.log(moves.length);
+            for(var i = 0; i < moves.length; i++){
+                var x_coord = moves[i].getX(),
+                    y_coord = moves[i].getY();
+                test_view.updateBoardWithMoves2(x_coord, y_coord);
+            }
+        };
     };
 }
 
