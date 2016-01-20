@@ -39,6 +39,9 @@ function testModel() {
                        test_board[i][j] = piece;
                    }
                }
+               else{
+                    test_board[i][j] = 0;
+               }
            }
        }
    };
@@ -152,6 +155,7 @@ function testModel() {
 
     // second, hopefully better version of this method
     this.findMoves2 = function (x_coord, y_coord) {
+        
         // set isPieceSelected to true
         isPieceSelected = true;
         // this loop is used to clear the possible moves array
@@ -164,29 +168,33 @@ function testModel() {
         current_piece = test_board[x_coord][y_coord];
         if (current_piece.getPieceColour() === current_player_colour) {
             var above = parseInt((test_board[x_coord][y_coord].getYCoord()) - 1);
-            //console.log("above = " + above);
+            console.log("above = " + above);
             var below = parseInt((test_board[x_coord][y_coord].getYCoord()) + 1);
-            //console.log("below = " + below);
+            console.log("below = " + below);
             var left = parseInt((test_board[x_coord][y_coord].getXCoord()) - 1);
-            //console.log("left = " + left);
+            console.log("left = " + left);
             var right = parseInt((test_board[x_coord][y_coord].getXCoord()) + 1);
-            //console.log("right = " + right);
+            console.log("right = " + right);
+            
+            console.log("xcoord = " + x_coord + " above = " + above);
             if (above >= 0 && test_board[x_coord][above] === 0) {
+                console.log("adding above");
                 var move = new possibleMove;
                 move.newMove(x_coord, above);
                 possible_moves.push(move);
             }
             
-            console.log(above-1);
+            //console.log(above-1);
             if(above-1 >= 0 && test_board[x_coord][above] !== 0){
                 if(above-1 >= 0 && test_board[x_coord][above - 1] === 0){
+                    console.log("adding jump above");
                     var move = new possibleMove;
                     move.newMove(x_coord, above-1);
                     possible_moves.push(move);
                 }
             }
             if (below < test_board.length && test_board[x_coord][below] === 0) {
-                console.log("standard below");
+                console.log("adding below");
                 var move = new possibleMove;
                 move.newMove(x_coord, below);
                 possible_moves.push(move);
@@ -194,34 +202,37 @@ function testModel() {
             
             if(below+1 < test_board.length && test_board[x_coord][below] !== 0){
                 if(below+1 < test_board.length && test_board[x_coord][below + 1] === 0){
+                    console.log("adding jump below");
                     var move = new possibleMove;
                     move.newMove(x_coord, below+1);
                     possible_moves.push(move);
                 }
             }
             if (left >= 0 && test_board[left][y_coord] === 0) {
+                console.log("adding left");
                 var move = new possibleMove;
                 move.newMove(left, y_coord);
                 possible_moves.push(move);
             }
             var jump_left = parseInt(left -1);
-            if(left-1 >= 0 && test_board[left][y_coord] !== 0){
+            if(left-1 >= 0 && test_board[left][y_coord] !== 0){                
                 if(jump_left >= 0 && test_board[jump_left][y_coord] === 0){
+                    console.log("adding jump left");
                     var move = new possibleMove;
                     move.newMove(jump_left, y_coord);
                     possible_moves.push(move);
                 }
             }
             if (right < test_board.length && test_board[right][y_coord] === 0) {
-                console.log("right is happening");
+                console.log("adding right");
                 var move = new possibleMove;
                 move.newMove(right, y_coord);
                 possible_moves.push(move);
             }
             
             if(right+1 <= test_board.length && test_board[right][y_coord] !== 0 ){
-                console.log("this is happening");
                 if(right+1 < test_board.length && test_board[right+1][y_coord] === 0){
+                    console.log("adding jump right");
                     var move = new possibleMove;
                     move.newMove(right+1, y_coord);
                     possible_moves.push(move);
@@ -231,6 +242,7 @@ function testModel() {
         else{
             console.log("it is " + current_player_colour + "s turn");
         }
+        console.log("number of possible moves: " + possible_moves.length);
         return possible_moves;
     };
 

@@ -13,12 +13,12 @@ function testView(){
         square_eight = document.getElementById("test_square_8"),
         square_nine = document.getElementById("test_square_9"),
         //circles, the game pieces
-        circle = document.getElementById("white_circle_1"),
+        white_circle = document.getElementById("white_circle_1"),
         circle_two = document.getElementById("test_circle_2"),
         
-        white_circles = document.getElementsByClassName("white_circles"),
+        white_circle_16 = document.getElementById("white_circle_16"),
         
-        // not sure this will actualy help
+
         screen_to_board_map = new Array(8);
 
     // keeping this separate because i don't like it
@@ -61,8 +61,13 @@ function testView(){
 
     
     this.setWhiteCircleOneClickCallback = function (callback) {
-        circle.addEventListener("click", callback);
+        white_circle.addEventListener("click", callback);
     };
+    // add in the other white circles here
+    this.setWhiteCircle16ClickCallback = function(callback){
+        white_circle_16.addEventListener("click", callback);
+    };
+    
     this.setCircleTwoClickCallBack = function (callback){
         circle_two.addEventListener("click", callback);
     };
@@ -192,11 +197,7 @@ function testView(){
         * 
         * delete this christopher
         */
-       for(var i = 0; i < white_circles.length; i++){
-           console.log(white_circles[i].attributes.id.value);
-       }
-       
-       
+      
        var white_circle_offset = 7; // this number relates to the number of rows, will need to amend later
        for(var i = 0; i < white_circles.length; i++){
            white_circles[i].setAttribute("r", 0.4 * (scale_size));
@@ -271,7 +272,17 @@ function testView(){
                 all_squares[i].style.y = (row_count) * scale_size + top_offset;
                 col_count++;
             }
-       }        
+       }  
+//       for(var i = 0; i < 8; i++){
+//           for(var j = 0; j < 8; j++){
+//               if(screen_to_board_map[i][j] !== undefined){
+//                   console.log("[" + i + "][" + j + "] = " + screen_to_board_map[i][j][0].attributes.id.value);
+//               }
+//               else{
+//                   console.log("[" + i + "][" + j + "] = undefined");
+//               }
+//           }
+//       }
     };
     
     
@@ -279,10 +290,10 @@ function testView(){
      * Try to think of better way to do these functions
      */
     this.getCircleOneXCoord = function(){
-        return circle.attributes.cx.value;
+        return white_circle.attributes.cx.value;
     };
     this.getCircleOneYCoord = function() {
-        return circle.attributes.cy.value;
+        return white_circle.attributes.cy.value;
     };
     this.getCircleTwoXCoord = function(){
         return circle_two.attributes.cx.value;
@@ -297,8 +308,12 @@ function testView(){
      */
     // getters for the circles
     this.getCircleOne = function() {
-        return circle;
+        return white_circle;
     };
+    this.getWhiteCircle16 = function () {
+        return white_circle_16;
+    };
+    
     this.getCircleTwo = function() {
         return circle_two;
     };
@@ -339,6 +354,10 @@ function testView(){
     };
     this.setSelectedPiece = function(piece) {
         selected_piece = piece;
+    };
+    
+    this.getSelectedPiece = function(){
+        return selected_piece;
     };
     
     this.getSelectedPieceX = function(){

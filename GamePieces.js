@@ -6,12 +6,12 @@
  * Not sure entirely what variables will be needed at this time, will
  * need to exand on this depending on what else I decided is important.
  */
-function gamePieces(){
-    var player = "default",
-        colour = "default",
+function gamePieces(new_player, new_colour, x, y){
+    var player = new_player,
+        colour = new_colour,
         id_no = 0,
-        x_coord = -0,
-        y_coord = -0;
+        x_coord = x,
+        y_coord = y;
 
     this.newGamePiece = function(p, c, id, x, y){
         player = p;
