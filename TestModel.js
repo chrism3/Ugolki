@@ -261,8 +261,8 @@ function testModel() {
                     current_piece.setXCoord(choosen_square_x);
                     current_piece.setYCoord(choosen_square_y);
 
-                    new_x_coord = parseInt(x_coord * 100) + 100;
-                    new_y_coord = parseInt(y_coord * 100) + 100;
+                    new_x_coord = choosen_square_x;
+                    new_y_coord = choosen_square_y;
                 }
             }
         }

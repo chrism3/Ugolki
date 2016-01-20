@@ -23,7 +23,10 @@ function testView(){
         square_28 = document.getElementById("test_square_28"),
 
         screen_to_board_map = new Array(8),
-        squares_array = new Array(8);
+        squares_array = new Array(8),
+        left_offset,
+        top_offset,
+        scale_size;
 
     // keeping this separate because i don't like it
     var selected_piece,
@@ -164,10 +167,33 @@ function testView(){
     };
     
     this.movePiece2 = function(new_x, new_y){
+        // might not need to recall the resetDefaultBoardColours
           selected_piece.style.stroke = "rgb(0,0,0)";
-          selected_piece.setAttribute("cx", new_x);
-          selected_piece.setAttribute("cy", new_y);
-    }
+          
+         var old_x = selected_piece.attributes.cx.value;
+         //console.log(old_x);
+         var old_y = selected_piece.attributes.cx.value;
+         
+         for(var i = 0; i < screen_to_board_map.length; i++ ){
+             for(var j = 0; j < screen_to_board_map.length; j++){
+                 if(screen_to_board_map[i][j] !== undefined){
+                     if(screen_to_board_map[i][j][0].attributes.id.value ===
+                            selected_piece.attributes.id.value){
+                        if(screen_to_board_map[i][j][0].attributes.class.value ===
+                                "white_circles"){                           
+                            screen_to_board_map[i][j][0].setAttribute("cx", (new_x * ((scale_size)) + left_offset) + (0.5 * scale_size));
+                            screen_to_board_map[i][j][0].setAttribute("cy", ((scale_size) * new_y + (top_offset)) + (0.5 * scale_size));
+                        }
+                        else {
+                            screen_to_board_map[i][j][0].setAttribute("cx", ((scale_size) * new_x + (left_offset)) + (0.5 * scale_size));
+                            screen_to_board_map[i][j][0].setAttribute("cy", (new_y * ((scale_size)) + top_offset) + (0.5 * scale_size));
+                        }
+                     }
+                 }
+             }
+         }
+
+    };
     
     
      // this is a method to scale the board to the correct size
@@ -183,11 +209,10 @@ function testView(){
         }
         
         // to move the square off the corner of the screen
-        var left_offset = 0.1* screen_width;
-        var top_offset = 0.15 * screen_height;
+        left_offset = 0.1* screen_width;
+        top_offset = 0.15 * screen_height;
         // these if statements mean that the app may be able to rescale on rotation
         // might not be needed
-        var scale_size;
         if(screen_height < screen_width){
             scale_size = 0.1 * screen_height;
         }
@@ -427,7 +452,6 @@ function testView(){
                 all_circles[i].style.fill = "rgb(205,92,92)";
             }
             all_circles[i].style.stroke = "rgb(0,0,0)";
-
         }
     };
 }

@@ -214,8 +214,8 @@ function testController(){
            var square_x = square[0];
            var square_y = square[1];
            test_model.movePiece(square_x, square_y);
-           test_view.movePiece(test_model.getNewX(), test_model.getNewY());
-           test_view.resetDefaultBoardColours();
+           test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
+           //test_view.resetDefaultBoardColours();
         };
     };
 }
