@@ -134,43 +134,43 @@ function testController(){
             performPieceSelection();
         });
         test_view.setWhiteCircle2ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle2());
+            test_view.setSelectedPiece(test_view.getWhiteCircle2());
             performPieceSelection();
         });
         test_view.setWhiteCircle3ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle3());
+            test_view.setSelectedPiece(test_view.getWhiteCircle3());
             performPieceSelection();
         });
         test_view.setWhiteCircle4ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle4());
+            test_view.setSelectedPiece(test_view.getWhiteCircle4());
             performPieceSelection();
         });
         test_view.setWhiteCircle5ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle5());
+            test_view.setSelectedPiece(test_view.getWhiteCircle5());
             performPieceSelection();
         });
         test_view.setWhiteCircle6ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle6());
+            test_view.setSelectedPiece(test_view.getWhiteCircle6());
             performPieceSelection();
         });
         test_view.setWhiteCircle7ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle7());
+            test_view.setSelectedPiece(test_view.getWhiteCircle7());
             performPieceSelection();
         });
         test_view.setWhiteCircle8ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle8());
+            test_view.setSelectedPiece(test_view.getWhiteCircle8());
             performPieceSelection();
         });
         test_view.setWhiteCircle9ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle9());
+            test_view.setSelectedPiece(test_view.getWhiteCircle9());
             performPieceSelection();
         });
         test_view.setWhiteCircle10ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle10());
+            test_view.setSelectedPiece(test_view.getWhiteCircle10());
             performPieceSelection();
         });
         test_view.setWhiteCircle11ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle11());
+            test_view.setSelectedPiece(test_view.getWhiteCircle11());
             performPieceSelection();
         });
         test_view.setWhiteCircle12ClickCallback(function (){
@@ -178,15 +178,15 @@ function testController(){
            performPieceSelection();
         });
         test_view.setWhiteCircle13ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle13());
+            test_view.setSelectedPiece(test_view.getWhiteCircle13());
             performPieceSelection();
         });
         test_view.setWhiteCircle14ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle14());
+            test_view.setSelectedPiece(test_view.getWhiteCircle14());
             performPieceSelection();
         });
         test_view.setWhiteCircle15ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircle15());
+            test_view.setSelectedPiece(test_view.getWhiteCircle15());
             performPieceSelection();
         });
         test_view.setWhiteCircle16ClickCallback(function (){
@@ -196,7 +196,6 @@ function testController(){
         
         test_view.setBrownCircle16ClickCallback(function (){
            test_view.setSelectedPiece(test_view.getBrownCircle16());
-           //console.log("brown 16 clicked");
            performPieceSelection();
         });
        
@@ -218,13 +217,14 @@ function testController(){
             }
         });
         
+    // this should probably be in the model
     this.performPieceSelection = function(){
         /*
          * Check the current piece colour here, not in model. If it is not the 
          * turn of the colour of piece that has been selected, can therefore bring
          * up a pop up box informing the user it isn't their turn
          */
-
+            test_view.resetDefaultBoardColours();// call this incase there are all ready squares coloured
             test_view.highlightSelectedPiece();
             var current_piece = test_view.getSelectedPiece();
             var id = current_piece.attributes.id.value,
@@ -234,7 +234,7 @@ function testController(){
 
        // console.log(screen_to_board_map[0][7][0].attributes.id.value);
             moves = [];
-            test_view.resetDefaultBoardColours();
+            //test_view.resetDefaultBoardColours();
            // console.log("length of moves: " + moves.length);
             for(var i = 0; i < 8; i++){
                 for(var j = 0; j < 8; j++){
@@ -258,6 +258,7 @@ function testController(){
             }
         };
         
+        // this should be in the model
         this.handleMovePiece = function() {                     
            var square_x = square[0];
            var square_y = square[1];

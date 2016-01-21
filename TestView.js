@@ -142,16 +142,26 @@ function testView(){
     
     this.setBrownCircle16ClickCallback = function (callback) {
         brown_circle_16.addEventListener("click", callback);
-    };
-    
+    };    
     
     this.highlightSelectedPiece = function(){
-        selected_piece.style.stroke = "rgb(210, 33, 33)";
+        if(selected_piece.attributes.class.value === "white_circles"){
+            selected_piece.style.stroke = "rgb(210, 33, 33)";
+        }
+        else{
+            selected_piece.style.stroke = "rgb(8, 146, 208)";
+        }
     };
     
     this.updateBoardWithMoves2 = function(x_coord, y_coord){
        // console.log(x_coord + "    " + y_coord);
-        squares_array[x_coord][y_coord].style.fill = "rgb(76, 240, 25)";
+       console.log(squares_array[x_coord][y_coord]);
+       if(selected_piece.attributes.class.value === "white_circles"){
+           squares_array[x_coord][y_coord].style.fill = "rgb(76, 240, 25)";
+       }
+       else{
+           squares_array[x_coord][y_coord].style.fill = "rgb(250, 131, 0)";
+       }
         
 
     };
@@ -225,7 +235,7 @@ function testView(){
     
     this.movePiece2 = function(new_x, new_y){
         // might not need to recall the resetDefaultBoardColours
-          selected_piece.style.stroke = "rgb(0,0,0)";
+          //selected_piece.style.stroke = "rgb(0,0,0)";
 
          
          console.log(new_x + "   " + new_y);
@@ -395,24 +405,7 @@ function testView(){
 //               }
 //           }
 //       }
-    };
-    
-    
-    /*
-     * Try to think of better way to do these functions
-     */
-    this.getCircleOneXCoord = function(){
-        return white_circle.attributes.cx.value;
-    };
-    this.getCircleOneYCoord = function() {
-        return white_circle.attributes.cy.value;
-    };
-    this.getCircleTwoXCoord = function(){
-        return circle_two.attributes.cx.value;
-    };
-    this.getCircleTwoYCoord = function(){
-        return circle_two.attributes.cy.value;
-    };
+    };   
     
     /*
      * might be better to have each piece with a getter method
@@ -422,46 +415,46 @@ function testView(){
     this.getWhiteCircle1 = function() {
         return white_circle_1;
     };
-    this.getCircle2 = function() {
+    this.getWhiteCircle2 = function() {
         return white_circle_2;
     };
-    this.getCircle3 = function() {
+    this.getWhiteCircle3 = function() {
         return white_circle_3;
     };
-    this.getCircle4 = function() {
+    this.getWhiteCircle4 = function() {
         return white_circle_4;
     };
-    this.getCircle5 = function() {
+    this.getWhiteCircle5 = function() {
         return white_circle_5;
     };
-    this.getCircle6 = function() {
+    this.getWhiteCircle6 = function() {
         return white_circle_6;
     };
-    this.getCircle7 = function() {
+    this.getWhiteCircle7 = function() {
         return white_circle_7;
     };
-    this.getCircle8 = function() {
+    this.getWhiteCircle8 = function() {
         return white_circle_8;
     };
-    this.getCircle9 = function() {
+    this.getWhiteCircle9 = function() {
         return white_circle_9;
     };
-    this.getCircle10 = function() {
+    this.getWhiteCircle10 = function() {
         return white_circle_10;
     };
-    this.getCircle11 = function() {
+    this.getWhiteCircle11 = function() {
         return white_circle_11;
     };
     this.getWhiteCircle12 = function (){
         return white_circle_12;
     };
-    this.getCircle13 = function() {
+    this.getWhiteCircle13 = function() {
         return white_circle_13;
     };
-    this.getCircle14 = function() {
+    this.getWhiteCircle14 = function() {
         return white_circle_14;
     };
-    this.getCircle15 = function() {
+    this.getWhiteCircle15 = function() {
         return white_circle_15;
     };
     this.getWhiteCircle16 = function () {
