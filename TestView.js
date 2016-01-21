@@ -12,20 +12,33 @@ function testView(){
         square_seven = document.getElementById("test_square_7"),
         square_eight = document.getElementById("test_square_8"),
         square_nine = document.getElementById("test_square_9"),
+        //need to get the other squares & rename them
+        square_27 = document.getElementById("test_square_27"),
+        square_28 = document.getElementById("test_square_28"),
+        
         //circles, the game pieces
-        white_circle = document.getElementById("white_circle_1"),
-        circle_two = document.getElementById("test_circle_2"),
+        white_circle_1 = document.getElementById("white_circle_1"),
+        white_circle_2 = document.getElementById("white_circle_2"),
+        white_circle_3 = document.getElementById("white_circle_3"),
+        white_circle_4 = document.getElementById("white_circle_4"),
+        white_circle_5 = document.getElementById("white_circle_5"),
+        white_circle_6 = document.getElementById("white_circle_6"),
+        white_circle_7 = document.getElementById("white_circle_7"),
+        white_circle_8 = document.getElementById("white_circle_8"),
+        white_circle_9 = document.getElementById("white_circle_9"),
+        white_circle_10 = document.getElementById("white_circle_10"),
+        white_circle_11 = document.getElementById("white_circle_11"),
         white_circle_12 = document.getElementById("white_circle_12"),
+        white_circle_13 = document.getElementById("white_circle_13"),
+        white_circle_14 = document.getElementById("white_circle_14"),
+        white_circle_15 = document.getElementById("white_circle_15"),
         white_circle_16 = document.getElementById("white_circle_16"),
         
         
         //new brown circle code
-        brown_circle_16 = document.getElementById("brown_circle_16"),
-        
-        
-        //need to get the other squares & rename them
-        square_27 = document.getElementById("test_square_27"),
-        square_28 = document.getElementById("test_square_28"),
+        brown_circle_1 = document.getElementById("brown_circle_1"),
+        brown_circle_16 = document.getElementById("brown_circle_16"),      
+
 
         screen_to_board_map = new Array(8),
         squares_array = new Array(8),
@@ -73,20 +86,58 @@ function testView(){
         square_28.addEventListener("click", callback);
     };
 
-    
-    this.setWhiteCircleOneClickCallback = function (callback) {
-        white_circle.addEventListener("click", callback);
+    // this is the listeners for all of the white circles, for the player with white pieces
+    this.setWhiteCircle1ClickCallback = function (callback) {
+        white_circle_1.addEventListener("click", callback);
     };
-    // add in the other white circles here
+    this.setWhiteCircle2ClickCallback = function (callback) {
+        white_circle_2.addEventListener("click", callback);
+    };
+    this.setWhiteCircle3ClickCallback = function (callback) {
+        white_circle_3.addEventListener("click", callback);
+    };
+    this.setWhiteCircle4ClickCallback = function (callback) {
+        white_circle_4.addEventListener("click", callback);
+    };
+    this.setWhiteCircle5ClickCallback = function (callback) {
+        white_circle_5.addEventListener("click", callback);
+    };
+    this.setWhiteCircle6ClickCallback = function (callback) {
+        white_circle_6.addEventListener("click", callback);
+    };
+    this.setWhiteCircle7ClickCallback = function (callback) {
+        white_circle_7.addEventListener("click", callback);
+    };
+    this.setWhiteCircle8ClickCallback = function (callback) {
+        white_circle_8.addEventListener("click", callback);
+    };
+    this.setWhiteCircle9ClickCallback = function (callback) {
+        white_circle_9.addEventListener("click", callback);
+    };
+    this.setWhiteCircle10ClickCallback = function (callback) {
+        white_circle_10.addEventListener("click", callback);
+    };
+    this.setWhiteCircle11ClickCallback = function (callback) {
+        white_circle_11.addEventListener("click", callback);
+    };
     this.setWhiteCircle12ClickCallback = function(callback){
         white_circle_12.addEventListener("click", callback);
+    };
+    this.setWhiteCircle13ClickCallback = function (callback) {
+        white_circle_13.addEventListener("click", callback);
+    };
+    this.setWhiteCircle14ClickCallback = function (callback) {
+        white_circle_14.addEventListener("click", callback);
+    };
+    this.setWhiteCircle15ClickCallback = function (callback) {
+        white_circle_15.addEventListener("click", callback);
     };
     this.setWhiteCircle16ClickCallback = function(callback){
         white_circle_16.addEventListener("click", callback);
     };
     
     this.setCircleTwoClickCallBack = function (callback){
-        circle_two.addEventListener("click", callback);
+        brown_circle_1.addEventListener("click", callback);
     };
     
     this.setBrownCircle16ClickCallback = function (callback) {
@@ -368,18 +419,57 @@ function testView(){
      * and find another way to get it's coordinates
      */
     // getters for the circles
-    this.getCircleOne = function() {
-        return white_circle;
+    this.getWhiteCircle1 = function() {
+        return white_circle_1;
+    };
+    this.getCircle2 = function() {
+        return white_circle_2;
+    };
+    this.getCircle3 = function() {
+        return white_circle_3;
+    };
+    this.getCircle4 = function() {
+        return white_circle_4;
+    };
+    this.getCircle5 = function() {
+        return white_circle_5;
+    };
+    this.getCircle6 = function() {
+        return white_circle_6;
+    };
+    this.getCircle7 = function() {
+        return white_circle_7;
+    };
+    this.getCircle8 = function() {
+        return white_circle_8;
+    };
+    this.getCircle9 = function() {
+        return white_circle_9;
+    };
+    this.getCircle10 = function() {
+        return white_circle_10;
+    };
+    this.getCircle11 = function() {
+        return white_circle_11;
     };
     this.getWhiteCircle12 = function (){
         return white_circle_12;
+    };
+    this.getCircle13 = function() {
+        return white_circle_13;
+    };
+    this.getCircle14 = function() {
+        return white_circle_14;
+    };
+    this.getCircle15 = function() {
+        return white_circle_15;
     };
     this.getWhiteCircle16 = function () {
         return white_circle_16;
     };
     
     this.getCircleTwo = function() {
-        return circle_two;
+        return brown_circle_1;
     };
     
     this.getBrownCircle16 = function(){

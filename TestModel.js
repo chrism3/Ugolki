@@ -253,14 +253,10 @@ function testModel() {
             
             
             for (var i = 0; i < possible_moves.length; i++) {
-                console.log("values of x and y of possible move: " + possible_moves[i].getX() + " " + possible_moves[i].getY());
                 if (choosen_square_x === possible_moves[i].getX() &&
                         choosen_square_y === possible_moves[i].getY()) {
                     var x_coord = possible_moves[i].getX();
                     var y_coord = possible_moves[i].getY();
-                    
-                    console.log("in for loop: " + x_coord);
-                    console.log("in for loop: " + y_coord);
 
                     // move the piece in the board array
                     test_board[current_piece.getXCoord()][current_piece.getYCoord()] = 0;
@@ -270,7 +266,6 @@ function testModel() {
                     current_piece.setYCoord(choosen_square_y);
 
                     new_x_coord = choosen_square_x;
-                    console.log("Where is y reset to 3 " + choosen_square_y + "      " + current_piece.getYCoord());
                     new_y_coord = choosen_square_y;
                 }
             }

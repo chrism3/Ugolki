@@ -128,17 +128,67 @@ function testController(){
            handleMovePiece();
         });
         
-        
-        test_view.setWhiteCircleOneClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getCircleOne());
+        // call all functions to add event listeners to the white piece in the view
+        test_view.setWhiteCircle1ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getWhiteCircle1());
             performPieceSelection();
         });
-        
+        test_view.setWhiteCircle2ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle2());
+            performPieceSelection();
+        });
+        test_view.setWhiteCircle3ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle3());
+            performPieceSelection();
+        });
+        test_view.setWhiteCircle4ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle4());
+            performPieceSelection();
+        });
+        test_view.setWhiteCircle5ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle5());
+            performPieceSelection();
+        });
+        test_view.setWhiteCircle6ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle6());
+            performPieceSelection();
+        });
+        test_view.setWhiteCircle7ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle7());
+            performPieceSelection();
+        });
+        test_view.setWhiteCircle8ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle8());
+            performPieceSelection();
+        });
+        test_view.setWhiteCircle9ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle9());
+            performPieceSelection();
+        });
+        test_view.setWhiteCircle10ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle10());
+            performPieceSelection();
+        });
+        test_view.setWhiteCircle11ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle11());
+            performPieceSelection();
+        });
         test_view.setWhiteCircle12ClickCallback(function (){
            test_view.setSelectedPiece(test_view.getWhiteCircle12());
            performPieceSelection();
         });
-        
+        test_view.setWhiteCircle13ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle13());
+            performPieceSelection();
+        });
+        test_view.setWhiteCircle14ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle14());
+            performPieceSelection();
+        });
+        test_view.setWhiteCircle15ClickCallback(function() {
+            test_view.setSelectedPiece(test_view.getCircle15());
+            performPieceSelection();
+        });
         test_view.setWhiteCircle16ClickCallback(function (){
            test_view.setSelectedPiece(test_view.getWhiteCircle16());
            performPieceSelection();
