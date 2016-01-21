@@ -155,7 +155,48 @@ function testView(){
     this.setBrownCircle1ClickCallBack = function (callback){
         brown_circle_1.addEventListener("click", callback);
     };
-    
+    this.setBrownCircle2ClickCallBack = function (callback){
+        brown_circle_2.addEventListener("click", callback);
+    };
+    this.setBrownCircle3ClickCallBack = function (callback){
+        brown_circle_3.addEventListener("click", callback);
+    };
+    this.setBrownCircle4ClickCallBack = function (callback){
+        brown_circle_4.addEventListener("click", callback);
+    };
+    this.setBrownCircle5ClickCallBack = function (callback){
+        brown_circle_5.addEventListener("click", callback);
+    };
+    this.setBrownCircle6ClickCallBack = function (callback){
+        brown_circle_6.addEventListener("click", callback);
+    };
+    this.setBrownCircle7ClickCallBack = function (callback){
+        brown_circle_7.addEventListener("click", callback);
+    };
+    this.setBrownCircle8ClickCallBack = function (callback){
+        brown_circle_8.addEventListener("click", callback);
+    };
+    this.setBrownCircle9ClickCallBack = function (callback){
+        brown_circle_9.addEventListener("click", callback);
+    };
+    this.setBrownCircle10ClickCallBack = function (callback){
+        brown_circle_10.addEventListener("click", callback);
+    };
+    this.setBrownCircle11ClickCallBack = function (callback){
+        brown_circle_11.addEventListener("click", callback);
+    };
+    this.setBrownCircle12ClickCallBack = function (callback){
+        brown_circle_12.addEventListener("click", callback);
+    };
+    this.setBrownCircle13ClickCallBack = function (callback){
+        brown_circle_13.addEventListener("click", callback);
+    };
+    this.setBrownCircle14ClickCallBack = function (callback){
+        brown_circle_14.addEventListener("click", callback);
+    };
+    this.setBrownCircle15ClickCallBack = function (callback){
+        brown_circle_15.addEventListener("click", callback);
+    };
     this.setBrownCircle16ClickCallback = function (callback) {
         brown_circle_16.addEventListener("click", callback);
     };    
@@ -481,10 +522,50 @@ function testView(){
     };
     
     this.getBrownCircle1 = function() {
-        //console.log(brown_circle_1);
         return brown_circle_1;
     };
-    
+    this.getBrownCircle2 = function() {
+        return brown_circle_2;
+    };
+    this.getBrownCircle3 = function() {
+        return brown_circle_3;
+    };
+    this.getBrownCircle4 = function() {
+        return brown_circle_4;
+    };
+    this.getBrownCircle5 = function() {
+        return brown_circle_5;
+    };
+    this.getBrownCircle6 = function() {
+        return brown_circle_6;
+    };
+    this.getBrownCircle7 = function() {
+        return brown_circle_7;
+    };
+    this.getBrownCircle8 = function() {
+        return brown_circle_8;
+    };
+    this.getBrownCircle9 = function() {
+        return brown_circle_9;
+    };
+    this.getBrownCircle10 = function() {
+        return brown_circle_10;
+    };
+    this.getBrownCircle11 = function() {
+        return brown_circle_11;
+    };
+    this.getBrownCircle12 = function() {
+        return brown_circle_12;
+    };
+    this.getBrownCircle13 = function() {
+        return brown_circle_13;
+    };
+    this.getBrownCircle14 = function() {
+        return brown_circle_14;
+    };
+    this.getBrownCircle15 = function() {
+        return brown_circle_15;
+    };
     this.getBrownCircle16 = function(){
         return brown_circle_16;
     };
