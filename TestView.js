@@ -3,18 +3,72 @@
 "use strict";
 
 function testView(){
-    var square_one = document.getElementById("test_square_1"),
-        square_two = document.getElementById("test_square_2"),
-        square_three = document.getElementById("test_square_3"),
-        square_four = document.getElementById("test_square_4"),
-        square_five = document.getElementById("test_square_5"),
-        square_six = document.getElementById("test_square_6"),
-        square_seven = document.getElementById("test_square_7"),
-        square_eight = document.getElementById("test_square_8"),
-        square_nine = document.getElementById("test_square_9"),
-        //need to get the other squares & rename them
+    var square_1 = document.getElementById("test_square_1"),
+        square_2 = document.getElementById("test_square_2"),
+        square_3 = document.getElementById("test_square_3"),
+        square_4 = document.getElementById("test_square_4"),
+        square_5 = document.getElementById("test_square_5"),
+        square_6 = document.getElementById("test_square_6"),
+        square_7 = document.getElementById("test_square_7"),
+        square_8 = document.getElementById("test_square_8"),
+        square_9 = document.getElementById("test_square_9"),
+        square_10 = document.getElementById("test_square_10"),
+        square_11 = document.getElementById("test_square_11"),
+        square_12 = document.getElementById("test_square_12"),
+        square_13 = document.getElementById("test_square_13"),
+        square_14 = document.getElementById("test_square_14"),
+        square_15 = document.getElementById("test_square_15"),
+        square_16 = document.getElementById("test_square_16"),
+        square_17 = document.getElementById("test_square_17"),
+        square_18 = document.getElementById("test_square_18"),
+        square_19 = document.getElementById("test_square_19"),
+        square_20 = document.getElementById("test_square_20"),
+        square_21 = document.getElementById("test_square_21"),
+        square_22 = document.getElementById("test_square_22"),
+        square_23 = document.getElementById("test_square_23"),
+        square_24 = document.getElementById("test_square_24"),
+        square_25 = document.getElementById("test_square_25"),
+        square_26 = document.getElementById("test_square_26"),
         square_27 = document.getElementById("test_square_27"),
         square_28 = document.getElementById("test_square_28"),
+        square_29 = document.getElementById("test_square_29"),
+        square_30 = document.getElementById("test_square_30"),
+        square_31 = document.getElementById("test_square_31"),
+        square_32 = document.getElementById("test_square_32"),
+        square_23 = document.getElementById("test_square_33"),
+        square_34 = document.getElementById("test_square_34"),
+        square_35 = document.getElementById("test_square_35"),
+        square_36 = document.getElementById("test_square_36"),
+        square_37 = document.getElementById("test_square_37"),
+        square_38 = document.getElementById("test_square_38"),
+        square_39 = document.getElementById("test_square_39"),
+        square_40 = document.getElementById("test_square_40"),
+        square_41 = document.getElementById("test_square_41"),
+        square_42 = document.getElementById("test_square_42"),
+        square_43 = document.getElementById("test_square_43"),
+        square_44 = document.getElementById("test_square_44"),
+        square_45 = document.getElementById("test_square_45"),
+        square_46 = document.getElementById("test_square_46"),
+        square_47 = document.getElementById("test_square_47"),
+        square_48 = document.getElementById("test_square_48"),
+        square_49 = document.getElementById("test_square_49"),
+        square_50 = document.getElementById("test_square_50"),
+        square_51 = document.getElementById("test_square_51"),
+        square_52 = document.getElementById("test_square_52"),
+        square_53 = document.getElementById("test_square_53"),
+        square_54 = document.getElementById("test_square_54"),
+        square_55 = document.getElementById("test_square_55"),
+        square_56 = document.getElementById("test_square_56"),
+        square_57 = document.getElementById("test_square_57"),
+        square_58 = document.getElementById("test_square_58"),
+        square_59 = document.getElementById("test_square_59"),
+        square_60 = document.getElementById("test_square_60"),
+        square_61 = document.getElementById("test_square_61"),
+        square_62 = document.getElementById("test_square_62"),
+        square_63 = document.getElementById("test_square_63"),
+        square_64 = document.getElementById("test_square_64"),
+        //need to get the other squares & rename them
+
         
         //varibales to hold the white circle elements from the html
         white_circle_1 = document.getElementById("white_circle_1"),
@@ -66,32 +120,32 @@ function testView(){
     var selected_piece,
         selected_square; // dont know where i'll use selected square
     
-    this.squareOneClickCallback = function (callback) {
-        square_one.addEventListener("click", callback);
+    this.square1ClickCallback = function (callback) {
+        square_1.addEventListener("click", callback);
     };
-    this.squareTwoClickCallback = function (callback) {
-        square_two.addEventListener("click", callback);
+    this.square2ClickCallback = function (callback) {
+        square_2.addEventListener("click", callback);
     };
-    this.squareThreeClickCallback = function (callback) {
-        square_three.addEventListener("click", callback);
+    this.square3ClickCallback = function (callback) {
+        square_3.addEventListener("click", callback);
     };
-    this.squareFourClickCallback = function (callback) {
-        square_four.addEventListener("click", callback);
+    this.square4ClickCallback = function (callback) {
+        square_4.addEventListener("click", callback);
     };
-    this.squareFiveClickCallback = function (callback) {
-        square_five.addEventListener("click", callback);
+    this.square5ClickCallback = function (callback) {
+        square_5.addEventListener("click", callback);
     };
-    this.squareSixClickCallback = function (callback) {
-        square_six.addEventListener("click", callback);
+    this.square6ClickCallback = function (callback) {
+        square_6.addEventListener("click", callback);
     };
-    this.squareSevenClickCallback = function (callback) {
-        square_seven.addEventListener("click", callback);
+    this.square7ClickCallback = function (callback) {
+        square_7.addEventListener("click", callback);
     };
-    this.squareEightClickCallback = function (callback) {
-        square_eight.addEventListener("click", callback);
+    this.square8ClickCallback = function (callback) {
+        square_8.addEventListener("click", callback);
     };
-    this.squareNineClickCallback = function (callback) {
-        square_nine.addEventListener("click", callback);
+    this.square9ClickCallback = function (callback) {
+        square_9.addEventListener("click", callback);
     };
     
     this.square27ClickCallback = function (callback) {

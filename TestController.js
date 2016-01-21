@@ -22,103 +22,53 @@ function testController(){
 //           console.log("white circle clicked");
 //        });
         
-        test_view.squareOneClickCallback(function() {
-            var square_x = test_view.getSquareOne().attributes.x.value;
-            var square_y = test_view.getSquareOne().attributes.y.value;
-            square_x=parseInt((square_x-50)/100);
-            square_y=parseInt((square_y-50)/100);
-            test_model.movePiece(square_x, square_y);
-            var x = test_model.getNewX();
-            var y = test_model.getNewY();
-            test_view.movePiece(x, y);
+        test_view.square1ClickCallback(function() {
+//            var square_x = test_view.getSquareOne().attributes.x.value;
+//            var square_y = test_view.getSquareOne().attributes.y.value;
+//            square_x=parseInt((square_x-50)/100);
+//            square_y=parseInt((square_y-50)/100);
+//            test_model.movePiece(square_x, square_y);
+//            var x = test_model.getNewX();
+//            var y = test_model.getNewY();
+//            test_view.movePiece(x, y);
+              square = test_view.getSquareCoordinates(1);
+              handleMovePiece();
+
         });
-        test_view.squareTwoClickCallback(function() {
-            var square_x = test_view.getSquareTwo().attributes.x.value;
-            var square_y = test_view.getSquareTwo().attributes.y.value;
-            square_x=parseInt((square_x-50)/100);
-            square_y=parseInt((square_y-50)/100);
-            test_model.movePiece(square_x, square_y);
-            var x = test_model.getNewX();
-            var y = test_model.getNewY();
-            test_view.movePiece(x, y);
+        test_view.square2ClickCallback(function() {
+              square = test_view.getSquareCoordinates(2);
+              handleMovePiece();
         });
-        test_view.squareThreeClickCallback(function() {
-            var square_x = test_view.getSquareThree().attributes.x.value;
-            var square_y = test_view.getSquareThree().attributes.y.value;
-            square_x=parseInt((square_x-50)/100);
-            square_y=parseInt((square_y-50)/100);
-            test_model.movePiece(square_x, square_y);
-            var x = test_model.getNewX();
-            var y = test_model.getNewY();
-            test_view.movePiece(x, y);
+        test_view.square3ClickCallback(function() {
+              square = test_view.getSquareCoordinates(3);
+              handleMovePiece();
         });
-        test_view.squareFourClickCallback(function() {
-            var square_x = test_view.getSquareFour().attributes.x.value;
-            var square_y = test_view.getSquareFour().attributes.y.value;
-            square_x=parseInt((square_x-50)/100);
-            square_y=parseInt((square_y-50)/100);
-            test_model.movePiece(square_x, square_y);
-            var x = test_model.getNewX();
-            var y = test_model.getNewY();
-            test_view.movePiece(x, y);
+        test_view.square4ClickCallback(function() {
+              square = test_view.getSquareCoordinates(4);
+              handleMovePiece();
         });
-        test_view.squareFiveClickCallback(function() {
-            var square_x = test_view.getSquareFive().attributes.x.value;
-            var square_y = test_view.getSquareFive().attributes.y.value;
-            square_x=parseInt((square_x-50)/100);
-            square_y=parseInt((square_y-50)/100);
-            test_model.movePiece(square_x, square_y);
-            var x = test_model.getNewX();
-            var y = test_model.getNewY();
-            test_view.movePiece(x, y);
+        test_view.square5ClickCallback(function() {
+              square = test_view.getSquareCoordinates(5);
+              handleMovePiece();
         });
-        test_view.squareSixClickCallback(function() {
-            var square_x = test_view.getSquareSix().attributes.x.value;
-            var square_y = test_view.getSquareSix().attributes.y.value;
-            square_x=parseInt((square_x-50)/100);
-            square_y=parseInt((square_y-50)/100);
-            test_model.movePiece(square_x, square_y);
-            var x = test_model.getNewX();
-            var y = test_model.getNewY();
-            test_view.movePiece(x, y);
+        test_view.square6ClickCallback(function() {
+              square = test_view.getSquareCoordinates(6);
+              handleMovePiece();
         });
-        test_view.squareSevenClickCallback(function() {
-            var square_x = test_view.getSquareSeven().attributes.x.value;
-            var square_y = test_view.getSquareSeven().attributes.y.value;
-            square_x=parseInt((square_x-50)/100);
-            square_y=parseInt((square_y-50)/100);
-            test_model.movePiece(square_x, square_y);
-            var x = test_model.getNewX();
-            var y = test_model.getNewY();
-            test_view.movePiece(x, y);
+        test_view.square7ClickCallback(function() {
+              square = test_view.getSquareCoordinates(7);
+              handleMovePiece();
         });
-        test_view.squareEightClickCallback(function() {
-            var square_x = test_view.getSquareEight().attributes.x.value;
-            var square_y = test_view.getSquareEight().attributes.y.value;
-            square_x=parseInt((square_x-50)/100);
-            square_y=parseInt((square_y-50)/100);
-            test_model.movePiece(square_x, square_y);
-            var x = test_model.getNewX();
-            var y = test_model.getNewY();
-            test_view.movePiece(x, y);
+        test_view.square8ClickCallback(function() {
+              square = test_view.getSquareCoordinates(8);
+              handleMovePiece();
         });
-        test_view.squareNineClickCallback(function() {
-            var square_x = test_view.getSquareNine().attributes.x.value;
-            var square_y = test_view.getSquareNine().attributes.y.value;
-            square_x=parseInt((square_x-50)/100);
-            square_y=parseInt((square_y-50)/100);
-            test_model.movePiece(square_x, square_y);
-            var x = test_model.getNewX();
-            var y = test_model.getNewY();
-            test_view.movePiece(x, y);
+        test_view.square9ClickCallback(function() {
+              square = test_view.getSquareCoordinates(9);
+              handleMovePiece();
         });
         
         test_view.square27ClickCallback(function(){
-//           console.log("is square 27 being called");
-//           square = test_view.getSquare27ScreenMap();
-//           console.log(square.length);
-//           console.log(square[0]);
-//           console.log(square[1]);
            square = test_view.getSquareCoordinates(27);
            handleMovePiece();
         });
