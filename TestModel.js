@@ -160,9 +160,10 @@ function testModel() {
         // this loop is used to clear the possible moves array
         possible_moves = [];
         // check the piece is the right players piece
-//        console.log(x_coord);
-//        console.log(y_coord);
+        console.log(x_coord);
+        console.log(y_coord);
         current_piece = test_board[x_coord][y_coord];
+        console.log(current_piece);
         console.log(current_piece.getPieceColour());
         console.log(current_player_colour);
         if (current_piece.getPieceColour() === current_player_colour) {

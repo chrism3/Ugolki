@@ -194,27 +194,14 @@ function testController(){
            performPieceSelection();
         });
         
+        test_view.setBrownCircle1ClickCallBack(function() {
+           test_view.setSelectedPiece(test_view.getBrownCircle1());
+           performPieceSelection();
+        });
+        
         test_view.setBrownCircle16ClickCallback(function (){
            test_view.setSelectedPiece(test_view.getBrownCircle16());
            performPieceSelection();
-        });
-       
-        test_view.setCircleTwoClickCallBack(function() {
-            test_view.setSelectedPiece(test_view.getCircleTwo());
-            var x = test_view.getCircleTwo().attributes.cx.value;
-            var y = test_view.getCircleTwo().attributes.cy.value;
-            
-            x=parseInt((x/100)-1);
-            y=parseInt((y/100)-1);
-            moves = test_model.findMoves2(x,y);
-            
-            //console.log("moves length " + moves.length);
-            for(var i = 0; i < moves.length; i++){
-                var x_coord = moves[i].getX(),
-                    y_coord = moves[i].getY(),
-                    toUpdate = "" + x_coord + "" + y_coord;
-                    test_view.updateBoardWithMoves(toUpdate);
-            }
         });
         
     // this should probably be in the model
@@ -232,7 +219,7 @@ function testController(){
                 x_coord = 0,
                 y_coord = 0;
 
-       // console.log(screen_to_board_map[0][7][0].attributes.id.value);
+        // console.log(screen_to_board_map[0][7][0].attributes.id.value);
             moves = [];
             //test_view.resetDefaultBoardColours();
            // console.log("length of moves: " + moves.length);
@@ -240,6 +227,7 @@ function testController(){
                 for(var j = 0; j < 8; j++){
                     if(screen_to_board_map[i][j] !== undefined){
                         if(screen_to_board_map[i][j][0].attributes.id.value === id){
+                            console.log("found circle with id " + id);
                             x_coord = i;
                             y_coord = j;
                         }

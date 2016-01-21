@@ -16,7 +16,7 @@ function testView(){
         square_27 = document.getElementById("test_square_27"),
         square_28 = document.getElementById("test_square_28"),
         
-        //circles, the game pieces
+        //varibales to hold the white circle elements from the html
         white_circle_1 = document.getElementById("white_circle_1"),
         white_circle_2 = document.getElementById("white_circle_2"),
         white_circle_3 = document.getElementById("white_circle_3"),
@@ -32,14 +32,30 @@ function testView(){
         white_circle_13 = document.getElementById("white_circle_13"),
         white_circle_14 = document.getElementById("white_circle_14"),
         white_circle_15 = document.getElementById("white_circle_15"),
-        white_circle_16 = document.getElementById("white_circle_16"),
+        white_circle_16 = document.getElementById("white_circle_16"),        
         
-        
-        //new brown circle code
+        //variables to hold the brown circle elements from the html
         brown_circle_1 = document.getElementById("brown_circle_1"),
+        brown_circle_2 = document.getElementById("brown_circle_2"),
+        brown_circle_3 = document.getElementById("brown_circle_3"),
+        brown_circle_4 = document.getElementById("brown_circle_4"),
+        brown_circle_5 = document.getElementById("brown_circle_5"),
+        brown_circle_6 = document.getElementById("brown_circle_6"),
+        brown_circle_7 = document.getElementById("brown_circle_7"),
+        brown_circle_8 = document.getElementById("brown_circle_8"),
+        brown_circle_9 = document.getElementById("brown_circle_9"),
+        brown_circle_10 = document.getElementById("brown_circle_10"),
+        brown_circle_11 = document.getElementById("brown_circle_11"),
+        brown_circle_12 = document.getElementById("brown_circle_12"),
+        brown_circle_13 = document.getElementById("brown_circle_13"),
+        brown_circle_14 = document.getElementById("brown_circle_14"),
+        brown_circle_15 = document.getElementById("brown_circle_15"),
         brown_circle_16 = document.getElementById("brown_circle_16"),      
 
-
+        /*
+         * global varibales to be used throughout the code... only used in test_view
+         * try to find some way to remove these globals and have them passed between function?
+         */
         screen_to_board_map = new Array(8),
         squares_array = new Array(8),
         left_offset,
@@ -136,7 +152,7 @@ function testView(){
         white_circle_16.addEventListener("click", callback);
     };
     
-    this.setCircleTwoClickCallBack = function (callback){
+    this.setBrownCircle1ClickCallBack = function (callback){
         brown_circle_1.addEventListener("click", callback);
     };
     
@@ -155,15 +171,12 @@ function testView(){
     
     this.updateBoardWithMoves2 = function(x_coord, y_coord){
        // console.log(x_coord + "    " + y_coord);
-       console.log(squares_array[x_coord][y_coord]);
        if(selected_piece.attributes.class.value === "white_circles"){
            squares_array[x_coord][y_coord].style.fill = "rgb(76, 240, 25)";
        }
        else{
            squares_array[x_coord][y_coord].style.fill = "rgb(250, 131, 0)";
        }
-        
-
     };
     
     this.updateBoardWithMoves = function(toUpdate, colour){
@@ -354,17 +367,19 @@ function testView(){
            brown_circles[i].setAttribute ("r", 0.4 * (scale_size));
            
            if(count < 4){ // value 1 needs to be changed to 0.5 * no_of_cols
+               //console.log("brown_circle_" + (i+1) + " in location: " + brown_circle_offset + "," + count);
                brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset + (left_offset)) + (0.5 * scale_size));
                brown_circles[i].setAttribute("cy", (count * ((scale_size)) + top_offset) + (0.5 * scale_size));
                screen_to_board_map[brown_circle_offset][count] = new Array(brown_circles[i], "black");
-               count++;
+               count++;               
            }
            else{
                count = 0;
                brown_circle_offset--;
+               //console.log("brown_circle_" + (i+1) + " in location: " + brown_circle_offset + "," + count);
                brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset +(left_offset)) + (0.5 * scale_size));
                brown_circles[i].setAttribute("cy", (count * ((scale_size)) + top_offset) + (0.5 * scale_size));
-               screen_to_board_map[brown_circle_offset+1][count] = new Array(brown_circles[i], "black");
+               screen_to_board_map[brown_circle_offset][count] = new Array(brown_circles[i], "black");
                count++;
            }
            
@@ -397,14 +412,18 @@ function testView(){
        }  
 //       for(var i = 0; i < 8; i++){
 //           for(var j = 0; j < 8; j++){
-//               if(squares_array[i][j] !== undefined){
-//                   console.log("[" + i + "][" + j + "] = " + squares_array[i][j].attributes.id.value);
+//               if(screen_to_board_map[i][j] !== undefined){
+//                   console.log("[" + i + "][" + j + "] = " + screen_to_board_map[i][j][0].attributes.id.value);
 //               }
 //               else{
 //                   console.log("[" + i + "][" + j + "] = undefined");
 //               }
 //           }
 //       }
+//       
+//       console.log("7, 0   " + screen_to_board_map[7][0][0].attributes.id.value);
+//
+//    
     };   
     
     /*
@@ -461,7 +480,8 @@ function testView(){
         return white_circle_16;
     };
     
-    this.getCircleTwo = function() {
+    this.getBrownCircle1 = function() {
+        //console.log(brown_circle_1);
         return brown_circle_1;
     };
     
