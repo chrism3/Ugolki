@@ -114,17 +114,17 @@ function testController(){
         });
         
         test_view.square27ClickCallback(function(){
-           console.log("is square 27 being called");
-           square = test_view.getSquare27ScreenMap();
-           console.log(square.length);
-           console.log(square[0]);
-           console.log(square[1]);
+//           console.log("is square 27 being called");
+//           square = test_view.getSquare27ScreenMap();
+//           console.log(square.length);
+//           console.log(square[0]);
+//           console.log(square[1]);
+           square = test_view.getSquareCoordinates(27);
            handleMovePiece();
         });
         
         test_view.square28ClickCallback(function(){
-           //console.log("square 28 clicked");
-           square = test_view.getSquare28ScreenMap();
+           square = test_view.getSquareCoordinates(28);
            handleMovePiece();
         });
         
@@ -132,35 +132,13 @@ function testController(){
         test_view.setWhiteCircleOneClickCallback(function() {
             test_view.setSelectedPiece(test_view.getCircleOne());
             performPieceSelection();
-            
-            
-//            var x = test_view.getSelectedPieceX();
-//            var y = test_view.getCircleOne().attributes.cy.value; 
-//            
-//            console.log(x);
-//            
-//            x=parseInt((x/100)-1);
-//            y=parseInt((y/100)-1);
-//            
-//            console.log("x being passed: " + x);
-//            
-//            moves = test_model.findMoves2(x,y);
-//            
-//            console.log("moves length " + moves.length);
-//            for(var i = 0; i < moves.length; i++){
-//                var x_coord = moves[i].getX(),
-//                    y_coord = moves[i].getY(),
-//                    toUpdate = "" + x_coord + "" + y_coord,
-//                    colour = test_model.getCurrentPlayerColour();
-//                    //console.log(toUpdate);
-//                    
-//                test_view.updateBoardWithMoves(toUpdate, colour);
-//            }
         });
+        
         test_view.setWhiteCircle12ClickCallback(function (){
            test_view.setSelectedPiece(test_view.getWhiteCircle12());
            performPieceSelection();
         });
+        
         test_view.setWhiteCircle16ClickCallback(function (){
            test_view.setSelectedPiece(test_view.getWhiteCircle16());
            performPieceSelection();

@@ -184,15 +184,17 @@ function testView(){
                  if(screen_to_board_map[i][j] !== undefined){
                      if(screen_to_board_map[i][j][0].attributes.id.value ===
                             selected_piece.attributes.id.value){
-                        if(screen_to_board_map[i][j][0].attributes.class.value ===
-                                "white_circles"){                           
-                            screen_to_board_map[i][j][0].setAttribute("cx", (new_x * ((scale_size)) + left_offset) + (0.5 * scale_size));
-                            screen_to_board_map[i][j][0].setAttribute("cy", ((scale_size) * new_y + (top_offset)) + (0.5 * scale_size));
-                        }
-                        else {
-                            screen_to_board_map[i][j][0].setAttribute("cx", ((scale_size) * new_x + (left_offset)) + (0.5 * scale_size));
-                            screen_to_board_map[i][j][0].setAttribute("cy", (new_y * ((scale_size)) + top_offset) + (0.5 * scale_size));
-                        }
+//                        if(screen_to_board_map[i][j][0].attributes.class.value ===
+//                                "white_circles"){                           
+//                            screen_to_board_map[i][j][0].setAttribute("cx", (new_x * ((scale_size)) + left_offset) + (0.5 * scale_size));
+//                            screen_to_board_map[i][j][0].setAttribute("cy", ((scale_size) * new_y + (top_offset)) + (0.5 * scale_size));
+//                        }
+//                        else {
+//                            screen_to_board_map[i][j][0].setAttribute("cx", ((scale_size) * new_x + (left_offset)) + (0.5 * scale_size));
+//                            screen_to_board_map[i][j][0].setAttribute("cy", (new_y * ((scale_size)) + top_offset) + (0.5 * scale_size));
+//                        }
+                          screen_to_board_map[i][j][0].setAttribute("cx", ((scale_size) * new_x + (left_offset)) + (0.5 * scale_size));
+                          screen_to_board_map[i][j][0].setAttribute("cy", (new_y * ((scale_size)) + top_offset) + (0.5 * scale_size));
                      }
                  }
              }
@@ -413,18 +415,20 @@ function testView(){
         return square_nine;
     };
    
-    // there must be a better way of doing this
-    this.getSquare27ScreenMap = function() {
-        var index_values = new Array();
-        index_values[0] = 2;
-        index_values[1] = 3;
-        return index_values;
-    };
-    this.getSquare28ScreenMap = function() {
-       var index_values = new Array();
-       index_values[0] = 3;
-       index_values[1] = 3;
-       return index_values;
+    // this method is just a test just now, if it works it will improve efficieny
+    this.getSquareCoordinates = function(id_number){
+        var coordinates = new Array();
+        var square_id = "test_square_" + id_number;
+        for(var i = 0; i < 8; i++){
+            for(var j = 0; j < 8; j++){
+                if(squares_array[i][j].attributes.id.value === square_id){
+                    coordinates[0] = i;
+                    coordinates[1] = j;                    
+                }
+            }
+        }
+        console.log(coordinates[0] + "       " + coordinates[1]);
+        return coordinates;
     };
     
     
