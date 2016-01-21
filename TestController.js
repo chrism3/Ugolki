@@ -113,8 +113,17 @@ function testController(){
             test_view.movePiece(x, y);
         });
         
+        test_view.square27ClickCallback(function(){
+           console.log("is square 27 being called");
+           square = test_view.getSquare27ScreenMap();
+           console.log(square.length);
+           console.log(square[0]);
+           console.log(square[1]);
+           handleMovePiece();
+        });
+        
         test_view.square28ClickCallback(function(){
-           console.log("square 28 clicked");
+           //console.log("square 28 clicked");
            square = test_view.getSquare28ScreenMap();
            handleMovePiece();
         });
@@ -156,6 +165,12 @@ function testController(){
            test_view.setSelectedPiece(test_view.getWhiteCircle16());
            performPieceSelection();
         });
+        
+        test_view.setBrownCircle16ClickCallback(function (){
+           test_view.setSelectedPiece(test_view.getBrownCircle16());
+           //console.log("brown 16 clicked");
+           performPieceSelection();
+        });
        
         test_view.setCircleTwoClickCallBack(function() {
             test_view.setSelectedPiece(test_view.getCircleTwo());
@@ -166,7 +181,7 @@ function testController(){
             y=parseInt((y/100)-1);
             moves = test_model.findMoves2(x,y);
             
-            console.log("moves length " + moves.length);
+            //console.log("moves length " + moves.length);
             for(var i = 0; i < moves.length; i++){
                 var x_coord = moves[i].getX(),
                     y_coord = moves[i].getY(),
@@ -176,7 +191,12 @@ function testController(){
         });
         
     this.performPieceSelection = function(){
-            console.log("got this far");
+        /*
+         * Check the current piece colour here, not in model. If it is not the 
+         * turn of the colour of piece that has been selected, can therefore bring
+         * up a pop up box informing the user it isn't their turn
+         */
+
             test_view.highlightSelectedPiece();
             var current_piece = test_view.getSelectedPiece();
             var id = current_piece.attributes.id.value,
@@ -184,10 +204,10 @@ function testController(){
                 x_coord = 0,
                 y_coord = 0;
 
-        console.log(screen_to_board_map[0][7][0].attributes.id.value);
+       // console.log(screen_to_board_map[0][7][0].attributes.id.value);
             moves = [];
             test_view.resetDefaultBoardColours();
-            console.log("length of moves: " + moves.length);
+           // console.log("length of moves: " + moves.length);
             for(var i = 0; i < 8; i++){
                 for(var j = 0; j < 8; j++){
                     if(screen_to_board_map[i][j] !== undefined){
@@ -213,9 +233,10 @@ function testController(){
         this.handleMovePiece = function() {                     
            var square_x = square[0];
            var square_y = square[1];
+           console.log("in handle move pieces: " + square_x + "   " + square_y);
            test_model.movePiece(square_x, square_y);
            test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
-           //test_view.resetDefaultBoardColours();
+           test_view.resetDefaultBoardColours();
         };
     };
 }

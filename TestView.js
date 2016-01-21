@@ -19,7 +19,12 @@ function testView(){
         white_circle_16 = document.getElementById("white_circle_16"),
         
         
+        //new brown circle code
+        brown_circle_16 = document.getElementById("brown_circle_16"),
+        
+        
         //need to get the other squares & rename them
+        square_27 = document.getElementById("test_square_27"),
         square_28 = document.getElementById("test_square_28"),
 
         screen_to_board_map = new Array(8),
@@ -30,13 +35,7 @@ function testView(){
 
     // keeping this separate because i don't like it
     var selected_piece,
-        selected_square;
-
-    this.setMouseCoord = function(e) {
-        console.log(e.clientX);
-    };
-     
-    
+        selected_square; // dont know where i'll use selected square
     
     this.squareOneClickCallback = function (callback) {
         square_one.addEventListener("click", callback);
@@ -66,6 +65,9 @@ function testView(){
         square_nine.addEventListener("click", callback);
     };
     
+    this.square27ClickCallback = function (callback) {
+        square_27.addEventListener("click", callback);
+    };
     
     this.square28ClickCallback = function (callback) {
         square_28.addEventListener("click", callback);
@@ -87,13 +89,17 @@ function testView(){
         circle_two.addEventListener("click", callback);
     };
     
+    this.setBrownCircle16ClickCallback = function (callback) {
+        brown_circle_16.addEventListener("click", callback);
+    };
+    
     
     this.highlightSelectedPiece = function(){
         selected_piece.style.stroke = "rgb(210, 33, 33)";
     };
     
     this.updateBoardWithMoves2 = function(x_coord, y_coord){
-        console.log(x_coord + "    " + y_coord);
+       // console.log(x_coord + "    " + y_coord);
         squares_array[x_coord][y_coord].style.fill = "rgb(76, 240, 25)";
         
 
@@ -169,10 +175,9 @@ function testView(){
     this.movePiece2 = function(new_x, new_y){
         // might not need to recall the resetDefaultBoardColours
           selected_piece.style.stroke = "rgb(0,0,0)";
-          
-         var old_x = selected_piece.attributes.cx.value;
-         //console.log(old_x);
-         var old_y = selected_piece.attributes.cx.value;
+
+         
+         console.log(new_x + "   " + new_y);
          
          for(var i = 0; i < screen_to_board_map.length; i++ ){
              for(var j = 0; j < screen_to_board_map.length; j++){
@@ -198,8 +203,8 @@ function testView(){
     
      // this is a method to scale the board to the correct size
     this.scaleBoardToScreen = function(screen_height, screen_width, squares_per_row){
-        console.log("got this far");
-        console.log("screen height: " + screen_height);       
+        //console.log("got this far");
+        //console.log("screen height: " + screen_height);       
         
         // currently hard coded, will need to change this at some point
         squares_per_row = 8;
@@ -375,6 +380,10 @@ function testView(){
         return circle_two;
     };
     
+    this.getBrownCircle16 = function(){
+        return brown_circle_16;
+    };
+    
     //getters for the board squares
     this.getSquareOne = function(){
         return square_one;
@@ -403,8 +412,14 @@ function testView(){
     this.getSquareNine = function() {
         return square_nine;
     };
-    
+   
     // there must be a better way of doing this
+    this.getSquare27ScreenMap = function() {
+        var index_values = new Array();
+        index_values[0] = 2;
+        index_values[1] = 3;
+        return index_values;
+    };
     this.getSquare28ScreenMap = function() {
        var index_values = new Array();
        index_values[0] = 3;
@@ -445,7 +460,7 @@ function testView(){
         // not sure why this would be needed, might change it. 
         for(var i = 0; i < all_circles.length; i++){
             if(all_circles[i].attributes.class.value === "white_circles"){
-                console.log("this circle is white");
+               // console.log("this circle is white");
                 all_circles[i].style.fill = "rgb(255, 235, 205);";
             }
             else{

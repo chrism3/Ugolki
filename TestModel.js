@@ -35,7 +35,7 @@ function testModel() {
                        test_board[i][j] = piece;
                    }
                    else if(screen_to_board_map[i][j][1] === "black"){
-                       var piece = new gamePieces("player_two", "brown", i, j);
+                       var piece = new gamePieces("player_two", "black", i, j);
                        test_board[i][j] = piece;
                    }
                }
@@ -163,6 +163,8 @@ function testModel() {
 //        console.log(x_coord);
 //        console.log(y_coord);
         current_piece = test_board[x_coord][y_coord];
+        console.log(current_piece.getPieceColour());
+        console.log(current_player_colour);
         if (current_piece.getPieceColour() === current_player_colour) {
             var above = parseInt((test_board[x_coord][y_coord].getYCoord()) - 1);
             console.log("above = " + above);
@@ -173,7 +175,7 @@ function testModel() {
             var right = parseInt((test_board[x_coord][y_coord].getXCoord()) + 1);
             console.log("right = " + right);
             
-            console.log("xcoord = " + x_coord + " above = " + above);
+            //console.log("xcoord = " + x_coord + " above = " + above);
             if (above >= 0 && test_board[x_coord][above] === 0) {
                 console.log("adding above");
                 var move = new possibleMove;
@@ -245,14 +247,20 @@ function testModel() {
 
     this.movePiece = function (choosen_square_x, choosen_square_y) {
         //console.log(choosen_square);
-        console.log(isPieceSelected);
+        console.log(choosen_square_x + "     " + choosen_square_y);
         if (isPieceSelected) {
+            console.log(possible_moves.length);
+            
+            
             for (var i = 0; i < possible_moves.length; i++) {
-
+                console.log("values of x and y of possible move: " + possible_moves[i].getX() + " " + possible_moves[i].getY());
                 if (choosen_square_x === possible_moves[i].getX() &&
                         choosen_square_y === possible_moves[i].getY()) {
                     var x_coord = possible_moves[i].getX();
                     var y_coord = possible_moves[i].getY();
+                    
+                    console.log("in for loop: " + x_coord);
+                    console.log("in for loop: " + y_coord);
 
                     // move the piece in the board array
                     test_board[current_piece.getXCoord()][current_piece.getYCoord()] = 0;
@@ -262,6 +270,7 @@ function testModel() {
                     current_piece.setYCoord(choosen_square_y);
 
                     new_x_coord = choosen_square_x;
+                    console.log("Where is y reset to 3 " + choosen_square_y + "      " + current_piece.getYCoord());
                     new_y_coord = choosen_square_y;
                 }
             }
