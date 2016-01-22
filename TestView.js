@@ -3,6 +3,7 @@
 "use strict";
 
 function testView(){
+    // move the squares and circles into the event listeners, to remove global variables
     var square_1 = document.getElementById("test_square_1"),
         square_2 = document.getElementById("test_square_2"),
         square_3 = document.getElementById("test_square_3"),
@@ -35,7 +36,7 @@ function testView(){
         square_30 = document.getElementById("test_square_30"),
         square_31 = document.getElementById("test_square_31"),
         square_32 = document.getElementById("test_square_32"),
-        square_23 = document.getElementById("test_square_33"),
+        square_33 = document.getElementById("test_square_33"),
         square_34 = document.getElementById("test_square_34"),
         square_35 = document.getElementById("test_square_35"),
         square_36 = document.getElementById("test_square_36"),
@@ -120,6 +121,7 @@ function testView(){
     var selected_piece,
         selected_square; // dont know where i'll use selected square
     
+    // event listeners being added to the squares
     this.square1ClickCallback = function (callback) {
         square_1.addEventListener("click", callback);
     };
@@ -147,13 +149,170 @@ function testView(){
     this.square9ClickCallback = function (callback) {
         square_9.addEventListener("click", callback);
     };
-    
+    this.square10ClickCallback = function (callback) {
+        square_10.addEventListener("click", callback);
+    };
+    this.square11ClickCallback = function (callback) {
+        square_11.addEventListener("click", callback);
+    };
+    this.square12ClickCallback = function (callback) {
+        square_12.addEventListener("click", callback);
+    };
+    this.square13ClickCallback = function (callback) {
+        square_13.addEventListener("click", callback);
+    };
+    this.square14ClickCallback = function (callback) {
+        square_14.addEventListener("click", callback);
+    };
+    this.square15ClickCallback = function (callback) {
+        square_15.addEventListener("click", callback);
+    };
+    this.square16ClickCallback = function (callback) {
+        square_16.addEventListener("click", callback);
+    };
+    this.square17ClickCallback = function (callback) {
+        square_17.addEventListener("click", callback);
+    };
+    this.square18ClickCallback = function (callback) {
+        square_18.addEventListener("click", callback);
+    };
+    this.square19ClickCallback = function (callback) {
+        square_19.addEventListener("click", callback);
+    };
+    this.square20ClickCallback = function (callback) {
+        square_20.addEventListener("click", callback);
+    };
+    this.square21ClickCallback = function (callback) {
+        square_21.addEventListener("click", callback);
+    };
+    this.square22ClickCallback = function (callback) {
+        square_22.addEventListener("click", callback);
+    };
+    this.square23ClickCallback = function (callback) {
+        square_23.addEventListener("click", callback);
+    };
+    this.square24ClickCallback = function (callback) {
+        square_24.addEventListener("click", callback);
+    };
+    this.square25ClickCallback = function (callback) {
+        square_25.addEventListener("click", callback);
+    };
+    this.square26ClickCallback = function (callback) {
+        square_26.addEventListener("click", callback);
+    };
     this.square27ClickCallback = function (callback) {
         square_27.addEventListener("click", callback);
-    };
-    
+    };    
     this.square28ClickCallback = function (callback) {
         square_28.addEventListener("click", callback);
+    };
+    this.square29ClickCallback = function (callback) {
+        square_29.addEventListener("click", callback);
+    };
+    this.square30ClickCallback = function (callback) {
+        square_30.addEventListener("click", callback);
+    };
+    this.square31ClickCallback = function (callback) {
+        square_31.addEventListener("click", callback);
+    };
+    this.square32ClickCallback = function (callback) {
+        square_32.addEventListener("click", callback);
+    };
+    this.square33ClickCallback = function (callback) {
+        square_33.addEventListener("click", callback);
+    };
+    this.square34ClickCallback = function (callback) {
+        square_34.addEventListener("click", callback);
+    };
+    this.square35ClickCallback = function (callback) {
+        square_35.addEventListener("click", callback);
+    };
+    this.square36ClickCallback = function (callback) {
+        square_36.addEventListener("click", callback);
+    };
+    this.square37ClickCallback = function (callback) {
+        square_37.addEventListener("click", callback);
+    };
+    this.square38ClickCallback = function (callback) {
+        square_38.addEventListener("click", callback);
+    };
+    this.square39ClickCallback = function (callback) {
+        square_39.addEventListener("click", callback);
+    };
+    this.square40ClickCallback = function (callback) {
+        square_40.addEventListener("click", callback);
+    };
+    this.square41ClickCallback = function (callback) {
+        square_41.addEventListener("click", callback);
+    };
+    this.square42ClickCallback = function (callback) {
+        square_42.addEventListener("click", callback);
+    };
+    this.square43ClickCallback = function (callback) {
+        square_43.addEventListener("click", callback);
+    };
+    this.square44ClickCallback = function (callback) {
+        square_44.addEventListener("click", callback);
+    };
+    this.square45ClickCallback = function (callback) {
+        square_45.addEventListener("click", callback);
+    };
+    this.square46ClickCallback = function (callback) {
+        square_46.addEventListener("click", callback);
+    };
+    this.square47ClickCallback = function (callback) {
+        square_47.addEventListener("click", callback);
+    };
+    this.square48ClickCallback = function (callback) {
+        square_48.addEventListener("click", callback);
+    };
+    this.square49ClickCallback = function (callback) {
+        square_49.addEventListener("click", callback);
+    };
+    this.square50ClickCallback = function (callback) {
+        square_50.addEventListener("click", callback);
+    };
+    this.square51ClickCallback = function (callback) {
+        square_51.addEventListener("click", callback);
+    };
+    this.square52ClickCallback = function (callback) {
+        square_52.addEventListener("click", callback);
+    };
+    this.square53ClickCallback = function (callback) {
+        square_53.addEventListener("click", callback);
+    };
+    this.square54ClickCallback = function (callback) {
+        square_54.addEventListener("click", callback);
+    };
+    this.square55ClickCallback = function (callback) {
+        square_55.addEventListener("click", callback);
+    };
+    this.square56ClickCallback = function (callback) {
+        square_56.addEventListener("click", callback);
+    };
+    this.square57ClickCallback = function (callback) {
+        square_57.addEventListener("click", callback);
+    };
+    this.square58ClickCallback = function (callback) {
+        square_58.addEventListener("click", callback);
+    };
+    this.square59ClickCallback = function (callback) {
+        square_59.addEventListener("click", callback);
+    };
+    this.square60ClickCallback = function (callback) {
+        square_60.addEventListener("click", callback);
+    };
+    this.square61ClickCallback = function (callback) {
+        square_61.addEventListener("click", callback);
+    };
+    this.square62ClickCallback = function (callback) {
+        square_62.addEventListener("click", callback);
+    };
+    this.square63ClickCallback = function (callback) {
+        square_63.addEventListener("click", callback);
+    };
+    this.square64ClickCallback = function (callback) {
+        square_64.addEventListener("click", callback);
     };
 
     // this is the listeners for all of the white circles, for the player with white pieces

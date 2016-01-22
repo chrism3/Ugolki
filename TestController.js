@@ -67,15 +67,225 @@ function testController(){
               square = test_view.getSquareCoordinates(9);
               handleMovePiece();
         });
-        
+        test_view.square10ClickCallback(function() {
+              square = test_view.getSquareCoordinates(10);
+              handleMovePiece();
+        });
+        test_view.square11ClickCallback(function() {
+              square = test_view.getSquareCoordinates(11);
+              handleMovePiece();
+        });
+        test_view.square12ClickCallback(function() {
+              square = test_view.getSquareCoordinates(12);
+              handleMovePiece();
+        });
+        test_view.square13ClickCallback(function() {
+              square = test_view.getSquareCoordinates(13);
+              handleMovePiece();
+        });
+        test_view.square14ClickCallback(function() {
+              square = test_view.getSquareCoordinates(14);
+              handleMovePiece();
+        });
+        test_view.square15ClickCallback(function() {
+              square = test_view.getSquareCoordinates(15);
+              handleMovePiece();
+        });
+        test_view.square16ClickCallback(function() {
+              square = test_view.getSquareCoordinates(16);
+              handleMovePiece();
+        });
+        test_view.square17ClickCallback(function() {
+              square = test_view.getSquareCoordinates(17);
+              handleMovePiece();
+        });
+        test_view.square18ClickCallback(function() {
+              square = test_view.getSquareCoordinates(18);
+              handleMovePiece();
+        });
+        test_view.square19ClickCallback(function() {
+              square = test_view.getSquareCoordinates(19);
+              handleMovePiece();
+        });
+        test_view.square20ClickCallback(function() {
+              square = test_view.getSquareCoordinates(20);
+              handleMovePiece();
+        });
+        test_view.square21ClickCallback(function() {
+              square = test_view.getSquareCoordinates(21);
+              handleMovePiece();
+        });
+        test_view.square22ClickCallback(function() {
+              square = test_view.getSquareCoordinates(22);
+              handleMovePiece();
+        });
+        test_view.square23ClickCallback(function() {
+              square = test_view.getSquareCoordinates(23);
+              handleMovePiece();
+        });
+        test_view.square24ClickCallback(function() {
+              square = test_view.getSquareCoordinates(24);
+              handleMovePiece();
+        });
+        test_view.square25ClickCallback(function() {
+              square = test_view.getSquareCoordinates(25);
+              handleMovePiece();
+        });
+        test_view.square26ClickCallback(function() {
+              square = test_view.getSquareCoordinates(26);
+              handleMovePiece();
+        });
         test_view.square27ClickCallback(function(){
            square = test_view.getSquareCoordinates(27);
            handleMovePiece();
-        });
-        
+        });        
         test_view.square28ClickCallback(function(){
            square = test_view.getSquareCoordinates(28);
            handleMovePiece();
+        });
+        test_view.square29ClickCallback(function() {
+              square = test_view.getSquareCoordinates(29);
+              handleMovePiece();
+        });
+        test_view.square30ClickCallback(function() {
+              square = test_view.getSquareCoordinates(30);
+              handleMovePiece();
+        });
+        test_view.square31ClickCallback(function() {
+              square = test_view.getSquareCoordinates(31);
+              handleMovePiece();
+        });
+        test_view.square32ClickCallback(function() {
+              square = test_view.getSquareCoordinates(32);
+              handleMovePiece();
+        });
+        test_view.square33ClickCallback(function() {
+              square = test_view.getSquareCoordinates(33);
+              handleMovePiece();
+        });
+        test_view.square34ClickCallback(function() {
+              square = test_view.getSquareCoordinates(34);
+              handleMovePiece();
+        });
+        test_view.square35ClickCallback(function() {
+              square = test_view.getSquareCoordinates(35);
+              handleMovePiece();
+        });
+        test_view.square36ClickCallback(function() {
+              square = test_view.getSquareCoordinates(36);
+              handleMovePiece();
+        });
+        test_view.square37ClickCallback(function() {
+              square = test_view.getSquareCoordinates(37);
+              handleMovePiece();
+        });
+        test_view.square38ClickCallback(function() {
+              square = test_view.getSquareCoordinates(38);
+              handleMovePiece();
+        });
+        test_view.square39ClickCallback(function() {
+              square = test_view.getSquareCoordinates(39);
+              handleMovePiece();
+        });
+        test_view.square40ClickCallback(function() {
+              square = test_view.getSquareCoordinates(40);
+              handleMovePiece();
+        });
+        test_view.square41ClickCallback(function() {
+              square = test_view.getSquareCoordinates(41);
+              handleMovePiece();
+        });
+        test_view.square42ClickCallback(function() {
+              square = test_view.getSquareCoordinates(42);
+              handleMovePiece();
+        });
+        test_view.square43ClickCallback(function() {
+              square = test_view.getSquareCoordinates(43);
+              handleMovePiece();
+        });
+        test_view.square44ClickCallback(function() {
+              square = test_view.getSquareCoordinates(44);
+              handleMovePiece();
+        });
+        test_view.square45ClickCallback(function() {
+              square = test_view.getSquareCoordinates(45);
+              handleMovePiece();
+        });
+        test_view.square46ClickCallback(function() {
+              square = test_view.getSquareCoordinates(46);
+              handleMovePiece();
+        });
+        test_view.square47ClickCallback(function() {
+              square = test_view.getSquareCoordinates(47);
+              handleMovePiece();
+        });
+        test_view.square48ClickCallback(function() {
+              square = test_view.getSquareCoordinates(48);
+              handleMovePiece();
+        });
+        test_view.square49ClickCallback(function() {
+              square = test_view.getSquareCoordinates(49);
+              handleMovePiece();
+        });
+        test_view.square50ClickCallback(function() {
+              square = test_view.getSquareCoordinates(50);
+              handleMovePiece();
+        });
+        test_view.square51ClickCallback(function() {
+              square = test_view.getSquareCoordinates(51);
+              handleMovePiece();
+        });
+        test_view.square52ClickCallback(function() {
+              square = test_view.getSquareCoordinates(52);
+              handleMovePiece();
+        });
+        test_view.square53ClickCallback(function() {
+              square = test_view.getSquareCoordinates(53);
+              handleMovePiece();
+        });
+        test_view.square54ClickCallback(function() {
+              square = test_view.getSquareCoordinates(54);
+              handleMovePiece();
+        });
+        test_view.square55ClickCallback(function() {
+              square = test_view.getSquareCoordinates(55);
+              handleMovePiece();
+        });
+        test_view.square56ClickCallback(function() {
+              square = test_view.getSquareCoordinates(56);
+              handleMovePiece();
+        });
+        test_view.square57ClickCallback(function() {
+              square = test_view.getSquareCoordinates(57);
+              handleMovePiece();
+        });
+        test_view.square58ClickCallback(function() {
+              square = test_view.getSquareCoordinates(58);
+              handleMovePiece();
+        });
+        test_view.square59ClickCallback(function() {
+              square = test_view.getSquareCoordinates(59);
+              handleMovePiece();
+        });
+        test_view.square60ClickCallback(function() {
+              square = test_view.getSquareCoordinates(60);
+              handleMovePiece();
+        });
+        test_view.square61ClickCallback(function() {
+              square = test_view.getSquareCoordinates(61);
+              handleMovePiece();
+        });
+        test_view.square62ClickCallback(function() {
+              square = test_view.getSquareCoordinates(62);
+              handleMovePiece();
+        });
+        test_view.square63ClickCallback(function() {
+              square = test_view.getSquareCoordinates(63);
+              handleMovePiece();
+        });
+        test_view.square64ClickCallback(function() {
+              square = test_view.getSquareCoordinates(64);
+              handleMovePiece();
         });
         
         // call all functions to add event listeners to the white piece in the view
