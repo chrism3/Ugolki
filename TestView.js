@@ -113,7 +113,7 @@ function testView(){
          */
         screen_to_board_map = new Array(8),
         squares_array = new Array(8),
-        left_offset,
+        //left_offset,
         top_offset,
         scale_size,
         move_successful;
@@ -525,7 +525,7 @@ function testView(){
 //                        }
                           
                           // reposition the players choosen piece
-                          screen_to_board_map[i][j][0].setAttribute("cx", ((scale_size) * new_x + (left_offset)) + (0.5 * scale_size));
+                          screen_to_board_map[i][j][0].setAttribute("cx", ((scale_size) * new_x) + (0.5 * scale_size));
                           screen_to_board_map[i][j][0].setAttribute("cy", (new_y * ((scale_size)) + top_offset) + (0.5 * scale_size));
                           // get the necesssary info that had to be moved
                           var piece_to_move = screen_to_board_map[i][j][0];
@@ -561,8 +561,8 @@ function testView(){
         }
         
         // to move the square off the corner of the screen
-        left_offset = 0.1* screen_width;
-        top_offset = 0.15 * screen_height;
+        //left_offset = 0.1* screen_width;
+        top_offset = 0.25 * screen_height;
         // these if statements mean that the app may be able to rescale on rotation
         // might not be needed
         if(screen_height < screen_width){
@@ -602,7 +602,7 @@ function testView(){
            white_circles[i].setAttribute("r", 0.4 * (scale_size));
         // this shouldn't use a hard coded value, should use number of pieces   
             if (count < 4) {
-                white_circles[i].setAttribute("cx", (count * ((scale_size)) + left_offset) + (0.5 * scale_size));
+                white_circles[i].setAttribute("cx", (count * (scale_size)) + (0.5 * scale_size));
                 white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset + (top_offset)) + (0.5 * scale_size));
                 
                 // add the value to the map
@@ -615,7 +615,7 @@ function testView(){
             else {
                 count = 0;
                 white_circle_offset--;
-                white_circles[i].setAttribute("cx", (count * ((scale_size)) + left_offset) + (0.5 * scale_size));
+                white_circles[i].setAttribute("cx", (count * (scale_size)) + (0.5 * scale_size));
                 white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset + (top_offset)) + (0.5 * scale_size));
                 //add the circle to the map
                 screen_to_board_map[count][white_circle_offset] = new Array(white_circles[i], "white");
@@ -639,7 +639,7 @@ function testView(){
            
            if(count < 4){ // value 1 needs to be changed to 0.5 * no_of_cols
                //console.log("brown_circle_" + (i+1) + " in location: " + brown_circle_offset + "," + count);
-               brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset + (left_offset)) + (0.5 * scale_size));
+               brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset) + (0.5 * scale_size));
                brown_circles[i].setAttribute("cy", (count * ((scale_size)) + top_offset) + (0.5 * scale_size));
                screen_to_board_map[brown_circle_offset][count] = new Array(brown_circles[i], "black");
                count++;               
@@ -648,7 +648,7 @@ function testView(){
                count = 0;
                brown_circle_offset--;
                //console.log("brown_circle_" + (i+1) + " in location: " + brown_circle_offset + "," + count);
-               brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset +(left_offset)) + (0.5 * scale_size));
+               brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset) + (0.5 * scale_size));
                brown_circles[i].setAttribute("cy", (count * ((scale_size)) + top_offset) + (0.5 * scale_size));
                screen_to_board_map[brown_circle_offset][count] = new Array(brown_circles[i], "black");
                count++;
@@ -666,7 +666,7 @@ function testView(){
        var row_count = 0;
        for(var i = 0; i < all_squares.length; i++){
             if(col_count < squares_per_row){
-                all_squares[i].style.x = (col_count * scale_size) + left_offset;
+                all_squares[i].style.x = (col_count * scale_size);
                 all_squares[i].style.y = (row_count) * scale_size + top_offset;
                 squares_array[col_count][row_count] = all_squares[i];
                 col_count ++;
@@ -675,7 +675,7 @@ function testView(){
             else {
                 col_count = 0;
                 row_count++;
-                all_squares[i].style.x = (col_count * scale_size) + left_offset;
+                all_squares[i].style.x = (col_count * scale_size);
                 all_squares[i].style.y = (row_count) * scale_size + top_offset;
                 squares_array[col_count][row_count] = all_squares[i];
                 col_count++;
