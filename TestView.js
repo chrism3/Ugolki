@@ -879,6 +879,31 @@ function testView(){
             all_circles[i].style.stroke = "rgb(0,0,0)";
         }
     };
+    
+    this.getWhiteCircleCoordinates = function(id_number){
+        var circle_id = "white_circle_" + id_number;
+        var white_circles = document.getElementsByClassName("white_circles");
+        var circle;
+        for(var i = 0; i < white_circles.length; i++){
+            if(white_circles[i].attributes.id.value === circle_id){
+                circle = white_circles[i];
+            }
+        }
+        return circle;
+    };
+    
+    this.getBrownCircleCoordinates = function(id_number) {
+        var circle_id = "brown_circle_" + id_number;
+        var brown_circles = document.getElementsByClassName("brown_circles");
+        var circle;
+        for(var i = 0; i < brown_circles.length; i++){
+            if(brown_circles[i].attributes.id.value === circle_id){
+                circle = brown_circles[i];
+            }
+        }
+        return circle;
+    };
+    
 }
 
 
