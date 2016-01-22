@@ -562,7 +562,7 @@ function testView(){
         
         // to move the square off the corner of the screen
         //left_offset = 0.1* screen_width;
-        top_offset = 0.25 * screen_height;
+        top_offset = 0.1 * screen_height;
         // these if statements mean that the app may be able to rescale on rotation
         // might not be needed
         if(screen_height < screen_width){
@@ -915,6 +915,36 @@ function testView(){
     // this method is needed to reset the model fields and change which players turn it is
     this.wasMoveSuccessful = function(){
         return move_successful;
+    };
+    
+    
+    
+    // put this down here because it's not necessary functionality
+    this.reportErrorToUser = function(message_to_display) {
+        var text_area = document.getElementById("inform_user");
+        var text_area_div = document.getElementById("info_div");
+        text_area.value = message_to_display;
+        // reset opacity so that it is visible on callings after the first
+        text_area_div.style.opacity = 0.9;
+        text_area_div.style.display = "block";
+    };
+    
+    this.fadeInfoBox = function(){
+        var text_area_div = document.getElementById("info_div");
+        var opacity = window.getComputedStyle(text_area_div).getPropertyValue("opacity");
+        opacity -= 0.01;
+        if(opacity > 0){
+            text_area_div.style.opacity = opacity;
+        }
+        else{
+            text_area_div.style.display = "none";
+        }
+         console.log("doing this");
+    };
+    
+    // this method will be removed eventually, using it for testing
+    this.removeInfoBox = function() {
+        document.getElementById("info_div").style.display = "none";
     };
     
 }

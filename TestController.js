@@ -426,6 +426,7 @@ function testController(){
          * turn of the colour of piece that has been selected, can therefore bring
          * up a pop up box informing the user it isn't their turn
          */
+        
             test_view.resetDefaultBoardColours();// call this incase there are all ready squares coloured
             test_view.highlightSelectedPiece();
             var current_piece = test_view.getSelectedPiece();
@@ -473,7 +474,20 @@ function testController(){
                 test_model.resetForNextMove();
            }
            else{
-               // input prompt here to inform user move did not work
+               console.log("move not successful");
+               test_view.reportErrorToUser("Not a valid move for the selected piece");
+               var interval_count = 0;
+               var fade_message = setInterval(function() {
+                   interval_count++;                   
+                   test_view.fadeInfoBox();
+                   if(interval_count >= 100){
+                       clearInterval(fade_message);
+                   }
+               }, 100);
+               /*setTimeout( function() {
+                   test_view.removeInfoBox();
+               }, 3000);*/
+               
            }
         };
     };
