@@ -468,7 +468,13 @@ function testController(){
            console.log("in handle move pieces: " + square_x + "   " + square_y);
            test_model.movePiece(square_x, square_y);
            test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
-           test_view.resetDefaultBoardColours();
+           if(test_view.wasMoveSuccessful()){
+                test_view.resetDefaultBoardColours();
+                test_model.resetForNextMove();
+           }
+           else{
+               // input prompt here to inform user move did not work
+           }
         };
     };
 }

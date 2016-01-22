@@ -115,7 +115,8 @@ function testView(){
         squares_array = new Array(8),
         left_offset,
         top_offset,
-        scale_size;
+        scale_size,
+        move_successful;
 
     // keeping this separate because i don't like it
     var selected_piece,
@@ -504,9 +505,10 @@ function testView(){
         // might not need to recall the resetDefaultBoardColours
           //selected_piece.style.stroke = "rgb(0,0,0)";
 
+
          
          console.log(new_x + "   " + new_y);
-         
+         if(new_x >= 0 && new_y >=0){
          for(var i = 0; i < screen_to_board_map.length; i++ ){
              for(var j = 0; j < screen_to_board_map.length; j++){
                  if(screen_to_board_map[i][j] !== undefined){
@@ -532,10 +534,16 @@ function testView(){
                           screen_to_board_map[i][j] = undefined;
                           // set the new index to contain the moved piece
                           screen_to_board_map[new_x][new_y] = new Array(piece_to_move, piece_colour);
+                          move_successful = true;
                      }
                  }
              }
          }
+     }
+     else{
+         console.log("movePiece2 (view): don't move the piece");
+         move_successful = false;
+     }
 
     };
     
@@ -902,6 +910,11 @@ function testView(){
             }
         }
         return circle;
+    };
+    
+    // this method is needed to reset the model fields and change which players turn it is
+    this.wasMoveSuccessful = function(){
+        return move_successful;
     };
     
 }

@@ -13,8 +13,8 @@ function testModel() {
     
     var test_board = new Array(8);
     var possible_moves = new Array();
-    var new_x_coord = 0;
-    var new_y_coord = 0;
+    var new_x_coord = -1;
+    var new_y_coord = -1;
     var isPieceSelected = false;
     var current_player_colour = "white";
     var current_piece;
@@ -257,6 +257,7 @@ function testModel() {
             for (var i = 0; i < possible_moves.length; i++) {
                 if (choosen_square_x === possible_moves[i].getX() &&
                         choosen_square_y === possible_moves[i].getY()) {
+                    console.log("got into the for loop when i shouldn't have")
                     var x_coord = possible_moves[i].getX();
                     var y_coord = possible_moves[i].getY();
 
@@ -272,13 +273,16 @@ function testModel() {
                     new_x_coord = choosen_square_x;
                     new_y_coord = choosen_square_y;
                 }
+                else{
+                    console.log("don't move the piece");
+                }
             }
         }
         else {
             console.log("need to select a piece first");
         }
-        isPieceSelected = false;
-        this.setCurrentPlayerColour();
+//        isPieceSelected = false;
+//        this.setCurrentPlayerColour();
     };
 
     this.getNewX = function () {
@@ -304,7 +308,14 @@ function testModel() {
     
     this.getScreenWidth = function() {
         return screen_width;
-    }
+    };
+    
+    this.resetForNextMove = function() {
+        new_x_coord = -1;
+        new_y_coord = -1;
+        isPieceSelected = false;
+        this.setCurrentPlayerColour();
+    };
 }
 
 
