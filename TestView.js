@@ -932,14 +932,30 @@ function testView(){
     this.fadeInfoBox = function(){
         var text_area_div = document.getElementById("info_div");
         var opacity = window.getComputedStyle(text_area_div).getPropertyValue("opacity");
-        opacity -= 0.01;
-        if(opacity > 0){
-            text_area_div.style.opacity = opacity;
-        }
-        else{
-            text_area_div.style.display = "none";
-        }
-         console.log("doing this");
+        
+        var interval_count = 0;
+        var fade_out = setInterval(function () {
+            interval_count++;
+            opacity -= 0.01;
+            if(opacity > 0){
+                text_area_div.style.opacity = opacity;
+            }
+            else{
+                text_area_div.style.display = "none";
+            }
+            if(interval_count >= 100){
+                clearInterval(fade_out);
+            }
+        }, 100);
+        
+//        opacity -= 0.01;
+//        if(opacity > 0){
+//            text_area_div.style.opacity = opacity;
+//        }
+//        else{
+//            text_area_div.style.display = "none";
+//        }
+//         console.log("doing this");
     };
     
     // this method will be removed eventually, using it for testing

@@ -18,6 +18,8 @@ function testModel() {
     var isPieceSelected = false;
     var current_player_colour = "white";
     var current_piece;
+    // don't like this being global but findMoves all ready has a return statement
+    var find_moves_successful;
     
     // variables to set the screen sizes
     var screen_width = 0,
@@ -162,6 +164,7 @@ function testModel() {
         // check the piece is the right players piece
         //console.log(x_coord);
         //console.log(y_coord);
+        find_moves_successful = true;
         console.log("findMoves2 (model): " + x_coord + "," + y_coord);
         current_piece = test_board[x_coord][y_coord];
         console.log("current piece: " + current_piece);
@@ -241,7 +244,7 @@ function testModel() {
             }
         }
         else{
-            //console.log("it is " + current_player_colour + "s turn");
+            find_moves_successful = false;
         }
         //console.log("number of possible moves: " + possible_moves.length);
         return possible_moves;
@@ -250,6 +253,7 @@ function testModel() {
     this.movePiece = function (choosen_square_x, choosen_square_y) {
         //console.log(choosen_square);
         console.log(choosen_square_x + "     " + choosen_square_y);
+        var move_successful;
         if (isPieceSelected) {
             //console.log(possible_moves.length);
             
@@ -272,17 +276,22 @@ function testModel() {
 
                     new_x_coord = choosen_square_x;
                     new_y_coord = choosen_square_y;
+                    move_successful = true;
+                    break;
                 }
                 else{
-                    console.log("don't move the piece");
+                    console.log("something has went wrong");
+                    // not sure whether or not this should have a return in here or what it should be
+                    // if i do use this, will need to alter return statement from being a boolean
                 }
             }
         }
         else {
-            console.log("need to select a piece first");
+            move_successful = false;
         }
 //        isPieceSelected = false;
-//        this.setCurrentPlayerColour();
+//        this.setCurrentPlayerColour();    
+          return move_successful;
     };
 
     this.getNewX = function () {
@@ -315,6 +324,11 @@ function testModel() {
         new_y_coord = -1;
         isPieceSelected = false;
         this.setCurrentPlayerColour();
+    };
+    
+    // getter method to get the success of find moves
+    this.wasFindMovesSuccessful = function(){
+        return find_moves_successful;
     };
 }
 

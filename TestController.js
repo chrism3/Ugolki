@@ -454,11 +454,18 @@ function testController(){
                 }
             }
             moves = test_model.findMoves2(x_coord, y_coord);
-            //console.log(moves.length);
-            for(var i = 0; i < moves.length; i++){
-                var x_coord = moves[i].getX(),
-                    y_coord = moves[i].getY();
-                test_view.updateBoardWithMoves2(x_coord, y_coord);
+            if(test_model.wasFindMovesSuccessful()){
+                //console.log(moves.length);
+                for(var i = 0; i < moves.length; i++){
+                    var x_coord = moves[i].getX(),
+                        y_coord = moves[i].getY();
+                    test_view.updateBoardWithMoves2(x_coord, y_coord);
+                }
+            }
+            else{
+                var colour = test_model.getCurrentPlayerColour();
+                test_view.reportErrorToUser("It is " + colour + "s turn to move");
+                test_view.fadeInfoBox();
             }
         };
         
@@ -467,8 +474,13 @@ function testController(){
            var square_x = square[0];
            var square_y = square[1];
            console.log("in handle move pieces: " + square_x + "   " + square_y);
-           test_model.movePiece(square_x, square_y);
-           test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
+           if(test_model.movePiece(square_x, square_y)){           
+                test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
+            }
+            else{
+                test_view.reportErrorToUser("Please selected a piece first");
+                test_view.fadeInfoBox();
+            }
            if(test_view.wasMoveSuccessful()){
                 test_view.resetDefaultBoardColours();
                 test_model.resetForNextMove();
@@ -476,18 +488,7 @@ function testController(){
            else{
                console.log("move not successful");
                test_view.reportErrorToUser("Not a valid move for the selected piece");
-               var interval_count = 0;
-               var fade_message = setInterval(function() {
-                   interval_count++;                   
-                   test_view.fadeInfoBox();
-                   if(interval_count >= 100){
-                       clearInterval(fade_message);
-                   }
-               }, 100);
-               /*setTimeout( function() {
-                   test_view.removeInfoBox();
-               }, 3000);*/
-               
+               test_view.fadeInfoBox();            
            }
         };
     };
