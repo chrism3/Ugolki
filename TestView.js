@@ -521,8 +521,17 @@ function testView(){
 //                            screen_to_board_map[i][j][0].setAttribute("cx", ((scale_size) * new_x + (left_offset)) + (0.5 * scale_size));
 //                            screen_to_board_map[i][j][0].setAttribute("cy", (new_y * ((scale_size)) + top_offset) + (0.5 * scale_size));
 //                        }
+                          
+                          // reposition the players choosen piece
                           screen_to_board_map[i][j][0].setAttribute("cx", ((scale_size) * new_x + (left_offset)) + (0.5 * scale_size));
                           screen_to_board_map[i][j][0].setAttribute("cy", (new_y * ((scale_size)) + top_offset) + (0.5 * scale_size));
+                          // get the necesssary info that had to be moved
+                          var piece_to_move = screen_to_board_map[i][j][0];
+                          var piece_colour = screen_to_board_map[i][j][1];
+                          //set the old index to be undefined
+                          screen_to_board_map[i][j] = undefined;
+                          // set the new index to contain the moved piece
+                          screen_to_board_map[new_x][new_y] = new Array(piece_to_move, piece_colour);
                      }
                  }
              }
@@ -783,34 +792,34 @@ function testView(){
         return brown_circle_16;
     };
     
-    //getters for the board squares
-    this.getSquareOne = function(){
-        return square_one;
-    };
-    this.getSquareTwo = function(){
-        return square_two;
-    };
-    this.getSquareThree = function() {
-        return square_three;
-    };
-    this.getSquareFour = function() {
-        return square_four;
-    };
-    this.getSquareFive = function() {
-        return square_five;
-    };
-    this.getSquareSix = function() {
-        return square_six;
-    };
-    this.getSquareSeven = function() {
-        return square_seven;
-    };
-    this.getSquareEight = function() {
-        return square_eight;
-    };
-    this.getSquareNine = function() {
-        return square_nine;
-    };
+//    //getters for the board squares
+//    this.getSquareOne = function(){
+//        return square_one;
+//    };
+//    this.getSquareTwo = function(){
+//        return square_two;
+//    };
+//    this.getSquareThree = function() {
+//        return square_three;
+//    };
+//    this.getSquareFour = function() {
+//        return square_four;
+//    };
+//    this.getSquareFive = function() {
+//        return square_five;
+//    };
+//    this.getSquareSix = function() {
+//        return square_six;
+//    };
+//    this.getSquareSeven = function() {
+//        return square_seven;
+//    };
+//    this.getSquareEight = function() {
+//        return square_eight;
+//    };
+//    this.getSquareNine = function() {
+//        return square_nine;
+//    };
    
     // this method is just a test just now, if it works it will improve efficieny
     this.getSquareCoordinates = function(id_number){
