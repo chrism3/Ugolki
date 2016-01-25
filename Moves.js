@@ -81,7 +81,7 @@ function findMoves(){
         }
     };
     this.jumpDown = function(below, x_coord){
-        if(below+1 < board.length && [x_coord][below] !== 0){
+        if(below+1 < board.length && board[x_coord][below] !== 0){
             if(below+1 < board.length && board[x_coord][below + 1] === 0){
                 //console.log("adding jump below");
                 var move = new possibleMove;

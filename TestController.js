@@ -490,6 +490,9 @@ function testController(){
                test_view.reportErrorToUser("Not a valid move for the selected piece");
                test_view.fadeInfoBox();            
            }
+           if(test_model.getPlayerTwoType() !== "human"){
+              test_model.checkAIType();
+           }
         };
     };
 }

@@ -9,7 +9,8 @@ function testModel() {
     var p2 = new gamePieces();
     p2.newGamePiece("player_two", "black", 2, 1, 0);
     
-    
+    var player_1_type = "human"; // this will be needed nearer the end of the project
+    var player_2_type = "AI";
     
     var test_board = new Array(8);
     var possible_moves = new Array();
@@ -347,6 +348,55 @@ function testModel() {
     this.wasFindMovesSuccessful = function(){
         return find_moves_successful;
     };
+    
+    
+    
+    
+    // may need to not use these methods, will move them later if they are needed
+    this.getPlayerTwoType = function (){
+        return player_2_type;
+    };    
+    this.setPlayerTwoType = function (player_type){
+        player_2_type = player_type;
+    };
+    
+    // I am making these methods so at some point i can make the AI play against itself
+    this.setPlayerOneType = function (player_type){
+        player_1_type = player_type;
+    };
+    this.getPlayerOneType = function () {
+        return player_1_type;
+    };
+    
+    // I'm not sure how the AI should work... maybe like this
+    var AI_type = "simpleAI";
+    var current_AI_player;
+    /*
+     * Have a variable called AI_type
+     * Use the following method to check which AI we currently have set, simple, hard, good ect...
+     * Then call the appropriate AI class
+     */
+    this.checkAIType = function (){
+        if(AI_type === "simpleAI"){
+            current_AI_player = new simpleAI();
+            current_AI_player.decideMove();
+        }
+    };
+    
+    /* maybe need a get and set method for the AI, might not.
+     * might have to delete these methods later
+     */
+    this.getAIType = function (){
+       return AI_type;
+    };
+    this.setAIType = function (type) {
+        AI_type = type;
+    };
+    
+    this.getAIChoosenMove = function(){
+        return current_AI_player.getChoosenMove();
+    }
+    
 }
 
 
