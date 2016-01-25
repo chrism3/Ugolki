@@ -946,7 +946,7 @@ function testView(){
             if(interval_count >= 100){
                 clearInterval(fade_out);
             }
-        }, 100);
+        }, 50);
         
 //        opacity -= 0.01;
 //        if(opacity > 0){
@@ -958,7 +958,11 @@ function testView(){
 //         console.log("doing this");
     };
     
-    // this method will be removed eventually, using it for testing
+    /*
+     * this method could be used to remove the text area if the user perfoms
+     * a correct function afterwards. May fix the problem of the textbox getting 
+     * a bit confused.
+     */
     this.removeInfoBox = function() {
         document.getElementById("info_div").style.display = "none";
     };

@@ -71,7 +71,7 @@ function testModel() {
     // will eventaully need piece_x_coord and piece_y_coord, i think?
     this.findMoves = function (piece_x_coord, piece_y_coord) {
         // init possible moves and test_board
-
+        
         // need to set isPieceSelected to true so that we can soon move this piece
         isPieceSelected = true;
         // this loop is used to clear the possible moves array
@@ -80,8 +80,6 @@ function testModel() {
             //possible_moves[i].pop();
             possible_moves.splice(i, 1);
         }
-
-
         //console.log("");
         //console.log("this is the find moves function");
         //console.log(test_board.length);
@@ -161,15 +159,23 @@ function testModel() {
         isPieceSelected = true;
         // this loop is used to clear the possible moves array
         possible_moves = [];
+        
+
+        var find_moves = new findMoves();
+        find_moves.init(test_board);
         // check the piece is the right players piece
         //console.log(x_coord);
         //console.log(y_coord);
-        find_moves_successful = true;
-        console.log("findMoves2 (model): " + x_coord + "," + y_coord);
+        find_moves_successful = true;        
         current_piece = test_board[x_coord][y_coord];
+        
+        
+        console.log("findMoves2 (model): " + x_coord + "," + y_coord);
         console.log("current piece: " + current_piece);
         console.log("piece colour from getPieceColour: " + current_piece.getPieceColour());
         console.log("piece colour from player colour: " + current_player_colour);
+        
+        
         if (current_piece.getPieceColour() === current_player_colour) {
             var above = parseInt((test_board[x_coord][y_coord].getYCoord()) - 1);
             //console.log("above = " + above);
@@ -181,7 +187,7 @@ function testModel() {
             //console.log("right = " + right);
             
             //console.log("xcoord = " + x_coord + " above = " + above);
-            if (above >= 0 && test_board[x_coord][above] === 0) {
+            /*if (above >= 0 && test_board[x_coord][above] === 0) {
                 //console.log("adding above");
                 var move = new possibleMove;
                 move.newMove(x_coord, above);
@@ -226,14 +232,14 @@ function testModel() {
                     move.newMove(jump_left, y_coord);
                     possible_moves.push(move);
                 }
-            }
-            if (right < test_board.length && test_board[right][y_coord] === 0) {
+            }*/
+            /*if (right < test_board.length && test_board[right][y_coord] === 0) {
                 //console.log("adding right");
                 var move = new possibleMove;
                 move.newMove(right, y_coord);
                 possible_moves.push(move);
-            }
-            
+            }*/
+            /*
             if(right+1 <= test_board.length && test_board[right][y_coord] !== 0 ){
                 if(right+1 < test_board.length && test_board[right+1][y_coord] === 0){
                     //console.log("adding jump right");
@@ -241,12 +247,23 @@ function testModel() {
                     move.newMove(right+1, y_coord);
                     possible_moves.push(move);
                 }
-            }
+            }*/
+            // better way to find possible moves
+            find_moves.moveRight(right, y_coord);
+            find_moves.moveLeft(left, y_coord);
+            find_moves.moveUp(above, x_coord);
+            find_moves.moveDown(below, x_coord);
+            find_moves.jumpRight(right, y_coord);
+            find_moves.jumpLeft(left, y_coord);
+            find_moves.jumpUp(above, x_coord);
+            find_moves.jumpDown(below, x_coord);
+            possible_moves = find_moves.getPossibleMoves();
         }
         else{
             find_moves_successful = false;
         }
         //console.log("number of possible moves: " + possible_moves.length);
+        
         return possible_moves;
     };
 

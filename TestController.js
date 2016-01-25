@@ -3,17 +3,17 @@
 "use strict";
 function testController(){
      var test_view = new testView(),
-             test_model = new testModel(),
-             moves = new Array(),
-             square = new Array();
-             //test_model.init();
-             test_model.setScreenSize();             
-             /*
-              * needs to know number of squares per row, may be able to pass in a value later, 
-              * currently it is hard coded in scaleBoardToScreen
-              */
-             test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
-             test_model.setTestBoard(test_view.getScreenToBoardMap());
+     test_model = new testModel(),
+     moves = new Array(),
+     square = new Array();
+     //test_model.init();
+     test_model.setScreenSize();             
+     /*
+      * needs to know number of squares per row, may be able to pass in a value later, 
+      * currently it is hard coded in scaleBoardToScreen
+     */
+     test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
+     test_model.setTestBoard(test_view.getScreenToBoardMap());
 
 
     this.init = function() {
