@@ -540,7 +540,7 @@ function testView(){
          }
      }
      else{
-         console.log("movePiece2 (view): don't move the piece");
+         //console.log("movePiece2 (view): don't move the piece");
          move_successful = false;
      }
 
@@ -840,7 +840,7 @@ function testView(){
                 }
             }
         }
-        console.log(coordinates[0] + "       " + coordinates[1]);
+        //console.log(coordinates[0] + "       " + coordinates[1]);
         return coordinates;
     };
     
@@ -850,6 +850,7 @@ function testView(){
         selected_square = square;
     };
     this.setSelectedPiece = function(piece) {
+        //console.log(piece);
         selected_piece = piece;
     };
     

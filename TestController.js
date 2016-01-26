@@ -443,7 +443,7 @@ function testController(){
                 for(var j = 0; j < 8; j++){
                     if(screen_to_board_map[i][j] !== undefined){
                         if(screen_to_board_map[i][j][0].attributes.id.value === id){
-                            console.log("found circle with id " + id);
+                            //console.log("found circle with id " + id);
                             x_coord = i;
                             y_coord = j;
                         }
@@ -473,7 +473,7 @@ function testController(){
         this.handleMovePiece = function() {                     
            var square_x = square[0];
            var square_y = square[1];
-           console.log("in handle move pieces: " + square_x + "   " + square_y);
+           //console.log("in handle move pieces: " + square_x + "   " + square_y);
            if(test_model.movePiece(square_x, square_y)){           
                 test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
             }
@@ -486,13 +486,17 @@ function testController(){
                 test_model.resetForNextMove();
            }
            else{
-               console.log("move not successful");
+               //console.log("move not successful");
                test_view.reportErrorToUser("Not a valid move for the selected piece");
                test_view.fadeInfoBox();            
            }
            if(test_model.getPlayerTwoType() === "AI"){
               test_model.checkAIType();
-              test_model.getAIChoosenMove();
+              test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()));
+              var AI_move = test_model.getAIChoosenMove();
+              test_view.movePiece2(AI_move.getX(), AI_move.getY());
+              // need to recall this... not sure if it will be necessary but it is just now
+              test_model.resetForNextMove();              
            }
         };
     };

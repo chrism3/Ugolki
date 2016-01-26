@@ -7,7 +7,8 @@ function simpleAI(){
     console.log("I have got this far");
     
     var find_moves = new findMoves();
-    var AI_moves = []; 
+    var AI_moves = [];
+    var piece_index;
     var move;
     
     // this player will move entirely randomly... i.e wont be very good at the game
@@ -49,6 +50,7 @@ function simpleAI(){
             var array_length = possible_moves.length;
             if(array_length > 0){
                 console.log("setting can move to true");
+                this.setSelectedPieceIndex(random_piece_number);
                 can_move = true;
             }
         }
@@ -73,6 +75,15 @@ function simpleAI(){
     this.setChoosenMove = function(choosen_move) {
         console.log(choosen_move.getX() + "," + choosen_move.getY());
         move = choosen_move;
+    };
+    
+    // these methods are needed to identify which piece has been selected...
+    // needed by model and view
+    this.getAIPieceIndex = function (){
+        return piece_index;
+    };
+    this.setSelectedPieceIndex = function(index){
+        piece_index = index;
     };
 }
 

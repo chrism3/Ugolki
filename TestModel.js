@@ -134,8 +134,8 @@ function testModel() {
                         possible_moves.push(move);
                     }
 
-                    console.log("right" + right);
-                    console.log("j " + j);
+                    //console.log("right" + right);
+                    //console.log("j " + j);
 
                     if (right < test_board.length && test_board[right][j] === 0) {
                         var move = new possibleMove;
@@ -171,10 +171,10 @@ function testModel() {
         current_piece = test_board[x_coord][y_coord];
         
         
-        console.log("findMoves2 (model): " + x_coord + "," + y_coord);
-        console.log("current piece: " + current_piece);
-        console.log("piece colour from getPieceColour: " + current_piece.getPieceColour());
-        console.log("piece colour from player colour: " + current_player_colour);
+//        console.log("findMoves2 (model): " + x_coord + "," + y_coord);
+//        console.log("current piece: " + current_piece);
+//        console.log("piece colour from getPieceColour: " + current_piece.getPieceColour());
+//        console.log("piece colour from player colour: " + current_player_colour);
         
         
         if (current_piece.getPieceColour() === current_player_colour) {
@@ -270,7 +270,7 @@ function testModel() {
 
     this.movePiece = function (choosen_square_x, choosen_square_y) {
         //console.log(choosen_square);
-        console.log(choosen_square_x + "     " + choosen_square_y);
+        //console.log(choosen_square_x + "     " + choosen_square_y);
         var move_successful;
         if (isPieceSelected) {
             //console.log(possible_moves.length);
@@ -279,15 +279,15 @@ function testModel() {
             for (var i = 0; i < possible_moves.length; i++) {
                 if (choosen_square_x === possible_moves[i].getX() &&
                         choosen_square_y === possible_moves[i].getY()) {
-                    console.log("got into the for loop when i shouldn't have")
+                    //console.log("got into the for loop when i shouldn't have")
                     var x_coord = possible_moves[i].getX();
                     var y_coord = possible_moves[i].getY();
 
                     // move the piece in the board array
-                    console.log("in move piece (model): " + test_board[current_piece.getXCoord()][current_piece.getYCoord()]);
+                    //console.log("in move piece (model): " + test_board[current_piece.getXCoord()][current_piece.getYCoord()]);
                     test_board[current_piece.getXCoord()][current_piece.getYCoord()] = 0;
                     test_board[choosen_square_x][choosen_square_y] = current_piece;
-                    console.log("after resetting (model): " + test_board[current_piece.getXCoord()][current_piece.getYCoord()]);
+                    //console.log("after resetting (model): " + test_board[current_piece.getXCoord()][current_piece.getYCoord()]);
                     // reset the values for X and Y of the game piece
                     current_piece.setXCoord(choosen_square_x);
                     current_piece.setYCoord(choosen_square_y);
@@ -408,6 +408,11 @@ function testModel() {
     
     this.getAIChoosenMove = function(){
         return current_AI_player.getChoosenMove();
+    };
+    
+    // i don't think i like how this is working
+    this.getAIPieceIndex = function () {
+        return current_AI_player.getAIPieceIndex();
     };
     
 }
