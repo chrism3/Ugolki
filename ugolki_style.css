@@ -67,7 +67,7 @@ button{
 
 #heading{
     width: 50%;
-    margin-left: 25%;
+    margin-left: 15%;
     text-align: center;
     resize: none;
     background: rgb(179, 89, 0);
@@ -79,13 +79,14 @@ button{
 #menu_img{
     width: 10%;
     float: left;
-    height: 75%;
+    height: 60%;
     padding-left: 2.5%;
+    padding-top: 3%;
     //margin-top: 12.5%;
 }
 
 #draw_board{
-    //height: 70%;
+    height: 70%;
     width: 80%;
     margin-left: 10%;
     margin-top: 5%;
@@ -144,7 +145,7 @@ svg{
     left: 0%;
     position: absolute;
     height: 100%;
-    width: 40%;
+    width: 50%;
     background: rgb(179, 89, 0);
     opacity: 0.9;
     display: none;
@@ -153,7 +154,7 @@ svg{
 #info_div{
     height: 7%;
     width: 100%;
-    margin-top: 20%;
+    margin-top: 15%;
     opacity: 0.9;
     display: none;
 }
@@ -173,15 +174,15 @@ svg{
 }
 
 .settings_buttons{
-    width: 80%;
-    height: 7.5%;
+    width: 85%;
+    height: 10%;
     margin-left: 10%;
-    margin-top: 10%;
+    margin-top: 7.5%;
     background: rgb(179, 89, 0);
     border: none;
     color: rgb(242, 235, 67);
     opacity: 1;
     font-weight: bolder;
-    font-size: 100%;
+    font-size: larger;
     
 }

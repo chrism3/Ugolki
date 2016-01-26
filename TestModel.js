@@ -10,7 +10,7 @@ function testModel() {
     p2.newGamePiece("player_two", "black", 2, 1, 0);
     
     var player_1_type = "human"; // this will be needed nearer the end of the project
-    var player_2_type = "AI";
+    var player_2_type = "human";
     
     var test_board = new Array(8);
     var possible_moves = new Array();

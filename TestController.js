@@ -483,6 +483,7 @@ function testController(){
                 test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
             }
             else{
+                console.log("need to selected a piece");
                 test_view.reportErrorToUser("Please selected a piece first");
                 test_view.fadeInfoBox();
             }
@@ -491,11 +492,14 @@ function testController(){
                 test_model.resetForNextMove();
            }
            else{
-               //console.log("move not successful");
+               console.log("move not successful");
                test_view.reportErrorToUser("Not a valid move for the selected piece");
                test_view.fadeInfoBox();            
            }
-           if(test_model.getPlayerTwoType() === "AI"){
+          /* 
+           * will need this code to work the AI, not sure where to put it yet
+           * 
+           * if(test_model.getPlayerTwoType() === "AI"){
               test_model.checkAIType();
               test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()));
               var AI_move = test_model.getAIChoosenMove();
@@ -504,7 +508,7 @@ function testController(){
               test_view.highlightMovedAIPiece();
               // need to recall this... not sure if it will be necessary but it is just now
               test_model.resetForNextMove();              
-           }
+           }*/
         };
     };
 }
