@@ -4,8 +4,6 @@
  */
 
 function simpleAI(){
-    console.log("I have got this far");
-    
     var find_moves = new findMoves();
     var AI_moves = [];
     var piece_index;
@@ -13,7 +11,6 @@ function simpleAI(){
     
     // this player will move entirely randomly... i.e wont be very good at the game
     this.decideMove = function(pieces_to_move, find_moves){
-        console.log("simple AI decide Move");
         var pieces = pieces_to_move;
         var can_move = false;
         var possible_moves = new Array();
@@ -22,12 +19,12 @@ function simpleAI(){
             console.log(pieces[i].getPieceColour());
         }*/
         do{
-            var random_piece_number = Math.floor((Math.random() * pieces.length));
-            console.log(random_piece_number);
+            var random_piece_number = Math.floor((Math.random() * pieces.length));            
             var piece_to_move = pieces[random_piece_number];
             //console.log(piece_to_move);
             
             //get the coordinates we need to find possible moves
+            console.log("index of piece to get x and y of: " + random_piece_number);
             var x_coord = piece_to_move.getXCoord();
             var y_coord = piece_to_move.getYCoord();
             var right = x_coord + 1;
@@ -49,16 +46,23 @@ function simpleAI(){
             //can_move = true;
             var array_length = possible_moves.length;
             if(array_length > 0){
-                console.log("setting can move to true");
-                this.setSelectedPieceIndex(random_piece_number);
+                console.log("index of piece to move: " + random_piece_number);
+                console.log("the old x and y coords (simple AI): " +
+                    x_coord + "," + y_coord);
+                
+                // adding 1 because array index starts at 0, pieces id start at 1
+                this.setSelectedPieceIndex(random_piece_number + 1);
+                
                 can_move = true;
             }
         }
         while(!can_move); 
         
         var random_move_number = Math.floor(Math.random() * possible_moves.length);
-        console.log(random_move_number);
-        console.log(possible_moves[random_move_number].getX());
+
+        console.log("the new x and y coords (simple AI): " +
+                possible_moves[random_move_number].getX() + "," + possible_moves[random_move_number].getY());
+        
         this.setChoosenMove(possible_moves[random_move_number]);
         
     };
@@ -73,7 +77,7 @@ function simpleAI(){
     };
     // not sure when i would use this method, best to have it incase i s'pose
     this.setChoosenMove = function(choosen_move) {
-        console.log(choosen_move.getX() + "," + choosen_move.getY());
+       // console.log(choosen_move.getX() + "," + choosen_move.getY());
         move = choosen_move;
     };
     

@@ -379,11 +379,16 @@ function testModel() {
     this.checkAIType = function (){
         // need to get the pieces that the AI can actually move
         var pieces = new Array();
-        for(var i = 0; i < test_board.length; i++){
+        var count = 0;
+        for(var i = test_board.length-1; i > 0; i--){
             for(var j = 0; j < test_board.length; j++){
                  if(test_board[i][j] !== 0){
                      if(test_board[i][j].getPiecePlayer() === "player_two"){
+                         //console.log("index the peice is added to: " + count);
+                         //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
+                         //        "," + test_board[i][j].getYCoord());
                          pieces.push(test_board[i][j]);
+                         count++;
                      }
                  }
             }
