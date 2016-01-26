@@ -107,6 +107,9 @@ function testView(){
         brown_circle_15 = document.getElementById("brown_circle_15"),
         brown_circle_16 = document.getElementById("brown_circle_16"),      
 
+
+        menu_img = document.getElementById("menu_img"),
+        
         /*
          * global varibales to be used throughout the code... only used in test_view
          * try to find some way to remove these globals and have them passed between function?
@@ -413,7 +416,11 @@ function testView(){
     };
     this.setBrownCircle16ClickCallback = function (callback) {
         brown_circle_16.addEventListener("click", callback);
-    };    
+    };
+    
+    this.setMenuImgClickCallback = function (callback) {
+        menu_img.addEventListener("click", callback);
+ };
     
     this.highlightSelectedPiece = function(){
         if(selected_piece.attributes.class.value === "white_circles"){
@@ -985,6 +992,18 @@ function testView(){
             }
         }, 250);
         };
+    };
+    
+    // this method is responisble for making the settings panel visible
+    this.toggleSettingsPanel = function(){
+        var settings_panel = document.getElementById("settings_panel");
+        if(settings_panel.style.display !== "block"){
+            console.log("showing the panel");
+            settings_panel.style.display = "block";
+        }
+        else{
+            settings_panel.style.display = "none";
+        }
     };
     
 }

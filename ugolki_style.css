@@ -17,6 +17,7 @@ html, body{
 
 main{
     background: #DEB887;
+    //background-image: url("images/app_background.jpg");
     height: 100%;
     width: 100%;
 }
@@ -51,6 +52,8 @@ button{
 }
 
 #test_board{
+    top: 0%;
+    left: 0%;
     height: 100%;
     width: 100%;
     display: none;
@@ -75,9 +78,9 @@ button{
 
 #menu_img{
     width: 10%;
-    float:right;
+    float: left;
     height: 75%;
-    padding-right: 2.5%;
+    padding-left: 2.5%;
     //margin-top: 12.5%;
 }
 
@@ -136,6 +139,17 @@ svg{
     display: block;
 }
 
+#settings_panel{
+    top: 10%;
+    left: 0%;
+    position: absolute;
+    height: 100%;
+    width: 40%;
+    background: rgb(179, 89, 0);
+    opacity: 0.9;
+    display: none;
+}
+
 #info_div{
     height: 7%;
     width: 100%;
@@ -156,4 +170,18 @@ svg{
     border-radius: 10%;
     text-align: center;
     resize: none;
+}
+
+.settings_buttons{
+    width: 80%;
+    height: 7.5%;
+    margin-left: 10%;
+    margin-top: 10%;
+    background: rgb(179, 89, 0);
+    border: none;
+    color: rgb(242, 235, 67);
+    opacity: 1;
+    font-weight: bolder;
+    font-size: 100%;
+    
 }

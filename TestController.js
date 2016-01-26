@@ -419,6 +419,11 @@ function testController(){
            performPieceSelection();
         });
         
+       test_view.setMenuImgClickCallback(function (){
+           console.log("menu option clicked");
+           test_view.toggleSettingsPanel();
+       });
+        
     // this should probably be in the model
     this.performPieceSelection = function(){
         /*
