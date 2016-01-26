@@ -170,7 +170,6 @@ function testModel() {
         find_moves_successful = true;        
         current_piece = test_board[x_coord][y_coord];
         
-        
 //        console.log("findMoves2 (model): " + x_coord + "," + y_coord);
 //        console.log("current piece: " + current_piece);
 //        console.log("piece colour from getPieceColour: " + current_piece.getPieceColour());
@@ -418,6 +417,29 @@ function testModel() {
     // i don't think i like how this is working
     this.getAIPieceIndex = function () {
         return current_AI_player.getAIPieceIndex();
+    };
+    
+    this.updateModelWithAIMove = function(){
+        var moved_piece_x = current_AI_player.getAISelectedPieceXCoord();
+        var moved_piece_y = current_AI_player.getAISelectedPieceYCoord();
+        var move = this.getAIChoosenMove();
+        var new_x = move.getX();
+        var new_y = move.getY();
+        
+       // dont like this for loop, but think i need it
+       for(var i = 0; i < test_board.length; i++){
+           for(var j = 0; j < test_board.length; j++){
+               if(test_board[i][j] !== 0){
+                    if(test_board[i][j].getXCoord() === moved_piece_x &&
+                            test_board[i][j].getYCoord() === moved_piece_y){
+                        var piece_to_move = test_board[i][j];
+                        test_board[i][j] = 0;
+                        test_board[new_x][new_y] = piece_to_move;
+                    
+                    }
+                }
+           }
+       }
     };
     
 }

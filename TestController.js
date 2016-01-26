@@ -494,6 +494,7 @@ function testController(){
               test_model.checkAIType();
               test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()));
               var AI_move = test_model.getAIChoosenMove();
+              test_model.updateModelWithAIMove();
               test_view.movePiece2(AI_move.getX(), AI_move.getY());
               // need to recall this... not sure if it will be necessary but it is just now
               test_model.resetForNextMove();              

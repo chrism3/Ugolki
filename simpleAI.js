@@ -8,6 +8,8 @@ function simpleAI(){
     var AI_moves = [];
     var piece_index;
     var move;
+    var origional_x;
+    var origional_y;
     
     // this player will move entirely randomly... i.e wont be very good at the game
     this.decideMove = function(pieces_to_move, find_moves){
@@ -26,7 +28,9 @@ function simpleAI(){
             //get the coordinates we need to find possible moves
             console.log("index of piece to get x and y of: " + random_piece_number);
             var x_coord = piece_to_move.getXCoord();
+            this.setAISelectedPieceXCoord(x_coord);            
             var y_coord = piece_to_move.getYCoord();
+            this.setAISelectedPieceYCoord(y_coord);
             var right = x_coord + 1;
             var left = x_coord - 1;
             var above = y_coord - 1;
@@ -89,6 +93,19 @@ function simpleAI(){
     this.setSelectedPieceIndex = function(index){
         piece_index = index;
     };
+    this.getAISelectedPieceXCoord = function(){
+        return origional_x;
+    };
+    this.setAISelectedPieceXCoord = function(x){
+        origional_x = x;
+    };
+    this.getAISelectedPieceYCoord = function(){
+        return origional_y;
+    };
+    this.setAISelectedPieceYCoord = function(y){
+        origional_y = y;
+    };
+    
 }
 
 
