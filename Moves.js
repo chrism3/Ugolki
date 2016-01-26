@@ -93,7 +93,7 @@ function findMoves(){
     
     // method to get all of the possible moves
     this.getPossibleMoves = function(){
-        console.log(possible_moves.length);
+        //console.log(possible_moves.length);
         return possible_moves;
     };
 }

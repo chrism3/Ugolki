@@ -388,9 +388,11 @@ function testModel() {
                  }
             }
         }
+        var find_moves = new findMoves();
+        find_moves.init(test_board);
         if(AI_type === "simpleAI"){
             current_AI_player = new simpleAI();
-            current_AI_player.decideMove(pieces);
+            current_AI_player.decideMove(pieces, find_moves);
         }
     };
     
