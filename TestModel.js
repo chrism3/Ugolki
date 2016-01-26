@@ -377,9 +377,20 @@ function testModel() {
      * Then call the appropriate AI class
      */
     this.checkAIType = function (){
+        // need to get the pieces that the AI can actually move
+        var pieces = new Array();
+        for(var i = 0; i < test_board.length; i++){
+            for(var j = 0; j < test_board.length; j++){
+                 if(test_board[i][j] !== 0){
+                     if(test_board[i][j].getPiecePlayer() === "player_two"){
+                         pieces.push(test_board[i][j]);
+                     }
+                 }
+            }
+        }
         if(AI_type === "simpleAI"){
             current_AI_player = new simpleAI();
-            current_AI_player.decideMove();
+            current_AI_player.decideMove(pieces);
         }
     };
     
@@ -395,7 +406,7 @@ function testModel() {
     
     this.getAIChoosenMove = function(){
         return current_AI_player.getChoosenMove();
-    }
+    };
     
 }
 

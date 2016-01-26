@@ -505,7 +505,6 @@ function testView(){
         // might not need to recall the resetDefaultBoardColours
           //selected_piece.style.stroke = "rgb(0,0,0)";
 
-
          
          console.log(new_x + "   " + new_y);
          if(new_x >= 0 && new_y >=0){

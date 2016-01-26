@@ -10,8 +10,13 @@ function simpleAI(){
     var AI_moves = []; 
     var move;
     
-    this.decideMove = function(){
+    this.decideMove = function(pieces_to_move){
         console.log("simple AI decide Move");
+        var pieces = pieces_to_move;
+        console.log(pieces.length);
+        for(var i = 0; i < pieces.length; i++){
+            console.log(pieces[i].getPieceColour());
+        }
     };
     
     
