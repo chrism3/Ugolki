@@ -49,109 +49,9 @@ function testModel() {
        }
    };
     
-   this.init = function () {
-        possible_moves = new Array();
-        for (var i = 0; i < 3; i++) { // the value 3 here is hard coded
-                                      // it should depend on the number of rows/collums
-            test_board[i] = new Array(3);
-            for (var j = 0; j < 3; j++) {
-                test_board[i][j] = 0;
-            }
-        }
-        //console.log("Piece p x-coord: " + p.getXCoord());
-        //console.log("Piece p y_coord: " + p.getYCoord());
-        test_board[0][0] = p;
-        test_board[1][0] = p2;
-    };
-
-    this.setScreenSize = function(){
+   this.setScreenSize = function(){
         screen_width = window.innerWidth;
         screen_height = window.innerWidth;
-    };
-
-    // will eventaully need piece_x_coord and piece_y_coord, i think?
-    this.findMoves = function (piece_x_coord, piece_y_coord) {
-        // init possible moves and test_board
-        
-        // need to set isPieceSelected to true so that we can soon move this piece
-        isPieceSelected = true;
-        // this loop is used to clear the possible moves array
-        for (var i = 0; i < possible_moves.length; i++) {
-            // this is not a function, need to do something different here
-            //possible_moves[i].pop();
-            possible_moves.splice(i, 1);
-        }
-        //console.log("");
-        //console.log("this is the find moves function");
-        //console.log(test_board.length);
-        for (var i = 0; i < test_board.length; i++) {
-            for (var j = 0; j < test_board.length; j++) {
-                if (test_board[i][j] !== 0) {
-                    //console.log("i = " + i);
-                    //console.log("j = " + j);
-                    //console.log("found peice with id: " + test_board[i][j].getPieceId());
-                    /*
-                     * code above works. Now need to find a way to calculate the possible moves
-                     * for a given piece. This implementation will probably have to change when the
-                     * test board has more than one peice on it. The above code, may work for more than
-                     * one piece with some slight tweaking. 
-                     */
-
-                    var above = parseInt((test_board[i][j].getYCoord()) - 1);
-                    //console.log("above = " + above);
-                    var below = parseInt((test_board[i][j].getYCoord()) + 1);
-                    //console.log("below = " + below);
-                    var left = parseInt((test_board[i][j].getXCoord()) - 1);
-                    //console.log("left = " + left);
-                    var right = parseInt((test_board[i][j].getXCoord()) + 1);
-                    //console.log("right = " + right);
-
-                    /*
-                     * might need to change these if statements so that we can check if the next
-                     * squares contain pieces, and if so make a way of jumping over them
-                     */
-                    //console.log("i =" + i + ", above =" +above);
-
-                    if (above >= 0 && test_board[i][above] === 0) {
-                        // console.log("Model.findMoves: doing this");
-                        var move = new possibleMove;
-                        move.newMove(i, above);
-                        //console.log("above, adding to possible_moves");
-                        possible_moves.push(move);
-                        //console.log(possible_moves.length);
-                    }
-                    if (below < test_board.length && test_board[i][below] === 0) {
-                        var move = new possibleMove;
-                        move.newMove(i, below);
-                        //console.log("below, adding to possible moves with coords " + i + "," + below);
-                        possible_moves.push(move);
-                    }
-
-                    if (left >= 0 && test_board[left][j] === 0) {
-                        var move = new possibleMove;
-                        move.newMove(left, j);
-                        //console.log("left, adding to possible moves");
-                        possible_moves.push(move);
-                    }
-
-                    //console.log("right" + right);
-                    //console.log("j " + j);
-
-                    if (right < test_board.length && test_board[right][j] === 0) {
-                        var move = new possibleMove;
-                        move.newMove(right, j);
-                        //console.log("right, adding to possible moves with coords: " + right + "," + j);
-                        possible_moves.push(move);
-                    }
-                }
-            }
-            /*for(var i = 0; i < possible_moves.length; i++){
-             console.log();
-             console.log(possible_moves[i].getY());
-             console.log(possible_moves[i].getX());
-             }*/
-        }
-        return possible_moves;
     };
 
     // second, hopefully better version of this method
@@ -174,8 +74,7 @@ function testModel() {
 //        console.log("current piece: " + current_piece);
 //        console.log("piece colour from getPieceColour: " + current_piece.getPieceColour());
 //        console.log("piece colour from player colour: " + current_player_colour);
-        
-        
+                
         if (current_piece.getPieceColour() === current_player_colour) {
             var above = parseInt((test_board[x_coord][y_coord].getYCoord()) - 1);
             //console.log("above = " + above);
@@ -184,71 +83,8 @@ function testModel() {
             var left = parseInt((test_board[x_coord][y_coord].getXCoord()) - 1);
             //console.log("left = " + left);
             var right = parseInt((test_board[x_coord][y_coord].getXCoord()) + 1);
-            //console.log("right = " + right);
-            
-            //console.log("xcoord = " + x_coord + " above = " + above);
-            /*if (above >= 0 && test_board[x_coord][above] === 0) {
-                //console.log("adding above");
-                var move = new possibleMove;
-                move.newMove(x_coord, above);
-                possible_moves.push(move);
-            }
-            
-            //console.log(above-1);
-            if(above-1 >= 0 && test_board[x_coord][above] !== 0){
-                if(above-1 >= 0 && test_board[x_coord][above - 1] === 0){
-                    //console.log("adding jump above");
-                    var move = new possibleMove;
-                    move.newMove(x_coord, above-1);
-                    possible_moves.push(move);
-                }
-            }
-            if (below < test_board.length && test_board[x_coord][below] === 0) {
-                //console.log("adding below");
-                var move = new possibleMove;
-                move.newMove(x_coord, below);
-                possible_moves.push(move);
-            }
-            
-            if(below+1 < test_board.length && test_board[x_coord][below] !== 0){
-                if(below+1 < test_board.length && test_board[x_coord][below + 1] === 0){
-                    //console.log("adding jump below");
-                    var move = new possibleMove;
-                    move.newMove(x_coord, below+1);
-                    possible_moves.push(move);
-                }
-            }
-            if (left >= 0 && test_board[left][y_coord] === 0) {
-                //console.log("adding left");
-                var move = new possibleMove;
-                move.newMove(left, y_coord);
-                possible_moves.push(move);
-            }
-            var jump_left = parseInt(left -1);
-            if(left-1 >= 0 && test_board[left][y_coord] !== 0){                
-                if(jump_left >= 0 && test_board[jump_left][y_coord] === 0){
-                    //console.log("adding jump left");
-                    var move = new possibleMove;
-                    move.newMove(jump_left, y_coord);
-                    possible_moves.push(move);
-                }
-            }*/
-            /*if (right < test_board.length && test_board[right][y_coord] === 0) {
-                //console.log("adding right");
-                var move = new possibleMove;
-                move.newMove(right, y_coord);
-                possible_moves.push(move);
-            }*/
-            /*
-            if(right+1 <= test_board.length && test_board[right][y_coord] !== 0 ){
-                if(right+1 < test_board.length && test_board[right+1][y_coord] === 0){
-                    //console.log("adding jump right");
-                    var move = new possibleMove;
-                    move.newMove(right+1, y_coord);
-                    possible_moves.push(move);
-                }
-            }*/
-            // better way to find possible moves
+            //console.log("right = " + right);            
+           
             find_moves.moveRight(right, y_coord);
             find_moves.moveLeft(left, y_coord);
             find_moves.moveUp(above, x_coord);

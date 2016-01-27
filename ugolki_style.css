@@ -140,17 +140,6 @@ svg{
     display: block;
 }
 
-#settings_panel{
-    top: 10%;
-    left: 0%;
-    position: absolute;
-    height: 100%;
-    width: 50%;
-    background: rgb(179, 89, 0);
-    opacity: 0.9;
-    display: none;
-}
-
 #info_div{
     height: 7%;
     width: 100%;
@@ -185,4 +174,21 @@ svg{
     font-weight: bolder;
     font-size: larger;
     
+}
+
+#settings_panel{
+    top: 10%;
+    left: 0%;
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    background: rgb(179, 89, 0);
+    opacity: 0.9;
+    display: none;
+}
+
+#main_settings{
+    height: 100%;
+    width: 100%;
+    display: none;
 }

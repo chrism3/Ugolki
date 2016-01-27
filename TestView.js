@@ -441,73 +441,6 @@ function testView(){
        }
     };
     
-    this.updateBoardWithMoves = function(toUpdate, colour){
-        var stroke, fill;
-       if(colour === "white"){
-           stroke = "rgb(210, 33, 33)";
-           fill = "rgb(76,240,25)";
-       }
-       else{
-            stroke = "rgb(8,146,208)";
-            fill = "rgb(250, 131, 0)";
-       }
-       selected_piece.style.stroke = stroke;
-       if(toUpdate === "01"){
-           square_three.style.fill = fill;
-           square_three.style.stroke = "rbg(255,255,0)";
-       }
-       else if(toUpdate === "11"){
-           square_four.style.fill = fill;
-           square_four.style.stroke = "rbg(255,255,0)";
-       }
-       else if(toUpdate === "00"){
-           square_one.style.fill = fill;
-           square_one.style.stroke = "rbg(255,255,0)";
-       }
-       else if(toUpdate === "10"){
-           square_two.style.fill = fill;
-           square_two.style.stroke = "rbg(255,255,0)";
-       }
-       else if(toUpdate === "02"){
-           square_seven.style.fill = fill;
-           square_seven.style.stroke = "rbg(255,255,0)";
-       }
-       else if(toUpdate === "12"){
-           square_eight.style.fill = fill;
-           square_eight.style.stroke = "rbg(255,255,0)";
-       }
-       else if(toUpdate === "22"){
-           square_nine.style.fill = fill;
-           square_nine.style.stroke = "rbg(255,255,0)";
-       }
-       else if(toUpdate === "20"){
-           square_five.style.fill = fill;
-           square_five.style.stroke = "rbg(255,255,0)";
-       }
-       else if(toUpdate === "21"){
-           square_six.style.fill = fill;
-           square_six.style.stroke = "rbg(255,255,0)";
-       }
-    }; 
-    
-    this.movePiece = function(new_x, new_y){
-          // moves the piece
-          selected_piece.style.stroke = "rgb(0,0,0)";
-          selected_piece.setAttribute("cx", new_x);
-          selected_piece.setAttribute("cy", new_y);
-          
-          // resets the board to defualt colours
-          square_one.style.fill = "rgb(101,67,33)";
-          square_two.style.fill = "rgb(255, 255,255)";
-          square_three.style.fill = "rgb(255,255,255)";
-          square_four.style.fill = "rgb(101,67,33)";
-          square_five.style.fill = "rgb(101,67,33)";
-          square_six.style.fill = "rgb(255, 255,255)";
-          square_seven.style.fill = "rgb(101,67,33)";
-          square_eight.style.fill = "rgb(255, 255,255)";
-          square_nine.style.fill = "rgb(101,67,33)";
-    };
-    
     this.movePiece2 = function(new_x, new_y){
         // might not need to recall the resetDefaultBoardColours
           //selected_piece.style.stroke = "rgb(0,0,0)";
@@ -701,140 +634,8 @@ function testView(){
 //       console.log("7, 0   " + screen_to_board_map[7][0][0].attributes.id.value);
 //
 //    
-    };   
+    };  
     
-    /*
-     * might be better to have each piece with a getter method
-     * and find another way to get it's coordinates
-     */
-    // getters for the circles
-    this.getWhiteCircle1 = function() {
-        return white_circle_1;
-    };
-    this.getWhiteCircle2 = function() {
-        return white_circle_2;
-    };
-    this.getWhiteCircle3 = function() {
-        return white_circle_3;
-    };
-    this.getWhiteCircle4 = function() {
-        return white_circle_4;
-    };
-    this.getWhiteCircle5 = function() {
-        return white_circle_5;
-    };
-    this.getWhiteCircle6 = function() {
-        return white_circle_6;
-    };
-    this.getWhiteCircle7 = function() {
-        return white_circle_7;
-    };
-    this.getWhiteCircle8 = function() {
-        return white_circle_8;
-    };
-    this.getWhiteCircle9 = function() {
-        return white_circle_9;
-    };
-    this.getWhiteCircle10 = function() {
-        return white_circle_10;
-    };
-    this.getWhiteCircle11 = function() {
-        return white_circle_11;
-    };
-    this.getWhiteCircle12 = function (){
-        return white_circle_12;
-    };
-    this.getWhiteCircle13 = function() {
-        return white_circle_13;
-    };
-    this.getWhiteCircle14 = function() {
-        return white_circle_14;
-    };
-    this.getWhiteCircle15 = function() {
-        return white_circle_15;
-    };
-    this.getWhiteCircle16 = function () {
-        return white_circle_16;
-    };
-    
-    this.getBrownCircle1 = function() {
-        return brown_circle_1;
-    };
-    this.getBrownCircle2 = function() {
-        return brown_circle_2;
-    };
-    this.getBrownCircle3 = function() {
-        return brown_circle_3;
-    };
-    this.getBrownCircle4 = function() {
-        return brown_circle_4;
-    };
-    this.getBrownCircle5 = function() {
-        return brown_circle_5;
-    };
-    this.getBrownCircle6 = function() {
-        return brown_circle_6;
-    };
-    this.getBrownCircle7 = function() {
-        return brown_circle_7;
-    };
-    this.getBrownCircle8 = function() {
-        return brown_circle_8;
-    };
-    this.getBrownCircle9 = function() {
-        return brown_circle_9;
-    };
-    this.getBrownCircle10 = function() {
-        return brown_circle_10;
-    };
-    this.getBrownCircle11 = function() {
-        return brown_circle_11;
-    };
-    this.getBrownCircle12 = function() {
-        return brown_circle_12;
-    };
-    this.getBrownCircle13 = function() {
-        return brown_circle_13;
-    };
-    this.getBrownCircle14 = function() {
-        return brown_circle_14;
-    };
-    this.getBrownCircle15 = function() {
-        return brown_circle_15;
-    };
-    this.getBrownCircle16 = function(){
-        return brown_circle_16;
-    };
-    
-//    //getters for the board squares
-//    this.getSquareOne = function(){
-//        return square_one;
-//    };
-//    this.getSquareTwo = function(){
-//        return square_two;
-//    };
-//    this.getSquareThree = function() {
-//        return square_three;
-//    };
-//    this.getSquareFour = function() {
-//        return square_four;
-//    };
-//    this.getSquareFive = function() {
-//        return square_five;
-//    };
-//    this.getSquareSix = function() {
-//        return square_six;
-//    };
-//    this.getSquareSeven = function() {
-//        return square_seven;
-//    };
-//    this.getSquareEight = function() {
-//        return square_eight;
-//    };
-//    this.getSquareNine = function() {
-//        return square_nine;
-//    };
-   
     // this method is just a test just now, if it works it will improve efficieny
     this.getSquareCoordinates = function(id_number){
         var coordinates = new Array();
@@ -997,12 +798,15 @@ function testView(){
     // this method is responisble for making the settings panel visible
     this.toggleSettingsPanel = function(){
         var settings_panel = document.getElementById("settings_panel");
+        var settings_options = document.getElementById("main_settings");
         if(settings_panel.style.display !== "block"){
             console.log("showing the panel");
             settings_panel.style.display = "block";
+            settings_options.style.display = "block";
         }
         else{
             settings_panel.style.display = "none";
+            settings_options.style.display = "none";
         }
     };
     
