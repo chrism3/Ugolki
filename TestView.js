@@ -420,7 +420,11 @@ function testView(){
     
     this.setMenuImgClickCallback = function (callback) {
         menu_img.addEventListener("click", callback);
- };
+    };
+    this.setPlayer2OptionsClickCallback = function (callback){
+        var player_2 = document.getElementById("player_2_button");
+        player_2.addEventListener("click", callback);
+    };
     
     this.highlightSelectedPiece = function(){
         if(selected_piece.attributes.class.value === "white_circles"){
@@ -810,6 +814,16 @@ function testView(){
         }
     };
     
+    this.updateSettingsPanel = function(button_clicked){
+        var settings_options = document.getElementById("main_settings");
+        var player_2_settings = document.getElementById("player_2_settings");
+        console.log("got here: condition = " + button_clicked);
+        if(button_clicked === "player 2"){
+            console.log("player 2 button was clicked (view)");
+            settings_options.style.display = "none";
+            player_2_settings.style.display = "block";
+        }
+    };
 }
 
 

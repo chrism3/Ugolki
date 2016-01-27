@@ -419,10 +419,15 @@ function testController(){
            performPieceSelection();
         });
         
-       test_view.setMenuImgClickCallback(function (){
-           console.log("menu option clicked");
-           test_view.toggleSettingsPanel();
-       });
+        test_view.setMenuImgClickCallback(function (){
+            console.log("menu option clicked");
+            test_view.toggleSettingsPanel();
+        });
+
+        test_view.setPlayer2OptionsClickCallback(function (){
+            console.log("player 2 button was clicked");
+            test_view.updateSettingsPanel("player 2");
+        });
         
     // this should probably be in the model
     this.performPieceSelection = function(){
