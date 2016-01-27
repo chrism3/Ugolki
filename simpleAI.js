@@ -4,8 +4,6 @@
  */
 
 function simpleAI(){
-    var find_moves = new findMoves();
-    var AI_moves = [];
     var piece_index;
     var move;
     var origional_x;
@@ -26,7 +24,7 @@ function simpleAI(){
             //console.log(piece_to_move);
             
             //get the coordinates we need to find possible moves
-            console.log("index of piece to get x and y of: " + random_piece_number);
+            //console.log("index of piece to get x and y of: " + random_piece_number);
             var x_coord = piece_to_move.getXCoord();
             this.setAISelectedPieceXCoord(x_coord);            
             var y_coord = piece_to_move.getYCoord();
@@ -46,13 +44,13 @@ function simpleAI(){
             find_moves.jumpDown(below, x_coord);
             possible_moves = find_moves.getPossibleMoves();
             
-            console.log("length of the array " + possible_moves.length);
+            //console.log("length of the array " + possible_moves.length);
             //can_move = true;
             var array_length = possible_moves.length;
             if(array_length > 0){
-                console.log("index of piece to move: " + random_piece_number);
-                console.log("the old x and y coords (simple AI): " +
-                    x_coord + "," + y_coord);
+                //console.log("index of piece to move: " + random_piece_number);
+//                console.log("the old x and y coords (simple AI): " +
+//                    x_coord + "," + y_coord);
                 
                 // adding 1 because array index starts at 0, pieces id start at 1
                 this.setSelectedPieceIndex(random_piece_number + 1);
@@ -64,8 +62,8 @@ function simpleAI(){
         
         var random_move_number = Math.floor(Math.random() * possible_moves.length);
 
-        console.log("the new x and y coords (simple AI): " +
-                possible_moves[random_move_number].getX() + "," + possible_moves[random_move_number].getY());
+//        console.log("the new x and y coords (simple AI): " +
+//                possible_moves[random_move_number].getX() + "," + possible_moves[random_move_number].getY());
         
         this.setChoosenMove(possible_moves[random_move_number]);
         

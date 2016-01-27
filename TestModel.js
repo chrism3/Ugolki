@@ -10,7 +10,7 @@ function testModel() {
     p2.newGamePiece("player_two", "black", 2, 1, 0);
     
     var player_1_type = "human"; // this will be needed nearer the end of the project
-    var player_2_type = "human";
+    var player_2_type = "AI";
     
     var test_board = new Array(8);
     var possible_moves = new Array();
@@ -272,11 +272,25 @@ function testModel() {
                         var piece_to_move = test_board[i][j];
                         test_board[i][j] = 0;
                         test_board[new_x][new_y] = piece_to_move;
-                    
+                        piece_to_move.setXCoord(new_x);
+                        piece_to_move.setYCoord(new_y);                    
                     }
                 }
            }
        }
+//       console.log();
+//       console.log();
+//       console.log();
+//       console.log();
+//       for(var i = 0; i < test_board.length; i++){
+//           for(var j = 0; j < test_board.length; j++){
+//               var piece = test_board[i][j];
+//               if(piece !== 0){
+//               console.log("At index: (" + i + "," + j + ") is the peice with coords: (" +
+//                       piece.getXCoord() + "," + piece.getYCoord() + ")");
+//           }
+//           }
+//       }
     };
     
 }
