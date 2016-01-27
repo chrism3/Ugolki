@@ -60,7 +60,8 @@ button{
 }
 
 #header{
-    background: rgb(179, 89, 0);
+    //background: rgb(179, 89, 0);
+    background: rgb(139, 69, 19);
     width: 100%;
     height: 10%;
 }
@@ -70,7 +71,8 @@ button{
     margin-left: 15%;
     text-align: center;
     resize: none;
-    background: rgb(179, 89, 0);
+    //background: rgb(179, 89, 0);
+    background: rgb(139, 69, 19);
     color: rgb(255, 179, 109);
     font-family: "Time New Roman", times, serif;
     font-weight: bolder;
@@ -86,21 +88,23 @@ button{
 }
 
 #draw_board{
-    height: 70%;
-    width: 80%;
-    margin-left: 10%;
+    height: 65%;
+    width: 82%;
+    margin-left: 9%;
     margin-top: 5%;
     color: blue;
 }
 
 .white_square{
-    fill: rgb(255, 255, 255);
+    //fill: rgb(255, 255, 255);
+    fill: rgb(255, 211, 155);
     stroke-width: 0.5%;
     stroke: rgb(0,0,0);
 }
 
 .brown_square{
-    fill: rgb(101,67,33);
+    //fill: rgb(101,67,33);
+    fill: rgb(130, 72, 21);
     stroke-width: 0.5%;
     stroke: rgb(0,0,0);
 }
@@ -112,7 +116,8 @@ button{
 }
 
 .brown_circles{
-    fill: rgb(205,92,92);
+    //fill: rgb(205,92,92);
+    fill: rgb(92, 64, 51);
     stroke-width: 0.5%;
     stroke: rgb(0,0,0);
 }
@@ -167,7 +172,8 @@ svg{
     height: 10%;
     margin-left: 10%;
     margin-top: 7.5%;
-    background: rgb(179, 89, 0);
+    //background: rgb(179, 89, 0);
+    background: rgb(139, 69, 19);
     border: none;
     color: rgb(242, 235, 67);
     opacity: 1;
@@ -182,7 +188,8 @@ svg{
     position: absolute;
     height: 100%;
     width: 50%;
-    background: rgb(179, 89, 0);
+    //background: rgb(179, 89, 0);
+    background: rgb(139, 69, 19);
     opacity: 0.9;
     display: none;
 }
