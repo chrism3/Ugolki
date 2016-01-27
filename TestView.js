@@ -424,7 +424,20 @@ function testView(){
     this.setPlayer2OptionsClickCallback = function (callback){
         var player_2 = document.getElementById("player_2_button");
         player_2.addEventListener("click", callback);
+    };    
+    this.setHumanPlayerClickCallback = function (callback) {
+        var human_player = document.getElementById("human_player");
+        human_player.addEventListener("click", callback);
     };
+    this.setAIPlayerClickCallback = function (callback) {
+        var AI_settings = document.getElementById("AI_options");
+        AI_settings.addEventListener("click", callback);
+    };
+    this.setSimpleAIClickCalback = function (callback) {
+        var simple_AI = document.getElementById("simple_AI");
+        simple_AI.addEventListener("click", callback);
+    };
+    
     
     this.highlightSelectedPiece = function(){
         if(selected_piece.attributes.class.value === "white_circles"){
@@ -759,21 +772,12 @@ function testView(){
                 clearInterval(fade_out);
             }
         }, 50);
-        
-//        opacity -= 0.01;
-//        if(opacity > 0){
-//            text_area_div.style.opacity = opacity;
-//        }
-//        else{
-//            text_area_div.style.display = "none";
-//        }
-//         console.log("doing this");
     };
     
     /*
      * this method could be used to remove the text area if the user perfoms
      * a correct function afterwards. May fix the problem of the textbox getting 
-     * a bit confused.
+     * a bit confused, but it would have to be added in on every button click... maybe inefficient
      */
     this.removeInfoBox = function() {
         document.getElementById("info_div").style.display = "none";
@@ -815,13 +819,27 @@ function testView(){
     };
     
     this.updateSettingsPanel = function(button_clicked){
+        var settings_panel = document.getElementById("settings_panel");
         var settings_options = document.getElementById("main_settings");
         var player_2_settings = document.getElementById("player_2_settings");
+        var AI_settings = document.getElementById("AI_settings");
         console.log("got here: condition = " + button_clicked);
         if(button_clicked === "player 2"){
             console.log("player 2 button was clicked (view)");
             settings_options.style.display = "none";
             player_2_settings.style.display = "block";
+        }
+        else if(button_clicked === "human player"){
+            settings_panel.style.display = "none";
+            // find some way to inform user that player 2 is now a human player
+                // maybe use the text area?
+        }
+        else if(button_clicked === "AI player"){
+            player_2_settings.style.display = "none";
+            AI_settings.style.display = "block";
+        }
+        else if(button_clicked === "AI difficulty"){
+            settings_panel.style.display = "none";
         }
     };
 }

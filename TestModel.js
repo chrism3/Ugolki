@@ -192,6 +192,7 @@ function testModel() {
         return player_2_type;
     };    
     this.setPlayerTwoType = function (player_type){
+        console.log("setting player 2 to: " + player_type);
         player_2_type = player_type;
     };
     

@@ -419,14 +419,29 @@ function testController(){
            performPieceSelection();
         });
         
+        // this calls the methods to add the event listener to the buttons in the menu
         test_view.setMenuImgClickCallback(function (){
             console.log("menu option clicked");
             test_view.toggleSettingsPanel();
         });
-
         test_view.setPlayer2OptionsClickCallback(function (){
             console.log("player 2 button was clicked");
             test_view.updateSettingsPanel("player 2");
+        });
+        test_view.setHumanPlayerClickCallback(function() {
+            console.log("human player button was clicked");
+            test_model.setPlayerTwoType("human");
+            test_view.updateSettingsPanel("human player");
+        });
+        test_view.setAIPlayerClickCallback(function() {
+            console.log("AI player was clicked");
+            test_view.updateSettingsPanel("AI player");
+        });
+        test_view.setSimpleAIClickCalback(function() {
+            console.log("simple AI clicked");
+            test_model.setAIType("simpleAI");
+            test_model.setPlayerTwoType("AI");
+            test_view.updateSettingsPanel("AI difficulty");
         });
         
     // this should probably be in the model
@@ -501,10 +516,8 @@ function testController(){
                test_view.reportErrorToUser("Not a valid move for the selected piece");
                test_view.fadeInfoBox();            
            }
-          /* 
-           * will need this code to work the AI, not sure where to put it yet
-           * 
-           * if(test_model.getPlayerTwoType() === "AI"){
+
+           if(test_model.getPlayerTwoType() === "AI"){
               test_model.checkAIType();
               test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()));
               var AI_move = test_model.getAIChoosenMove();
@@ -513,7 +526,7 @@ function testController(){
               test_view.highlightMovedAIPiece();
               // need to recall this... not sure if it will be necessary but it is just now
               test_model.resetForNextMove();              
-           }*/
+           }
         };
     };
 }
