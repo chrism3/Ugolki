@@ -418,7 +418,7 @@ function testController(){
            test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_16"));
            performPieceSelection();
         });
-        
+       
         // this calls the methods to add the event listener to the buttons in the menu
         test_view.setMenuImgClickCallback(function (){
             console.log("menu option clicked");

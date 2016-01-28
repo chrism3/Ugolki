@@ -5,10 +5,8 @@
 function UgolkiView(){
     var circle = document.getElementById("white_circle"),
         square = document.getElementById("square"),
-        test_button = document.getElementById("test_button"),
         test_button_2 = document.getElementById("test_button_2"),
         new_game_button = document.getElementById("new_game_button"),
-        two_by_two_button = document.getElementById("two_by_two"),
         game_menu = document.getElementById("game_menu"),
         test_page = document.getElementById("test_page"),
         test_board = document.getElementById("test_board"),
@@ -27,22 +25,13 @@ function UgolkiView(){
         //square.addEventListener("click", callback);
     };
     
-    this.setTestButtonCallback = function (callback) {
-        test_button.addEventListener("click", callback);
-    };
-    
-    this.setTestButtonTwoCallBack = function (callback) {
+   this.setTestButtonTwoCallBack = function (callback) {
         test_button_2.addEventListener("click", callback);
     };
     
     this.setNewGameButtonCallback =function (callback) {
         new_game_button.addEventListener("click", callback);
     };
-    
-    this.setTwoByTwoButtonCallback = function (callback){
-        two_by_two_button.addEventListener("click", callback);
-    };
-    
    
     this.setPage = function(page){
         //console.log("Page = " + page);

@@ -32,12 +32,6 @@ button{
     margin-right: 2%;
 }
 
-#test_page{
-    height: 100%;
-    width: 100%;
-    display: none;
-}
-
 #new_game_page{
     height: 100%;
     width: 100%;
@@ -56,7 +50,7 @@ button{
     left: 0%;
     height: 100%;
     width: 100%;
-    display: none;
+    display: block;
 }
 
 #header{
