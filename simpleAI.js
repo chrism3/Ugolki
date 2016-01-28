@@ -14,10 +14,10 @@ function simpleAI(){
         var pieces = pieces_to_move;
         var can_move = false;
         var possible_moves = new Array();
-        /*console.log(pieces.length);
-        for(var i = 0; i < pieces.length; i++){
-            console.log(pieces[i].getPieceColour());
-        }*/
+        /*console.log(pieces.length);*/
+//        for(var i = 0; i < pieces.length; i++){
+//            console.log(pieces[i].getPieceColour() + "       " + pieces[i].getXCoord() + "," + pieces[i].getYCoord());
+//        }
         do{
             var random_piece_number = Math.floor((Math.random() * pieces.length));            
             var piece_to_move = pieces[random_piece_number];
@@ -49,8 +49,8 @@ function simpleAI(){
             var array_length = possible_moves.length;
             if(array_length > 0){
                 //console.log("index of piece to move: " + random_piece_number);
-//                console.log("the old x and y coords (simple AI): " +
-//                    x_coord + "," + y_coord);
+                console.log("the old x and y coords (simple AI): " +
+                    x_coord + "," + y_coord);
                 
                 // adding 1 because array index starts at 0, pieces id start at 1
                 this.setSelectedPieceIndex(random_piece_number + 1);
