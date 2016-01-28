@@ -691,13 +691,15 @@ function testView(){
         return screen_to_board_map;
     };
 
+// may want to change how this works so that the user can alter the board colours
+// maybe pass in values from the model
     this.resetDefaultBoardColours = function (){
         var white_squares = document.getElementsByClassName("white_square");
         var brown_squares = document.getElementsByClassName("brown_square"); 
         var all_circles = document.getElementsByTagName("circle");
-        for(var i = 0; i < white_squares.length; i++){
-            white_squares[i].style.fill = "rgb(255, 255, 255)";
-            brown_squares[i].style.fill = "rgb(101, 67, 33)";
+        for(var i = 0; i < white_squares.length; i++){            
+            white_squares[i].style.fill = "rgb(255, 211, 155)";
+            brown_squares[i].style.fill = "rgb(130, 72, 21)";
         }
         
         // not sure why this would be needed, might change it. 
@@ -707,14 +709,15 @@ function testView(){
                 all_circles[i].style.fill = "rgb(255, 235, 205);";
             }
             else{
-                all_circles[i].style.fill = "rgb(205,92,92)";
+                all_circles[i].style.fill = "rgb(92, 64, 51)";
             }
             all_circles[i].style.stroke = "rgb(0,0,0)";
         }
     };
     
-    this.getWhiteCircleCoordinates = function(id_number){
-        var circle_id = "white_circle_" + id_number;
+    this.getWhiteCircleCoordinates = function(circle_id){
+        //var circle_id = "white_circle_" + id_number;
+        console.log(circle_id);
         var white_circles = document.getElementsByClassName("white_circles");
         var circle;
         for(var i = 0; i < white_circles.length; i++){
@@ -725,8 +728,8 @@ function testView(){
         return circle;
     };
     
-    this.getBrownCircleCoordinates = function(id_number) {
-        var circle_id = "brown_circle_" + id_number;
+    this.getBrownCircleCoordinates = function(circle_id) {
+        //var circle_id = "brown_circle_" + id_number;
         var brown_circles = document.getElementsByClassName("brown_circles");
         var circle;
         for(var i = 0; i < brown_circles.length; i++){
@@ -831,6 +834,8 @@ function testView(){
         }
         else if(button_clicked === "human player"){
             settings_panel.style.display = "none";
+            this.reportErrorToUser("Player 2 has been set to human player");
+            this.fadeInfoBox();
             // find some way to inform user that player 2 is now a human player
                 // maybe use the text area?
         }
@@ -840,6 +845,8 @@ function testView(){
         }
         else if(button_clicked === "AI difficulty"){
             settings_panel.style.display = "none";
+            this.reportErrorToUser("Player 2 has been set to an AI player");
+            this.fadeInfoBox();
         }
     };
 }

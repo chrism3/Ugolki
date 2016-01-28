@@ -8,6 +8,14 @@ function simpleAI(){
     var move;
     var origional_x;
     var origional_y;
+    var board;
+    
+    /*
+     * hopefully wont need this... gives us yet another board_rep to ensure is up to date
+     * 
+     * this.updateBoard = function(board_rep){
+        board = board_rep;
+    };*/
     
     // this player will move entirely randomly... i.e wont be very good at the game
     this.decideMove = function(pieces_to_move, find_moves){
@@ -29,6 +37,7 @@ function simpleAI(){
             this.setAISelectedPieceXCoord(x_coord);            
             var y_coord = piece_to_move.getYCoord();
             this.setAISelectedPieceYCoord(y_coord);
+            var piece_id = piece_to_move.getPieceId();            
             var right = x_coord + 1;
             var left = x_coord - 1;
             var above = y_coord - 1;
@@ -49,11 +58,15 @@ function simpleAI(){
             var array_length = possible_moves.length;
             if(array_length > 0){
                 //console.log("index of piece to move: " + random_piece_number);
+                       console.log(" ");
+       console.log(" ");
+       console.log(" ");
+       console.log(" ");
                 console.log("the old x and y coords (simple AI): " +
                     x_coord + "," + y_coord);
-                
+                console.log("the id of the piece is: " + piece_id);
                 // adding 1 because array index starts at 0, pieces id start at 1
-                this.setSelectedPieceIndex(random_piece_number + 1);
+                this.setSelectedPieceIndex(piece_id);
                 
                 can_move = true;
             }
@@ -62,17 +75,12 @@ function simpleAI(){
         
         var random_move_number = Math.floor(Math.random() * possible_moves.length);
 
-//        console.log("the new x and y coords (simple AI): " +
-//                possible_moves[random_move_number].getX() + "," + possible_moves[random_move_number].getY());
+        console.log("the new x and y coords (simple AI): " +
+                possible_moves[random_move_number].getX() + "," + possible_moves[random_move_number].getY());
         
         this.setChoosenMove(possible_moves[random_move_number]);
         
     };
-    
-    
-    
-    
-    
     
     this.getChoosenMove = function() {
         return move;
@@ -86,6 +94,7 @@ function simpleAI(){
     // these methods are needed to identify which piece has been selected...
     // needed by model and view
     this.getAIPieceIndex = function (){
+        console.log("The index to be returned is: " + piece_index);
         return piece_index;
     };
     this.setSelectedPieceIndex = function(index){

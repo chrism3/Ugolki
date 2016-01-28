@@ -10,7 +10,7 @@ function testModel() {
     p2.newGamePiece("player_two", "black", 2, 1, 0);
     
     var player_1_type = "human"; // this will be needed nearer the end of the project
-    var player_2_type = "AI";
+    var player_2_type = "human";
     
     var test_board = new Array(8);
     var possible_moves = new Array();
@@ -28,25 +28,66 @@ function testModel() {
     
     //please rename test_board
    this.setTestBoard = function(screen_to_board_map){
-       
-       for(var i = 0; i < test_board.length; i++){
+       var white_id = 1;
+       var brown_id = 1;
+       /*for(var i = 0; i < test_board.length; i++){
            test_board[i] = new Array(8);
            for(var j = 0; j < test_board.length; j++){
                if(screen_to_board_map[i][j] !== undefined){
                    if(screen_to_board_map[i][j][1] === "white"){
-                       var piece = new gamePieces("player_one", "white", i, j);
+                       var id_no = "white_circle_" + white_id;
+                       var piece = new gamePieces("player_one", "white", id_no, i, j);
                        test_board[i][j] = piece;
+                       white_id++;
                    }
                    else if(screen_to_board_map[i][j][1] === "black"){
-                       var piece = new gamePieces("player_two", "black", i, j);
+                       var id_no = "brown_circle_" + brown_id;
+                       var piece = new gamePieces("player_two", "black", id_no, i, j);
                        test_board[i][j] = piece;
+                       brown_id++;
                    }
                }
                else{
                     test_board[i][j] = 0;
                }
            }
+       }*/
+       // i dont like this being hard coded but it may fix things
+       
+       // firstly, initilaise the board
+       for(var i = 0; i < test_board.length; i++){
+           test_board[i] = new Array(8);
+           for(var j = 0; j < test_board.length; j++){
+               test_board[i][j] = 0;
+           }
        }
+       // next we place the white sqaures in the bottom left
+       for(var i = 7; i > 3; i--){
+           for(var j = 0; j < 4; j++){
+             var id_no = "white_circle_" + white_id;
+             var white_piece = new gamePieces("player_one", "white", id_no, j, i);
+             test_board[j][i] = white_piece;
+             white_id++;
+             var id_no = "brown_circle_" + brown_id;
+             var black_piece = new gamePieces("player_two", "black", id_no, i, j);
+             test_board[i][j] = black_piece;
+             brown_id++;             
+           }
+       }
+       
+              
+//       for(var i = 0 ; i < test_board.length; i++){
+//           for(var j =0; j < test_board.length; j++){
+//               if(test_board[i][j] !== 0){
+//                   var piece = test_board[i][j];
+//                   console.log(i + ", " + j);
+//                    console.log("AT index (" + i + "," + j + ") is piece with id: " + piece.getPieceId());
+//               }
+//               else{
+//                   console.log("AT index (" + i + "," + j + ") there is no piece ");
+//               }
+//           }
+//       }
    };
     
    this.setScreenSize = function(){
@@ -61,6 +102,7 @@ function testModel() {
         // this loop is used to clear the possible moves array
         possible_moves = [];
         
+        //console.log("In model (findMoves2) the x and y coords are: " + x_coord + "," + y_coord);
 
         var find_moves = new findMoves();
         find_moves.init(test_board);
@@ -69,6 +111,7 @@ function testModel() {
         //console.log(y_coord);
         find_moves_successful = true;        
         current_piece = test_board[x_coord][y_coord];
+        //console.log("In model (findMoves2) the id of the selected piece is: " + current_piece.getPieceId());
         
 //        console.log("findMoves2 (model): " + x_coord + "," + y_coord);
 //        console.log("current piece: " + current_piece);
@@ -76,6 +119,9 @@ function testModel() {
 //        console.log("piece colour from player colour: " + current_player_colour);
                 
         if (current_piece.getPieceColour() === current_player_colour) {
+            
+            //console.log("Getting the Y coord"+test_board[x_coord][y_coord].getYCoord());
+            
             var above = parseInt((test_board[x_coord][y_coord].getYCoord()) - 1);
             //console.log("above = " + above);
             var below = parseInt((test_board[x_coord][y_coord].getYCoord()) + 1);
@@ -121,15 +167,36 @@ function testModel() {
                     // move the piece in the board array
                     //console.log("in move piece (model): " + test_board[current_piece.getXCoord()][current_piece.getYCoord()]);
                     test_board[current_piece.getXCoord()][current_piece.getYCoord()] = 0;
+                    current_piece.setXCoord(choosen_square_x);
+                    current_piece.setYCoord(choosen_square_y);
                     test_board[choosen_square_x][choosen_square_y] = current_piece;
                     //console.log("after resetting (model): " + test_board[current_piece.getXCoord()][current_piece.getYCoord()]);
                     // reset the values for X and Y of the game piece
-                    current_piece.setXCoord(choosen_square_x);
-                    current_piece.setYCoord(choosen_square_y);
+
 
                     new_x_coord = choosen_square_x;
                     new_y_coord = choosen_square_y;
                     move_successful = true;
+                    
+//       console.log(" ");
+//       console.log(" ");
+//       console.log(" ");
+//       console.log(" ");
+//       for(var i = 0; i < test_board.length; i++){
+//           for(var j = 0; j < test_board.length; j++){
+//               var piece = test_board[i][j];
+//               if(piece !== 0){
+//               console.log("At index: (" + i + "," + j + ") is the peice with coords: (" +
+//                       piece.getXCoord() + "," + piece.getYCoord() + ") - " + piece.getPieceColour() + 
+//                       "with id: " + piece.getPieceId());
+//                }
+//                else{
+//                    console.log("At index (" + i + "," + j + ") there is no piece");
+//                }
+//           }
+//       }
+                    
+                    
                     break;
                 }
                 else{
@@ -206,7 +273,8 @@ function testModel() {
     
     // I'm not sure how the AI should work... maybe like this
     var AI_type = "simpleAI";
-    var current_AI_player;
+    var current_AI_player = new simpleAI();
+    
     /*
      * Have a variable called AI_type
      * Use the following method to check which AI we currently have set, simple, hard, good ect...
@@ -214,6 +282,9 @@ function testModel() {
      */
     this.checkAIType = function (){
         // need to get the pieces that the AI can actually move
+        
+        // call this to make sure the AI board rep is up to date
+       //current_AI_player.updateBoard(test_board);
         var pieces = new Array();
         var count = 0;
         for(var i = test_board.length-1; i > 0; i--){
@@ -231,8 +302,7 @@ function testModel() {
         }
         var find_moves = new findMoves();
         find_moves.init(test_board);
-        if(AI_type === "simpleAI"){
-            current_AI_player = new simpleAI();
+        if(AI_type === "simpleAI"){            
             current_AI_player.decideMove(pieces, find_moves);
         }
     };
@@ -245,6 +315,12 @@ function testModel() {
     };
     this.setAIType = function (type) {
         AI_type = type;
+        
+        if(AI_type === "simpleAI"){
+            //console.log("making new simple AI player");
+            current_AI_player = new simpleAI();
+            //current_AI_player.updateBoard(test_board);
+        }
     };
     
     this.getAIChoosenMove = function(){
@@ -271,26 +347,27 @@ function testModel() {
                             test_board[i][j].getYCoord() === moved_piece_y){
                         var piece_to_move = test_board[i][j];
                         test_board[i][j] = 0;
-                        test_board[new_x][new_y] = piece_to_move;
                         piece_to_move.setXCoord(new_x);
-                        piece_to_move.setYCoord(new_y);                    
+                        piece_to_move.setYCoord(new_y);
+                        test_board[new_x][new_y] = piece_to_move;                    
                     }
                 }
            }
        }
-//       console.log();
-//       console.log();
-//       console.log();
-//       console.log();
-//       for(var i = 0; i < test_board.length; i++){
-//           for(var j = 0; j < test_board.length; j++){
-//               var piece = test_board[i][j];
-//               if(piece !== 0){
-//               console.log("At index: (" + i + "," + j + ") is the peice with coords: (" +
-//                       piece.getXCoord() + "," + piece.getYCoord() + ")");
-//           }
-//           }
-//       }
+
+       for(var i = 0; i < test_board.length; i++){
+           for(var j = 0; j < test_board.length; j++){
+               var piece = test_board[i][j];
+               if(piece !== 0){
+               console.log("At index: (" + i + "," + j + ") is the peice with coords: (" +
+                       piece.getXCoord() + "," + piece.getYCoord() + ") - " + piece.getPieceColour() + " - id: "
+                       + piece.getPieceId());
+                }
+                else{
+                    console.log("At index (" + i + "," + j + ") there is no piece");
+                }
+           }
+       }
     };
     
 }

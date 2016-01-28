@@ -290,132 +290,132 @@ function testController(){
         
         // call all functions to add event listeners to the white piece in the view
         test_view.setWhiteCircle1ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(1));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_1"));
             performPieceSelection();
         });
         test_view.setWhiteCircle2ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(2));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_2"));
             performPieceSelection();
         });
         test_view.setWhiteCircle3ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(3));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_3"));
             performPieceSelection();
         });
         test_view.setWhiteCircle4ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(4));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_4"));
             performPieceSelection();
         });
         test_view.setWhiteCircle5ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(5));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_5"));
             performPieceSelection();
         });
         test_view.setWhiteCircle6ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(6));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_6"));
             performPieceSelection();
         });
         test_view.setWhiteCircle7ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(7));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_7"));
             performPieceSelection();
         });
         test_view.setWhiteCircle8ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(8));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_8"));
             performPieceSelection();
         });
         test_view.setWhiteCircle9ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(9));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_9"));
             performPieceSelection();
         });
         test_view.setWhiteCircle10ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(10));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_10"));
             performPieceSelection();
         });
         test_view.setWhiteCircle11ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(11));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_11"));
             performPieceSelection();
         });
         test_view.setWhiteCircle12ClickCallback(function (){
-           test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(12));
+           test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_12"));
            performPieceSelection();
         });
         test_view.setWhiteCircle13ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(13));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_13"));
             performPieceSelection();
         });
         test_view.setWhiteCircle14ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(14));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_14"));
             performPieceSelection();
         });
         test_view.setWhiteCircle15ClickCallback(function() {
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(15));
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_15"));
             performPieceSelection();
         });
         test_view.setWhiteCircle16ClickCallback(function (){
-           test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(16));
+           test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates("white_circle_16"));
            performPieceSelection();
         });
         
         test_view.setBrownCircle1ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(1));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_1"));
            performPieceSelection();
         });
         test_view.setBrownCircle2ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(2));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_2"));
            performPieceSelection();
         });
         test_view.setBrownCircle3ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(3));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_3"));
            performPieceSelection();
         });
         test_view.setBrownCircle4ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(4));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_4"));
            performPieceSelection();
         });
         test_view.setBrownCircle5ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(5));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_5"));
            performPieceSelection();
         });
         test_view.setBrownCircle6ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(6));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_6"));
            performPieceSelection();
         });
         test_view.setBrownCircle7ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(7));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_7"));
            performPieceSelection();
         });
         test_view.setBrownCircle8ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(8));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_8"));
            performPieceSelection();
         });
         test_view.setBrownCircle9ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(9));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_9"));
            performPieceSelection();
         });
         test_view.setBrownCircle10ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(10));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_10"));
            performPieceSelection();
         });
         test_view.setBrownCircle11ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(11));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_11"));
            performPieceSelection();
         });
         test_view.setBrownCircle12ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(12));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_12"));
            performPieceSelection();
         });
         test_view.setBrownCircle13ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(13));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_13"));
            performPieceSelection();
         });
         test_view.setBrownCircle14ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(14));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_14"));
            performPieceSelection();
         });
         test_view.setBrownCircle15ClickCallBack(function() {
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(15));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_15"));
            performPieceSelection();
         });
         test_view.setBrownCircle16ClickCallback(function (){
-           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(16));
+           test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_16"));
            performPieceSelection();
         });
         
@@ -459,8 +459,8 @@ function testController(){
                 screen_to_board_map = test_view.getScreenToBoardMap(),
                 x_coord = 0,
                 y_coord = 0;
-
-        // console.log(screen_to_board_map[0][7][0].attributes.id.value);
+            //console.log("in controller (performPieceSelection) the id of slected piece is: " + id);
+            // console.log(screen_to_board_map[0][7][0].attributes.id.value);
             moves = [];
             //test_view.resetDefaultBoardColours();
            // console.log("length of moves: " + moves.length);
@@ -471,6 +471,7 @@ function testController(){
                             //console.log("found circle with id " + id);
                             x_coord = i;
                             y_coord = j;
+                            //console.log("it's x and y coords are: " + x_coord + "," + y_coord);
                         }
                         else{
                             //console.log("[" + i + "][" + j + "]");
@@ -506,6 +507,7 @@ function testController(){
                 console.log("need to selected a piece");
                 test_view.reportErrorToUser("Please selected a piece first");
                 test_view.fadeInfoBox();
+                return;
             }
            if(test_view.wasMoveSuccessful()){
                 test_view.resetDefaultBoardColours();
@@ -519,11 +521,12 @@ function testController(){
 
            if(test_model.getPlayerTwoType() === "AI"){
               test_model.checkAIType();
+              console.log("about to get the id");
               test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()));
               var AI_move = test_model.getAIChoosenMove();
               test_model.updateModelWithAIMove();
               test_view.movePiece2(AI_move.getX(), AI_move.getY());
-              test_view.highlightMovedAIPiece();
+              //test_view.highlightMovedAIPiece();
               // need to recall this... not sure if it will be necessary but it is just now
               test_model.resetForNextMove();              
            }

@@ -6,10 +6,10 @@
  * Not sure entirely what variables will be needed at this time, will
  * need to exand on this depending on what else I decided is important.
  */
-function gamePieces(new_player, new_colour, x, y){
+function gamePieces(new_player, new_colour, id, x, y){
     var player = new_player,
         colour = new_colour,
-        id_no = 0,
+        id_no = id,
         x_coord = x,
         y_coord = y;
 
@@ -47,6 +47,7 @@ function gamePieces(new_player, new_colour, x, y){
     this.setYCoord = function (new_y) {
         y_coord = new_y;
     };
+    
 }
     
 
