@@ -370,6 +370,49 @@ function testModel() {
        }
     };
     
+    this.hasPlayerWon = function(){
+        var player_1_won = true;
+        var player_2_won = true;
+        
+        for(var i = 0; i < 4; i++){
+            for(var j = 7; j > 3; j--){
+                if(test_board[i][j] !== 0){
+                    var piece = test_board[i][j];
+                    if(piece.getPieceColour() !== "black"){
+                            player_1_won = false;
+                            break;
+                    }
+                }
+            }            
+        }
+        if(player_1_won){
+            return "player 1";
+        }
+        
+        for(var i = 7; i > 3; i--){
+            //console.log(test_board[7][0].getPieceColour());
+            for(var j = 0; j < 4; j++){
+//                console.log("i = " + i);
+//                console.log("j = " + j);
+//                console.log(test_board[i][j].getPieceColour());
+                if(test_board[i][j] !== 0){
+                    var piece = test_board[i][j];
+                    if(piece.getPieceColour() !== "white"){
+                        player_2_won = false;
+                        break;
+                    }
+                }
+            }
+        }
+        if (player_2_won){
+            return "player 2";
+        }
+        
+        else{
+            return "no winner";
+        }
+        
+    };
 }
 
 

@@ -7,7 +7,8 @@ function testController(){
      moves = new Array(),
      square = new Array();
      //test_model.init();
-     test_model.setScreenSize();             
+     test_model.setScreenSize(); 
+    
      /*
       * needs to know number of squares per row, may be able to pass in a value later, 
       * currently it is hard coded in scaleBoardToScreen
@@ -15,6 +16,8 @@ function testController(){
      test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
      test_model.setTestBoard(test_view.getScreenToBoardMap());
 
+     var test_check = test_model.hasPlayerWon();
+     console.log(test_check);
 
     this.init = function() {
         
@@ -518,6 +521,9 @@ function testController(){
                test_view.reportErrorToUser("Not a valid move for the selected piece");
                test_view.fadeInfoBox();            
            }
+           
+           var is_game_over = test_model.hasPlayerWon();
+           console.log(is_game_over);
 
            if(test_model.getPlayerTwoType() === "AI"){
               test_model.checkAIType();
