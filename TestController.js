@@ -524,6 +524,10 @@ function testController(){
            
            var is_game_over = test_model.hasPlayerWon();
            console.log(is_game_over);
+           
+           if(is_game_over !== "no winner"){
+               test_view.reportErrorToUser(is_game_over + " is the winner");
+           }
 
            if(test_model.getPlayerTwoType() === "AI"){
               test_model.checkAIType();
