@@ -205,8 +205,9 @@ function findMoves(){
         var current_coords = new Array();
         current_coords[0] = current_x;
         current_coords[1] = current_y;
-        var possible_move_coords = new Array();
+        var possible_move_coords = new Array(); 
         possible_move_coords.push(current_coords);
+       
         
         // need a visited list to keep track of squares all ready checked
         var visited_locations = new Array();
@@ -215,7 +216,7 @@ function findMoves(){
         while(possible_move_coords.length > 0){
         
 //        var count = 0;
-//        while(count < 5){
+//        while(count < 3){
 //            //console.log(count);
 //            //console.log(possible_move_coords.length);
 //            if(possible_move_coords.length > 0){
@@ -224,10 +225,11 @@ function findMoves(){
             var visited = new Array();
             visited[0] = x;
             visited[1] = y;
-            if(visited_locations.length < 1){
-                visited_locations.push(visited);
-            }
-            else if(!this.isVisited(visited, visited_locations)){
+//            if(visited_locations.length < 1){
+//                visited_locations.push(visited);
+//            }
+            if(!this.isVisited(visited, visited_locations)){
+                //console.log("pushing to visited list");
                 visited_locations.push(visited);
             }
             var right = x + 1;
@@ -246,11 +248,12 @@ function findMoves(){
             console.log("length of found moves before function call " + moves_found.length);
             console.log("length of visited squares before function call " + visited_locations.length);
             for(var i = 0; i < moves_found.length; i++){
-                    if(!this.containsMove(visited_locations, moves_found, i)){
+                    if(!this.containsMove(visited_locations, moves_found)){
                     var new_move_coord = new Array();
                     new_move_coord[0] = moves_found[i].getX();
                     new_move_coord[1] = moves_found[i].getY();
                     possible_move_coords.push(new_move_coord);
+                    //visited_locations.push(new_move_coord);
                     var move = new possibleMove;
                     move.newMove(new_move_coord[0], new_move_coord[1]);
                     possible_moves.push(move);
@@ -260,11 +263,14 @@ function findMoves(){
             //console.log("before splice " + possible_move_coords.length);
             possible_move_coords.splice(0, 1);
             //console.log("At first index: " + possible_move_coords[0][0] + "," + possible_move_coords[0][1]);
-            //console.log("after splice " + possible_move_coords.length);
+            console.log("after splice " + possible_move_coords.length);
+            for(var i = 0; i < possible_move_coords.length; i++){
+                console.log("Coords at index: " + i + " = " +possible_move_coords[i][0] + "," + possible_move_coords[i][1]);
+            }
             
             
-        //}
-        //count++;
+//        }
+//        count++;
         }
         
         
@@ -286,37 +292,69 @@ function findMoves(){
      * made this emthod to check if the current square has all ready been visited,
      * bit messy but will hopefully work
      */
-    this.containsMove = function(visited_squares, moves_found, index){
-        var current_x = visited_squares[index][0];
-        var current_y = visited_squares[index][1];
-        var has_been_visited = false;
+//    this.containsMove = function(visited_squares, moves_found, index){
+//        
+//        console.log("in containsMove length of visited_sqaures = " + visited_squares.length);
+//        for(var i = 0; i < visited_squares.length; i++){
+//            console.log("values in visited squares: " + visited_squares[i][0] + "," + visited_squares[i][1]);
+//        }
+//        if(visited_squares[index] === undefined){
+//            return false;
+//        }
+//        
+//        console.log("The index is: " + index);
+//        var current_x = visited_squares[index][0];
+//        var current_y = visited_squares[index][1];
+//        var has_been_visited = false;
+//        
+//        //console.log("called containsMove " + moves_found.length);
+//        
+//        for(var i = 0; i < moves_found.length; i++){
+//            var check_x = moves_found[i].getX();
+//            var check_y = moves_found[i].getY();
+//            console.log("compareing x values " + current_x + " and " + check_x);
+//            console.log("comparing y values " + current_y + " and " + check_y);
+//            if(check_x === current_x && check_y === current_y){
+//                console.log("all ready visited");
+//                has_been_visited = false;
+//                return has_been_visited;
+//            }
+//        }
+//        
+//        return has_been_visited;
+//    };
+
+    this.containsMove = function(visited_squares, moves_found){
+        //var has_been_visited = false;
         
-        console.log("called containsMove " + moves_found.length);
-        
-        for(var i = 0; i < moves_found.length; i++){
-            var check_x = moves_found[i][0];
-            var check_y = moves_found[i][1];
-            console.log("compareing x values " + current_x + " and " + check_x);
-            console.log("comparing y values " + current_y + " and " + check_y);
-            if(check_x === current_x && check_y === current_y){
-                console.log("all ready visited");
-                has_been_visited = false;
-                return has_been_visited;
-            }
+        for(var i = 0; i < visited_squares.length; i++){
+            var current_x = visited_squares[i][0];
+            var current_y = visited_squares[i][1];
+            for(var j = 0; j < moves_found.length; j++){
+                var check_x = moves_found[j].getX();
+                var check_y = moves_found[j].getY();
+                console.log("compareing x values " + current_x + " and " + check_x);
+                console.log("comparing y values " + current_y + " and " + check_y);
+                if(current_x === check_x && current_y === check_y){
+                    return true;
+                }
+            }               
         }
-        
-        return has_been_visited;
+        return false;
     };
     
     this.isVisited = function (visited, visited_squares){
         var visited_x = visited[0];
         var visited_y = visited[1];
-        console.log("checking is visited");
+        //console.log("checking is visited");
         for(var i = 0; i < visited_squares.length; i++){
             var x = visited_squares[i][0];
             var y = visited_squares[i][1];
+            //console.log("is visited X = " + x + " and " + visited_x);
+            //console.log("is visited Y = " + y + " and " + visited_y);
             if(visited_x === x && visited_y === y){
                 return true;
+                break;
             }
         }
         return false;
