@@ -135,10 +135,11 @@ function testModel() {
             find_moves.moveLeft(left, y_coord);
             find_moves.moveUp(above, x_coord);
             find_moves.moveDown(below, x_coord);
-            find_moves.jumpRight(right, y_coord);
-            find_moves.jumpLeft(left, y_coord);
-            find_moves.jumpUp(above, x_coord);
-            find_moves.jumpDown(below, x_coord);
+//            find_moves.jumpRight(right, y_coord);
+//            find_moves.jumpLeft(left, y_coord);
+//            find_moves.jumpUp(above, x_coord);
+//            find_moves.jumpDown(below, x_coord);
+            find_moves.multipleJump(x_coord, y_coord, right, left, above, below);
             possible_moves = find_moves.getPossibleMoves();
         }
         else{

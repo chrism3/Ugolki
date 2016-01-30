@@ -50,16 +50,38 @@ function findMoves(){
      * should modify this so that it can find the continuous jump
      * moves
      */
-    this.jumpRight = function(right, y_coord){
-        if(right+1 <= board.length && board[right][y_coord] !== 0 ){
-            if(right+1 < board.length && board[right+1][y_coord] === 0){
-                //console.log("adding jump right");
-                var move = new possibleMove;
-                move.newMove(right+1, y_coord);
-                possible_moves.push(move);
-            }
-        }
-    };    
+//    this.jumpRight = function(right, y_coord){
+//        if(right+1 <= board.length && board[right][y_coord] !== 0 ){
+//            if(right+1 < board.length && board[right+1][y_coord] === 0){
+//                //console.log("adding jump right");
+//                var move = new possibleMove;
+//                move.newMove(right+1, y_coord);
+//                possible_moves.push(move);
+//            }
+//        }
+//    };    
+
+//    this.jumpRight = function(right, y_coord){
+//        var jump = true;
+//        while(jump){
+//            if(right+1 <= board.length && board[right][y_coord] !== 0 ){
+//                if(right+1 < board.length && board[right+1][y_coord] === 0){
+//                    //console.log("adding jump right");
+//                    var move = new possibleMove;
+//                    move.newMove(right+1, y_coord);
+//                    possible_moves.push(move);
+//                    right = right + 2;
+//                }
+//                else{
+//                    jump = false;
+//                }
+//            }
+//            else{
+//                jump = false;
+//            }
+//        }
+//    };
+    
     this.jumpLeft = function(left, y_coord){
         if(left-1 >= 0 && board[left][y_coord] !== 0){                
             if(left-1 >= 0 && board[left-1][y_coord] === 0){
@@ -69,17 +91,39 @@ function findMoves(){
                 possible_moves.push(move);
             }
         }        
-    };    
-    this.jumpUp = function(above, x_coord){
-        if(above-1 >= 0 && board[x_coord][above] !== 0){
-            if(above-1 >= 0 && board[x_coord][above - 1] === 0){
-                //console.log("adding jump above");
-                var move = new possibleMove;
-                move.newMove(x_coord, above-1);
-                possible_moves.push(move);
-            }
-        }
-    };
+    }; 
+    
+//    this.jumpUp = function(above, x_coord){
+//        if(above-1 >= 0 && board[x_coord][above] !== 0){
+//            if(above-1 >= 0 && board[x_coord][above - 1] === 0){
+//                //console.log("adding jump above");
+//                var move = new possibleMove;
+//                move.newMove(x_coord, above-1);
+//                possible_moves.push(move);
+//            }
+//        }
+//    };
+//    this.jumpUp = function(above, x_coord){
+//        var jump_up = true;
+//        while(jump_up){
+//            if(above-1 >= 0 && board[x_coord][above] !== 0){
+//                if(above-1 >= 0 && board[x_coord][above - 1] === 0){
+//                    //console.log("adding jump above");
+//                    var move = new possibleMove;
+//                    move.newMove(x_coord, above-1);
+//                    possible_moves.push(move);
+//                    above = above-2;
+//                }
+//                else{
+//                    jump_up = false;
+//                }
+//            }
+//            else{
+//                jump_up = false;
+//            }
+//        }
+//    };
+    
     this.jumpDown = function(below, x_coord){
         if(below+1 < board.length && board[x_coord][below] !== 0){
             if(below+1 < board.length && board[x_coord][below + 1] === 0){
@@ -89,6 +133,64 @@ function findMoves(){
                 possible_moves.push(move);
             }
         }        
+    };
+    
+    this.multipleJump = function(x_coord, y_coord, right, left, above, below){
+        var jump_right = true;
+        var jump_left = true;
+        var jump_up = true;
+        var jump_down = true;
+        var jump = true;
+        while(jump){
+            //console.log("in the while loop");
+            while(jump_right){
+                if(right+1 <= board.length && board[right][y_coord] !== 0 ){
+                    console.log(board[right][y_coord]);
+                    if(right+1 < board.length && board[right+1][y_coord] === 0){
+                        console.log("adding jump right");
+                        var move = new possibleMove;
+                        move.newMove(right+1, y_coord);
+                        possible_moves.push(move);
+                        right = right + 2;
+                    }
+                    else{
+                        //console.log("in else of second if");
+                        jump_right = false;
+                    }
+                }
+                else{
+                    //console.log("in else of first if");
+                    jump_right = false;
+                }
+            }
+            while(jump_up){
+                if(above-1 >= 0 && board[x_coord][above] !== 0){
+                    if(above-1 >= 0 && board[x_coord][above - 1] === 0){
+                        console.log("adding jump above");
+                        var move = new possibleMove;
+                        move.newMove(x_coord, above-1);
+                        possible_moves.push(move);
+                        above = above -2;
+                    }
+                    else{
+                        console.log("in else of second if");
+                        jump_up = false;
+                    }
+                }
+                else{
+                    console.log("in else of first if");
+                    jump_up = false;
+                }
+            }
+            
+            
+            
+            
+            if(!jump_right && !jump_up){
+                console.log("breaking the loop");
+                jump = false;
+            }
+        }
     };
     
     // method to get all of the possible moves
