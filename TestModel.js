@@ -131,10 +131,10 @@ function testModel() {
             var right = parseInt((test_board[x_coord][y_coord].getXCoord()) + 1);
             //console.log("right = " + right);            
            
-//            find_moves.moveRight(right, y_coord);
-//            find_moves.moveLeft(left, y_coord);
-//            find_moves.moveUp(above, x_coord);
-//            find_moves.moveDown(below, x_coord);
+            find_moves.moveRight(right, y_coord);
+            find_moves.moveLeft(left, y_coord);
+            find_moves.moveUp(above, x_coord);
+            find_moves.moveDown(below, x_coord);
 //            find_moves.jumpRight(right, y_coord);
 //            find_moves.jumpLeft(left, y_coord);
 //            find_moves.jumpUp(above, x_coord);
