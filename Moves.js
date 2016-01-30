@@ -248,7 +248,7 @@ function findMoves(){
             console.log("length of found moves before function call " + moves_found.length);
             console.log("length of visited squares before function call " + visited_locations.length);
             for(var i = 0; i < moves_found.length; i++){
-                    if(!this.containsMove(visited_locations, moves_found)){
+                    if(!this.containsMove(visited_locations, moves_found, i)){
                     var new_move_coord = new Array();
                     new_move_coord[0] = moves_found[i].getX();
                     new_move_coord[1] = moves_found[i].getY();
@@ -324,21 +324,19 @@ function findMoves(){
 //        return has_been_visited;
 //    };
 
-    this.containsMove = function(visited_squares, moves_found){
+    this.containsMove = function(visited_squares, moves_found, index){
         //var has_been_visited = false;
         
         for(var i = 0; i < visited_squares.length; i++){
             var current_x = visited_squares[i][0];
             var current_y = visited_squares[i][1];
-            for(var j = 0; j < moves_found.length; j++){
-                var check_x = moves_found[j].getX();
-                var check_y = moves_found[j].getY();
+                var check_x = moves_found[index].getX();
+                var check_y = moves_found[index].getY();
                 console.log("compareing x values " + current_x + " and " + check_x);
                 console.log("comparing y values " + current_y + " and " + check_y);
                 if(current_x === check_x && current_y === check_y){
                     return true;
-                }
-            }               
+                }               
         }
         return false;
     };
