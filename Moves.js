@@ -50,16 +50,17 @@ function findMoves(){
      * should modify this so that it can find the continuous jump
      * moves
      */
-//    this.jumpRight = function(right, y_coord){
-//        if(right+1 <= board.length && board[right][y_coord] !== 0 ){
-//            if(right+1 < board.length && board[right+1][y_coord] === 0){
-//                //console.log("adding jump right");
-//                var move = new possibleMove;
-//                move.newMove(right+1, y_coord);
-//                possible_moves.push(move);
-//            }
-//        }
-//    };    
+    this.jumpRight = function(right, y_coord){
+        console.log();
+        if(right+1 <= board.length && board[right][y_coord] !== 0 ){
+            if(right+1 < board.length && board[right+1][y_coord] === 0){
+                console.log("adding jump right");
+                var move = new possibleMove;
+                move.newMove(right+1, y_coord);
+                possible_moves.push(move);
+            }
+        }
+    };    
 
 //    this.jumpRight = function(right, y_coord){
 //        var jump = true;
@@ -85,7 +86,7 @@ function findMoves(){
     this.jumpLeft = function(left, y_coord){
         if(left-1 >= 0 && board[left][y_coord] !== 0){                
             if(left-1 >= 0 && board[left-1][y_coord] === 0){
-                //console.log("adding jump left");
+                console.log("adding jump left");
                 var move = new possibleMove;
                 move.newMove(left-1, y_coord);
                 possible_moves.push(move);
@@ -93,16 +94,17 @@ function findMoves(){
         }        
     }; 
     
-//    this.jumpUp = function(above, x_coord){
-//        if(above-1 >= 0 && board[x_coord][above] !== 0){
-//            if(above-1 >= 0 && board[x_coord][above - 1] === 0){
-//                //console.log("adding jump above");
-//                var move = new possibleMove;
-//                move.newMove(x_coord, above-1);
-//                possible_moves.push(move);
-//            }
-//        }
-//    };
+    this.jumpUp = function(above, x_coord){
+        if(above-1 >= 0 && board[x_coord][above] !== 0){
+            if(above-1 >= 0 && board[x_coord][above - 1] === 0){
+                console.log("adding jump above");
+                var move = new possibleMove;
+                move.newMove(x_coord, above-1);
+                possible_moves.push(move);
+            }
+        }
+    };
+    
 //    this.jumpUp = function(above, x_coord){
 //        var jump_up = true;
 //        while(jump_up){
@@ -127,7 +129,7 @@ function findMoves(){
     this.jumpDown = function(below, x_coord){
         if(below+1 < board.length && board[x_coord][below] !== 0){
             if(below+1 < board.length && board[x_coord][below + 1] === 0){
-                //console.log("adding jump below");
+                console.log("adding jump below");
                 var move = new possibleMove;
                 move.newMove(x_coord, below+1);
                 possible_moves.push(move);
@@ -191,6 +193,50 @@ function findMoves(){
                 jump = false;
             }
         }
+    };
+    
+    this.multipleJump2 = function(x_coord, y_coord, right, left, above, below){
+        var current_x = x_coord;
+        var current_y = y_coord;
+        
+        var current_coords = new Array();
+        current_coords[0] = current_x;
+        current_coords[1] = current_y;
+        var possible_move_coords = new Array();
+        possible_move_coords.push(current_coords);
+        
+        //console.log(possible_move_coords[0][1]);
+        //while(possible_move_coords.length > 0){
+            console.log(possible_move_coords.length);
+            var x = possible_move_coords[0][0];
+            var y = possible_move_coords[0][1];
+            var right = x + 1;
+            var left = x - 1;
+            var above = y -1;
+            var below = y + 1;
+            this.moveRight(right, y);
+            this.moveLeft(left, y);
+            this.moveUp(above, x);
+            this.moveDown(below, x);
+//            this.jumpRight(right, y);
+//            this.jumpLeft(left, y);
+//            this.jumpUp(above, x);
+//            this.jumpDown(below, x);
+            var moves_found = this.getPossibleMoves();
+            console.log(moves_found.length);
+            for(var i = 0; i < moves_found.length; i++){
+                var new_move_coord = new Array();
+                new_move_coord[0] = moves_found[i].getX();
+                new_move_coord[1] = moves_found[i].getY();
+                possible_move_coords.push(new_move_coord);
+            }
+            console.log("before splice " + possible_move_coords.length);
+            possible_move_coords.splice(0, 1);
+            console.log("At first index: " + possible_move_coords[0][0] + "," + possible_move_coords[0][1]);
+            //console.log("after splice " + possible_move_coords.length);
+        //}
+        
+        
     };
     
     // method to get all of the possible moves
