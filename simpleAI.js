@@ -87,9 +87,9 @@ function simpleAI(){
     
     
     // this is a second decide move function... will not be random though
-    this.decideMove2 = function(pieces_to_move, find_moves){
+    this.decideMove2 = function(pieces_to_move, find_moves, model_board){
         console.log(pieces_to_move.length);
-        
+        board = model_board;
         for(var i = 0; i < pieces_to_move.length; i++){
         console.log("piece at index: " + i);
         console.log("X = " + pieces_to_move[i].getXCoord() + " Y = " + pieces_to_move[i].getYCoord());
@@ -123,9 +123,13 @@ function simpleAI(){
                     console.log(possible_moves[i].getX() + ", " + possible_moves[i].getY());
                     var distance = this.manhattanEval(possible_moves[i].getX(), possible_moves[i].getY());
                     var manhattan_value = new Array();
+                    var move_x_coord = possible_moves[i].getX();
+                    var move_y_coord = possible_moves[i].getY();
+                    this.makeMove(move_x_coord, move_y_coord, x_coord, y_coord);
                     manhattan_value[0] = possible_moves[i];
                     manhattan_value[1] = distance;
                     manhattan_distance.push(manhattan_value);
+                    this.undoMove(move_x_coord, move_y_coord, x_coord, y_coord);
                 }
             }
         }
@@ -190,8 +194,9 @@ function simpleAI(){
          *                   2,4 5 6 7
          *                   3,4 5 6 7
          */
-        
+        console.log(board[5][4]);
         console.log(current_x + "," + current_y);
+        console.log(board[this.getTargetX()][this.getTargetY()]);
         
         // square 0,7 is the first place to fill
         var target_location = board[this.getTargetX()][this.getTargetY()];
@@ -212,6 +217,18 @@ function simpleAI(){
         }
         console.log(manhattan_distance);
         return manhattan_distance;
+    };
+    
+    this.makeMove = function(move_x_coord, move_y_coord, x_coord, y_coord){
+        var piece_to_move = board[x_coord][y_coord];
+        board[x_coord][y_coord] = 0;
+        board[move_x_coord][move_y_coord] = piece_to_move;
+    };
+    
+    this.undoMove = function(move_x_coord, move_y_coord, x_coord, y_coord){
+        var piece_to_reset = board[move_x_coord][move_y_coord];
+        board[move_x_coord][move_y_coord] = 0;
+        board[x_coord][y_coord] = piece_to_reset;
     };
     
 }

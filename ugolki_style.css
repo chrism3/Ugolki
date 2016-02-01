@@ -46,7 +46,7 @@ button{
 }
 
 #top{
-    height: 7.5%;
+    height: 10%;
     width: 100%;
     background: rgb(139, 69, 19);
 }
@@ -187,7 +187,7 @@ svg{
 }
 
 #settings_panel{
-    top: 7.5%;
+    top: 10%;
     left: 0%;
     position: absolute;
     height: 100%;
