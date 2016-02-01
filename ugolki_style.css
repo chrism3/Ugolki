@@ -45,6 +45,12 @@ button{
     display: none;
 }
 
+#top{
+    height: 7.5%;
+    width: 100%;
+    background: rgb(139, 69, 19);
+}
+
 #test_board{
     top: 0%;
     left: 0%;
@@ -65,7 +71,8 @@ button{
 #heading{
     position: absolute;
     width: 50%;
-    margin-left: 15%;
+    margin-left: 25%;
+    margin-top: 2%;
     text-align: center;
     resize: none;
     //background: rgb(179, 89, 0);
@@ -145,7 +152,7 @@ svg{
 #info_div{
     height: 7%;
     width: 100%;
-    margin-top: 15%;
+    margin-top: 2%;
     opacity: 0.9;
     display: none;
 }
@@ -180,7 +187,7 @@ svg{
 }
 
 #settings_panel{
-    top: 0%;
+    top: 7.5%;
     left: 0%;
     position: absolute;
     height: 100%;

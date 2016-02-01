@@ -10,7 +10,7 @@ function testModel() {
     p2.newGamePiece("player_two", "black", 2, 1, 0);
     
     var player_1_type = "human"; // this will be needed nearer the end of the project
-    var player_2_type = "human";
+    var player_2_type = "AI";
     
     var test_board = new Array(8);
     var possible_moves = new Array();
@@ -309,7 +309,7 @@ function testModel() {
         var find_moves = new findMoves();
         find_moves.init(test_board);
         if(AI_type === "simpleAI"){            
-            current_AI_player.decideMove(pieces, find_moves);
+            current_AI_player.decideMove2(pieces, find_moves);
         }
     };
     
