@@ -27,14 +27,14 @@ function simpleAI(){
             var left = x_coord - 1;
             var above = y_coord - 1;
             var below = y_coord + 1;            
-            AI_moves.moveRight(right, y_coord);
-            AI_moves.moveLeft(left, y_coord);
-            AI_moves.moveUp(above, x_coord);
-            AI_moves.moveDown(below, x_coord);
-            AI_moves.jumpRight(right, y_coord);
-            AI_moves.jumpLeft(left, y_coord);
-            AI_moves.jumpUp(above, x_coord);
-            AI_moves.jumpDown(below, x_coord);
+            AI_moves.moveRight(right, y_coord, current_piece);
+            AI_moves.moveLeft(left, y_coord, current_piece);
+            AI_moves.moveUp(above, x_coord, current_piece);
+            AI_moves.moveDown(below, x_coord, current_piece);
+            AI_moves.jumpRight(right, y_coord, current_piece);
+            AI_moves.jumpLeft(left, y_coord, current_piece);
+            AI_moves.jumpUp(above, x_coord, current_piece);
+            AI_moves.jumpDown(below, x_coord, current_piece);
         }
         possible_moves = AI_moves.getPossibleMoves();
         console.log(possible_moves.length);
@@ -59,6 +59,10 @@ function simpleAI(){
 //        this.setAISelectedPieceXCoord(possible_moves[best_index].getX());
 //        this.setAISelectedPieceYCoord(possible_moves[best_index].getY());
           this.setChoosenMove(possible_moves[best_index]);
+          var piece_to_move = possible_moves[best_index].getPieceToMove();
+          this.setSelectedPieceIndex(piece_to_move.getPieceId());
+          this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
+          this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
     };
     
     // currently this method only works when AI is player 2

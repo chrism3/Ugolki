@@ -17,32 +17,32 @@ function findMoves(){
     };
     
     // four functions to do the moves left, right, up, and down
-    this.moveRight = function(right, y_coord){
+    this.moveRight = function(right, y_coord, piece){
         if(right < board.length && board[right][y_coord] === 0){
             var move = new possibleMove;
-            move.newMove(right, y_coord);
+            move.newMove(right, y_coord, piece);
             possible_moves.push(move);
         }
     };
-    this.moveLeft = function(left, y_coord) {
+    this.moveLeft = function(left, y_coord, piece) {
         if (left >= 0 && board[left][y_coord] === 0) {
             var move = new possibleMove;
-            move.newMove(left, y_coord);
+            move.newMove(left, y_coord, piece);
             possible_moves.push(move);
         }
     };
-    this.moveUp = function(above, x_coord) {
+    this.moveUp = function(above, x_coord, piece) {
         if (above >= 0 && board[x_coord][above] === 0) {
             var move = new possibleMove;
-            move.newMove(x_coord, above);
+            move.newMove(x_coord, above, piece);
             possible_moves.push(move);
         }
     };
-    this.moveDown = function(below, x_coord) {
+    this.moveDown = function(below, x_coord, piece) {
         if (below < board.length && board[x_coord][below] === 0) {
             //console.log("adding below");
             var move = new possibleMove;
-            move.newMove(x_coord, below);
+            move.newMove(x_coord, below, piece);
             possible_moves.push(move);
         }
     };
@@ -52,13 +52,13 @@ function findMoves(){
      * should modify this so that it can find the continuous jump
      * moves
      */
-    this.jumpRight = function(right, y_coord){
+    this.jumpRight = function(right, y_coord, piece){
         console.log();
         if(right+1 <= board.length && board[right][y_coord] !== 0 ){
             if(right+1 < board.length && board[right+1][y_coord] === 0){
                 console.log("adding jump right");
                 var move = new possibleMove;
-                move.newMove(right+1, y_coord);
+                move.newMove(right+1, y_coord, piece);
                 possible_moves.push(move);
                 //possible_jumps.push(move);
             }
@@ -86,24 +86,24 @@ function findMoves(){
 //        }
 //    };
     
-    this.jumpLeft = function(left, y_coord){
+    this.jumpLeft = function(left, y_coord, piece){
         if(left-1 >= 0 && board[left][y_coord] !== 0){                
             if(left-1 >= 0 && board[left-1][y_coord] === 0){
                 console.log("adding jump left");
                 var move = new possibleMove;
-                move.newMove(left-1, y_coord);
+                move.newMove(left-1, y_coord, piece);
                 possible_moves.push(move);
                 //possible_jumps.push(move);
             }
         }        
     }; 
     
-    this.jumpUp = function(above, x_coord){
+    this.jumpUp = function(above, x_coord, piece){
         if(above-1 >= 0 && board[x_coord][above] !== 0){
             if(above-1 >= 0 && board[x_coord][above - 1] === 0){
                 console.log("adding jump above");
                 var move = new possibleMove;
-                move.newMove(x_coord, above-1);
+                move.newMove(x_coord, above-1, piece);
                 possible_moves.push(move);
                 //possible_jumps.push(move);
             }
@@ -131,12 +131,12 @@ function findMoves(){
 //        }
 //    };
     
-    this.jumpDown = function(below, x_coord){
+    this.jumpDown = function(below, x_coord, piece){
         if(below+1 < board.length && board[x_coord][below] !== 0){
             if(below+1 < board.length && board[x_coord][below + 1] === 0){
                 console.log("adding jump below");
                 var move = new possibleMove;
-                move.newMove(x_coord, below+1);
+                move.newMove(x_coord, below+1, piece);
                 //possible_jumps.push(move);
                 possible_moves.push(move);
             }
