@@ -280,6 +280,7 @@ function testModel() {
     // I'm not sure how the AI should work... maybe like this
     var AI_type = "simpleAI";
     var current_AI_player = new simpleAI();
+
     
     /*
      * Have a variable called AI_type
@@ -309,7 +310,7 @@ function testModel() {
         var find_moves = new findMoves();
         find_moves.init(test_board);
         if(AI_type === "simpleAI"){            
-            current_AI_player.decideMove2(pieces, find_moves, test_board);
+            current_AI_player.findAllMove(pieces, test_board);
         }
     };
     

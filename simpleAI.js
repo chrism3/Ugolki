@@ -4,6 +4,69 @@
  */
 
 function simpleAI(){
+    
+    var board_representation;
+    var best_move;
+    
+    // this method will be responsible for finding the move
+    this.findAllMoves = function(pieces_to_move, board){
+        board_representation = board;
+        var possible_moves = new Array();
+        var AI_moves = new findMoves();
+        AI_moves.init(board_representation);
+        for(var i = 0; i < pieces_to_move.length; i++){
+            var current_piece = pieces_to_move[i];
+            var x_coord = current_piece.getXCoord();
+            var y_coord = current_piece.getYCoord();
+            var right = x_coord + 1;
+            var left = x_coord - 1;
+            var above = y_coord - 1;
+            var below = y_coord + 1;            
+            AI_moves.moveRight(right, y_coord);
+            AI_moves.moveLeft(left, y_coord);
+            AI_moves.moveUp(above, x_coord);
+            AI_moves.moveDown(below, x_coord);
+            AI_moves.jumpRight(right, y_coord);
+            AI_moves.jumpLeft(left, y_coord);
+            AI_moves.jumpUp(above, x_coord);
+            AI_moves.jumpDown(below, x_coord);
+        }
+        possible_moves = AI_moves.getPossibleMoves();
+        console.log(possible_moves.length);
+        
+        // now need to make the moves and evaluate them
+        for(var i = 0; i < possible_moves.length; i++){
+            
+        };
+        
+    };
+    
+    // this method will return the move to the model... to the controller... to the view
+    this.getBestMove = function(){
+        return best_move;
+    }; 
+    
+    // this will allow us to set the best move, so we can get it from the model.
+    this.setBestMove = function(move){
+        best_move = move;
+    };
+    
+    // EVERYTHING BELOW DOES NOT WORK..... makeMove and undoMove may work? who knows
+    
+    
+    this.makeMove = function(move_x_coord, move_y_coord, x_coord, y_coord){
+        var piece_to_move = board[x_coord][y_coord];
+        board[x_coord][y_coord] = 0;
+        board[move_x_coord][move_y_coord] = piece_to_move;
+    };
+    
+    this.undoMove = function(move_x_coord, move_y_coord, x_coord, y_coord){
+        var piece_to_reset = board[move_x_coord][move_y_coord];
+        board[move_x_coord][move_y_coord] = 0;
+        board[x_coord][y_coord] = piece_to_reset;
+    };
+    
+    
     var piece_index;
     var move;
     var origional_x;
@@ -236,28 +299,19 @@ function simpleAI(){
         return manhattan_distance;
     };
     
-    this.makeMove = function(move_x_coord, move_y_coord, x_coord, y_coord){
-        var piece_to_move = board[x_coord][y_coord];
-        board[x_coord][y_coord] = 0;
-        board[move_x_coord][move_y_coord] = piece_to_move;
-    };
-    
-    this.undoMove = function(move_x_coord, move_y_coord, x_coord, y_coord){
-        var piece_to_reset = board[move_x_coord][move_y_coord];
-        board[move_x_coord][move_y_coord] = 0;
-        board[x_coord][y_coord] = piece_to_reset;
-    };
+
     
     this.boardLocationVisited = function(x_coord, y_coord, moves_checked){
         console.log("checking if the list contains the the move");
         for(var i = 0; i < moves_checked.length; i++){
             if(moves_checked[i].getX() === x_coord && moves_checked[i].getY() === y_coord){
-                console.log("returning false;")
+                console.log("returning false;");
                 return false;
             }
         }
         return true;
     };
+    
     
 }
 
