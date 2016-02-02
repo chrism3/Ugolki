@@ -47,20 +47,24 @@ function simpleAI(){
             // maybe don't actually need to make the move, just asses that location?
             var eval = this.eval(possible_moves[i].getX(), possible_moves[i].getY());
             console.log(eval);  
+            current_piece = possible_moves[i].getPieceToMove();
+            var current_location_eval = this.eval(current_piece.getXCoord(), current_piece.getYCoord());
+            if(eval < current_location_eval){
 // this is for when i am looking for lowest eval
-            if(best_eval === 0){
-                best_eval = eval;
-                best_index = i;
-            }
-            else if(best_eval > eval){
-                best_eval = eval;
-                best_index = i;
-            }
+                if(best_eval === 0){
+                    best_eval = eval;
+                    best_index = i;
+                }
+                else if(best_eval > eval){
+                    best_eval = eval;
+                    best_index = i;
+                }
 // this is for looking for the higest eval
 //              if(best_eval < eval){
 //                  best_eval = eval;
 //                  best_index = i;
 //              }
+                }
         };
         console.log("best_eval is " + best_eval);
         
