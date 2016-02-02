@@ -90,6 +90,10 @@ function simpleAI(){
     this.decideMove2 = function(pieces_to_move, find_moves, model_board){
         console.log(pieces_to_move.length);
         board = model_board;
+        
+        var moves_checked = new Array();
+        var count = 0;
+        
         for(var i = 0; i < pieces_to_move.length; i++){
         console.log("piece at index: " + i);
         console.log("X = " + pieces_to_move[i].getXCoord() + " Y = " + pieces_to_move[i].getYCoord());
@@ -125,15 +129,28 @@ function simpleAI(){
                     var manhattan_value = new Array();
                     var move_x_coord = possible_moves[i].getX();
                     var move_y_coord = possible_moves[i].getY();
-                    this.makeMove(move_x_coord, move_y_coord, x_coord, y_coord);
-                    manhattan_value[0] = possible_moves[i];
-                    manhattan_value[1] = distance;
-                    manhattan_distance.push(manhattan_value);
-                    this.undoMove(move_x_coord, move_y_coord, x_coord, y_coord);
+                    if(!this.boardLocationVisited(move_x_coord, move_y_coord, moves_checked)){
+                        console.log(count);
+                        count++;
+                        moves_checked.push(possible_moves[i]);
+                        this.makeMove(move_x_coord, move_y_coord, x_coord, y_coord);
+                        manhattan_value[0] = possible_moves[i];
+                        manhattan_value[1] = distance;
+                        manhattan_distance.push(manhattan_value);
+                        this.undoMove(move_x_coord, move_y_coord, x_coord, y_coord);
+                    }
                 }
             }
         }
-        
+        console.log("finding the best move from returned values");
+        var best_index = 0;
+        for(var i = 1; i < manhattan_distance.length; i++){
+            if(manhattan_distance[i][1] > manhattan_distance[best_index][1]){
+                best_index = i;
+            }
+        }
+        console.log("best index is: " + best_index);
+        return manhattan_distance[best_index][0];
     };
     
     
@@ -229,6 +246,17 @@ function simpleAI(){
         var piece_to_reset = board[move_x_coord][move_y_coord];
         board[move_x_coord][move_y_coord] = 0;
         board[x_coord][y_coord] = piece_to_reset;
+    };
+    
+    this.boardLocationVisited = function(x_coord, y_coord, moves_checked){
+        console.log("checking if the list contains the the move");
+        for(var i = 0; i < moves_checked.length; i++){
+            if(moves_checked[i].getX() === x_coord && moves_checked[i].getY() === y_coord){
+                console.log("returning false;")
+                return false;
+            }
+        }
+        return true;
     };
     
 }

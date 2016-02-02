@@ -59,7 +59,7 @@ button{
     display: block;
 }
 
-#header{
+#footer{
     //background: rgb(179, 89, 0);
     top: 90%;
     position: absolute;
@@ -82,13 +82,38 @@ button{
     font-weight: bolder;
 }
 
-#menu_img{
+/*#menu_img{
     width: 10%;
     float: left;
     height: 60%;
     padding-left: 2.5%;
     padding-top: 3%;
     //margin-top: 12.5%;
+}
+
+#players_img{
+    width: 10%;
+    float: left;
+    height: 60%;
+    padding-left: 5%;
+    padding-top: 3%;
+}
+
+#new_game{
+    width: 10%;
+    float: left;
+    height: 60%;
+    padding-left: 5%;
+    padding-top: 3%;
+}*/
+
+.footer_images{
+    width: 10%;
+    float: left;
+    height: 60%;
+    padding-left: 2.5%;
+    padding-right: 7.5%;
+    padding-top: 3%;
 }
 
 #draw_board{
