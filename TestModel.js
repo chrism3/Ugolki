@@ -310,7 +310,7 @@ function testModel() {
         var find_moves = new findMoves();
         find_moves.init(test_board);
         if(AI_type === "simpleAI"){            
-            current_AI_player.findAllMove(pieces, test_board);
+            current_AI_player.findAllMoves(pieces, test_board);
         }
     };
     

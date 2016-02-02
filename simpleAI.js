@@ -7,6 +7,11 @@ function simpleAI(){
     
     var board_representation;
     var best_move;
+    var target_x = 0,
+        target_y = 7; /* this is the target because player 2 is aiming to get to
+                       * the bottom left hand corner. This is why the algorithm currently
+                       * only works when the AI is player 2
+                       */
     
     // this method will be responsible for finding the move
     this.findAllMoves = function(pieces_to_move, board){
@@ -34,11 +39,44 @@ function simpleAI(){
         possible_moves = AI_moves.getPossibleMoves();
         console.log(possible_moves.length);
         
-        // now need to make the moves and evaluate them
+        // now need to make the moves and evaluate them.. maybe add these to an eval array or some structure
+        var best_eval = 0; // this might not be the best number to choose
+        var best_index = 0; // this is so we know which index of possible_moves is the best
         for(var i = 0; i < possible_moves.length; i++){
-            
+            // maybe don't actually need to make the move, just asses that location?
+            var eval = this.eval(possible_moves[i].getX(), possible_moves[i].getY());
+            console.log(eval);            
+            if(best_eval === 0){
+                best_eval = eval;
+                best_index = i;
+            }
+            else if(best_eval > eval){
+                best_eval = eval;
+                best_index = i;
+            }
         };
         
+//        this.setAISelectedPieceXCoord(possible_moves[best_index].getX());
+//        this.setAISelectedPieceYCoord(possible_moves[best_index].getY());
+          this.setChoosenMove(possible_moves[best_index]);
+    };
+    
+    // currently this method only works when AI is player 2
+    this.eval = function(x_coord, y_coord){
+        // square 0,7 is the first place to fill
+        var manhattan_x = x_coord + this.getTargetX();
+        var manhattan_y = y_coord + this.getTargetY();
+            
+        var manhattan_distance = manhattan_x + manhattan_y;
+        
+        /*
+         * Will need someway to identify when the taget location has a piece in it
+         * and therefore update it. i.e. location (0,7) constains a piece, aim for
+         * location (1,7)... until we are aming for (4,3) which is the last location
+         * player 2 needs to fill.
+         */
+
+        return manhattan_distance;        
     };
     
     // this method will return the move to the model... to the controller... to the view
