@@ -362,20 +362,20 @@ function testModel() {
            }
        }
 
-       for(var i = 0; i < test_board.length; i++){
-           for(var j = 0; j < test_board.length; j++){
-               var piece = test_board[i][j];
-               if(piece !== 0){
-               console.log("At index: (" + i + "," + j + ") is the peice with coords: (" +
-                       piece.getXCoord() + "," + piece.getYCoord() + ") - " + piece.getPieceColour() + " - id: "
-                       + piece.getPieceId());
-                }
-                else{
-                    console.log("At index (" + i + "," + j + ") there is no piece");
-                }
-           }
-       }
-    };
+//       for(var i = 0; i < test_board.length; i++){
+//           for(var j = 0; j < test_board.length; j++){
+//               var piece = test_board[i][j];
+//               if(piece !== 0){
+//               console.log("At index: (" + i + "," + j + ") is the peice with coords: (" +
+//                       piece.getXCoord() + "," + piece.getYCoord() + ") - " + piece.getPieceColour() + " - id: "
+//                       + piece.getPieceId());
+//                }
+//                else{
+//                    console.log("At index (" + i + "," + j + ") there is no piece");
+//                }
+//           }
+//       }
+   };
     
     this.hasPlayerWon = function(){
         var player_1_won = true;
