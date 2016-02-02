@@ -18,9 +18,11 @@ function simpleAI(){
         board_representation = board;
         var possible_moves = new Array();
         var AI_moves = new findMoves();
+        var no_of_good_moves = 0;
+        var unfavoured_moves = new Array();
         AI_moves.init(board_representation);
         for(var i = 0; i < pieces_to_move.length; i++){
-            console.log(i);
+            //console.log(i);
             var current_piece = pieces_to_move[i];
             var x_coord = current_piece.getXCoord();
             var y_coord = current_piece.getYCoord();
@@ -38,36 +40,41 @@ function simpleAI(){
             AI_moves.jumpDown(below, x_coord, current_piece);
         }
         possible_moves = AI_moves.getPossibleMoves();
-        console.log("number of moves possible " + possible_moves.length);
-        
+        console.log("number of moves possible " + possible_moves.length);        
         // now need to make the moves and evaluate them.. maybe add these to an eval array or some structure
-        var best_eval = 1000; // this might not be the best number to choose, too high to be reached
+        var best_eval = 1000; // this might not be the best number to choose, purposely too high
         var best_index = 0; // this is so we know which index of possible_moves is the best
         for(var i = 0; i < possible_moves.length; i++){
             // maybe don't actually need to make the move, just asses that location?
             var eval = this.eval(possible_moves[i].getX(), possible_moves[i].getY());
-            console.log(eval);  
+            //console.log(eval);  
             current_piece = possible_moves[i].getPieceToMove();
             var current_location_eval = this.eval(current_piece.getXCoord(), current_piece.getYCoord());
             if(eval < current_location_eval){
 // this is for when i am looking for lowest eval
-                if(best_eval === 0){
+//                if(best_eval === 0){
+//                    best_eval = eval;
+//                    best_index = i;
+//                }
+                 if(best_eval > eval){
                     best_eval = eval;
                     best_index = i;
-                }
-                else if(best_eval > eval){
-                    best_eval = eval;
-                    best_index = i;
+                    no_of_good_moves++;
                 }
 // this is for looking for the higest eval
 //              if(best_eval < eval){
 //                  best_eval = eval;
 //                  best_index = i;
 //              }
-                }
-        };
-        console.log("best_eval is " + best_eval);
-        
+           }
+           else{
+               unfavoured_moves.push(possible_moves[i]);
+           }
+        }
+        //console.log("best_eval is " + best_eval);
+          console.log("the number of good moves: " + no_of_good_moves);
+          
+          
 //        this.setAISelectedPieceXCoord(possible_moves[best_index].getX());
 //        this.setAISelectedPieceYCoord(possible_moves[best_index].getY());
           this.setChoosenMove(possible_moves[best_index]);
@@ -82,7 +89,7 @@ function simpleAI(){
         // square 0,7 is the first place to fill
         var manhattan_x = x_coord + this.getTargetX(); // this is becasue we aim for x value of 0
         var manhattan_y = this.getTargetY() - y_coord; // this is because we aim for y value of 7
-        console.log("for: " + x_coord + "," + y_coord +": eval returns; x dist = " + manhattan_x + " y =" + manhattan_y);
+        //console.log("for: " + x_coord + "," + y_coord +": eval returns; x dist = " + manhattan_x + " y =" + manhattan_y);
         var manhattan_distance = manhattan_x + manhattan_y;
         
         /*
