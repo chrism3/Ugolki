@@ -136,7 +136,7 @@ function simpleAI(){
             new_eval[0] = possible_moves[i];
             new_eval[1] = move_eval;
             //console.log("move eval: " + move_eval);
-            if(current_eval > move_eval){
+            if(current_eval >= move_eval){
                 //no_of_good_moves++;
                 good_moves.push(new_eval);
             }
@@ -162,11 +162,13 @@ function simpleAI(){
     
     this.decideBestMove = function(good_moves, bad_moves){
         // this function just needs to look for the move with the lowest eval
-        var best_index = 0;
-        var best_eval = good_moves[0][1];
+        var best_index = 0;        
         var piece_to_move;
         
-        if(good_moves.length > 3){
+        this.updateTarget();
+        
+        if(good_moves.length >= 1){
+            var best_eval = good_moves[0][1];
             for(var i = 1; i < good_moves.length; i++){
                 var eval = good_moves[i][1];
                 //console.log("check if " + eval + " is less than " + best_eval);
@@ -177,15 +179,16 @@ function simpleAI(){
                 }
 
             }
+            
             //console.log("best index: " + best_index);
             //console.log("best eval: " + best_eval);
-
             this.setChoosenMove(good_moves[best_index][0]);
             piece_to_move = good_moves[best_index][0].getPieceToMove();
             //this.setSelectedPieceIndex(piece_to_move.getPieceId());
         }
         else{
             for(var i = 1; i < bad_moves.length; i++){
+                var best_eval = bad_moves[0][1];
                 var eval = bad_moves[i][1];
                 if(eval > best_eval){
                     best_index = i;
@@ -198,8 +201,37 @@ function simpleAI(){
         }
         this.setSelectedPieceIndex(piece_to_move.getPieceId());
         this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
-        this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
-        
+        this.setAISelectedPieceYCoord(piece_to_move.getYCoord());       
+    };
+    
+    this.updateTarget = function(){
+//        console.log("target location contains: " + board_representation[this.getTargetX()][this.getTargetY()]);
+//        if(board_representation[this.getTargetX()][this.getTargetY()] !== 0){
+//            console.log(board_representation[this.getTargetX()][this.getTargetY()].getPieceColour());
+//        }
+        var target_free = false;
+        do{
+            // update "black" to be AI.getPieceColour() ?
+            if(board_representation[this.getTargetX()][this.getTargetY()] !== 0 &&
+                    board_representation[this.getTargetX()][this.getTargetY()].getPieceColour() === "black"){
+                console.log("inside the if");
+                var x = this.getTargetX();
+                var y = this.getTargetY();
+                
+                if(y < 4){
+                    this.setTargetY(y + 1);
+                }
+                else{
+                    this.setTargetX(x + 1);
+                    this.setTargetY(0);
+                }
+                console.log("updating target");
+            }
+            else{
+                target_free = true;
+            }
+        }
+        while(!target_free);
     };
     
     // currently this method only works when AI is player 2
@@ -250,8 +282,8 @@ function simpleAI(){
     };
     
     this.makeMove = function(move){
-        console.log("moving piece: " + move.getPieceToMove().getPieceId() + " from (" + move.getPieceToMove().getXCoord() +
-                "," + move.getPieceToMove().getYCoord() + ")");
+//        console.log("moving piece: " + move.getPieceToMove().getPieceId() + " from (" + move.getPieceToMove().getXCoord() +
+//                "," + move.getPieceToMove().getYCoord() + ")");
         var current_piece = move.getPieceToMove();
         var current_x = current_piece.getXCoord();
         var current_y = current_piece.getYCoord();
@@ -260,13 +292,13 @@ function simpleAI(){
         current_piece.setXCoord(move.getX());
         current_piece.setYCoord(move.getY());
         board_representation[move.getX()][move.getY()] = current_piece;
-        console.log("to: (" +move.getX() + "," + move.getY() + ")");
+//        console.log("to: (" +move.getX() + "," + move.getY() + ")");
         //console.log("in make move: " + board_representation[current_x][current_y]);
     };
     
     this.undoMove = function(move, x_to_reset, y_to_reset){
-        console.log("returning piece: " + move.getPieceToMove().getPieceId() + " to (" + x_to_reset +
-                "," + y_to_reset + ")");
+//        console.log("returning piece: " + move.getPieceToMove().getPieceId() + " to (" + x_to_reset +
+//                "," + y_to_reset + ")");
         var current_piece = move.getPieceToMove();
         var current_x = current_piece.getXCoord();
         var current_y = current_piece.getYCoord();
