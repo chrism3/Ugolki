@@ -156,33 +156,46 @@ function simpleAI(){
          * the AI will make a bad move and potentially open up some more good moves. Not entirely convinced
          * this will work, but certainly worth the try
          */
-        if(good_moves.length > 2){
-            this.decideBestMove(good_moves);
-        }
-        else{
-            this.decideBestMove(bad_moves);
-        }
+        this.decideBestMove(good_moves, bad_moves);
         
     };
     
-    this.decideBestMove = function(moves){
+    this.decideBestMove = function(good_moves, bad_moves){
         // this function just needs to look for the move with the lowest eval
         var best_index = 0;
-        var best_eval = moves[0][1];
-        for(var i = 1; i < moves.length; i++){
-            var eval = moves[i][1];
-            //console.log("check if " + eval + " is less than " + best_eval);
-            if(eval < best_eval){
-               // console.log("it is");
-                best_index = i;
-                best_eval = eval;
-            }
-        }
-        //console.log("best index: " + best_index);
-        //console.log("best eval: " + best_eval);
+        var best_eval = good_moves[0][1];
+        var piece_to_move;
         
-        this.setChoosenMove(moves[best_index][0]);
-        var piece_to_move = moves[best_index][0].getPieceToMove();
+        if(good_moves.length > 3){
+            for(var i = 1; i < good_moves.length; i++){
+                var eval = good_moves[i][1];
+                //console.log("check if " + eval + " is less than " + best_eval);
+                if(eval < best_eval){
+                   // console.log("it is");
+                    best_index = i;
+                    best_eval = eval;
+                }
+
+            }
+            //console.log("best index: " + best_index);
+            //console.log("best eval: " + best_eval);
+
+            this.setChoosenMove(good_moves[best_index][0]);
+            piece_to_move = good_moves[best_index][0].getPieceToMove();
+            //this.setSelectedPieceIndex(piece_to_move.getPieceId());
+        }
+        else{
+            for(var i = 1; i < bad_moves.length; i++){
+                var eval = bad_moves[i][1];
+                if(eval > best_eval){
+                    best_index = i;
+                    best_eval = eval;
+                }
+            }
+            this.setChoosenMove(bad_moves[best_index][0]);
+            piece_to_move = bad_moves[best_index][0].getPieceToMove();
+            
+        }
         this.setSelectedPieceIndex(piece_to_move.getPieceId());
         this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
         this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
