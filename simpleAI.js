@@ -84,6 +84,102 @@ function simpleAI(){
           this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
     };
     
+    
+    this.findAllMoves2 = function (pieces_to_move, board){
+        board_representation = board;
+        var possible_moves = new Array();
+        var AI_moves = new findMoves();
+//        var no_of_good_moves = 0;
+//        var unfavoured_moves = new Array();
+        AI_moves.init(board_representation);
+        for(var i = 0; i < pieces_to_move.length; i++){
+            //console.log(i);
+            var current_piece = pieces_to_move[i];
+            var x_coord = current_piece.getXCoord();
+            var y_coord = current_piece.getYCoord();
+            var right = x_coord + 1;
+            var left = x_coord - 1;
+            var above = y_coord - 1;
+            var below = y_coord + 1;            
+            AI_moves.moveRight(right, y_coord, current_piece);
+            AI_moves.moveLeft(left, y_coord, current_piece);
+            AI_moves.moveUp(above, x_coord, current_piece);
+            AI_moves.moveDown(below, x_coord, current_piece);
+            AI_moves.jumpRight(right, y_coord, current_piece);
+            AI_moves.jumpLeft(left, y_coord, current_piece);
+            AI_moves.jumpUp(above, x_coord, current_piece);
+            AI_moves.jumpDown(below, x_coord, current_piece);
+        }
+        possible_moves = AI_moves.getPossibleMoves();
+        console.log("number of moves possible " + possible_moves.length);
+        
+        this.evalAllMoves(possible_moves);
+    };
+    
+    this.evalAllMoves = function(possible_moves){
+        //var no_of_good_moves = 0;
+        var good_moves = new Array();
+        var bad_moves = new Array();
+        //var eval_list = new Array();
+        
+        for(var i = 0; i < possible_moves.length; i++){
+            var current_piece = possible_moves[i].getPieceToMove();
+            var current_eval = this.eval(current_piece.getXCoord(), current_piece.getYCoord());
+            var move_eval = this.eval(possible_moves[i].getX(), possible_moves[i].getY());
+            var new_eval = new Array();
+            new_eval[0] = possible_moves[i];
+            new_eval[1] = move_eval;
+            if(current_eval > move_eval){
+                //no_of_good_moves++;
+                good_moves.push(new_eval);
+            }
+            else{
+                 bad_moves.push(new_eval);
+            }
+        }
+        console.log("no of good moves: " + good_moves.length);
+        console.log("no of bad moves: " + bad_moves.length);
+        
+        /*
+         * I am doing this because. Without doing a depth search (which is why my this will be the easy AI)
+         * it is possible for the pieces to get to a corner and not move because the move eval is worse than
+         * the current eval. Therefore, including this so that if we are nearing a low number of good moves, 
+         * the AI will make a bad move and potentially open up some more good moves. Not entirely convinced
+         * this will work, but certainly worth the try
+         */
+        if(good_moves.length > 2){
+            this.decideBestMove(good_moves);
+        }
+        else{
+            this.decideBestMove(bad_moves);
+        }
+        
+    };
+    
+    this.decideBestMove = function(moves){
+        // this function just needs to look for the move with the lowest eval
+        var best_index = 0;
+        var best_eval = moves[0][1];
+        for(var i = 1; i < moves.length; i++){
+            var eval = moves[i][1];
+            console.log("check if " + eval + " is less than " + best_eval);
+            if(eval < best_eval){
+                console.log("it is");
+                best_index = i;
+                best_eval = eval;
+            }
+        }
+        console.log("best index: " + best_index);
+        console.log("best eval: " + best_eval);
+        
+        this.setChoosenMove(moves[best_index][0]);
+        var piece_to_move = moves[best_index][0].getPieceToMove();
+        this.setSelectedPieceIndex(piece_to_move.getPieceId());
+        this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
+        this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
+        
+    };
+    
     // currently this method only works when AI is player 2
     this.eval = function(x_coord, y_coord){
         // square 0,7 is the first place to fill
