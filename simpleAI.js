@@ -113,22 +113,27 @@ function simpleAI(){
         possible_moves = AI_moves.getPossibleMoves();
         console.log("number of moves possible " + possible_moves.length);
         
-        this.evalAllMoves(possible_moves);
+        this.evalAllMoves(possible_moves, pieces_to_move);
     };
     
-    this.evalAllMoves = function(possible_moves){
+    this.evalAllMoves = function(possible_moves, pieces_to_move){
         //var no_of_good_moves = 0;
         var good_moves = new Array();
         var bad_moves = new Array();
         //var eval_list = new Array();
-        
+        var current_eval = this.eval2(pieces_to_move);
+        console.log("current_eval: " + current_eval);
         for(var i = 0; i < possible_moves.length; i++){
-            var current_piece = possible_moves[i].getPieceToMove();
-            var current_eval = this.eval(current_piece.getXCoord(), current_piece.getYCoord());
-            var move_eval = this.eval(possible_moves[i].getX(), possible_moves[i].getY());
+            //var current_piece = possible_moves[i].getPieceToMove();
+            this.makeMove(possible_moves[i]);
+            //var move_eval = this.eval(possible_moves[i].getX(), possible_moves[i].getY());
+            var x_to_reset = possible_moves[i].getPieceToMove().getXCoord();
+            var y_to_reset = possible_moves[i].getPieceToMove().getYCoord();
+            var move_eval = this.eval2(pieces_to_move);
             var new_eval = new Array();
             new_eval[0] = possible_moves[i];
             new_eval[1] = move_eval;
+            console.log("move eval: " + move_eval);
             if(current_eval > move_eval){
                 //no_of_good_moves++;
                 good_moves.push(new_eval);
@@ -136,6 +141,8 @@ function simpleAI(){
             else{
                  bad_moves.push(new_eval);
             }
+            
+            this.undoMove(possible_moves[i], x_to_reset, y_to_reset);
         }
         console.log("no of good moves: " + good_moves.length);
         console.log("no of bad moves: " + bad_moves.length);
@@ -198,6 +205,58 @@ function simpleAI(){
         return manhattan_distance;        
     };
     
+    this.eval2 = function(pieces_to_move){
+        var manhattan_distance = 0;
+//        for(var i = 0; i < pieces_to_move.length; i++){
+//            var manhattan_x = pieces_to_move[i].getXCoord() + this.getTargetX();
+//            var manhattan_y = this.getTargetY() - pieces_to_move[i].getYCoord();
+//            var manhattan_eval = manhattan_x + manhattan_y;
+//            manhattan_distance += manhattan_eval;
+//        }
+//        return manhattan_distance;
+        
+        for(var i = 0; i < board_representation.length; i++){
+            for(var j = 0; j < board_representation.length; j++){
+//                /var current_piece = board_representation[i][j];
+                if(board_representation[i][j] !== 0){
+                    if(board_representation[i][j].getPieceColour() === "black"){ 
+                        // will need altered, maybe thi.getAIColour()
+                        var manhattan_x = board_representation[i][j].getXCoord() + this.getTargetX();
+                        var manhattan_y = this.getTargetY() - board_representation[i][j].getYCoord();
+                        var manhattan_eval = manhattan_x + manhattan_y;
+                        manhattan_distance += manhattan_eval;
+                        console.log("manhattan_eval for piece " + board_representation[i][j].getPieceId() +
+                                " = " + manhattan_eval + "(" + manhattan_x + " + " + manhattan_y);
+                    }
+                }
+            }
+        }
+        return manhattan_distance;
+    };
+    
+    this.makeMove = function(move){
+        var current_piece = move.getPieceToMove();
+        var current_x = current_piece.getXCoord();
+        var current_y = current_piece.getYCoord();
+       // console.log(current_x + "," + current_y);
+        board_representation[current_x][current_y] = 0;
+        current_piece.setXCoord(move.getX());
+        current_piece.setYCoord(move.getY());
+        board_representation[move.getX()][move.getY()] = current_piece;
+        //console.log("in make move: " + board_representation[current_x][current_y]);
+    };
+    
+    this.undoMove = function(move, x_to_reset, y_to_reset){
+        var current_piece = move.getPieceToMove();
+        var current_x = current_piece.getXCoord();
+        var current_y = current_piece.getYCoord();
+        board_representation[move.getX()][move.getY()] = 0;
+        current_piece.setXCoord(x_to_reset);
+        current_piece.setYCoord(y_to_reset);
+        board_representation[current_x][current_y] = current_piece;
+        //console.log(board_representation[current_x][current_y]);
+    };
+    
     // this method will return the move to the model... to the controller... to the view
     this.getBestMove = function(){
         return best_move;
@@ -211,17 +270,17 @@ function simpleAI(){
     // EVERYTHING BELOW DOES NOT WORK..... makeMove and undoMove may work? who knows
     
     
-    this.makeMove = function(move_x_coord, move_y_coord, x_coord, y_coord){
-        var piece_to_move = board[x_coord][y_coord];
-        board[x_coord][y_coord] = 0;
-        board[move_x_coord][move_y_coord] = piece_to_move;
-    };
-    
-    this.undoMove = function(move_x_coord, move_y_coord, x_coord, y_coord){
-        var piece_to_reset = board[move_x_coord][move_y_coord];
-        board[move_x_coord][move_y_coord] = 0;
-        board[x_coord][y_coord] = piece_to_reset;
-    };
+//    this.makeMove = function(move_x_coord, move_y_coord, x_coord, y_coord){
+//        var piece_to_move = board[x_coord][y_coord];
+//        board[x_coord][y_coord] = 0;
+//        board[move_x_coord][move_y_coord] = piece_to_move;
+//    };
+//    
+//    this.undoMove = function(move_x_coord, move_y_coord, x_coord, y_coord){
+//        var piece_to_reset = board[move_x_coord][move_y_coord];
+//        board[move_x_coord][move_y_coord] = 0;
+//        board[x_coord][y_coord] = piece_to_reset;
+//    };
     
     
     var piece_index;
