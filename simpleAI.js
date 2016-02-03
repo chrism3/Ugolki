@@ -113,27 +113,29 @@ function simpleAI(){
         possible_moves = AI_moves.getPossibleMoves();
         console.log("number of moves possible " + possible_moves.length);
         
-        this.evalAllMoves(possible_moves, pieces_to_move);
+        this.evalAllMoves(possible_moves);
     };
     
-    this.evalAllMoves = function(possible_moves, pieces_to_move){
+    this.evalAllMoves = function(possible_moves){
         //var no_of_good_moves = 0;
         var good_moves = new Array();
         var bad_moves = new Array();
         //var eval_list = new Array();
-        var current_eval = this.eval2(pieces_to_move);
-        console.log("current_eval: " + current_eval);
+        var current_eval = this.eval2();
+        //console.log("current_eval: " + current_eval);
         for(var i = 0; i < possible_moves.length; i++){
             //var current_piece = possible_moves[i].getPieceToMove();
-            this.makeMove(possible_moves[i]);
-            //var move_eval = this.eval(possible_moves[i].getX(), possible_moves[i].getY());
+            
+            // two variables needed to reset x and y after the move has been completed
             var x_to_reset = possible_moves[i].getPieceToMove().getXCoord();
             var y_to_reset = possible_moves[i].getPieceToMove().getYCoord();
-            var move_eval = this.eval2(pieces_to_move);
+            this.makeMove(possible_moves[i]);
+            //var move_eval = this.eval(possible_moves[i].getX(), possible_moves[i].getY());
+            var move_eval = this.eval2();
             var new_eval = new Array();
             new_eval[0] = possible_moves[i];
             new_eval[1] = move_eval;
-            console.log("move eval: " + move_eval);
+            //console.log("move eval: " + move_eval);
             if(current_eval > move_eval){
                 //no_of_good_moves++;
                 good_moves.push(new_eval);
@@ -169,15 +171,15 @@ function simpleAI(){
         var best_eval = moves[0][1];
         for(var i = 1; i < moves.length; i++){
             var eval = moves[i][1];
-            console.log("check if " + eval + " is less than " + best_eval);
+            //console.log("check if " + eval + " is less than " + best_eval);
             if(eval < best_eval){
-                console.log("it is");
+               // console.log("it is");
                 best_index = i;
                 best_eval = eval;
             }
         }
-        console.log("best index: " + best_index);
-        console.log("best eval: " + best_eval);
+        //console.log("best index: " + best_index);
+        //console.log("best eval: " + best_eval);
         
         this.setChoosenMove(moves[best_index][0]);
         var piece_to_move = moves[best_index][0].getPieceToMove();
@@ -205,7 +207,7 @@ function simpleAI(){
         return manhattan_distance;        
     };
     
-    this.eval2 = function(pieces_to_move){
+    this.eval2 = function(){
         var manhattan_distance = 0;
 //        for(var i = 0; i < pieces_to_move.length; i++){
 //            var manhattan_x = pieces_to_move[i].getXCoord() + this.getTargetX();
@@ -225,8 +227,8 @@ function simpleAI(){
                         var manhattan_y = this.getTargetY() - board_representation[i][j].getYCoord();
                         var manhattan_eval = manhattan_x + manhattan_y;
                         manhattan_distance += manhattan_eval;
-                        console.log("manhattan_eval for piece " + board_representation[i][j].getPieceId() +
-                                " = " + manhattan_eval + "(" + manhattan_x + " + " + manhattan_y);
+//                        console.log("manhattan_eval for piece " + board_representation[i][j].getPieceId() +
+//                                " = " + manhattan_eval + "(" + manhattan_x + " + " + manhattan_y);
                     }
                 }
             }
@@ -235,6 +237,8 @@ function simpleAI(){
     };
     
     this.makeMove = function(move){
+        console.log("moving piece: " + move.getPieceToMove().getPieceId() + " from (" + move.getPieceToMove().getXCoord() +
+                "," + move.getPieceToMove().getYCoord() + ")");
         var current_piece = move.getPieceToMove();
         var current_x = current_piece.getXCoord();
         var current_y = current_piece.getYCoord();
@@ -243,17 +247,23 @@ function simpleAI(){
         current_piece.setXCoord(move.getX());
         current_piece.setYCoord(move.getY());
         board_representation[move.getX()][move.getY()] = current_piece;
+        console.log("to: (" +move.getX() + "," + move.getY() + ")");
         //console.log("in make move: " + board_representation[current_x][current_y]);
     };
     
     this.undoMove = function(move, x_to_reset, y_to_reset){
+        console.log("returning piece: " + move.getPieceToMove().getPieceId() + " to (" + x_to_reset +
+                "," + y_to_reset + ")");
         var current_piece = move.getPieceToMove();
         var current_x = current_piece.getXCoord();
         var current_y = current_piece.getYCoord();
         board_representation[move.getX()][move.getY()] = 0;
         current_piece.setXCoord(x_to_reset);
         current_piece.setYCoord(y_to_reset);
-        board_representation[current_x][current_y] = current_piece;
+        board_representation[x_to_reset][y_to_reset] = current_piece;
+        
+        
+        
         //console.log(board_representation[current_x][current_y]);
     };
     

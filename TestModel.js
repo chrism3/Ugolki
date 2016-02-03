@@ -184,23 +184,23 @@ function testModel() {
                     new_y_coord = choosen_square_y;
                     move_successful = true;
                     
-//       console.log(" ");
-//       console.log(" ");
-//       console.log(" ");
-//       console.log(" ");
-//       for(var i = 0; i < test_board.length; i++){
-//           for(var j = 0; j < test_board.length; j++){
-//               var piece = test_board[i][j];
-//               if(piece !== 0){
-//               console.log("At index: (" + i + "," + j + ") is the peice with coords: (" +
-//                       piece.getXCoord() + "," + piece.getYCoord() + ") - " + piece.getPieceColour() + 
-//                       "with id: " + piece.getPieceId());
-//                }
-//                else{
-//                    console.log("At index (" + i + "," + j + ") there is no piece");
-//                }
-//           }
-//       }
+       console.log(" ");
+       console.log(" ");
+       console.log(" ");
+       console.log(" ");
+       for(var i = 0; i < test_board.length; i++){
+           for(var j = 0; j < test_board.length; j++){
+               var piece = test_board[i][j];
+               if(piece !== 0){
+               console.log("At index: (" + i + "," + j + ") is the peice with coords: (" +
+                       piece.getXCoord() + "," + piece.getYCoord() + ") - " + piece.getPieceColour() + 
+                       "with id: " + piece.getPieceId());
+                }
+                else{
+                    console.log("At index (" + i + "," + j + ") there is no piece");
+                }
+           }
+       }
                     
                     
                     break;
