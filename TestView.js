@@ -422,10 +422,22 @@ function testView(){
     this.setMenuImgClickCallback = function (callback) {
         menu_img.addEventListener("click", callback);
     };
-    this.setPlayer2OptionsClickCallback = function (callback){
-        var player_2 = document.getElementById("players_img");
-        player_2.addEventListener("click", callback);
-    };    
+    
+//    this.setPlayerImgClickCallback = function (callback) {
+//        var player_img = document.getElementById("players_img");
+//    };
+    this.setPlayerImgClickCallback = function (callback){
+        var player_img = document.getElementById("players_img");
+        player_img.addEventListener("click", callback);
+    };
+    this.setColoursImgClickCallback = function (callback){
+        var colours_img = document.getElementById("change_colour_img");
+        colours_img.addEventListener("click", callback);
+    };
+    this.setSoundImgClickCallback = function (callback){
+        var sounds_img = document.getElementById("sound_img");
+        sounds_img.addEventListener("click", callback);
+    };
     this.setHumanPlayerClickCallback = function (callback) {
         var human_player = document.getElementById("human_player");
         human_player.addEventListener("click", callback);
@@ -817,6 +829,7 @@ function testView(){
         if(current_settings_panel !== "none" && current_settings_panel !== general_settings){
             current_settings_panel.style.display = "none";
             this.setCurrentSettingsPanel(general_settings);
+            general_settings.style.display = "block";
         }
         else if(current_settings_panel === "none"){
             this.setCurrentSettingsPanel(general_settings);
@@ -825,8 +838,62 @@ function testView(){
         else if(current_settings_panel === general_settings){
             this.setCurrentSettingsPanel("none");
             general_settings.style.display = "none";
+        }        
+    };
+    
+    this.tooglePlayerSettings = function(){
+        var current_settings_panel = this.getCurrentSettingsPanel();
+        var player_settings = document.getElementById("player_2_settings");
+        if(current_settings_panel !== "none" && current_settings_panel !== player_settings){
+            current_settings_panel.style.display = "none";
+            this.setCurrentSettingsPanel(player_settings);
+            player_settings.style.display = "block";
         }
+        else if(current_settings_panel === "none"){
+            this.setCurrentSettingsPanel(player_settings);
+            player_settings.style.display = "block";
+        }
+        else if(current_settings_panel === player_settings){
+            this.setCurrentSettingsPanel("none");
+            player_settings.style.display = "none";
+        }
+    };
+    
+    this.toogleColourSettings = function(){
+        var current_settings_panel = this.getCurrentSettingsPanel();
+        var colour_settings = document.getElementById("colour_settings");
+        if(current_settings_panel !== "none" && current_settings_panel !== colour_settings){
+            current_settings_panel.style.display = "none";
+            this.setCurrentSettingsPanel(colour_settings);
+            colour_settings.style.display = "block";
+        }
+        else if(current_settings_panel === "none"){
+            this.setCurrentSettingsPanel(colour_settings);
+            colour_settings.style.display = "block";
+        }
+        else if(current_settings_panel === colour_settings){
+            this.setCurrentSettingsPanel("none");
+            colour_settings.style.display = "none";
+        }
+    };
+    
         
+    this.toogleSoundSettings = function(){
+        var current_settings_panel = this.getCurrentSettingsPanel();
+        var sound_settings = document.getElementById("sound_settings");
+        if(current_settings_panel !== "none" && current_settings_panel !== sound_settings){
+            current_settings_panel.style.display = "none";
+            this.setCurrentSettingsPanel(sound_settings);
+            sound_settings.style.display = "block";
+        }
+        else if(current_settings_panel === "none"){
+            this.setCurrentSettingsPanel(sound_settings);
+            sound_settings.style.display = "block";
+        }
+        else if(current_settings_panel === sound_settings){
+            this.setCurrentSettingsPanel("none");
+            sound_settings.style.display = "none";
+        }
     };
     
     this.toggleSettingsPanel = function(){

@@ -419,9 +419,17 @@ function testController(){
             //test_view.toggleSettingsPanel();
             test_view.toggleGeneralSettings();
         });
-        test_view.setPlayer2OptionsClickCallback(function (){
+        test_view.setPlayerImgClickCallback(function (){
             console.log("player 2 button was clicked");
-            test_view.updateSettingsPanel("player 2");
+            test_view.tooglePlayerSettings();
+        });
+        test_view.setColoursImgClickCallback(function (){
+           console.log("colours img was clicked"); 
+           test_view.toogleColourSettings();
+        });
+        test_view.setSoundImgClickCallback( function(){
+            console.log("sounds img was clicked");
+            test_view.toogleSoundSettings();
         });
         test_view.setHumanPlayerClickCallback(function() {
             console.log("human player button was clicked");

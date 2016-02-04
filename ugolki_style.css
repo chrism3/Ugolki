@@ -241,7 +241,8 @@ svg{
 }
 
 #colour_settings{
-    background: rgb(222,184,135);
+    //background: rgb(222,184,135);
+    background: rgb(205,133,63);
     display: none;
 }
 
