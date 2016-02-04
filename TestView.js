@@ -117,6 +117,7 @@ function testView(){
         screen_to_board_map = new Array(8),
         squares_array = new Array(8),
         //left_offset,
+        current_settings_panel = "none",
         top_offset,
         scale_size,
         move_successful;
@@ -807,8 +808,29 @@ function testView(){
     };
     
     // this method is responisble for making the settings panel visible
+    
+    this.toggleGeneralSettings = function(){
+        var current_settings_panel = this.getCurrentSettingsPanel();
+        //console.log(current_settings_panel);
+        var general_settings = document.getElementById("general_settings");
+        console.log(current_settings_panel);
+        if(current_settings_panel !== "none" && current_settings_panel !== general_settings){
+            current_settings_panel.style.display = "none";
+            this.setCurrentSettingsPanel(general_settings);
+        }
+        else if(current_settings_panel === "none"){
+            this.setCurrentSettingsPanel(general_settings);
+            general_settings.style.display = "block";
+        }
+        else if(current_settings_panel === general_settings){
+            this.setCurrentSettingsPanel("none");
+            general_settings.style.display = "none";
+        }
+        
+    };
+    
     this.toggleSettingsPanel = function(){
-        var settings_panel = document.getElementById("settings_panel");
+        var settings_panel = document.getElementById("general_settings");
         var settings_options = document.getElementById("main_settings");
         if(settings_panel.style.display !== "block"){
             console.log("showing the panel");
@@ -848,6 +870,15 @@ function testView(){
             this.reportErrorToUser("Player 2 has been set to an AI player");
             this.fadeInfoBox();
         }
+    };
+    
+    this.setCurrentSettingsPanel = function(viewable_panel){
+        console.log("settings the panel to: " + viewable_panel);
+        current_settings_panel = viewable_panel;
+    };
+    
+    this.getCurrentSettingsPanel = function(){
+        return current_settings_panel;
     };
 }
 

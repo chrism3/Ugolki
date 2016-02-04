@@ -135,9 +135,8 @@
             </svg>
             
             <div class ="settings_panel" id = "general_settings">
-                need to add buttons here 
-               <div id ="main_settings">
-<!--                    <button class = "settings_buttons" id ="player_2_button">Player 2 Options</button>
+<!--                need to add buttons here 
+                <button class = "settings_buttons" id ="player_2_button">Player 2 Options</button>
                     <button class = "settings_buttons" id ="colour_settings">Colour Settings</button>
                     <button class = "settings_buttons" id ="sound_settings"> Sound Settings</button>-->
                     <button class = "settings_buttons" id ="variations_button"> Ugolki Variations</button>
@@ -148,6 +147,19 @@
                <div class = "settings_panel" id ="player_2_settings">
                    <button class = "settings_buttons" id ="human_player"> Human Player </button>
                    <button class = "settings_buttons" id ="AI_options"> AI Player </button>
+               </div>
+               
+               <!-- this is where the user can alter the colour of the board and pieces-->
+               <div class ="settings_panel" id ="colour_settings">
+                   <button class ="settings_buttons" id="board_colours"> Board Colours</button>
+                   <button class ="settings_buttons" id="piece_colours"> Piece Colours</button>
+                   <!-- may end up making two buttons, one for player 1 colour and another for player 2 colour -->
+               </div>
+               
+               <div class="settings_panel" id="sound_settings">
+                   <button class ="settings_buttons" id="sound_on"> Sound On</button>
+                   <button class ="settings_buttons" id="sound_off"> Sound Off</button>
+                   <!--maybe additional feature would be to choose the sounds.. if i ever do sound -->
                </div>
                
                <!-- this is where the user can select the AI difficulty -->
@@ -169,11 +181,7 @@
                 <img class = "footer_images" id ="change_colour_img" src="images/paint_pallete.png" alt ="change colour"/>
                 <img class = "footer_images" id="sound_img" src="images/speaker.png" alt="settings_img"/>                
                 <img class = "footer_images" id="help_img" src="images/help.png" alt="help icon"/>                
-            </div>
-        </div>
-        
-
-            
+            </div>           
         
         <div id ="game_board">
             <!-- may need some implementation here -->

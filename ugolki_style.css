@@ -202,7 +202,8 @@ svg{
     margin-left: 10%;
     margin-top: 7.5%;
     //background: rgb(179, 89, 0);
-    background: rgb(139, 69, 19);
+   // background: rgb(139, 69, 19);
+    background-color: transparent;
     border: none;
     color: rgb(242, 235, 67);
     opacity: 1;
@@ -218,8 +219,13 @@ svg{
     height: 100%;
     width: 50%;
     //background: rgb(179, 89, 0);
-    background: rgb(139, 69, 19);
+    
     opacity: 0.9;
+}
+
+#general_settings{
+    //background: rgb(139, 69, 19);
+    background: rgb(241, 110, 3);
     display: none;
 }
 
@@ -230,10 +236,20 @@ svg{
 }
 
 #player_2_settings{
-    height: 100%;
-    width: 100%;
+    background: rgb(14, 194, 164);
     display: none;
 }
+
+#colour_settings{
+    background: rgb(222,184,135);
+    display: none;
+}
+
+#sound_settings{
+    background: rgb(139, 69, 19);
+    display: none;
+}
+
 
 #AI_settings{
     height: 100%;

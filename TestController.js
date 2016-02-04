@@ -416,7 +416,8 @@ function testController(){
         // this calls the methods to add the event listener to the buttons in the menu
         test_view.setMenuImgClickCallback(function (){
             console.log("menu option clicked");
-            test_view.toggleSettingsPanel();
+            //test_view.toggleSettingsPanel();
+            test_view.toggleGeneralSettings();
         });
         test_view.setPlayer2OptionsClickCallback(function (){
             console.log("player 2 button was clicked");
