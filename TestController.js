@@ -26,17 +26,8 @@ function testController(){
 //        });
         
         test_view.square1ClickCallback(function() {
-//            var square_x = test_view.getSquareOne().attributes.x.value;
-//            var square_y = test_view.getSquareOne().attributes.y.value;
-//            square_x=parseInt((square_x-50)/100);
-//            square_y=parseInt((square_y-50)/100);
-//            test_model.movePiece(square_x, square_y);
-//            var x = test_model.getNewX();
-//            var y = test_model.getNewY();
-//            test_view.movePiece(x, y);
-              square = test_view.getSquareCoordinates(1);
-              handleMovePiece();
-
+            square = test_view.getSquareCoordinates(1);
+            handleMovePiece();
         });
         test_view.square2ClickCallback(function() {
               square = test_view.getSquareCoordinates(2);

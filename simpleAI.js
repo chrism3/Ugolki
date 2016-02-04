@@ -326,7 +326,6 @@ function simpleAI(){
     this.setTargetY = function (new_y_target){
         target_y = new_y_target;
     };
-
     this.getChoosenMove = function() {
         return move;
     };
@@ -334,17 +333,14 @@ function simpleAI(){
     this.setChoosenMove = function(choosen_move) {
        // console.log(choosen_move.getX() + "," + choosen_move.getY());
         move = choosen_move;
-    };
-    
+    };    
     this.getAIPieceIndex = function (){
         console.log("The index to be returned is: " + piece_index);
         return piece_index;
     };
     this.setSelectedPieceIndex = function(index){
         piece_index = index;
-    };
-    
-
+    };    
     this.getAISelectedPieceXCoord = function(){
         return origional_x;
     };
