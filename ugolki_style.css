@@ -211,7 +211,7 @@ svg{
     outline: none;
 }
 
-#settings_panel{
+.settings_panel{
     top: 10%;
     left: 0%;
     position: absolute;

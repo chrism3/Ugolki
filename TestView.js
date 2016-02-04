@@ -422,7 +422,7 @@ function testView(){
         menu_img.addEventListener("click", callback);
     };
     this.setPlayer2OptionsClickCallback = function (callback){
-        var player_2 = document.getElementById("player_2_button");
+        var player_2 = document.getElementById("players_img");
         player_2.addEventListener("click", callback);
     };    
     this.setHumanPlayerClickCallback = function (callback) {

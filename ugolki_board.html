@@ -134,18 +134,18 @@
                                                
             </svg>
             
-            <div id ="settings_panel">
-               <!-- need to add buttons here -->
+            <div class ="settings_panel" id = "general_settings">
+                need to add buttons here 
                <div id ="main_settings">
-                    <button class = "settings_buttons" id ="player_2_button">Player 2 Options</button>
+<!--                    <button class = "settings_buttons" id ="player_2_button">Player 2 Options</button>
                     <button class = "settings_buttons" id ="colour_settings">Colour Settings</button>
-                    <button class = "settings_buttons" id ="sound_settings"> Sound Settings</button>
+                    <button class = "settings_buttons" id ="sound_settings"> Sound Settings</button>-->
                     <button class = "settings_buttons" id ="variations_button"> Ugolki Variations</button>
                     <button class = "settings_buttons" id ="statistics_button"> View Statistics</button>
                </div>
                
                <!-- this is where the user can pick if player 2 is AI or human player-->
-               <div id ="player_2_settings">
+               <div class = "settings_panel" id ="player_2_settings">
                    <button class = "settings_buttons" id ="human_player"> Human Player </button>
                    <button class = "settings_buttons" id ="AI_options"> AI Player </button>
                </div>
@@ -165,9 +165,10 @@
             
             <div id ="footer">
                 <img class = "footer_images" id="menu_img" src="images/menu.png" alt="menu image"/> 
-                <!--<img class = "footer_images" id="players_img" src="images/2player.png" alt ="two player"/>
-                <img class = "footer_images" id="settings_img" src="images/settings_img.png" alt="settings_img"/>
-                <img class = "footer_images" id="new_game" src="images/help.png" alt="help icon"/>-->
+                <img class = "footer_images" id="players_img" src="images/2player.png" alt ="two player"/>
+                <img class = "footer_images" id ="change_colour_img" src="images/paint_pallete.png" alt ="change colour"/>
+                <img class = "footer_images" id="sound_img" src="images/speaker.png" alt="settings_img"/>                
+                <img class = "footer_images" id="help_img" src="images/help.png" alt="help icon"/>                
             </div>
         </div>
         
@@ -186,9 +187,6 @@
         
         <script type="text/javascript" src ="GamePieces.js"></script>
         <script type="text/javascript" src ="PossibleMove.js"></script>
-        <!--<script type="text/javascript" src ="view.js"></script>
-        <script type="text/javascript" src ="model.js"></script>
-        <script type="text/javascript" src ="controller.js"></script>-->
         
         <!-- will need to delete this later -->
         <script type="text/javascript" src ="simpleAI.js"></script>
