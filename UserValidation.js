@@ -49,9 +49,16 @@ function detailsValidation(){
             // in here we can use the response text to check if the sign up worked
             var details = document.getElementById("hidden_su_details");
             details.innerHTML = xmlhttp.responseText;
-            console.log(details.textContent);
+            var details_value = parseInt(details.textContent);
+            console.log(details_value);
             // if the details report success... call the code to log in
+            if(details.textContent < 1){
+                console.log("i should sign in now");
+            }
             // else, inform the user that username and password are all ready taken
+            else{
+                console.log("user all ready exists");
+            }
         };
         xmlhttp.send(table_entry);
     };

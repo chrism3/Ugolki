@@ -17,8 +17,8 @@ if($player_count === 0){
     $query2 = "insert into Players (username, password) values ('$user','$pass')";
     $result2 = mysqli_query($conn, $query2);
     
-    // echo success, used to uservalidation to make sure the user has been added to the table
-    echo('success');
+    // echo 0, to signify that no users with this username and password already exist
+    echo(0);
 }
 else{
     /* if not echo value other than 'success', can be used to inform user that the username
