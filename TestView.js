@@ -943,7 +943,7 @@ function testView(){
         }
     };
     this.displaySignUpPage = function(){
-        
+        //console.log("display sign up page has been called. need to make the sign up page now");
     };
     
     this.setCurrentSettingsPanel = function(viewable_panel){
