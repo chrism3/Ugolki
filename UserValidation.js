@@ -47,6 +47,9 @@ function detailsValidation(){
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.onreadystatechange = function () {
             // in here we can use the response text to check if the sign up worked
+            var details = document.getElementById("hidden_su_details");
+            details.innerHTML = xmlhttp.responseText;
+            console.log(details.textContent);
         };
         xmlhttp.send(table_entry);
     };
