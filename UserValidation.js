@@ -50,6 +50,8 @@ function detailsValidation(){
             var details = document.getElementById("hidden_su_details");
             details.innerHTML = xmlhttp.responseText;
             console.log(details.textContent);
+            // if the details report success... call the code to log in
+            // else, inform the user that username and password are all ready taken
         };
         xmlhttp.send(table_entry);
     };

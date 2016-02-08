@@ -14,6 +14,10 @@ $player_count = mysqli_num_rows($result);
 
 if($player_count === 0){
     // this is where we make the query to add the user to the database
+    $query2 = "insert into Players (username, password) values ('$user','$pass')";
+    $result2 = mysqli_query($conn, $query2);
+    
+    // echo success, used to uservalidation to make sure the user has been added to the table
     echo('success');
 }
 else{
