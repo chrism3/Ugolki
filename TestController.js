@@ -451,6 +451,14 @@ function testController(){
             test_view.displaySignUpPage();
         });
         
+        /* this is where to controller calls the method in the view to give the actual
+         * sign up button it's callback
+         */
+        test_view.setSignUpButtonClickCallback(function(){
+           test_view.getSignUpDetails(); 
+        });
+           
+        
     // this should probably be in the model
     this.performPieceSelection = function(){
         /*

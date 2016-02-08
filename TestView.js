@@ -455,6 +455,12 @@ function testView(){
         sign_up.addEventListener("click", callback);
     };
     
+    // this is the callback for the actual sign up button in the sign in page
+    this.setSignUpButtonClickCallback = function (callback){
+        var sign_up_button = document.getElementById("sign_up_button");
+        sign_up_button.addEventListener("click", callback);
+    };
+    
     
     this.highlightSelectedPiece = function(){
         if(selected_piece.attributes.class.value === "white_circles"){
@@ -947,8 +953,7 @@ function testView(){
         var game_board = document.getElementById("test_board");
         var sign_up_page = document.getElementById("sign_up_page");
         game_board.style.display = "none";
-        sign_up_page.style.display = "block";
-        
+        sign_up_page.style.display = "block";        
     };
     
     this.setCurrentSettingsPanel = function(viewable_panel){
@@ -958,6 +963,22 @@ function testView(){
     
     this.getCurrentSettingsPanel = function(){
         return current_settings_panel;
+    };
+    
+    // this method is used to get the sign up details, when the user signs up to the app
+    this.getSignUpDetails = function(){
+        var username = document.getElementById("sign_up_username").value;
+        var password = document.getElementById("sign_up_password").value;
+        var confirm_password = document.getElementById("confirm_password").value;
+        
+        var sign_up_details = [username, password, confirm_password];
+        //method returns sign up details so they can be validated and ultimately used to sign up
+        return sign_up_details;
+    };
+    
+    // this method is used to get the login details when the user logs in to the app
+    this.getLoginDetails = function(){
+        
     };
 }
 
