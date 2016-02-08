@@ -943,7 +943,12 @@ function testView(){
         }
     };
     this.displaySignUpPage = function(){
-        //console.log("display sign up page has been called. need to make the sign up page now");
+        // all this method needs to do is hide the game board and display the sign up page
+        var game_board = document.getElementById("test_board");
+        var sign_up_page = document.getElementById("sign_up_page");
+        game_board.style.display = "none";
+        sign_up_page.style.display = "block";
+        
     };
     
     this.setCurrentSettingsPanel = function(viewable_panel){
