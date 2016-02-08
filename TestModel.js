@@ -394,6 +394,16 @@ function testModel() {
         }
         
     };
+    
+    // this method is used to pass the details onto the correct validation method
+    this.validation = function(user_details, validation_status){
+        if(validation_status === "sign up"){
+            // call the validation for signing up
+            var validate = new detailsValidation();
+            validate.signUpValidation(user_details);
+            
+        }
+        // hopefully will have more of these to do, not sure yet?
+    };
+    
 }
-
-

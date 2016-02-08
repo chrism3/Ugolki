@@ -455,7 +455,12 @@ function testController(){
          * sign up button it's callback
          */
         test_view.setSignUpButtonClickCallback(function(){
-           test_view.getSignUpDetails(); 
+           var user_details = test_view.getSignUpDetails(); 
+           /*
+            * Need to pass details to the model, which can call a helper class that does validation
+            * and then if all details are okay, calls the php to sign up the user to the app
+            */
+           test_model.validation(user_details, "sign up");
         });
            
         

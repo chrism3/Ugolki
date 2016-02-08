@@ -969,8 +969,7 @@ function testView(){
     this.getSignUpDetails = function(){
         var username = document.getElementById("sign_up_username").value;
         var password = document.getElementById("sign_up_password").value;
-        var confirm_password = document.getElementById("confirm_password").value;
-        
+        var confirm_password = document.getElementById("confirm_password").value;        
         var sign_up_details = [username, password, confirm_password];
         //method returns sign up details so they can be validated and ultimately used to sign up
         return sign_up_details;
