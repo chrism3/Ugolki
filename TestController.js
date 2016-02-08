@@ -446,6 +446,10 @@ function testController(){
             test_model.setPlayerTwoType("AI");
             test_view.updateSettingsPanel("AI difficulty");
         });
+        test_view.setSignUpClickCallback(function(){
+            console.log("this is where we call the sign up screen");
+            test_view.displaySignUpPage();
+        });
         
     // this should probably be in the model
     this.performPieceSelection = function(){

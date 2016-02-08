@@ -229,12 +229,6 @@ svg{
     display: none;
 }
 
-#main_settings{
-    height: 100%;
-    width: 100%;
-    display: none;
-}
-
 #player_2_settings{
     background: rgb(14, 194, 164);
     display: none;

@@ -450,6 +450,10 @@ function testView(){
         var simple_AI = document.getElementById("simple_AI");
         simple_AI.addEventListener("click", callback);
     };
+    this.setSignUpClickCallback = function (callback){
+        var sign_up = document.getElementById("sign_up");
+        sign_up.addEventListener("click", callback);
+    };
     
     
     this.highlightSelectedPiece = function(){
@@ -937,6 +941,9 @@ function testView(){
             this.reportErrorToUser("Player 2 has been set to an AI player");
             this.fadeInfoBox();
         }
+    };
+    this.displaySignUpPage = function(){
+        
     };
     
     this.setCurrentSettingsPanel = function(viewable_panel){
