@@ -400,8 +400,11 @@ function testModel() {
         if(validation_status === "sign up"){
             // call the validation for signing up
             var validate = new detailsValidation();
-            validate.signUpValidation(user_details);
-            
+            validate.signUpValidation(user_details);            
+        }
+        else if(validation_status === "login"){
+            var validate = new detailsValidation();
+            validate.loginValidation(user_details);
         }
         // hopefully will have more of these to do, not sure yet?
     };

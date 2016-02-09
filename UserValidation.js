@@ -14,7 +14,7 @@ function detailsValidation(){
            if(user_details[i] === ""){
                details_okay = false;
                break;
-               // will also need to check the lengths of the input so they are not too long               
+               // will also need to check the lengths of the input so they are not too long/short              
            }
        }
        
@@ -61,6 +61,23 @@ function detailsValidation(){
             }
         };
         xmlhttp.send(table_entry);
+    };
+    
+    
+    /*
+     * This is the method to check the login details. Currently only checks that the details are
+     * set, will eventually check they are of the correct length...
+     */
+    this.loginValidation = function(login_details){
+        var details_okay = true;
+        
+        for(var i = 0; i < login_details.length; i++){
+            if(login_details[i] === ""){
+                details_okay = false;
+                break;
+            }
+        }
+        console.log(details_okay);
     };
     
 }

@@ -463,9 +463,12 @@ function testController(){
            test_model.validation(user_details, "sign up");
         });
         test_view.setLoginButtonClickCallback(function(){
-            console.log("login has been clicked");
             var login_details = test_view.getLoginDetails();
-            console.log(login_details);
+            /*
+             * Need to pass details to the model, which calls helper method to do validation and
+             * then perform the logging in. 
+             */
+            test_model.validation(login_details, "login");
         });
            
         
