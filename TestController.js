@@ -462,6 +462,11 @@ function testController(){
             */
            test_model.validation(user_details, "sign up");
         });
+        test_view.setLoginButtonClickCallback(function(){
+            console.log("login has been clicked");
+            var login_details = test_view.getLoginDetails();
+            console.log(login_details);
+        });
            
         
     // this should probably be in the model

@@ -460,6 +460,10 @@ function testView(){
         var sign_up_button = document.getElementById("sign_up_button");
         sign_up_button.addEventListener("click", callback);
     };
+    this.setLoginButtonClickCallback = function (callback){
+        var login_button = document.getElementById("login_button");
+        login_button.addEventListener("click", callback);
+    }
     
     
     this.highlightSelectedPiece = function(){
@@ -977,7 +981,13 @@ function testView(){
     
     // this method is used to get the login details when the user logs in to the app
     this.getLoginDetails = function(){
-        
+        console.log("doing this");
+        var username = document.getElementById("login_username").value;
+        var password = document.getElementById("login_password").value;
+        console.log("username: " + username);
+        var login_details = [username, password];
+        console.log(login_details[0]);
+        return login_details;
     };
 }
 
