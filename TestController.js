@@ -466,6 +466,10 @@ function testController(){
            if(status){
                test_view.returnToBoard();
            }
+           else{
+               // doesnt work yet, comment in HTML says why
+               test_view.reportErrorToUser("Sign up unsuccessful. Please ry again");
+           }
            
         });
         test_view.setLoginButtonClickCallback(function(){
@@ -477,6 +481,10 @@ function testController(){
             var status = test_model.validation(login_details, "login");
             if(status){
                 test_view.returnToBoard();
+            }
+            else{
+                // doesnt work yet, comment in HTML says why
+                test_view.reportErrorToUser("Login unsuccessful. Please try again.");
             }
         });
            
