@@ -53,7 +53,8 @@ function detailsValidation(){
             console.log(details_value);
             // if the details report success... call the code to log in
             if(details_value < 1){
-                console.log("i should sign in now");
+                console.log("i should log in now");
+                // will make a method in the model to handle the login of user
             }
             // else, inform the user that username and password are all ready taken
             else{
@@ -69,6 +70,7 @@ function detailsValidation(){
      * set, will eventually check they are of the correct length...
      */
     this.loginValidation = function(login_details){
+        // variable to hold boolean values to signify if the details are okay
         var details_okay = true;
         
         for(var i = 0; i < login_details.length; i++){
@@ -78,6 +80,36 @@ function detailsValidation(){
             }
         }
         console.log(details_okay);
+        
+        if(details_okay){
+            this.loginUser(login_details);
+        }
+    };
+    
+    /*
+     * This is the function that calls the login php
+     */
+    this.loginUser = function(login_details){
+        var table_entry = "username=" + login_details[0] + "&password=" + login_details[1];
+        var xmlhttp;
+        if(window.XMLHttpRequest){
+            // chrome, firefox, safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else{
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        // remember to create the php page
+        xmlhttp.open("POST", "login.php", false);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.onreadystatechange = function () {
+            var details = document.getElementById("hidden_li_details");
+            details.innerHTML = xmlhttp.responseText;
+            var details_value = parseInt(details.textContent);
+            console.log(details_value);
+        };
+        xmlhttp.send(table_entry);
     };
     
 }
