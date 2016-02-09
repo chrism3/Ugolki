@@ -9,7 +9,7 @@ mysqli_select_db($conn, "wjb12175") or die(mysql_error());
 
 //echo($pass);
 
-$query = "select * from Players where (username = '$user') AND (password = '$pass')";
+$query = "select * from Players where (username = '$user') and (password = '$pass')";
 $result = mysqli_query($conn, $query) or die(mysql_error());
 $player_count = mysqli_num_rows($result);
 

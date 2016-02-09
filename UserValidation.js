@@ -90,6 +90,7 @@ function detailsValidation(){
      * This is the function that calls the login php
      */
     this.loginUser = function(login_details){
+        console.log(login_details[0]);
         var table_entry = "username=" + login_details[0] + "&password=" + login_details[1];
         var xmlhttp;
         if(window.XMLHttpRequest){
@@ -106,8 +107,16 @@ function detailsValidation(){
         xmlhttp.onreadystatechange = function () {
             var details = document.getElementById("hidden_li_details");
             details.innerHTML = xmlhttp.responseText;
+            console.log(details.textContent);
             var details_value = parseInt(details.textContent);
             console.log(details_value);
+            if(details_value === 1){
+                console.log("logging in user with name: " + login_details[0]);
+            }
+            else{
+                console.log("not a recognised user");
+            }
+            
         };
         xmlhttp.send(table_entry);
     };
