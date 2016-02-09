@@ -959,6 +959,13 @@ function testView(){
         game_board.style.display = "none";
         sign_up_page.style.display = "block";        
     };
+    // this method is used to retrun to the board page if the user has navigated to the login page
+    this.returnToBoard = function(){
+        var game_board = document.getElementById("test_board");
+        var sign_up_page = document.getElementById("sign_up_page");
+        game_board.style.display = "block";
+        sign_up_page.style.display = "none";
+    };
     
     this.setCurrentSettingsPanel = function(viewable_panel){
         console.log("settings the panel to: " + viewable_panel);

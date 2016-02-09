@@ -397,16 +397,21 @@ function testModel() {
     
     // this method is used to pass the details onto the correct validation method
     this.validation = function(user_details, validation_status){
+        var status;
         if(validation_status === "sign up"){
             // call the validation for signing up
             var validate = new detailsValidation();
-            validate.signUpValidation(user_details);            
+            validate.signUpValidation(user_details);
+            status = validate.getSignInStatus();
         }
         else if(validation_status === "login"){
             var validate = new detailsValidation();
             validate.loginValidation(user_details);
+            status = validate.getLoginStatus();
         }
         // hopefully will have more of these to do, not sure yet?
+        
+        return status;
     };
     
 }

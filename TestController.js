@@ -460,7 +460,13 @@ function testController(){
             * Need to pass details to the model, which can call a helper class that does validation
             * and then if all details are okay, calls the php to sign up the user to the app
             */
-           test_model.validation(user_details, "sign up");
+           var status = test_model.validation(user_details, "sign up");
+           console.log(status);
+           // only return to the board if the sign up was sucessful
+           if(status){
+               test_view.returnToBoard();
+           }
+           
         });
         test_view.setLoginButtonClickCallback(function(){
             var login_details = test_view.getLoginDetails();
@@ -468,7 +474,10 @@ function testController(){
              * Need to pass details to the model, which calls helper method to do validation and
              * then perform the logging in. 
              */
-            test_model.validation(login_details, "login");
+            var status = test_model.validation(login_details, "login");
+            if(status){
+                test_view.returnToBoard();
+            }
         });
            
         

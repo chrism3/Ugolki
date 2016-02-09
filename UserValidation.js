@@ -5,6 +5,8 @@
  */
 
 function detailsValidation(){
+    var sign_in_status,
+        login_status;
     
     // this method validates user input for signing up
     this.signUpValidation = function (user_details){
@@ -13,6 +15,7 @@ function detailsValidation(){
        for(var i = 0; i < user_details.length; i++){
            if(user_details[i] === ""){
                details_okay = false;
+               sign_in_status = false;
                break;
                // will also need to check the lengths of the input so they are not too long/short              
            }
@@ -55,10 +58,12 @@ function detailsValidation(){
             if(details_value < 1){
                 console.log("i should log in now");
                 // will make a method in the model to handle the login of user
+                sign_in_status = true;
             }
             // else, inform the user that username and password are all ready taken
             else{
                 console.log("user all ready exists");
+                sign_in_status = false;
             }
         };
         xmlhttp.send(table_entry);
@@ -76,6 +81,7 @@ function detailsValidation(){
         for(var i = 0; i < login_details.length; i++){
             if(login_details[i] === ""){
                 details_okay = false;
+                login_status = false;
                 break;
             }
         }
@@ -112,13 +118,23 @@ function detailsValidation(){
             console.log(details_value);
             if(details_value === 1){
                 console.log("logging in user with name: " + login_details[0]);
+                login_status = true;
             }
             else{
                 console.log("not a recognised user");
+                login_status = false;
             }
             
         };
         xmlhttp.send(table_entry);
+    };
+    
+    this.getSignInStatus = function(){
+        return sign_in_status;
+    };
+    
+    this.getLoginStatus = function(){
+        return login_status;
     };
     
 }
