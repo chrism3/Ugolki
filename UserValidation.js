@@ -52,7 +52,7 @@ function detailsValidation(){
             var details_value = parseInt(details.textContent);
             console.log(details_value);
             // if the details report success... call the code to log in
-            if(details.textContent < 1){
+            if(details_value < 1){
                 console.log("i should sign in now");
             }
             // else, inform the user that username and password are all ready taken
