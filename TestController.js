@@ -490,7 +490,7 @@ function testController(){
            
         
     // this should probably be in the model
-    this.performPieceSelection = function(){
+    this.performPieceSelection = function(){ 
         /*
          * Check the current piece colour here, not in model. If it is not the 
          * turn of the colour of piece that has been selected, can therefore bring

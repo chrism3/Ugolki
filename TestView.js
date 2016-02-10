@@ -965,6 +965,9 @@ function testView(){
         var sign_up_page = document.getElementById("sign_up_page");
         game_board.style.display = "block";
         sign_up_page.style.display = "none";
+        var panel = this.getCurrentSettingsPanel();
+        panel.style.display = "none";
+        this.setCurrentSettingsPanel("none");
     };
     
     this.setCurrentSettingsPanel = function(viewable_panel){
