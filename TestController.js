@@ -468,7 +468,7 @@ function testController(){
            }
            else{
                // doesnt work yet, comment in HTML says why
-               test_view.reportErrorToUser("Sign up unsuccessful. Please ry again");
+               test_view.reportErrorToUser("Sign up unsuccessful. Please ry again", "login");
            }
            
         });
@@ -484,7 +484,7 @@ function testController(){
             }
             else{
                 // doesnt work yet, comment in HTML says why
-                test_view.reportErrorToUser("Login unsuccessful. Please try again.");
+                test_view.reportErrorToUser("Login unsuccessful. Please try again.", "login");
             }
         });
            
@@ -535,8 +535,8 @@ function testController(){
             }
             else{
                 var colour = test_model.getCurrentPlayerColour();
-                test_view.reportErrorToUser("It is " + colour + "s turn to move");
-                test_view.fadeInfoBox();
+                test_view.reportErrorToUser("It is " + colour + "s turn to move", "game");
+                //test_view.fadeInfoBox();
             }
         };
         
@@ -550,8 +550,8 @@ function testController(){
             }
             else{
                 console.log("need to selected a piece");
-                test_view.reportErrorToUser("Please selected a piece first");
-                test_view.fadeInfoBox();
+                test_view.reportErrorToUser("Please selected a piece first", "game");
+                //test_view.fadeInfoBox();
                 return;
             }
            if(test_view.wasMoveSuccessful()){
@@ -560,15 +560,16 @@ function testController(){
            }
            else{
                console.log("move not successful");
-               test_view.reportErrorToUser("Not a valid move for the selected piece");
-               test_view.fadeInfoBox();            
+               test_view.reportErrorToUser("Not a valid move for the selected piece", "game");
+               //test_view.fadeInfoBox();            
            }
            
            var is_game_over = test_model.hasPlayerWon();
            console.log(is_game_over);
            
            if(is_game_over !== "no winner"){
-               test_view.reportErrorToUser(is_game_over + " is the winner");
+               // might change game to game_over
+               test_view.reportErrorToUser(is_game_over + " is the winner", "game");
            }
 
            if(test_model.getPlayerTwoType() === "AI"){

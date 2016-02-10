@@ -775,17 +775,30 @@ function testView(){
     
     
     // put this down here because it's not necessary functionality
-    this.reportErrorToUser = function(message_to_display) {
-        var text_area = document.getElementById("inform_user");
-        var text_area_div = document.getElementById("info_div");
-        text_area.value = message_to_display;
-        // reset opacity so that it is visible on callings after the first
-        text_area_div.style.opacity = 0.9;
-        text_area_div.style.display = "block";
+    this.reportErrorToUser = function(message_to_display, screen_condition) {
+        if(screen_condition === "game"){
+            var text_area = document.getElementById("inform_user");
+            var text_area_div = document.getElementById("info_div");
+            text_area.value = message_to_display;
+            // reset opacity so that it is visible on callings after the first
+            text_area_div.style.opacity = 0.9;
+            text_area_div.style.display = "block";
+            this.fadeInfoBox(text_area_div);
+        }
+        else if(screen_condition === "login"){
+            var text_area = document.getElementById("login_error_textarea");
+            var text_area_div = document.getElementById("login_error");
+            text_area.value = message_to_display;
+            // reset opacity so that it is visible on callings after the first
+            text_area_div.style.opacity = 0.9;
+            text_area_div.style.display = "block";
+            this.fadeInfoBox(text_area_div);
+        }
+        
     };
     
-    this.fadeInfoBox = function(){
-        var text_area_div = document.getElementById("info_div");
+    this.fadeInfoBox = function(text_area_div){
+        //var text_area_div = document.getElementById("info_div");
         var opacity = window.getComputedStyle(text_area_div).getPropertyValue("opacity");
         
         var interval_count = 0;

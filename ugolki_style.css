@@ -199,7 +199,7 @@ svg{
     display: block;
 }
 
-#info_div{
+.user_feedback{
     height: 7%;
     width: 100%;
     margin-top: 2%;
@@ -221,13 +221,25 @@ svg{
     resize: none;
 }
 
+#login_error_textarea{
+    width: 50%;
+    height: 90%;
+    margin-left: 25%;
+    background: rgb(68, 71, 75);
+    color: rgb(233, 239, 52);
+    font-weight: bold;
+    font-size: 100%;
+    border: grey 1px solid;
+    border-radius: 10%;
+    text-align: center;
+    resize: none;
+}
+
 .settings_buttons{
     width: 85%;
     height: 10%;
     margin-left: 10%;
     margin-top: 7.5%;
-    //background: rgb(179, 89, 0);
-   // background: rgb(139, 69, 19);
     background-color: transparent;
     border: none;
     color: rgb(242, 235, 67);
