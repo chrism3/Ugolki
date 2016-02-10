@@ -1036,6 +1036,10 @@ function testView(){
         console.log(login_details[0]);
         return login_details;
     };
+    
+    this.getLoggedInPlayerName = function(){
+        return document.getElementById("player_name").value;
+    };
 }
 
 

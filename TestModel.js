@@ -22,6 +22,11 @@ function testModel() {
     // don't like this being global but findMoves all ready has a return statement
     var find_moves_successful;
     
+    // this variable is a boolean representation of whether or not a player is signed in
+    var signed_in;
+    // this vairbale stores the name of the current player signed in 
+    var logged_in_player;
+    
     // variables to set the screen sizes
     var screen_width = 0,
     screen_height = 0;
@@ -229,6 +234,24 @@ function testModel() {
         console.log("setting player 2 to: " + player_type);
         player_2_type = player_type;
     };
+    
+    // set and get methods for signed in
+    this.setSignedIn = function(player_signed_in){
+        signed_in = player_signed_in;
+    };
+    this.getSignedIn = function(){
+        return signed_in;
+    };
+    
+    //set and get methods for the current_player
+    this.setLoggedInPlayer = function(player_name){
+        logged_in_player = player_name;
+    };
+    this.getLoggedInPlayer = function(){
+        return logged_in_player;
+    };
+    
+    
     
     // I'm not sure how the AI should work... maybe like this
     var AI_type = "simpleAI";

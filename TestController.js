@@ -465,6 +465,8 @@ function testController(){
            // only return to the board if the sign up was sucessful
            if(status){
                test_view.returnToBoard();
+               test_model.setSignedIn(true);
+               test_model.setLoggedInPlayer(test_view.getLoggedInPlayerName());
            }
            else{
                // doesnt work yet, comment in HTML says why
@@ -482,6 +484,9 @@ function testController(){
             var status = test_model.validation(login_details, "login");
             if(status){
                 test_view.returnToBoard();
+                // might not needed singed_in in model, could maybe use player name instead?
+                test_model.setSignedIn(true);
+                test_model.setLoggedInPlayer(test_view.getLoggedInPlayerName());
             }
             else{
                 // doesnt work yet, comment in HTML says why
