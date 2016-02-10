@@ -470,7 +470,8 @@ function testController(){
                // doesnt work yet, comment in HTML says why
                test_view.reportErrorToUser("Sign up unsuccessful. Please ry again", "login");
            }
-           
+           // reset the sign up textarea's
+           test_view.resetSignUpFields();
         });
         test_view.setLoginButtonClickCallback(function(){
             var login_details = test_view.getLoginDetails();
@@ -486,6 +487,8 @@ function testController(){
                 // doesnt work yet, comment in HTML says why
                 test_view.reportErrorToUser("Login unsuccessful. Please try again.", "login");
             }
+            // reset the textarea's for login
+            test_view.resetLoginFeilds();
         });
            
         

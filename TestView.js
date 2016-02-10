@@ -982,6 +982,29 @@ function testView(){
         var panel = this.getCurrentSettingsPanel();
         panel.style.display = "none";
         this.setCurrentSettingsPanel("none");
+        // set player_name textarea to the player who logged in
+        var login_name = document.getElementById("login_username").value;
+        var sign_up_name = document.getElementById("sign_up_username").value;
+        var player_name = document.getElementById("player_name");
+        console.log(login_name + " is the current logged in name");
+        console.log(sign_up_name + " is the current signed in name");
+        if(login_name !== ""){
+            player_name.value = "Player: \n" + login_name;
+        }
+        else{
+            player_name.value = "Player: \n" + sign_up_name;
+        }
+    };
+    
+    this.resetLoginFeilds = function(){
+        document.getElementById("login_username").value = "";
+        document.getElementById("login_password").value = "";
+    };
+    
+    this.resetSignUpFields = function(){
+        document.getElementById("sign_up_username").value = "";
+        document.getElementById("sign_up_password").value = "";
+        document.getElementById("confirm_password").value = "";
     };
     
     this.setCurrentSettingsPanel = function(viewable_panel){

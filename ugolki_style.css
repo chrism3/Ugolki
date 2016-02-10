@@ -107,6 +107,18 @@ button{
     font-weight: bolder;
 }
 
+#player_name{
+    float: right;
+    width: 24%;
+    text-align: center;
+    background: rgb(139, 69, 19);
+    color: rgb(255, 179, 109);
+    font-family: "Time New Roman", times, serif;
+    font-weight: bolder;
+    resize: none;
+    margin-top: 2%;
+}
+
 /*#menu_img{
     width: 10%;
     float: left;
