@@ -786,6 +786,7 @@ function testView(){
             this.fadeInfoBox(text_area_div);
         }
         else if(screen_condition === "login"){
+            console.log("i'm doing this bit")
             var text_area = document.getElementById("login_error_textarea");
             var text_area_div = document.getElementById("login_error");
             text_area.value = message_to_display;
