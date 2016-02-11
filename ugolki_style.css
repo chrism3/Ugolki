@@ -59,6 +59,38 @@ button{
     display: block;// need to change this back
 }
 
+#game_info{
+    height: 5%;
+    width: 100%;
+    background: transparent; 
+    display: block;
+}
+
+#player_1_type{
+    padding-top: 2%;
+    margin-left: 9%;
+    height: 100%;
+    width: 41%;
+    float: left;
+    background: transparent;    
+    text-align: center;
+    resize: none;
+    color: #ffe815;
+}
+
+#player_2_type{
+    padding-top: 2%;
+    height: 100%;
+    width: 41%;
+    float: left;
+    background: transparent;     
+    text-align: center;
+    resize: none;
+    color: #ffe815;
+}
+
+
+
 #sign_up_page{
     background: black;
     width: 100%;
@@ -157,7 +189,7 @@ button{
     height: 65%;
     width: 82%;
     margin-left: 9%;
-    margin-top: 5%;
+    margin-top: 2%;
     color: blue;
 }
 

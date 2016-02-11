@@ -578,6 +578,10 @@ function testController(){
            if(is_game_over !== "no winner"){
                // might change game to game_over
                test_view.reportErrorToUser(is_game_over + " is the winner", "game");
+               // this is where we will need to call the code that will update the database with the results. 
+               if(test_model.getSignedIn()){
+                   // this means that there is a player signed in. 
+               }
            }
 
            if(test_model.getPlayerTwoType() === "AI"){
