@@ -18,14 +18,21 @@
 
         <div id ="top">
             <textarea id ="heading" readonly> Ugolki </textarea> 
-            <textarea id ="player_name" readonly></textarea>
+<!--            don't think this text area will be needed now.
+            <textarea id ="player_name" readonly></textarea>-->
         </div>
         
          <div id ="test_board">
              
              <div id ="game_info">
-                 <textarea id="player_1_type"> Player 1: Human</textarea>
-                 <textarea id="player_2_type"> Player 2: AI </textarea>
+                 <div id = "player_1_info_div">
+                     <textarea class = "player_info_textarea" id="player_1_text_area"> Player 1: </textarea>
+                     <textarea class = "player_info_textarea" id="player_1_type"> Human </textarea>
+                 </div>
+                 <div id = "player_2_info_div">
+                     <textarea class = "player_info_textarea" id="player_2_text_area"> Player 2: </textarea>
+                     <textarea class = "player_info_textarea" id="player_2_type"> AI </textarea>
+                 </div>                 
              </div>
             
             <!--

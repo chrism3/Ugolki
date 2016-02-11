@@ -985,14 +985,14 @@ function testView(){
         // set player_name textarea to the player who logged in
         var login_name = document.getElementById("login_username").value;
         var sign_up_name = document.getElementById("sign_up_username").value;
-        var player_name = document.getElementById("player_name");
+        var player_name = document.getElementById("player_1_type");
         console.log(login_name + " is the current logged in name");
         console.log(sign_up_name + " is the current signed in name");
         if(login_name !== ""){
-            player_name.value = "Player: \n" + login_name;
+            player_name.value = login_name;
         }
         else{
-            player_name.value = "Player: \n" + sign_up_name;
+            player_name.value = sign_up_name;
         }
     };
     
@@ -1038,7 +1038,7 @@ function testView(){
     };
     
     this.getLoggedInPlayerName = function(){
-        return document.getElementById("player_name").value;
+        return document.getElementById("player_1_type").value;
     };
 }
 
