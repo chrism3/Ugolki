@@ -438,14 +438,18 @@ function testView(){
         var sounds_img = document.getElementById("sound_img");
         sounds_img.addEventListener("click", callback);
     };
-    this.setHumanPlayerClickCallback = function (callback) {
-        var human_player = document.getElementById("human_player");
-        human_player.addEventListener("click", callback);
-    };
-    this.setAIPlayerClickCallback = function (callback) {
-        var AI_settings = document.getElementById("AI_options");
-        AI_settings.addEventListener("click", callback);
-    };
+//    
+//    Check these and change the variable names and the ID's so that they
+//    work for the new code. 
+//    
+//    this.setHumanPlayerClickCallback = function (callback) {
+//        var player_1_settings = document.getElementById("player_1_settings");
+//        player_1_settings.addEventListener("click", callback);
+//    };
+//    this.setAIPlayerClickCallback = function (callback) {
+//        var player_2_settings = document.getElementById("player_2_settings");
+//        player_2_settings.addEventListener("click", callback);
+//    };
     this.setSimpleAIClickCalback = function (callback) {
         var simple_AI = document.getElementById("simple_AI");
         simple_AI.addEventListener("click", callback);
@@ -454,6 +458,16 @@ function testView(){
         var sign_up = document.getElementById("sign_up");
         sign_up.addEventListener("click", callback);
     };
+    // callback for the player_1_options button
+    this.setPlayer1OptionsClickCallback = function (callback){
+        var player_1_options = document.getElementById("player_1_settings");
+        player_1_options.addEventListener("click", callback);
+    };
+    // callback for the player_2_options button
+    this.setPlayer2OptionsClickCallback = function (callback){
+        var player_2_options = document.getElementById("player_2_settings");
+        player_2_options.addEventListener("click", callback);
+    }
     
     // this is the callback for the actual sign up button in the sign in page
     this.setSignUpButtonClickCallback = function (callback){
@@ -463,7 +477,7 @@ function testView(){
     this.setLoginButtonClickCallback = function (callback){
         var login_button = document.getElementById("login_button");
         login_button.addEventListener("click", callback);
-    }
+    };
     
     
     this.highlightSelectedPiece = function(){
@@ -871,7 +885,7 @@ function testView(){
     
     this.tooglePlayerSettings = function(){
         var current_settings_panel = this.getCurrentSettingsPanel();
-        var player_settings = document.getElementById("player_2_settings");
+        var player_settings = document.getElementById("player_settings");
         if(current_settings_panel !== "none" && current_settings_panel !== player_settings){
             current_settings_panel.style.display = "none";
             this.setCurrentSettingsPanel(player_settings);
@@ -938,34 +952,34 @@ function testView(){
         }
     };
     
-    this.updateSettingsPanel = function(button_clicked){
-        var settings_panel = document.getElementById("settings_panel");
-        var settings_options = document.getElementById("main_settings");
-        var player_2_settings = document.getElementById("player_2_settings");
-        var AI_settings = document.getElementById("AI_settings");
-        console.log("got here: condition = " + button_clicked);
-        if(button_clicked === "player 2"){
-            console.log("player 2 button was clicked (view)");
-            settings_options.style.display = "none";
-            player_2_settings.style.display = "block";
-        }
-        else if(button_clicked === "human player"){
-            settings_panel.style.display = "none";
-            this.reportErrorToUser("Player 2 has been set to human player");
-            this.fadeInfoBox();
-            // find some way to inform user that player 2 is now a human player
-                // maybe use the text area?
-        }
-        else if(button_clicked === "AI player"){
-            player_2_settings.style.display = "none";
-            AI_settings.style.display = "block";
-        }
-        else if(button_clicked === "AI difficulty"){
-            settings_panel.style.display = "none";
-            this.reportErrorToUser("Player 2 has been set to an AI player");
-            this.fadeInfoBox();
-        }
-    };
+//    this.updateSettingsPanel = function(button_clicked){
+//        var settings_panel = document.getElementById("settings_panel");
+//        var settings_options = document.getElementById("main_settings");
+//        var player_2_settings = document.getElementById("player_2_settings");
+//        var AI_settings = document.getElementById("AI_settings");
+//        console.log("got here: condition = " + button_clicked);
+//        if(button_clicked === "player 2"){
+//            console.log("player 2 button was clicked (view)");
+//            settings_options.style.display = "none";
+//            player_2_settings.style.display = "block";
+//        }
+//        else if(button_clicked === "human player"){
+//            settings_panel.style.display = "none";
+//            this.reportErrorToUser("Player 2 has been set to human player");
+//            this.fadeInfoBox();
+//            // find some way to inform user that player 2 is now a human player
+//                // maybe use the text area?
+//        }
+//        else if(button_clicked === "AI player"){
+//            player_2_settings.style.display = "none";
+//            AI_settings.style.display = "block";
+//        }
+//        else if(button_clicked === "AI difficulty"){
+//            settings_panel.style.display = "none";
+//            this.reportErrorToUser("Player 2 has been set to an AI player");
+//            this.fadeInfoBox();
+//        }
+//    };
     this.displaySignUpPage = function(){
         // all this method needs to do is hide the game board and display the sign up page
         var game_board = document.getElementById("test_board");

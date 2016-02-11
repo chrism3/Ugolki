@@ -334,7 +334,7 @@ svg{
     display: none;
 }
 
-#player_2_settings{
+#player_settings{
     background: rgb(14, 194, 164);
     display: none;
 }
@@ -350,6 +350,13 @@ svg{
     display: none;
 }
 
+#alter_player_1{
+    display: none;
+}
+
+#alter_player_2{
+    display: none;
+}
 
 #AI_settings{
     height: 100%;

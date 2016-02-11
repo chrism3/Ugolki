@@ -431,21 +431,33 @@ function testController(){
             console.log("sounds img was clicked");
             test_view.toogleSoundSettings();
         });
-        test_view.setHumanPlayerClickCallback(function() {
-            console.log("human player button was clicked");
-            test_model.setPlayerTwoType("human");
-            test_view.updateSettingsPanel("human player");
-        });
-        test_view.setAIPlayerClickCallback(function() {
-            console.log("AI player was clicked");
-            test_view.updateSettingsPanel("AI player");
-        });
+//        
+//        these will be used eventually, not sure when i'll get round to them though
+//        
+//        test_view.setHumanPlayerClickCallback(function() {
+//            console.log("human player button was clicked");
+//            test_model.setPlayerTwoType("human");
+//            test_view.updateSettingsPanel("human player");
+//        });
+//        test_view.setAIPlayerClickCallback(function() {
+//            console.log("AI player was clicked");
+//            test_view.updateSettingsPanel("AI player");
+//        });
         test_view.setSimpleAIClickCalback(function() {
             console.log("simple AI clicked");
             test_model.setAIType("simpleAI");
             test_model.setPlayerTwoType("AI");
             test_view.updateSettingsPanel("AI difficulty");
         });
+        test_view.setPlayer1OptionsClickCallback( function(){
+            console.log("player 1 options has been clicked");
+            // add the code here to toggle the settings panel
+        });
+        test_view.setPlayer2OptionsClickCallback( function() {
+            console.log("player 2 options has been clicked");
+        });
+        
+        
         test_view.setSignUpClickCallback(function(){
             //console.log("this is where we call the sign up screen");
             test_view.displaySignUpPage();
