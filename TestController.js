@@ -589,6 +589,13 @@ function testController(){
            
            if(is_game_over !== "no winner"){
                // might change game to game_over
+               
+               /* want to put a transparent div over the screen, that offers option to start new game
+                * advantage of doing this is that it will stop the players from being able to move the
+                * elements on the board after someone has won. 
+                */
+               test_view.endGame();
+               
                test_view.reportErrorToUser(is_game_over + " is the winner", "game");
                // this is where we will need to call the code that will update the database with the results. 
                if(test_model.getSignedIn()){

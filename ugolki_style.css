@@ -385,3 +385,13 @@ svg{
     margin-top: 15%;
     text-align: center;
 }
+
+#game_over{
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    display: none;
+}

@@ -1051,8 +1051,19 @@ function testView(){
         return login_details;
     };
     
+    // gets the name of the player who has been logged in
     this.getLoggedInPlayerName = function(){
         return document.getElementById("player_1_type").value;
+    };
+    
+    // puts the blank screen over the top of the screen so that the user can't move the game pieces
+    this.endGame = function(){
+        document.getElementById("game_over").style.display = "block";
+    };
+    
+    // unimplemented... will be used to start a new game
+    this.newGame = function(){
+        
     };
 }
 
