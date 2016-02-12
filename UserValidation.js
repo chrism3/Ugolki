@@ -132,9 +132,40 @@ function detailsValidation(){
     // this is the method that calls the php to update the database after a game has been won
     this.statsUpdateValidation = function(user_details){
         console.log(user_details[0] + "    " + user_details[1]);
+        // this if else, validate which player won and calls the correct php
         if(user_details[0] === user_details[1]){
-            
+            // call the method to handle the php call for a win
+            this.addWin(user_details[0]);
         }
+        else{
+            // call the method to handle the php call for a loss
+            this.addLoss(user_details[0]);
+        }
+    };
+    
+    // this is where the addWinToDB.php page is called.
+    this.addWin = function(player){
+        var xmlhttp;
+        if(window.XMLHttpRequest){
+            // chrome, firefox, safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else{
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        // remember to create the php page
+        xmlhttp.open("POST", "addWinToDB.php", false);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.onreadystatechange = function () {
+            
+        };
+        xmlhttp.send(player);
+    };
+    
+    // this is where the addLossToDB.php page is called
+    this.addLoss = function(){
+        
     };
     
     this.getSignInStatus = function(){

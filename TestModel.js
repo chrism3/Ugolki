@@ -413,8 +413,8 @@ function testModel() {
         }
         
         else{
-            return "no winner";
-            //return "player 1";
+            //return "no winner";
+            return "player 1";
         }
         
     };
