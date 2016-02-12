@@ -146,6 +146,7 @@ function detailsValidation(){
     // this is where the addWinToDB.php page is called.
     this.addWin = function(player){
         var xmlhttp;
+        var username = "username=" + player;
         if(window.XMLHttpRequest){
             // chrome, firefox, safari
             xmlhttp = new XMLHttpRequest();
@@ -160,12 +161,28 @@ function detailsValidation(){
         xmlhttp.onreadystatechange = function () {
             
         };
-        xmlhttp.send(player);
+        xmlhttp.send(username);
     };
     
     // this is where the addLossToDB.php page is called
-    this.addLoss = function(){
-        
+    this.addLoss = function(player){
+        var xmlhttp;
+        var username = "username=" + player;
+        if(window.XMLHttpRequest){
+            // chrome, firefox, safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else{
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        // remember to create the php page
+        xmlhttp.open("POST", "addLossToDB.php", false);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.onreadystatechange = function () {
+            
+        };
+        xmlhttp.send(username);
     };
     
     this.getSignInStatus = function(){
