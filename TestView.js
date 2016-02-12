@@ -1071,7 +1071,7 @@ function testView(){
         return document.getElementById("player_1_type").value;
     };
     this.getPlayerTwo = function(){
-        return document.getElementByid("player_2_type").value;
+        return document.getElementById("player_2_type").value;
     };
 }
 

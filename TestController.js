@@ -617,18 +617,19 @@ function testController(){
                    // this means that there is a player signed in. 
                }
            }
-
-           if(test_model.getPlayerTwoType() === "AI"){
-              test_model.checkAIType();
-              console.log("about to get the id");
-              test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()));
-              var AI_move = test_model.getAIChoosenMove();
-              test_model.updateModelWithAIMove();
-              test_view.movePiece2(AI_move.getX(), AI_move.getY());
-              //test_view.highlightMovedAIPiece();
-              // need to recall this... not sure if it will be necessary but it is just now
-              test_model.resetForNextMove();              
-           }
+           else{
+                if(test_model.getPlayerTwoType() === "AI"){
+                   test_model.checkAIType();
+                   console.log("about to get the id");
+                   test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()));
+                   var AI_move = test_model.getAIChoosenMove();
+                   test_model.updateModelWithAIMove();
+                   test_view.movePiece2(AI_move.getX(), AI_move.getY());
+                   //test_view.highlightMovedAIPiece();
+                   // need to recall this... not sure if it will be necessary but it is just now
+                   test_model.resetForNextMove();              
+                }
+            }
         };
     };
 }
