@@ -60,7 +60,7 @@ button{
 }
 
 #game_info{
-    height: 5%;
+    height: 7.5%;
     width: 100%;
     background: transparent; 
     display: block;
@@ -86,8 +86,8 @@ button{
     border: 0;
     margin: 0;
     padding-top: 2%;
-    height: 100%;
-    width: 50%;
+    height: 50%;
+    width: 100%;
     resize: none;
     text-align: center;
     float: left;
@@ -194,8 +194,6 @@ button{
     height: 65%;
     width: 82%;
     margin-left: 9%;
-    margin-top: 2%;
-    color: blue;
 }
 
 .white_square{
@@ -251,7 +249,7 @@ svg{
 #info_div{
     height: 7%;
     width: 100%;
-    margin-top: 2%;
+    margin-top: 1%;
     opacity: 0.9;
     display: none;
 }
