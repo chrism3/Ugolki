@@ -596,6 +596,21 @@ function testController(){
                 */
                test_view.endGame();
                
+               // if a player is signed in want to update database when a player wins
+               if(test_model.getSignedIn()){
+                   var winner;
+                   var player_name = test_model.getLoggedInPlayer();
+                   if(is_game_over === "player 1"){
+                       winner = test_view.getPlayerOne();
+                   }
+                   else{
+                       winner = test_view.getPlayerTwo();
+                   }
+                   var details = [player_name, winner];
+                   
+                   test_model.validation(details, "stats");
+               }
+               
                test_view.reportErrorToUser(is_game_over + " is the winner", "game");
                // this is where we will need to call the code that will update the database with the results. 
                if(test_model.getSignedIn()){

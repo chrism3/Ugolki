@@ -129,6 +129,14 @@ function detailsValidation(){
         xmlhttp.send(table_entry);
     };
     
+    // this is the method that calls the php to update the database after a game has been won
+    this.statsUpdateValidation = function(user_details){
+        console.log(user_details[0] + "    " + user_details[1]);
+        if(user_details[0] === user_details[1]){
+            
+        }
+    };
+    
     this.getSignInStatus = function(){
         return sign_in_status;
     };

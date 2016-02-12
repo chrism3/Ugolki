@@ -432,8 +432,12 @@ function testModel() {
             validate.loginValidation(user_details);
             status = validate.getLoginStatus();
         }
-        // hopefully will have more of these to do, not sure yet?
-        
+        else if(validation_status === "stats"){
+            // maybe not the best way to do this, stats doesn't really need validation?
+            var validate = new detailsValidation();
+            validate.statsUpdateValidation(user_details);
+            // not sure what will needed to be returned here... if anything
+        }
         return status;
     };
     

@@ -1065,6 +1065,14 @@ function testView(){
     this.newGame = function(){
         
     };
+    
+    // method to get the name displayed as player 1
+    this.getPlayerOne = function(){
+        return document.getElementById("player_1_type").value;
+    };
+    this.getPlayerTwo = function(){
+        return document.getElementByid("player_2_type").value;
+    };
 }
 
 
