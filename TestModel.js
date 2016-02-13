@@ -414,8 +414,8 @@ function testModel() {
         
         else{
             //return "no winner";
-            return "player 1";
-            //return "player 2";
+            //return "player 1";
+            return "player 2";
         }
         
     };
