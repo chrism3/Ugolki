@@ -845,24 +845,23 @@ function testView(){
         // this is the default colour i need to use
         selected_piece.style.stroke = "rgb(8, 146, 208)";
         if(selected_piece.attributes.class.value === "brown_circles"){
-        var interval_count = 0;
-        var highlight_moved_piece = setInterval(function () {
-            interval_count++;
-            if(selected_piece.style.stroke === "rgb(8, 146, 208)"){
-                selected_piece.style.stroke = "rgb(0,0,0)";
-            }
-            else{
-               selected_piece.style.stroke = "rgb(8, 146, 208)"; 
-            }
-            if(interval_count >= 11){
-                clearInterval(highlight_moved_piece);
-            }
-        }, 250);
+            var interval_count = 0;
+            var highlight_moved_piece = setInterval(function () {
+                interval_count++;
+                if(selected_piece.style.stroke === "rgb(8, 146, 208)"){
+                    selected_piece.style.stroke = "rgb(0,0,0)";
+                }
+                else{
+                   selected_piece.style.stroke = "rgb(8, 146, 208)"; 
+                }
+                if(interval_count >= 11){
+                    clearInterval(highlight_moved_piece);
+                }
+            }, 250);
         };
     };
     
-    // this method is responisble for making the settings panel visible
-    
+    // this method is responisble for making the settings panel visible    
     this.toggleGeneralSettings = function(){
         var current_settings_panel = this.getCurrentSettingsPanel();
         //console.log(current_settings_panel);
