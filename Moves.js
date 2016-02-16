@@ -32,6 +32,7 @@ function findMoves(){
         }
     };
     this.moveUp = function(above, x_coord, piece) {
+        console.log(piece);
         if (above >= 0 && board[x_coord][above] === 0) {
             var move = new possibleMove;
             move.newMove(x_coord, above, piece);
@@ -59,8 +60,8 @@ function findMoves(){
                 console.log("adding jump right");
                 var move = new possibleMove;
                 move.newMove(right+1, y_coord, piece);
-                possible_moves.push(move);
-                //possible_jumps.push(move);
+                //possible_moves.push(move);
+                possible_jumps.push(move);
             }
         }
     };    
@@ -92,20 +93,21 @@ function findMoves(){
                 console.log("adding jump left");
                 var move = new possibleMove;
                 move.newMove(left-1, y_coord, piece);
-                possible_moves.push(move);
-                //possible_jumps.push(move);
+                //possible_moves.push(move);
+                possible_jumps.push(move);
             }
         }        
     }; 
     
     this.jumpUp = function(above, x_coord, piece){
+        console.log("jump up called... above = " + above);
         if(above-1 >= 0 && board[x_coord][above] !== 0){
             if(above-1 >= 0 && board[x_coord][above - 1] === 0){
                 console.log("adding jump above");
                 var move = new possibleMove;
                 move.newMove(x_coord, above-1, piece);
-                possible_moves.push(move);
-                //possible_jumps.push(move);
+                //possible_moves.push(move);
+                possible_jumps.push(move);
             }
         }
     };
@@ -132,13 +134,14 @@ function findMoves(){
 //    };
     
     this.jumpDown = function(below, x_coord, piece){
+        //console.log("jump down has been called");
         if(below+1 < board.length && board[x_coord][below] !== 0){
             if(below+1 < board.length && board[x_coord][below + 1] === 0){
                 console.log("adding jump below");
                 var move = new possibleMove;
                 move.newMove(x_coord, below+1, piece);
-                //possible_jumps.push(move);
-                possible_moves.push(move);
+                possible_jumps.push(move);
+                //possible_moves.push(move);
             }
         }        
     };
@@ -153,6 +156,8 @@ function findMoves(){
         var possible_move_coords = new Array(); 
         possible_move_coords.push(current_coords);
        
+       var test = this.getPossibleJumps().length;
+       console.log("is the length being cleared: " + test);
         
         // need a visited list to keep track of squares all ready checked
         var visited_locations = new Array();
@@ -179,7 +184,7 @@ function findMoves(){
             }
             var right = x + 1;
             var left = x - 1;
-            var above = y -1;
+            var above = y - 1;
             var below = y + 1;
 //            this.moveRight(right, y);
 //            this.moveLeft(left, y);

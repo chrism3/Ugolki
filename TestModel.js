@@ -95,16 +95,16 @@ function testModel() {
             find_moves.moveLeft(left, y_coord);
             find_moves.moveUp(above, x_coord);
             find_moves.moveDown(below, x_coord);
-            find_moves.jumpRight(right, y_coord);
-            find_moves.jumpLeft(left, y_coord);
-            find_moves.jumpUp(above, x_coord);
-            find_moves.jumpDown(below, x_coord);
+//            find_moves.jumpRight(right, y_coord);
+//            find_moves.jumpLeft(left, y_coord);
+//            find_moves.jumpUp(above, x_coord);
+//            find_moves.jumpDown(below, x_coord);
             
             /*
              * multipe jump is a pretty cool feature, but the way its programmed right now
              * can be pretty slow. will come back to it to try find a faster way to do it
              */
-            //find_moves.multipleJump2(x_coord, y_coord, right, left, above, below);
+            find_moves.multipleJump2(x_coord, y_coord, right, left, above, below);
             possible_moves = find_moves.getPossibleMoves();
         }
         else{
@@ -413,9 +413,7 @@ function testModel() {
         }
         
         else{
-            //return "no winner";
-            //return "player 1";
-            return "player 2";
+            return "no winner";
         }
         
     };

@@ -29,6 +29,6 @@ function possibleMove(){
     
     this.getPieceToMove = function(){
         return piece_to_move;
-    }
+    };
     
 }

@@ -139,7 +139,7 @@ function detailsValidation(){
         }
         else{
             // call the method to handle the php call for a loss
-            console.log("signed in player has lost")
+            //console.log("signed in player has lost")
             this.addLoss(user_details[0]);
         }
     };
