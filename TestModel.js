@@ -104,7 +104,7 @@ function testModel() {
              * multipe jump is a pretty cool feature, but the way its programmed right now
              * can be pretty slow. will come back to it to try find a faster way to do it
              */
-            find_moves.multipleJump2(x_coord, y_coord);
+            find_moves.multipleJump3(x_coord, y_coord);
             possible_moves = find_moves.getPossibleMoves();
         }
         else{

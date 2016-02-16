@@ -204,7 +204,7 @@ function findMoves(){
             console.log("length of visited squares before function call " + visited_locations.length);
             for(var i = 0; i < moves_found.length; i++){
                 console.log(i);
-                    if(!this.containsMove(visited_locations, moves_found, i)){
+                    if(!this.containsMove(possible_moves, moves_found, i)){
                     var new_move_coord = new Array();
                     new_move_coord[0] = moves_found[i].getX();
                     new_move_coord[1] = moves_found[i].getY();
@@ -250,10 +250,60 @@ console.log("visited_locations.length = " + visited_locations.length);
         // loop round while coords is not empty
         while(coords.length > 0){
             // check if the first index is all ready visited, if not add it to visited list
-            if(!this.isVisited(new Array(coords[0][0], coords[0][1]), visited_locations));
+            if(!this.isVisited(new Array(coords[0][0], coords[0][1]), visited_locations)){
+                console.log("adding new location");
+                visited_locations.push(new Array(coords[0][0], coords[0][1]));
+                
+                /*
+                 * now that the coords are added to the visited list, want to find all 
+                 * possible jump moves form this location
+                 */  
+                // get the necessary values
+                var right = xcoord + 1;
+                var left = xcoord - 1;
+                var above = ycoord - 1;
+                var below = ycoord + 1;
+                // call the jump methods
+                this.jumpRight(right, ycoord);
+                this.jumpLeft(left, ycoord);
+                this.jumpUp(above, xcoord);
+                this.jumpDown(below, xcoord);
+                // get the jumps found
+                moves_found = this.getPossibleJumps();
+                console.log("moves_found.length = " + moves_found.length);
+                for(var i = 0; i < moves_found.length; i++){
+                    var x_val = moves_found[i].getX();
+                    var y_val = moves_found[i].getY();
+                    console.log("found: " + x_val + "," + y_val);
+                }
+                
+                /*
+                 * need to check if the moves that have been found are locations that 
+                 * have already been explored
+                 */
+                for(var i = 0; i < moves_found.length; i++){
+                    console.log(this.containsMove(possible_moves, moves_found[i]));
+                    if(!this.containsMove(possible_moves, moves_found[i])){
+                        console.log("after the if statement: " + i);
+                        var move = new possibleMove;
+                        move.newMove(moves_found[i].getX(), moves_found[i].getY());
+                        possible_moves.push(move);
+                        coords.push(move);
+                    }
+                }
+            }
             
             // remove the first instance from the array
+            console.log("first value: " + coords[0]);
             coords.shift();
+            console.log("after shift, first 0: " + coords[0]);
+            console.log(coords.length + " is the current length of coords");
+            console.log(possible_moves.length);
+            for(var i = 0; i < possible_moves.length; i++){
+                var text_x = possible_moves[i].getX();
+                var text_y = possible_moves[i].getY();
+                console.log("move coords: " + text_x + "," + text_y);
+            }
         }
         
         
@@ -308,16 +358,16 @@ console.log("visited_locations.length = " + visited_locations.length);
 //        return has_been_visited;
 //    };
 
-    this.containsMove = function(visited_squares, moves_found, index){
+    this.containsMove = function(visited_squares, move){
         //var has_been_visited = false;
         
         for(var i = 0; i < visited_squares.length; i++){
             var current_x = visited_squares[i][0];
             var current_y = visited_squares[i][1];
-                var check_x = moves_found[index].getX();
-                var check_y = moves_found[index].getY();
-                console.log("compareing x values " + current_x + " and " + check_x);
-                console.log("comparing y values " + current_y + " and " + check_y);
+                var check_x = move.getX();
+                var check_y = move.getY();
+//                console.log("compareing x values " + current_x + " and " + check_x);
+//                console.log("comparing y values " + current_y + " and " + check_y);
                 if(current_x === check_x && current_y === check_y){
                     return true;
                     break;
