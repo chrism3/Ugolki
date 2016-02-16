@@ -146,7 +146,7 @@ function findMoves(){
         }        
     };
     
-    this.multipleJump2 = function(x_coord, y_coord, right, left, above, below){
+    this.multipleJump2 = function(x_coord, y_coord){
         var current_x = x_coord;
         var current_y = y_coord;
         
@@ -181,7 +181,7 @@ function findMoves(){
             if(!this.isVisited(visited, visited_locations)){
                 //console.log("pushing to visited list");
                 visited_locations.push(visited);
-            }
+            
             var right = x + 1;
             var left = x - 1;
             var above = y - 1;
@@ -195,9 +195,15 @@ function findMoves(){
             this.jumpUp(above, x);
             this.jumpDown(below, x);
             var moves_found = this.getPossibleJumps();
+            for(var i = 0; i < moves_found.length; i++){
+                var x = moves_found[i].getX();
+                var y = moves_found[i].getY();
+                console.log("Move location has coords: " + x + "," + y);
+            }
             console.log("length of found moves before function call " + moves_found.length);
             console.log("length of visited squares before function call " + visited_locations.length);
             for(var i = 0; i < moves_found.length; i++){
+                console.log(i);
                     if(!this.containsMove(visited_locations, moves_found, i)){
                     var new_move_coord = new Array();
                     new_move_coord[0] = moves_found[i].getX();
@@ -214,14 +220,42 @@ function findMoves(){
             possible_move_coords.splice(0, 1);
             //console.log("At first index: " + possible_move_coords[0][0] + "," + possible_move_coords[0][1]);
             console.log("after splice " + possible_move_coords.length);
-            for(var i = 0; i < possible_move_coords.length; i++){
-                console.log("Coords at index: " + i + " = " +possible_move_coords[i][0] + "," + possible_move_coords[i][1]);
-            }
+//            for(var i = 0; i < possible_move_coords.length; i++){
+//                console.log("Coords at index: " + i + " = " +possible_move_coords[i][0] + "," + possible_move_coords[i][1]);
+//            }
+console.log("possible_moves.length = " + possible_moves.length);
+console.log("visited_locations.length = " + visited_locations.length);
             
             
 //        }
 //        count++;
         }
+    }
+        
+        
+    };
+    
+    this.multipleJump3 = function(xcoord, ycoord){
+        var visited_locations = new Array();
+        var moves_found = new Array();
+        var coords = new Array; // is this actually needed
+        
+        // add xcoord and ycoord to the current cords array
+        var current_coords = new Array();        
+        current_coords[0] = xcoord;
+        current_coords[1] = ycoord;
+        // add the current coords to the coords array
+        coords.push(current_coords);
+        
+        // loop round while coords is not empty
+        while(coords.length > 0){
+            // check if the first index is all ready visited, if not add it to visited list
+            if(!this.isVisited(new Array(coords[0][0], coords[0][1]), visited_locations));
+            
+            // remove the first instance from the array
+            coords.shift();
+        }
+        
         
         
         
@@ -286,6 +320,7 @@ function findMoves(){
                 console.log("comparing y values " + current_y + " and " + check_y);
                 if(current_x === check_x && current_y === check_y){
                     return true;
+                    break;
                 }               
         }
         return false;
