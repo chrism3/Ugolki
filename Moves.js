@@ -294,17 +294,19 @@ console.log("visited_locations.length = " + visited_locations.length);
             }
             
             // remove the first instance from the array
-            console.log("first value: " + coords[0]);
+            //console.log("first value: " + coords[0]);
             coords.shift();
-            console.log("after shift, first 0: " + coords[0]);
-            console.log(coords.length + " is the current length of coords");
-            console.log(possible_moves.length);
-            for(var i = 0; i < possible_moves.length; i++){
-                var text_x = possible_moves[i].getX();
-                var text_y = possible_moves[i].getY();
-                console.log("move coords: " + text_x + "," + text_y);
-            }
+            //console.log("after shift, first 0: " + coords[0]);
+            //console.log(coords.length + " is the current length of coords");
+
+
         }
+//        console.log(possible_moves.length);
+//        for(var i = 0; i < possible_moves.length; i++){
+//            var text_x = possible_moves[i].getX();
+//            var text_y = possible_moves[i].getY();
+//            console.log("move coords: " + text_x + "," + text_y);
+//        }
         
         
         
@@ -366,13 +368,15 @@ console.log("visited_locations.length = " + visited_locations.length);
             var current_y = visited_squares[i][1];
                 var check_x = move.getX();
                 var check_y = move.getY();
-//                console.log("compareing x values " + current_x + " and " + check_x);
-//                console.log("comparing y values " + current_y + " and " + check_y);
+                console.log("compareing x values " + current_x + " and " + check_x);
+                console.log("comparing y values " + current_y + " and " + check_y);
                 if(current_x === check_x && current_y === check_y){
+                    //console.log("contains move... not add move with coords: " + check_x + "," + check_y);
                     return true;
                     break;
                 }               
         }
+        console.log("doesnt contain move... adding new move with coords: " + check_x + "," + check_y);
         return false;
     };
     
