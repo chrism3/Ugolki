@@ -106,6 +106,7 @@ function testModel() {
              */
             find_moves.multipleJump2(x_coord, y_coord);
             possible_moves = find_moves.getPossibleMoves();
+            console.log("in the model possible moves length: " + possible_moves.length);
         }
         else{
             find_moves_successful = false;
