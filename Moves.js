@@ -225,6 +225,7 @@ function findMoves(){
             }
             //console.log("before splice " + possible_move_coords.length);
             possible_move_coords.splice(0, 1);
+            possible_jumps.splice(0, possible_jumps.length);
             //console.log("At first index: " + possible_move_coords[0][0] + "," + possible_move_coords[0][1]);
             //console.log("after splice " + possible_move_coords.length);
 //            for(var i = 0; i < possible_move_coords.length; i++){
@@ -298,8 +299,9 @@ function findMoves(){
                 
                // need to check if every has all ready been visited                
                 for(var i = 0; i < moves_found.length; i++){
-                     var visited = new Array()
-                     visited.push(new Array(coords[0][0], coords[0][1]))
+                    console.log("the move is: " + moves_found[i].getX() + "," + moves_found[i].getY());
+                     var visited = new Array();
+                     visited.push(new Array(coords[0][0], coords[0][1]));
                      console.log("length of visited: " + visited.length);
                     // check to see if the square of the move has all ready been visited
                     console.log("the current value of i is: " + i);
@@ -351,6 +353,11 @@ function findMoves(){
                 console.log("coords at first index: " + coords[0][0] + "," + coords[0][1]);
             }
             count++;
+            /*
+             * need to clear the jump_moves, this is because the array is global, and is remembering
+             * the values that should ne be rememebered?
+             */
+            possible_jumps.splice(0, possible_jumps.length);
         }
         console.log(possible_moves.length);
             for(var i = 0; i < possible_moves.length; i++){
@@ -371,7 +378,7 @@ function findMoves(){
         console.log("getting possible jumps");
         return possible_jumps;
     };
-    
+     
     /*
      * made this emthod to check if the current square has all ready been visited,
      * bit messy but will hopefully work
