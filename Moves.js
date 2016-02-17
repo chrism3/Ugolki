@@ -290,7 +290,6 @@ function findMoves(){
                 for(var i = 0; i < moves_found.length; i++){
                     // check to see if the square of the move has all ready been visited
                     console.log("the current value of i is: " + i);
-                    if(moves_found[i].getX() !== undefined && moves_found[i].getY() !== undefined){
                     if(!this.containsMove(visited, moves_found[i])){
                             // this must therefore be an unsees possible move, add it to possible_moves
                             var move = new possibleMove();
@@ -303,7 +302,6 @@ function findMoves(){
                             console.log("added to coords value: " + moves_found[i].getX() + "," + moves_found[i].getY());
                             console.log("number of locations to check: " + coords.length);                        
                     }
-                }
                 }
                 
                 /*
