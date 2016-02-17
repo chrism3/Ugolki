@@ -278,20 +278,23 @@ function findMoves(){
                 console.log("adding new location with coord: " + coords[0][0] + "," + coords[0][1]);
                 visited_locations.push(new Array(coords[0][0], coords[0][1]));
                 
+                var x = coords[0][0];
+                var y = coords[0][1];
+                
                 /*
                  * now that the coords are added to the visited list, want to find all 
                  * possible jump moves form this location
                  */  
                 // get the necessary values
-                var right = xcoord + 1;
-                var left = xcoord - 1;
-                var above = ycoord - 1;
-                var below = ycoord + 1;
+                var right = x + 1;
+                var left = x - 1;
+                var above = y - 1;
+                var below = y + 1;
                 // call the jump methods
-                this.jumpRight(right, ycoord);
-                this.jumpLeft(left, ycoord);
-                this.jumpUp(above, xcoord);
-                this.jumpDown(below, xcoord);
+                this.jumpRight(right, y);
+                this.jumpLeft(left, y);
+                this.jumpUp(above, x);
+                this.jumpDown(below, x);
                 // get the jumps found
                 moves_found = this.getPossibleJumps();
                
@@ -357,6 +360,7 @@ function findMoves(){
              * need to clear the jump_moves, this is because the array is global, and is remembering
              * the values that should ne be rememebered?
              */
+            //console.log("possible_moves.length: " + possible_moves.length);
             possible_jumps.splice(0, possible_jumps.length);
         }
         console.log(possible_moves.length);
