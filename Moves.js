@@ -260,10 +260,18 @@ function findMoves(){
         // add the current coords to the coords array
         coords.push(current_coords);
         
+        console.log("current coords being added: " + coords[0][0], coords[0][1]);
+        
         var count = 0;
         // loop round while coords is not empty
         while(coords.length > 0){
             console.log(count + " is the iteration count of the loop");
+            console.log("coords needed to be used: " + coords[0][0] + "," + coords[0][1]);
+            console.log("how many visted locations: " + visited_locations.length);
+            for(var i = 0; i < visited_locations.length; i++){
+                //console.log(coords[i][0] + "," + coords[i][1]);
+                console.log(visited_locations[i]);
+            }
             // check if the first index is all ready visited, if not add it to visited list
             if(!this.isVisited(new Array(coords[0][0], coords[0][1]), visited_locations)){
                 console.log("adding new location with coord: " + coords[0][0] + "," + coords[0][1]);
@@ -286,11 +294,13 @@ function findMoves(){
                 // get the jumps found
                 moves_found = this.getPossibleJumps();
                
-              
+              console.log("number of moves found: " + moves_found.length);
                 
                // need to check if every has all ready been visited                
                 for(var i = 0; i < moves_found.length; i++){
-                     var visited = visited_locations;
+                     var visited = new Array()
+                     visited.push(new Array(coords[0][0], coords[0][1]))
+                     console.log("length of visited: " + visited.length);
                     // check to see if the square of the move has all ready been visited
                     console.log("the current value of i is: " + i);
                     if(!this.containsMove(visited, moves_found[i])){
