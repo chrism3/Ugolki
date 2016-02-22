@@ -120,7 +120,8 @@ function testView(){
         current_settings_panel = "none",
         top_offset,
         scale_size,
-        move_successful;
+        move_successful,
+        screen;
 
     // keeping this separate because i don't like it
     var selected_piece,
@@ -861,6 +862,36 @@ function testView(){
         };
     };
     
+     this.toggleSettings = function(settings_screen){
+        var new_panel;
+        if(settings_screen === "general"){
+            new_panel = document.getElementById("general_settings");
+        }
+        else if(settings_screen === "player"){
+            new_panel = document.getElementById("player_settings");
+        }
+        else if(settings_screen === "colour"){
+            new_panel = document.getElementById("colour_settings");
+        }
+        else if(settings_screen === "sound"){
+            new_panel = document.getElementById("sound_settings");
+        }
+        if(current_settings_panel !== "none" && current_settings_panel !== new_panel){
+            current_settings_panel.style.display = "none";
+            this.setCurrentSettingsPanel(new_panel);
+            new_panel.style.display = "block";
+        }
+        else if(current_settings_panel === "none"){
+            this.setCurrentSettingsPanel(new_panel);
+            new_panel.style.display = "block";
+        }
+        else if(current_settings_panel === new_panel){
+            this.setCurrentSettingsPanel("none");
+            new_panel.style.display = "none";
+        }
+     };
+    
+    
     // this method is responisble for making the settings panel visible    
     this.toggleGeneralSettings = function(){
         var current_settings_panel = this.getCurrentSettingsPanel();
@@ -1072,6 +1103,16 @@ function testView(){
     this.getPlayerTwo = function(){
         return document.getElementById("player_2_type").value;
     };
+    
+    // method to set which screen should be displayed
+    this.setScreenToDisplay = function(screen_to_display){
+        screen = screen_to_display;
+    };
+    
+    // method to get the current screen that is to be displayed
+    this.getScreenToDisplay = function(){
+        return screen;
+    }
 }
 
 

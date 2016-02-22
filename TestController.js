@@ -417,19 +417,27 @@ function testController(){
         test_view.setMenuImgClickCallback(function (){
             console.log("menu option clicked");
             //test_view.toggleSettingsPanel();
-            test_view.toggleGeneralSettings();
+            //test_view.toggleGeneralSettings();
+            test_view.setScreenToDisplay("general");
+            test_view.toggleSettings(test_view.getScreenToDisplay());
         });
         test_view.setPlayerImgClickCallback(function (){
             console.log("player 2 button was clicked");
-            test_view.tooglePlayerSettings();
+            //test_view.tooglePlayerSettings();
+            test_view.setScreenToDisplay("player");
+            test_view.toggleSettings(test_view.getScreenToDisplay());
         });
         test_view.setColoursImgClickCallback(function (){
            console.log("colours img was clicked"); 
-           test_view.toogleColourSettings();
+           //test_view.toogleColourSettings();
+            test_view.setScreenToDisplay("colour");
+            test_view.toggleSettings(test_view.getScreenToDisplay());
         });
         test_view.setSoundImgClickCallback( function(){
             console.log("sounds img was clicked");
-            test_view.toogleSoundSettings();
+            //test_view.toogleSoundSettings();
+            test_view.setScreenToDisplay("sound");
+            test_view.toggleSettings(test_view.getScreenToDisplay());
         });
 //        
 //        these will be used eventually, not sure when i'll get round to them though
