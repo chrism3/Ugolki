@@ -468,7 +468,7 @@ function testView(){
     this.setPlayer2OptionsClickCallback = function (callback){
         var player_2_options = document.getElementById("player_2_settings");
         player_2_options.addEventListener("click", callback);
-    }
+    };
     
     // this is the callback for the actual sign up button in the sign in page
     this.setSignUpButtonClickCallback = function (callback){
@@ -501,28 +501,12 @@ function testView(){
     };
     
     this.movePiece2 = function(new_x, new_y){
-        // might not need to recall the resetDefaultBoardColours
-          //selected_piece.style.stroke = "rgb(0,0,0)";
-
-         
-         console.log("New x and y coords (view movePiece2): " + new_x + "   " + new_y);
          if(new_x >= 0 && new_y >=0){
          for(var i = 0; i < screen_to_board_map.length; i++ ){
              for(var j = 0; j < screen_to_board_map.length; j++){
                  if(screen_to_board_map[i][j] !== undefined){
                      if(screen_to_board_map[i][j][0].attributes.id.value ===
                             selected_piece.attributes.id.value){
-//                        if(screen_to_board_map[i][j][0].attributes.class.value ===
-//                                "white_circles"){                           
-//                            screen_to_board_map[i][j][0].setAttribute("cx", (new_x * ((scale_size)) + left_offset) + (0.5 * scale_size));
-//                            screen_to_board_map[i][j][0].setAttribute("cy", ((scale_size) * new_y + (top_offset)) + (0.5 * scale_size));
-//                        }
-//                        else {
-//                            screen_to_board_map[i][j][0].setAttribute("cx", ((scale_size) * new_x + (left_offset)) + (0.5 * scale_size));
-//                            screen_to_board_map[i][j][0].setAttribute("cy", (new_y * ((scale_size)) + top_offset) + (0.5 * scale_size));
-//                        }
-                          
-                          // reposition the players choosen piece
                           screen_to_board_map[i][j][0].setAttribute("cx", ((scale_size) * new_x) + (0.5 * scale_size));
                           screen_to_board_map[i][j][0].setAttribute("cy", (new_y * ((scale_size)) + top_offset) + (0.5 * scale_size));
                           // get the necesssary info that had to be moved
@@ -539,7 +523,6 @@ function testView(){
          }
      }
      else{
-         //console.log("movePiece2 (view): don't move the piece");
          move_successful = false;
      }
 
@@ -548,9 +531,6 @@ function testView(){
     
      // this is a method to scale the board to the correct size
     this.scaleBoardToScreen = function(screen_height, screen_width, squares_per_row){
-        //console.log("got this far");
-        //console.log("screen height: " + screen_height);       
-        
         // currently hard coded, will need to change this at some point
         squares_per_row = 8;
         
@@ -605,9 +585,6 @@ function testView(){
                 
                 // add the value to the map
                 screen_to_board_map[count][white_circle_offset] = new Array(white_circles[i], "white");
-               // console.log(screen_to_board_map[count][white_circle_offset+1]);
-               //console.log(count + "    " + white_circle_offset);
-               //console.log(screen_to_board_map[count][white_circle_offset][0].attributes.id.value);
                 count++;
             }
             else {
@@ -617,8 +594,6 @@ function testView(){
                 white_circles[i].setAttribute("cy", ((scale_size) * white_circle_offset + (top_offset)) + (0.5 * scale_size));
                 //add the circle to the map
                 screen_to_board_map[count][white_circle_offset] = new Array(white_circles[i], "white");
-                //console.log(count + "    " + white_circle_offset);
-                //console.log(screen_to_board_map[count][white_circle_offset][0].attributes.id.value);
                 count++;
             }            
        }
@@ -636,7 +611,6 @@ function testView(){
            brown_circles[i].setAttribute ("r", 0.4 * (scale_size));
            
            if(count < 4){ // value 1 needs to be changed to 0.5 * no_of_cols
-               //console.log("brown_circle_" + (i+1) + " in location: " + brown_circle_offset + "," + count);
                brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset) + (0.5 * scale_size));
                brown_circles[i].setAttribute("cy", (count * ((scale_size)) + top_offset) + (0.5 * scale_size));
                screen_to_board_map[brown_circle_offset][count] = new Array(brown_circles[i], "black");
@@ -645,7 +619,6 @@ function testView(){
            else{
                count = 0;
                brown_circle_offset--;
-               //console.log("brown_circle_" + (i+1) + " in location: " + brown_circle_offset + "," + count);
                brown_circles[i].setAttribute("cx", ((scale_size) * brown_circle_offset) + (0.5 * scale_size));
                brown_circles[i].setAttribute("cy", (count * ((scale_size)) + top_offset) + (0.5 * scale_size));
                screen_to_board_map[brown_circle_offset][count] = new Array(brown_circles[i], "black");
@@ -668,7 +641,6 @@ function testView(){
                 all_squares[i].style.y = (row_count) * scale_size + top_offset;
                 squares_array[col_count][row_count] = all_squares[i];
                 col_count ++;
-                //console.log(col_count * scale_size + " , " + (row_count) * scale_size);
             }
             else {
                 col_count = 0;
@@ -707,7 +679,6 @@ function testView(){
                 }
             }
         }
-        //console.log(coordinates[0] + "       " + coordinates[1]);
         return coordinates;
     };
     
@@ -747,7 +718,6 @@ function testView(){
         // not sure why this would be needed, might change it. 
         for(var i = 0; i < all_circles.length; i++){
             if(all_circles[i].attributes.class.value === "white_circles"){
-               // console.log("this circle is white");
                 all_circles[i].style.fill = "rgb(255, 235, 205);";
             }
             else{
@@ -758,8 +728,6 @@ function testView(){
     };
     
     this.getWhiteCircleCoordinates = function(circle_id){
-        //var circle_id = "white_circle_" + id_number;
-        console.log(circle_id);
         var white_circles = document.getElementsByClassName("white_circles");
         var circle;
         for(var i = 0; i < white_circles.length; i++){
@@ -801,7 +769,6 @@ function testView(){
             this.fadeInfoBox(text_area_div);
         }
         else if(screen_condition === "login"){
-            console.log("i'm doing this bit")
             var text_area = document.getElementById("login_error_textarea");
             var text_area_div = document.getElementById("login_error");
             text_area.value = message_to_display;
@@ -814,9 +781,7 @@ function testView(){
     };
     
     this.fadeInfoBox = function(text_area_div){
-        //var text_area_div = document.getElementById("info_div");
-        var opacity = window.getComputedStyle(text_area_div).getPropertyValue("opacity");
-        
+        var opacity = window.getComputedStyle(text_area_div).getPropertyValue("opacity");        
         var interval_count = 0;
         var fade_out = setInterval(function () {
             interval_count++;
@@ -891,125 +856,7 @@ function testView(){
         }
      };
     
-    
-    // this method is responisble for making the settings panel visible    
-    this.toggleGeneralSettings = function(){
-        var current_settings_panel = this.getCurrentSettingsPanel();
-        //console.log(current_settings_panel);
-        var general_settings = document.getElementById("general_settings");
-        console.log(current_settings_panel);
-        if(current_settings_panel !== "none" && current_settings_panel !== general_settings){
-            current_settings_panel.style.display = "none";
-            this.setCurrentSettingsPanel(general_settings);
-            general_settings.style.display = "block";
-        }
-        else if(current_settings_panel === "none"){
-            this.setCurrentSettingsPanel(general_settings);
-            general_settings.style.display = "block";
-        }
-        else if(current_settings_panel === general_settings){
-            this.setCurrentSettingsPanel("none");
-            general_settings.style.display = "none";
-        }        
-    };
-    
-    this.tooglePlayerSettings = function(){
-        var current_settings_panel = this.getCurrentSettingsPanel();
-        var player_settings = document.getElementById("player_settings");
-        if(current_settings_panel !== "none" && current_settings_panel !== player_settings){
-            current_settings_panel.style.display = "none";
-            this.setCurrentSettingsPanel(player_settings);
-            player_settings.style.display = "block";
-        }
-        else if(current_settings_panel === "none"){
-            this.setCurrentSettingsPanel(player_settings);
-            player_settings.style.display = "block";
-        }
-        else if(current_settings_panel === player_settings){
-            this.setCurrentSettingsPanel("none");
-            player_settings.style.display = "none";
-        }
-    };
-    
-    this.toogleColourSettings = function(){
-        var current_settings_panel = this.getCurrentSettingsPanel();
-        var colour_settings = document.getElementById("colour_settings");
-        if(current_settings_panel !== "none" && current_settings_panel !== colour_settings){
-            current_settings_panel.style.display = "none";
-            this.setCurrentSettingsPanel(colour_settings);
-            colour_settings.style.display = "block";
-        }
-        else if(current_settings_panel === "none"){
-            this.setCurrentSettingsPanel(colour_settings);
-            colour_settings.style.display = "block";
-        }
-        else if(current_settings_panel === colour_settings){
-            this.setCurrentSettingsPanel("none");
-            colour_settings.style.display = "none";
-        }
-    };
-    
-        
-    this.toogleSoundSettings = function(){
-        var current_settings_panel = this.getCurrentSettingsPanel();
-        var sound_settings = document.getElementById("sound_settings");
-        if(current_settings_panel !== "none" && current_settings_panel !== sound_settings){
-            current_settings_panel.style.display = "none";
-            this.setCurrentSettingsPanel(sound_settings);
-            sound_settings.style.display = "block";
-        }
-        else if(current_settings_panel === "none"){
-            this.setCurrentSettingsPanel(sound_settings);
-            sound_settings.style.display = "block";
-        }
-        else if(current_settings_panel === sound_settings){
-            this.setCurrentSettingsPanel("none");
-            sound_settings.style.display = "none";
-        }
-    };
-    
-    this.toggleSettingsPanel = function(){
-        var settings_panel = document.getElementById("general_settings");
-        var settings_options = document.getElementById("main_settings");
-        if(settings_panel.style.display !== "block"){
-            console.log("showing the panel");
-            settings_panel.style.display = "block";
-            settings_options.style.display = "block";
-        }
-        else{
-            settings_panel.style.display = "none";
-            settings_options.style.display = "none";
-        }
-    };
-    
-//    this.updateSettingsPanel = function(button_clicked){
-//        var settings_panel = document.getElementById("settings_panel");
-//        var settings_options = document.getElementById("main_settings");
-//        var player_2_settings = document.getElementById("player_2_settings");
-//        var AI_settings = document.getElementById("AI_settings");
-//        console.log("got here: condition = " + button_clicked);
-//        if(button_clicked === "player 2"){
-//            console.log("player 2 button was clicked (view)");
-//            settings_options.style.display = "none";
-//            player_2_settings.style.display = "block";
-//        }
-//        else if(button_clicked === "human player"){
-//            settings_panel.style.display = "none";
-//            this.reportErrorToUser("Player 2 has been set to human player");
-//            this.fadeInfoBox();
-//            // find some way to inform user that player 2 is now a human player
-//                // maybe use the text area?
-//        }
-//        else if(button_clicked === "AI player"){
-//            player_2_settings.style.display = "none";
-//            AI_settings.style.display = "block";
-//        }
-//        else if(button_clicked === "AI difficulty"){
-//            settings_panel.style.display = "none";
-//            this.reportErrorToUser("Player 2 has been set to an AI player");
-//            this.fadeInfoBox();
-//        }
-//    };
+
     this.displaySignUpPage = function(){
         // all this method needs to do is hide the game board and display the sign up page
         var game_board = document.getElementById("test_board");
