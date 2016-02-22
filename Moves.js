@@ -56,6 +56,13 @@ function findMoves(){
         if(right+1 <= board.length && board[right][y_coord] !== 0 ){
             if(right+1 < board.length && board[right+1][y_coord] === 0){
                 console.log("adding jump right");
+                console.log(piece);
+                                if(piece === undefined){
+                    console.log("there is no piece");
+                }
+                else{
+                    console.log("there is a piece");
+                }
                 var move = new possibleMove;
                 move.newMove(right+1, y_coord, piece);
                 //possible_moves.push(move);
@@ -89,6 +96,13 @@ function findMoves(){
         if(left-1 >= 0 && board[left][y_coord] !== 0){                
             if(left-1 >= 0 && board[left-1][y_coord] === 0){
                 console.log("adding jump left");
+                console.log(piece);
+                                if(piece === undefined){
+                    console.log("there is no piece");
+                }
+                else{
+                    console.log("there is a piece");
+                }
                 var move = new possibleMove;
                 move.newMove(left-1, y_coord, piece);
                 //possible_moves.push(move);
@@ -102,6 +116,13 @@ function findMoves(){
         if(above-1 >= 0 && board[x_coord][above] !== 0){
             if(above-1 >= 0 && board[x_coord][above - 1] === 0){
                 console.log("adding jump above");
+                console.log(piece);
+                                if(piece === undefined){
+                    console.log("there is no piece");
+                }
+                else{
+                    console.log("there is a piece");
+                }
                 var move = new possibleMove;
                 move.newMove(x_coord, above-1, piece);
                 //possible_moves.push(move);
@@ -136,6 +157,13 @@ function findMoves(){
         if(below+1 < board.length && board[x_coord][below] !== 0){
             if(below+1 < board.length && board[x_coord][below + 1] === 0){
                 console.log("adding jump below");
+                console.log(piece);
+                if(piece === undefined){
+                    console.log("there is no piece");
+                }
+                else{
+                    console.log("there is a piece");
+                }
                 var move = new possibleMove;
                 move.newMove(x_coord, below+1, piece);
                 possible_jumps.push(move);
@@ -299,6 +327,10 @@ function findMoves(){
                 var above = y - 1;
                 var below = y + 1;
                 // call the jump methods
+                console.log(piece);
+                if(piece !== undefined){
+                    console.log(piece.getXCoord());
+                }
                 this.jumpRight(right, y, piece);
                 this.jumpLeft(left, y, piece);
                 this.jumpUp(above, x, piece);
@@ -320,7 +352,7 @@ function findMoves(){
                             // this must therefore be an unsees possible move, add it to possible_moves
                             var move = new possibleMove();
                             console.log("moves_found coords in the contains if: " + moves_found[i].getX() + "," + moves_found[i].getY());
-                            move.newMove(moves_found[i].getX(), moves_found[i].getY());
+                            move.newMove(moves_found[i].getX(), moves_found[i].getY(), piece);
                             possible_moves.push(move);
                             // also need to add to coords, to loop round
                             var new_move_coords = new Array(moves_found[i].getX(), moves_found[i].getY());

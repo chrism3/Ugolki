@@ -139,6 +139,10 @@ function simpleAI(){
         for(var i = 0; i < possible_moves.length; i++){
             //var current_piece = possible_moves[i].getPieceToMove();
             
+//            for(var i = 0; i < possible_moves.length; i++){
+//                console.log(possible_moves[i].getPieceToMove().getXCoord());
+//            }
+            
             // two variables needed to reset x and y after the move has been completed
             var x_to_reset = possible_moves[i].getPieceToMove().getXCoord();
             var y_to_reset = possible_moves[i].getPieceToMove().getYCoord();
