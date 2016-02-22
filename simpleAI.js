@@ -37,13 +37,21 @@ function simpleAI(){
             AI_moves.moveLeft(left, y_coord, current_piece);
             AI_moves.moveUp(above, x_coord, current_piece);
             AI_moves.moveDown(below, x_coord, current_piece);
-            AI_moves.jumpRight(right, y_coord, current_piece);
-            AI_moves.jumpLeft(left, y_coord, current_piece);
-            AI_moves.jumpUp(above, x_coord, current_piece);
-            AI_moves.jumpDown(below, x_coord, current_piece);
+//            AI_moves.jumpRight(right, y_coord, current_piece);
+//            AI_moves.jumpLeft(left, y_coord, current_piece);
+//            AI_moves.jumpUp(above, x_coord, current_piece);
+//            AI_moves.jumpDown(below, x_coord, current_piece);
+           AI_moves.multipleJump3(x_coord, y_coord);
         }
         possible_moves = AI_moves.getPossibleMoves();
-        console.log("number of moves possible " + possible_moves.length);        
+        console.log("number of moves possible " + possible_moves.length); 
+        console.log("values are not printing god damn it");
+        
+        for(var i = 0; i < possible_moves.length; i++){
+            console.log("coords of move: " + possible_moves[i].getX() + "," + possible_moves[i].getY());
+        }
+        console.log("why aint the loop happening?");
+        
         // now need to make the moves and evaluate them.. maybe add these to an eval array or some structure
         var best_eval = 1000; // this might not be the best number to choose, purposely too high
         var best_index = 0; // this is so we know which index of possible_moves is the best
@@ -108,10 +116,12 @@ function simpleAI(){
             AI_moves.moveLeft(left, y_coord, current_piece);
             AI_moves.moveUp(above, x_coord, current_piece);
             AI_moves.moveDown(below, x_coord, current_piece);
-            AI_moves.jumpRight(right, y_coord, current_piece);
-            AI_moves.jumpLeft(left, y_coord, current_piece);
-            AI_moves.jumpUp(above, x_coord, current_piece);
-            AI_moves.jumpDown(below, x_coord, current_piece);
+//            AI_moves.jumpRight(right, y_coord, current_piece);
+//            AI_moves.jumpLeft(left, y_coord, current_piece);
+//            AI_moves.jumpUp(above, x_coord, current_piece);
+//            AI_moves.jumpDown(below, x_coord, current_piece);
+            console.log(current_piece);
+            AI_moves.multipleJump3(x_coord, y_coord, current_piece);
         }
         possible_moves = AI_moves.getPossibleMoves();
         console.log("number of moves possible " + possible_moves.length);

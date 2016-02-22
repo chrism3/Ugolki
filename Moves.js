@@ -32,7 +32,6 @@ function findMoves(){
         }
     };
     this.moveUp = function(above, x_coord, piece) {
-        console.log(piece);
         if (above >= 0 && board[x_coord][above] === 0) {
             var move = new possibleMove;
             move.newMove(x_coord, above, piece);
@@ -54,7 +53,6 @@ function findMoves(){
      * moves
      */
     this.jumpRight = function(right, y_coord, piece){
-        console.log();
         if(right+1 <= board.length && board[right][y_coord] !== 0 ){
             if(right+1 < board.length && board[right+1][y_coord] === 0){
                 console.log("adding jump right");
@@ -249,11 +247,21 @@ function findMoves(){
         
     };
     
-    this.multipleJump3 = function(xcoord, ycoord){
+    /*
+     * piece paramater is only needed for the AI, for a human player the view
+     * knows which piece has been selected on click. AI needs a note of which piece
+     * has been selected so that the controller can pass it back to the view to make
+     * the correct moves 
+     */
+    this.multipleJump3 = function(xcoord, ycoord, piece){
         var visited_locations = new Array();
         var moves_found = new Array();
         var coords = new Array; // is this actually needed
         
+        
+        if(piece !== undefined){
+            console.log(piece.getXCoord());
+        }
         // add xcoord and ycoord to the current cords array
         var current_coords = new Array();        
         current_coords[0] = xcoord;
@@ -291,10 +299,10 @@ function findMoves(){
                 var above = y - 1;
                 var below = y + 1;
                 // call the jump methods
-                this.jumpRight(right, y);
-                this.jumpLeft(left, y);
-                this.jumpUp(above, x);
-                this.jumpDown(below, x);
+                this.jumpRight(right, y, piece);
+                this.jumpLeft(left, y, piece);
+                this.jumpUp(above, x, piece);
+                this.jumpDown(below, x, piece);
                 // get the jumps found
                 moves_found = this.getPossibleJumps();
                
