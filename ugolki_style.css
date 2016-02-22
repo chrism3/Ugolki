@@ -362,6 +362,18 @@ svg{
     display: none;
 }
 
+#move_options_panel{
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+#statistics_options{
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
 .sign_up_text_area{
     background: white;
     resize: none;
