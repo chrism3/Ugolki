@@ -636,7 +636,6 @@ function testController(){
                    test_view.updateBoardWithMoves2(AI_move.getX(), AI_move.getY());
                    setTimeout(function() {
                         test_view.movePiece2(AI_move.getX(), AI_move.getY());
-                        //test_view.highlightMovedAIPiece();
                         // need to recall this... not sure if it will be necessary but it is just now
                         test_model.resetForNextMove();
                         test_view.resetDefaultBoardColours();
