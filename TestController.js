@@ -631,11 +631,16 @@ function testController(){
                    console.log("about to get the id");
                    test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()));
                    var AI_move = test_model.getAIChoosenMove();
+                   test_view.highlightAIMove(AI_move.getX(), AI_move.getY());
                    test_model.updateModelWithAIMove();
-                   test_view.movePiece2(AI_move.getX(), AI_move.getY());
-                   //test_view.highlightMovedAIPiece();
-                   // need to recall this... not sure if it will be necessary but it is just now
-                   test_model.resetForNextMove();              
+                   setTimeout(function() {
+                        test_view.movePiece2(AI_move.getX(), AI_move.getY());
+                        //test_view.highlightMovedAIPiece();
+                        // need to recall this... not sure if it will be necessary but it is just now
+                        test_model.resetForNextMove();
+                        test_view.resetDefaultBoardColours();
+                   }, 1500)
+                                 
                 }
             }
         };
