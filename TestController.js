@@ -525,7 +525,7 @@ function testController(){
          * up a pop up box informing the user it isn't their turn
          */
         
-            test_view.resetDefaultBoardColours();// call this incase there are all ready squares coloured
+            //test_view.resetDefaultBoardColours();// call this incase there are all ready squares coloured
             test_view.highlightSelectedPiece();
             var current_piece = test_view.getSelectedPiece();
             var id = current_piece.attributes.id.value,
@@ -636,7 +636,7 @@ function testController(){
                    test_view.updateBoardWithMoves2(AI_move.getX(), AI_move.getY());
                    setTimeout(function() {
                         test_view.movePiece2(AI_move.getX(), AI_move.getY());
-                        // need to recall this... not sure if it will be necessary but it is just now
+                        // need to reset the board colour and the model, before the user can make their next turn
                         test_model.resetForNextMove();
                         test_view.resetDefaultBoardColours();
                    }, 750);                                 

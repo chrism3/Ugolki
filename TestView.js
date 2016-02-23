@@ -124,7 +124,7 @@ function testView(){
         screen;
 
     // keeping this separate because i don't like it
-    var selected_piece,
+    var selected_piece = "none",
         selected_square; // dont know where i'll use selected square
     
     // event listeners being added to the squares
@@ -482,6 +482,7 @@ function testView(){
     
     
     this.highlightSelectedPiece = function(){
+        console.log(selected_piece);
         if(selected_piece.attributes.class.value === "white_circles"){
             selected_piece.style.stroke = "rgb(210, 33, 33)";
         }
@@ -689,7 +690,11 @@ function testView(){
     };
     this.setSelectedPiece = function(piece) {
         //console.log(piece);
-        selected_piece = piece;
+        if (selected_piece === "none"){
+            console.log("doing this bit");
+            console.log(piece);
+            selected_piece = piece;
+        }
     };
     
     this.getSelectedPiece = function(){
@@ -725,6 +730,8 @@ function testView(){
             }
             all_circles[i].style.stroke = "rgb(0,0,0)";
         }
+        // this shouldn't be done here... will move this later. 
+        selected_piece = "none";
     };
     
     this.getWhiteCircleCoordinates = function(circle_id){
