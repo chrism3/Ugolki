@@ -829,10 +829,7 @@ function testView(){
     
     this.highlightAIMove = function(move_square_x, move_square_y){
         selected_piece.style.stroke = "rgb(8, 146, 208)";
-//        setTimeout(function() {
-//            // reset the board colours in here
-//            selected_piece.style.stroke = "rgb(0, 0, 0)";
-//        }, 1500);
+
     };
     
     
