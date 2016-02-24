@@ -19,7 +19,7 @@ function simpleAI(){
         this.simpleAI = function(pieces_to_move, board){
             board_representation = board;
             var AI = new generalAI();            
-            var all_moves = AI.evalAllMoves(AI.findAllMoves(pieces_to_move, board));
+            var all_moves = AI.evalAllMoves(AI.findAllMoves(pieces_to_move, board), 0);
             var good_moves = all_moves[0];
             var bad_moves = all_moves[1];
             this.decideBestMove(good_moves, bad_moves, AI);

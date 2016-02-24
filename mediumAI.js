@@ -15,11 +15,7 @@ function mediumAI(){
     this.mediumAI = function(pieces, board_rep){
             board = board_rep;
             var AI = new generalAI();            
-            var move =  AI.findAllMovesWithDepth(3, pieces, board_rep);
-            console.log(move);
-            this.setChoosenMove(move);
-            var piece_to_move_id = move.getPieceToMove().getPieceId();
-            this.setSelectedPieceIndex(piece_to_move_id);
+                         
     }; 
     
     
