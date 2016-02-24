@@ -457,6 +457,12 @@ function testView(){
 //        var player_2_settings = document.getElementById("player_2_settings");
 //        player_2_settings.addEventListener("click", callback);
 //    };
+
+    this.setAISettingsClickCallback = function (callback) {
+        var ai_settings = document.getElementById("AI_settings_button");
+        ai_settings.addEventListener("click", callback);
+    };
+    
     this.setSimpleAIClickCalback = function (callback) {
         var simple_AI = document.getElementById("simple_AI");
         simple_AI.addEventListener("click", callback);
@@ -900,7 +906,9 @@ function testView(){
          if(pane_to_show === "move options"){
              pane = document.getElementById("move_options_panel");
          }
-         
+         else if(pane_to_show === "AI settings"){
+             pane = document.getElementById("AI_settings");
+         }
          
          current_settings_panel.style.display = "none";
          settings_pane = pane;

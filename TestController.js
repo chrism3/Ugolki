@@ -467,6 +467,10 @@ function testController(){
 //            console.log("AI player was clicked");
 //            test_view.updateSettingsPanel("AI player");
 //        });
+
+        test_view.setAISettingsClickCallback(function() {
+            test_view.togglePane("AI settings");
+        })
         test_view.setSimpleAIClickCalback(function() {
             console.log("simple AI clicked");
             test_model.setAIType("simpleAI");
