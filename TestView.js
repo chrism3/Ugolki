@@ -439,6 +439,11 @@ function testView(){
         var sounds_img = document.getElementById("sound_img");
         sounds_img.addEventListener("click", callback);
     };
+    
+    // need to put Ugolki Variations listener here
+    
+    // need to put View Statistics listener here
+    
 //    
 //    Check these and change the variable names and the ID's so that they
 //    work for the new code. 
@@ -459,6 +464,12 @@ function testView(){
         var sign_up = document.getElementById("sign_up");
         sign_up.addEventListener("click", callback);
     };
+    
+    this.setMoveOptionsClickCallback = function (callback){
+        var move_options = document.getElementById("multi_jump_options");
+        move_options.addEventListener("click", callback);
+    };
+    
     // callback for the player_1_options button
     this.setPlayer1OptionsClickCallback = function (callback){
         var player_1_options = document.getElementById("player_1_settings");
@@ -694,6 +705,10 @@ function testView(){
             console.log("doing this bit");
             console.log(piece);
             selected_piece = piece;
+        }
+        else if(selected_piece === piece){
+            selected_piece = "none";
+            this.resetDefaultBoardColours();
         }
     };
     

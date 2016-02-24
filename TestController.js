@@ -412,6 +412,11 @@ function testController(){
            test_view.setSelectedPiece(test_view.getBrownCircleCoordinates("brown_circle_16"));
            performPieceSelection();
         });
+        
+        /* 
+         * Every set...ClickCallback from here down is for the menu's and options, rather
+         * than the ones needed for playing Ugolki. 
+         */
        
         // this calls the methods to add the event listener to the buttons in the menu
         test_view.setMenuImgClickCallback(function (){
@@ -439,6 +444,16 @@ function testController(){
             test_view.setScreenToDisplay("sound");
             test_view.toggleSettings(test_view.getScreenToDisplay());
         });
+        
+        // need Ugolki Varations called here
+        
+        // need View Statistics called here
+        
+        test_view.setMoveOptionsClickCallback( function(){
+            console.log("move options has been clicked");
+            // need to make code in the view that is responsible for toggling the buttons
+        });
+        
 //        
 //        these will be used eventually, not sure when i'll get round to them though
 //        
