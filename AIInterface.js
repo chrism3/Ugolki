@@ -56,7 +56,7 @@ function generalAI(){
         //this.evalAllMoves(possible_moves);
     };
     
-    this.evalAllMoves = function(possible_moves, depth){
+    this.evalAllMoves = function(possible_moves){
         //var no_of_good_moves = 0;
         var good_moves = new Array();
         var bad_moves = new Array();

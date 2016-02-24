@@ -8,8 +8,8 @@ function simpleAI(){
     var board_representation;
     var piece_index;
     var move;
-//    var origional_x;
-//    var origional_y;
+    var origional_x;
+    var origional_y;
 //    var target_x = 0,
 //        target_y = 7; /* this is the target because player 2 is aiming to get to
 //                       * the bottom left hand corner. This is why the algorithm currently
@@ -19,7 +19,7 @@ function simpleAI(){
         this.simpleAI = function(pieces_to_move, board){
             board_representation = board;
             var AI = new generalAI();            
-            var all_moves = AI.evalAllMoves(AI.findAllMoves(pieces_to_move, board), 0);
+            var all_moves = AI.evalAllMoves(AI.findAllMoves(pieces_to_move, board));
             var good_moves = all_moves[0];
             var bad_moves = all_moves[1];
             this.decideBestMove(good_moves, bad_moves, AI);
@@ -285,18 +285,18 @@ function simpleAI(){
     this.setSelectedPieceIndex = function(index){
         piece_index = index;
     };    
-//    this.getAISelectedPieceXCoord = function(){
-//        return origional_x;
-//    };
-//    this.setAISelectedPieceXCoord = function(x){
-//        origional_x = x;
-//    };
-//    this.getAISelectedPieceYCoord = function(){
-//        return origional_y;
-//    };
-//    this.setAISelectedPieceYCoord = function(y){
-//        origional_y = y;
-//    };   
+    this.getAISelectedPieceXCoord = function(){
+        return origional_x;
+    };
+    this.setAISelectedPieceXCoord = function(x){
+        origional_x = x;
+    };
+    this.getAISelectedPieceYCoord = function(){
+        return origional_y;
+    };
+    this.setAISelectedPieceYCoord = function(y){
+        origional_y = y;
+    };   
 }
 
 
