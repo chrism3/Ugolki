@@ -118,6 +118,7 @@ function testView(){
         squares_array = new Array(8),
         //left_offset,
         current_settings_panel = "none",
+        settings_pane = "none",
         top_offset,
         scale_size,
         move_successful,
@@ -857,6 +858,10 @@ function testView(){
     
      this.toggleSettings = function(settings_screen){
         var new_panel;
+        // incase the user has opened a pane before moving menu
+        if(settings_pane !== "none"){
+            settings_pane.style.display = "none";
+        }
         if(settings_screen === "general"){
             new_panel = document.getElementById("general_settings");
         }
@@ -882,6 +887,24 @@ function testView(){
             this.setCurrentSettingsPanel("none");
             new_panel.style.display = "none";
         }
+     };
+     
+     /*
+      * method to handle toggling the panes inside the open settings menu. For example, 
+      * if in general settings, this is the method responisble for opening the Move Options
+      * panel
+      */
+     this.togglePane = function(pane_to_show){
+         // this will have a lot of else if statements, wont be pretty
+         var pane;
+         if(pane_to_show === "move options"){
+             pane = document.getElementById("move_options_panel");
+         }
+         
+         
+         current_settings_panel.style.display = "none";
+         settings_pane = pane;
+         settings_pane.style.display = "block";
      };
     
 
@@ -927,12 +950,20 @@ function testView(){
     };
     
     this.setCurrentSettingsPanel = function(viewable_panel){
-        console.log("settings the panel to: " + viewable_panel);
+        //console.log("settings the panel to: " + viewable_panel);
         current_settings_panel = viewable_panel;
     };
     
     this.getCurrentSettingsPanel = function(){
         return current_settings_panel;
+    };
+    
+    this.setSettingsPane = function(viewable_pane){
+        settings_pane = viewable_pane;
+    };
+    
+    this.getSettingsPane = function(){
+        return settings_pane;
     };
     
     // this method is used to get the sign up details, when the user signs up to the app
@@ -987,7 +1018,7 @@ function testView(){
     // method to get the current screen that is to be displayed
     this.getScreenToDisplay = function(){
         return screen;
-    }
+    };
 }
 
 

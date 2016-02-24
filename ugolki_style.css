@@ -332,6 +332,11 @@ svg{
     display: none;
 }
 
+#move_options_panel{
+    background: rgb(241, 110, 3);
+    display: none;
+}
+
 #player_settings{
     background: rgb(14, 194, 164);
     display: none;
@@ -348,6 +353,7 @@ svg{
     display: none;
 }
 
+
 #alter_player_1{
     display: none;
 }
@@ -357,12 +363,6 @@ svg{
 }
 
 #AI_settings{
-    height: 100%;
-    width: 100%;
-    display: none;
-}
-
-#move_options_panel{
     height: 100%;
     width: 100%;
     display: none;

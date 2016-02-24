@@ -452,6 +452,7 @@ function testController(){
         test_view.setMoveOptionsClickCallback( function(){
             console.log("move options has been clicked");
             // need to make code in the view that is responsible for toggling the buttons
+            test_view.togglePane("move options");
         });
         
 //        
