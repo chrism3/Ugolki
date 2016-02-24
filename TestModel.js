@@ -274,6 +274,7 @@ function testModel() {
         for(var i = test_board.length-1; i > 0; i--){
             for(var j = 0; j < test_board.length; j++){
                  if(test_board[i][j] !== 0){
+                     // currently only works if the Ai is player 2
                      if(test_board[i][j].getPiecePlayer() === "player_two"){
                          //console.log("index the peice is added to: " + count);
                          //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
@@ -288,7 +289,8 @@ function testModel() {
         find_moves.init(test_board);
         if(AI_type === "simpleAI"){            
             //current_AI_player.findAllMoves(pieces, test_board);
-            current_AI_player.findAllMoves2(pieces, test_board);
+            //current_AI_player.findAllMoves2(pieces, test_board);
+            current_AI_player.simpleAI(pieces, test_board);
         }
     };
     
