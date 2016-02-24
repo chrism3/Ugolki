@@ -479,9 +479,17 @@ function testController(){
             console.log("simple AI clicked");
             test_model.setAIType("simpleAI");
             test_model.setPlayerTwoType("AI");
+            test_view.setPlayerTwo("AI - Easy");
             //test_view.updateSettingsPanel("AI difficulty");
             test_view.closeSettings();
         });
+        test_view.setMediumAIClickCallback(function() {
+            test_model.setAIType("mediumAI");
+            test_model.setPlayerTwoType("AI");
+            // need to change this to check which player is AI
+            test_view.setPlayerTwo("AI - Medium");
+            test_view.closeSettings();
+        })
         test_view.setPlayer1OptionsClickCallback( function(){
             console.log("player 1 options has been clicked");
             // add the code here to toggle the settings panel

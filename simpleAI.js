@@ -8,13 +8,13 @@ function simpleAI(){
     var board_representation;
     var piece_index;
     var move;
-    var origional_x;
-    var origional_y;
-    var target_x = 0,
-        target_y = 7; /* this is the target because player 2 is aiming to get to
-                       * the bottom left hand corner. This is why the algorithm currently
-                       * only works when the AI is player 2
-                       */
+//    var origional_x;
+//    var origional_y;
+//    var target_x = 0,
+//        target_y = 7; /* this is the target because player 2 is aiming to get to
+//                       * the bottom left hand corner. This is why the algorithm currently
+//                       * only works when the AI is player 2
+                      // */
     
         this.simpleAI = function(pieces_to_move, board){
             board_representation = board;

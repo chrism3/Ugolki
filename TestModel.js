@@ -292,6 +292,9 @@ function testModel() {
             //current_AI_player.findAllMoves2(pieces, test_board);
             current_AI_player.simpleAI(pieces, test_board);
         }
+        else if(AI_type === "mediumAI"){
+            current_AI_player.mediumAI(pieces, test_board);
+        }
     };
     
     /* maybe need a get and set method for the AI, might not.
@@ -307,6 +310,9 @@ function testModel() {
             //console.log("making new simple AI player");
             current_AI_player = new simpleAI();
             //current_AI_player.updateBoard(test_board);
+        }
+        if(AI_type === "mediumAI"){
+            current_AI_player = new mediumAI();
         }
     };
     

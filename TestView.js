@@ -471,6 +471,10 @@ function testView(){
         var simple_AI = document.getElementById("simple_AI");
         simple_AI.addEventListener("click", callback);
     };
+    this.setMediumAIClickCallback = function (callback){
+        var medium_AI = document.getElementById("medium_AI");
+        medium_AI.addEventListener("click", callback);
+    };
     this.setSignUpClickCallback = function (callback){
         var sign_up = document.getElementById("sign_up");
         sign_up.addEventListener("click", callback);
@@ -1030,6 +1034,13 @@ function testView(){
     this.getPlayerTwo = function(){
         return document.getElementById("player_2_type").value;
     };
+    this.setPlayerOne = function(player_1_type){
+        document.getElementById("player_1_type").value = player_1_type;
+    };
+    this.setPlayerTwo = function(player_2_type){
+        document.getElementById("player_2_type").value = player_2_type;
+    };
+    
     
     // method to set which screen should be displayed
     this.setScreenToDisplay = function(screen_to_display){
