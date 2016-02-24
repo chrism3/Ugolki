@@ -489,7 +489,7 @@ function testController(){
             // need to change this to check which player is AI
             test_view.setPlayerTwo("AI - Medium");
             test_view.closeSettings();
-        })
+        });
         test_view.setPlayer1OptionsClickCallback( function(){
             console.log("player 1 options has been clicked");
             // add the code here to toggle the settings panel

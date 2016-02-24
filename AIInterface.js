@@ -56,6 +56,42 @@ function generalAI(){
         //this.evalAllMoves(possible_moves);
     };
     
+    this.findAllMovesWithDepth = function(depth, pieces_to_move, board){
+        var board_representation = board;
+        var possible_moves = new Array();
+        var future_moves = new Array();
+        var AI_moves = new findMoves();
+        AI_moves.init(board_representation);
+        
+        for(var i = 0; i < pieces_to_move.length; i++){
+            var current_piece = pieces_to_move[i];
+            var x_coord = current_piece.getXCoord();
+            var y_coord = current_piece.getYCoord();
+            var right = x_coord + 1;
+            var left = x_coord - 1;
+            var above = y_coord - 1;
+            var below = y_coord + 1;            
+            AI_moves.moveRight(right, y_coord, current_piece);
+            AI_moves.moveLeft(left, y_coord, current_piece);
+            AI_moves.moveUp(above, x_coord, current_piece);
+            AI_moves.moveDown(below, x_coord, current_piece);
+     
+     /*
+      * need if statement to check if the mutli-jump rule is being played
+      */
+            
+//            AI_moves.jumpRight(right, y_coord, current_piece);
+//            AI_moves.jumpLeft(left, y_coord, current_piece);
+//            AI_moves.jumpUp(above, x_coord, current_piece);
+           AI_moves.multipleJump3(x_coord, y_coord, current_piece);
+           var future_moves = AI_moves.getPossibleMoves();
+           for(var i = 0; i < future_moves.length; i++){
+               
+           }
+            
+        }
+    };
+    
     this.evalAllMoves = function(possible_moves){
         //var no_of_good_moves = 0;
         var good_moves = new Array();
