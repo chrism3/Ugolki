@@ -442,6 +442,10 @@ function testView(){
     };
     
     // need to put Ugolki Variations listener here
+    this.setViewStatsClickCallback = function(callback){
+        var ugolki_stats = document.getElementById("statistics_button");
+        ugolki_stats.addEventListener("click", callback);
+    };
     
     // need to put View Statistics listener here
     
@@ -909,10 +913,19 @@ function testView(){
          else if(pane_to_show === "AI settings"){
              pane = document.getElementById("AI_settings");
          }
-         
+         else if(pane_to_show === "stats"){
+             pane = document.getElementById("statistics_options");
+         }
          current_settings_panel.style.display = "none";
          settings_pane = pane;
          settings_pane.style.display = "block";
+     };
+     
+     this.closeSettings = function(){
+         current_settings_panel.style.display = "none";
+         settings_pane.style.display = "none";
+         current_settings_panel = "none";
+         settings_pane = "none";
      };
     
 
