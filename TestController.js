@@ -498,6 +498,10 @@ function testController(){
             console.log("player 2 options has been clicked");
         });
         
+        test_view.setPersonalStatsClickCallback( function(){
+            console.log("personal stats has been clicked");
+            test_view.displayPersonalStats();
+        });
         
         test_view.setSignUpClickCallback(function(){
             //console.log("this is where we call the sign up screen");

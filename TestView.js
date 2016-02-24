@@ -122,7 +122,8 @@ function testView(){
         top_offset,
         scale_size,
         move_successful,
-        screen;
+        screen,
+        alternate_page = "none";
 
     // keeping this separate because i don't like it
     var selected_piece = "none",
@@ -485,6 +486,11 @@ function testView(){
         move_options.addEventListener("click", callback);
     };
     
+    this.setPersonalStatsClickCallback = function (callback){
+        var personal_stats = document.getElementById("personal_stats_button");
+        personal_stats.addEventListener("click", callback);
+    };
+    
     // callback for the player_1_options button
     this.setPlayer1OptionsClickCallback = function (callback){
         var player_1_options = document.getElementById("player_1_settings");
@@ -505,7 +511,7 @@ function testView(){
         var login_button = document.getElementById("login_button");
         login_button.addEventListener("click", callback);
     };
-    
+        
     
     this.highlightSelectedPiece = function(){
         console.log(selected_piece);
@@ -932,20 +938,31 @@ function testView(){
          settings_pane = "none";
      };
     
+    // this method hides the game board and displays the stats screen
+    this.displayPersonalStats = function(){
+        var personal_stats_page = document.getElementById("personal_stats_page");
+        var game_board = document.getElementById("test_board");
+        game_board.style.display = "none";
+        personal_stats_page.style.display = "block";
+        alternate_page = personal_stats_page;
+    };
 
     this.displaySignUpPage = function(){
         // all this method needs to do is hide the game board and display the sign up page
         var game_board = document.getElementById("test_board");
         var sign_up_page = document.getElementById("sign_up_page");
         game_board.style.display = "none";
-        sign_up_page.style.display = "block";        
+        sign_up_page.style.display = "block";  
+        alternate_page = sign_up_page;
     };
     // this method is used to retrun to the board page if the user has navigated to the login page
     this.returnToBoard = function(){
         var game_board = document.getElementById("test_board");
-        var sign_up_page = document.getElementById("sign_up_page");
+        //var sign_up_page = document.getElementById("sign_up_page");
         game_board.style.display = "block";
-        sign_up_page.style.display = "none";
+        //sign_up_page.style.display = "none";
+        alternate_page.style.display = "none";
+        alternate_page = "none";
         var panel = this.getCurrentSettingsPanel();
         panel.style.display = "none";
         this.setCurrentSettingsPanel("none");
