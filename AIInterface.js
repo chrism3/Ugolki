@@ -83,13 +83,32 @@ function generalAI(){
 //            AI_moves.jumpRight(right, y_coord, current_piece);
 //            AI_moves.jumpLeft(left, y_coord, current_piece);
 //            AI_moves.jumpUp(above, x_coord, current_piece);
+
            AI_moves.multipleJump3(x_coord, y_coord, current_piece);
+           var count = 0;
+           var best_eval = 1000000; // made this just obscenely high number so eval can't return higher
+           var best_move;
            var future_moves = AI_moves.getPossibleMoves();
            for(var i = 0; i < future_moves.length; i++){
+               var x_to_reset = future_moves[i].getX();
+               var y_to_reset = future_moves[i].getY();
+               do{
+                   make_move(future_moves[i]);
+                   var eval_score = this.eval;
+                   if(eval_score < best_eval){
+                       best_eval = eval_score;
+                       best_move = move;
+                       console.log(eval_score);
+                   }
+                   findAllMovesWithDepth(depth, pieces_to_move, board);
+               }
                
+               while(count < depth);
+               this.undoMove(future_moves[i], x_to_reset, y_to_reset);
            }
             
         }
+        return best_move;
     };
     
     this.evalAllMoves = function(possible_moves){

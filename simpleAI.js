@@ -285,18 +285,18 @@ function simpleAI(){
     this.setSelectedPieceIndex = function(index){
         piece_index = index;
     };    
-    this.getAISelectedPieceXCoord = function(){
-        return origional_x;
-    };
-    this.setAISelectedPieceXCoord = function(x){
-        origional_x = x;
-    };
-    this.getAISelectedPieceYCoord = function(){
-        return origional_y;
-    };
-    this.setAISelectedPieceYCoord = function(y){
-        origional_y = y;
-    };   
+//    this.getAISelectedPieceXCoord = function(){
+//        return origional_x;
+//    };
+//    this.setAISelectedPieceXCoord = function(x){
+//        origional_x = x;
+//    };
+//    this.getAISelectedPieceYCoord = function(){
+//        return origional_y;
+//    };
+//    this.setAISelectedPieceYCoord = function(y){
+//        origional_y = y;
+//    };   
 }
 
 

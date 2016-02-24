@@ -9,14 +9,33 @@
 function mediumAI(){
     
     var board;
+    var choosen_move;
+    var piece_index;
     
     this.mediumAI = function(pieces, board_rep){
             board = board_rep;
             var AI = new generalAI();            
-            var all_moves = AI.evalAllMoves(AI.findAllMoves(pieces, board));
-            var good_moves = all_moves[0];
-            var bad_moves = all_moves[1];
-    };     
+            var move =  AI.findAllMovesWithDepth(3, pieces, board_rep);
+            console.log(move);
+            this.setChoosenMove(move);
+            var piece_to_move_id = move.getPieceToMove().getPieceId();
+            this.setSelectedPieceIndex(piece_to_move_id);
+    }; 
+    
+    
+    this.setChoosenMove = function(move){
+        choosen_move = move;
+    };
+    this.getChoosenMove = function(){
+        return choosen_move;
+    };
+    this.getAIPieceIndex = function (){
+        console.log("The index to be returned is: " + piece_index);
+        return piece_index;
+    };
+    this.setSelectedPieceIndex = function(index){
+        piece_index = index;
+    };
 
 }
 
