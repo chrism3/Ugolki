@@ -550,9 +550,17 @@ function testController(){
                 test_view.reportErrorToUser("Login unsuccessful. Please try again.", "login");
             }
             // reset the textarea's for login
-            test_view.resetLoginFeilds();
+            test_view.resetLoginFeilds();           
         });
-           
+        
+        test_view.setStatsBackButtonClickCallback( function(){
+            test_view.returnToBoard();
+        });
+        
+        test_view.setSignUpBackButtonClickCallback( function(){
+            console.log("the button has been clicked");
+            test_view.returnToBoard();
+        });    
         
     // this should probably be in the model
     this.performPieceSelection = function(){ 

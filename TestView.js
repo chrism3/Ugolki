@@ -511,6 +511,16 @@ function testView(){
         var login_button = document.getElementById("login_button");
         login_button.addEventListener("click", callback);
     };
+    
+    this.setStatsBackButtonClickCallback = function(callback){
+        var back = document.getElementById("stats_back_button");
+        back.addEventListener("click", callback);
+    };
+    
+    this.setSignUpBackButtonClickCallback = function(callback){
+        var back = document.getElementById("sign_up_back_button");
+        back.addEventListener("click", callback);
+    };
         
     
     this.highlightSelectedPiece = function(){
@@ -932,10 +942,17 @@ function testView(){
      };
      
      this.closeSettings = function(){
-         current_settings_panel.style.display = "none";
-         settings_pane.style.display = "none";
-         current_settings_panel = "none";
-         settings_pane = "none";
+         console.log("closing the settings menus");
+         var panel = this.getCurrentSettingsPanel();
+         var pane = this.getSettingsPane();
+         if(panel !== undefined){
+            panel.style.display = "none";
+            pane.style.display = "none";
+         }
+         if(pane !== undefined){        
+            this.setCurrentSettingsPanel("none");
+            this.setSettingsPane("none");
+         }
      };
     
     // this method hides the game board and displays the stats screen
@@ -944,7 +961,8 @@ function testView(){
         var game_board = document.getElementById("test_board");
         game_board.style.display = "none";
         personal_stats_page.style.display = "block";
-        alternate_page = personal_stats_page;
+        //alternate_page = personal_stats_page;
+        this.setAlternatePage(personal_stats_page);
     };
 
     this.displaySignUpPage = function(){
@@ -953,7 +971,8 @@ function testView(){
         var sign_up_page = document.getElementById("sign_up_page");
         game_board.style.display = "none";
         sign_up_page.style.display = "block";  
-        alternate_page = sign_up_page;
+        //alternate_page = sign_up_page;
+        this.setAlternatePage(sign_up_page);
     };
     // this method is used to retrun to the board page if the user has navigated to the login page
     this.returnToBoard = function(){
@@ -961,11 +980,10 @@ function testView(){
         //var sign_up_page = document.getElementById("sign_up_page");
         game_board.style.display = "block";
         //sign_up_page.style.display = "none";
-        alternate_page.style.display = "none";
-        alternate_page = "none";
-        var panel = this.getCurrentSettingsPanel();
-        panel.style.display = "none";
-        this.setCurrentSettingsPanel("none");
+        var page = this.getAlternatePage();
+        page.style.display = "none";
+        this.closeSettings();
+//        this.setCurrentSettingsPanel("none");
         // set player_name textarea to the player who logged in
         var login_name = document.getElementById("login_username").value;
         var sign_up_name = document.getElementById("sign_up_username").value;
@@ -975,8 +993,11 @@ function testView(){
         if(login_name !== ""){
             player_name.value = login_name;
         }
-        else{
+        else if(sign_up_name !== ""){
             player_name.value = sign_up_name;
+        }
+        else{
+            player_name.value = "human";
         }
     };
     
@@ -1007,6 +1028,15 @@ function testView(){
     this.getSettingsPane = function(){
         return settings_pane;
     };
+    
+    this.setAlternatePage = function(page){
+        alternate_page = page;
+    };
+    
+    this.getAlternatePage = function(){
+        return alternate_page;
+    };
+    
     
     // this method is used to get the sign up details, when the user signs up to the app
     this.getSignUpDetails = function(){
