@@ -945,12 +945,13 @@ function testView(){
          console.log("closing the settings menus");
          var panel = this.getCurrentSettingsPanel();
          var pane = this.getSettingsPane();
-         if(panel !== undefined){
+         console.log(panel);
+         if(panel !== "none"){
             panel.style.display = "none";
-            pane.style.display = "none";
-         }
-         if(pane !== undefined){        
             this.setCurrentSettingsPanel("none");
+         }
+         if(pane !== "none"){     
+            pane.style.display = "none";
             this.setSettingsPane("none");
          }
      };
