@@ -111,20 +111,21 @@ button{
 }
 
 #stats_div{
-    margin-top: 25%;
+    margin-top: 20%;
     margin-left: 10%;
-    border: 2px solid #ffda39;
+    //border: 2px solid #ffda39;
     height: 50%;
     width: 80%;
 }
 
 .heading{
     text-align: center;
-    color: #ffad39;
+    color: #ffe815;
     background: transparent;
     resize: none;
     padding: 5%;
     width: 50%;
+    height: 20%;
     font-weight: bolder;
     outline: none;
 }
@@ -147,7 +148,7 @@ button{
     background: rgb(92, 64, 51);
 }
 
-#footer{
+.footer{
     //background: rgb(179, 89, 0);
     top: 90%;
     position: absolute;
