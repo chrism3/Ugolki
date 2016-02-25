@@ -506,6 +506,7 @@ function testController(){
                 console.log("did this happen");
                 //redirect to the stats page
                 test_view.displayPersonalStats();
+                test_model.validation(test_model.getLoggedInPlayer(), "retrieve stats");
             }
             else{
                 test_view.closeSettings();
@@ -538,7 +539,7 @@ function testController(){
            }
            else{
                // doesnt work yet, comment in HTML says why
-               test_view.reportErrorToUser("Sign up unsuccessful. Please ry again", "login");
+               test_view.reportErrorToUser("Sign up unsuccessful. Please try again", "login");
            }
            // reset the sign up textarea's
            test_view.resetSignUpFields();

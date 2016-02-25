@@ -92,6 +92,19 @@ function detailsValidation(){
         }
     };
     
+    this.retrieveStatsValidation = function(username){
+        console.log("validating");
+        var details_okay = true;
+        console.log(username);
+        if(username === undefined || username === ""){
+            console.log("details not okay");
+            details_okay = false;
+        }
+        if(details_okay){
+            this.getPlayerStats(username);
+        }
+    };
+    
     /*
      * This is the function that calls the login php
      */
@@ -161,6 +174,28 @@ function detailsValidation(){
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.onreadystatechange = function () {
             
+        };
+        xmlhttp.send(username);
+    };
+    
+    // this is the function that will call the php to get the stats from the database
+    this.getPlayerStats = function(player){
+        var xmlhttp;
+        var username = "username=" + player;
+        console.log(username);
+        if(window.XMLHttpRequest){
+            // chrome, firefox, safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else{
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        // remember to create the php page
+        xmlhttp.open("POST", "retrieveStats.php", false);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.onreadystatechange = function () {
+            console.log(xmlhttp.responseText);
         };
         xmlhttp.send(username);
     };

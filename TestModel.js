@@ -440,22 +440,28 @@ function testModel() {
     // this method is used to pass the details onto the correct validation method
     this.validation = function(user_details, validation_status){
         var status;
+        var validate = new detailsValidation();
         if(validation_status === "sign up"){
             // call the validation for signing up
-            var validate = new detailsValidation();
+            //var validate = new detailsValidation();
             validate.signUpValidation(user_details);
             status = validate.getSignInStatus();
         }
         else if(validation_status === "login"){
-            var validate = new detailsValidation();
+            //var validate = new detailsValidation();
             validate.loginValidation(user_details);
             status = validate.getLoginStatus();
         }
         else if(validation_status === "stats"){
             // maybe not the best way to do this, stats doesn't really need validation?
-            var validate = new detailsValidation();
+            //var validate = new detailsValidation();
             validate.statsUpdateValidation(user_details);
             // not sure what will needed to be returned here... if anything
+        }
+        else if(validation_status === "retrieve stats"){
+            console.log(user_details);
+            validate.retrieveStatsValidation(user_details);
+            
         }
         return status;
     };
