@@ -26,6 +26,8 @@ function testModel() {
     var signed_in;
     // this vairbale stores the name of the current player signed in 
     var logged_in_player;
+    // variable to store boolean value if player is logged in
+    var is_logged_in = false;
     
     // variables to set the screen sizes
     var screen_width = 0,
@@ -247,11 +249,19 @@ function testModel() {
     //set and get methods for the current_player
     this.setLoggedInPlayer = function(player_name){
         logged_in_player = player_name;
+        this.setIsloggedIn();
     };
     this.getLoggedInPlayer = function(){
         return logged_in_player;
     };
     
+    this.setIsloggedIn = function(){
+        is_logged_in = true;
+    };
+    
+    this.getLoggedIn = function(){
+        return is_logged_in;
+    };
     
     
     // I'm not sure how the AI should work... maybe like this

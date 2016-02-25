@@ -499,8 +499,19 @@ function testController(){
         });
         
         test_view.setPersonalStatsClickCallback( function(){
-            console.log("personal stats has been clicked");
-            test_view.displayPersonalStats();
+            console.log("personal stats has been clicked");            
+            // need to check if a player is logged in
+            if(test_model.getLoggedIn()){
+                // do something in the model
+                console.log("did this happen");
+                //redirect to the stats page
+                test_view.displayPersonalStats();
+            }
+            else{
+                test_view.closeSettings();
+                console.log("reporting no logged in to user");
+                test_view.reportErrorToUser("There is no logged in player to get stats for", "game");
+            }
         });
         
         test_view.setSignUpClickCallback(function(){
