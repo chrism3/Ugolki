@@ -966,7 +966,18 @@ function testView(){
         this.setAlternatePage(personal_stats_page);
     };
     this.setStatsTextAreas = function(player_stats){
+        var name = document.getElementById("player_name_stats");
+        var games = document.getElementById("games_played");
+        var wins = document.getElementById("no_of_wins");
+        var losses = document.getElementById("no_of_losses");
+        var percent = document.getElementById("percent_value");
+        var win_percent = (player_stats[2]/player_stats[1]) * 100;
         
+        name.value = player_stats[0];
+        games.value = player_stats[1];
+        wins.value = player_stats[2];
+        losses.value = player_stats[3];       
+        percent.value = win_percent + "%";
     };
 
     this.displaySignUpPage = function(){

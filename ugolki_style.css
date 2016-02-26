@@ -125,7 +125,7 @@ button{
     background: transparent;
     resize: none;
     padding-left: 5%;
-    width: 40%;
+    width: 45%;
     height: 20%;
     font-weight: bolder;
     outline: none;
@@ -134,9 +134,9 @@ button{
     text-align: center;
     color: #ffe815;
     background: transparent;
-    //padding-right: 5%;
+    resize: none;
     float: left;
-    width: 40%;
+    width: 45%;
     height: 20%;
     font-weight: bolder;
     outline: none;

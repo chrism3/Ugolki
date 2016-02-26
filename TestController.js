@@ -509,6 +509,7 @@ function testController(){
                 var stats = test_model.validation(test_model.getLoggedInPlayer(), "retrieve stats");
                 console.log("in controller: " + stats.length);
                 // call the view's function to set the stats text area's to hold the relevant info. 
+                test_view.setStatsTextAreas(stats);
             }
             else{
                 test_view.closeSettings();
