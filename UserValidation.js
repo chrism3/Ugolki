@@ -124,6 +124,7 @@ function detailsValidation(){
         xmlhttp.open("POST", "login.php", false);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.onreadystatechange = function () {
+            // doing this breaks mvc a little, but i needed to get rid of the responding tags
             var details = document.getElementById("hidden_li_details");
             details.innerHTML = xmlhttp.responseText;
             console.log(details.textContent);
@@ -195,7 +196,20 @@ function detailsValidation(){
         xmlhttp.open("POST", "retrieveStats.php", false);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.onreadystatechange = function () {
-            console.log(xmlhttp.responseText);
+            //console.log(xmlhttp.responseText);
+            if(xmlhttp.responseText !== 'not working'){
+                var result = xmlhttp.responseText;
+                var result = result.replace('<html><body><p>', '');
+//                result.replace('<body>','');
+//                result.replace('<p>', '');
+                var result = result.replace('</p></body></html>', '');
+                var response_array = result.split('$123');
+//                console.log(response_array.length);
+//                for(var i = 0; i < response_array.length; i++){
+//                    console.log(response_array[i]);
+//                }
+                return response_array;
+            }
         };
         xmlhttp.send(username);
     };
