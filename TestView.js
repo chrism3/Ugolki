@@ -965,9 +965,9 @@ function testView(){
         //alternate_page = personal_stats_page;
         this.setAlternatePage(personal_stats_page);
     };
-    this.setStatsTextAreas = function(plaer_stats){
+    this.setStatsTextAreas = function(player_stats){
         
-    }
+    };
 
     this.displaySignUpPage = function(){
         // all this method needs to do is hide the game board and display the sign up page

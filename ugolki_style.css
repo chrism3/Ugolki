@@ -119,12 +119,24 @@ button{
 }
 
 .heading{
+    float: left;
     text-align: center;
     color: #ffe815;
     background: transparent;
     resize: none;
-    padding: 5%;
-    width: 50%;
+    padding-left: 5%;
+    width: 40%;
+    height: 20%;
+    font-weight: bolder;
+    outline: none;
+}
+.results{
+    text-align: center;
+    color: #ffe815;
+    background: transparent;
+    //padding-right: 5%;
+    float: left;
+    width: 40%;
     height: 20%;
     font-weight: bolder;
     outline: none;
