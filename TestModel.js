@@ -460,8 +460,9 @@ function testModel() {
         }
         else if(validation_status === "retrieve stats"){
             console.log(user_details);
-            validate.retrieveStatsValidation(user_details);
-            
+            var stats = validate.retrieveStatsValidation(user_details);
+            //console.log("in model: " +stats.length);
+            return stats;
         }
         return status;
     };

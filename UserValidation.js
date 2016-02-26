@@ -6,7 +6,8 @@
 
 function detailsValidation(){
     var sign_in_status,
-        login_status;
+        login_status,
+        stats_retrieved = new Array();
     
     // this method validates user input for signing up
     this.signUpValidation = function (user_details){
@@ -102,6 +103,9 @@ function detailsValidation(){
         }
         if(details_okay){
             this.getPlayerStats(username);
+            var stats = this.getStatsRetrieved();
+            //console.log("in retreive stats: " + stats.length);
+            return stats;
         }
     };
     
@@ -183,6 +187,7 @@ function detailsValidation(){
     this.getPlayerStats = function(player){
         var xmlhttp;
         var username = "username=" + player;
+        var response_array = new Array();
         console.log(username);
         if(window.XMLHttpRequest){
             // chrome, firefox, safari
@@ -203,15 +208,16 @@ function detailsValidation(){
 //                result.replace('<body>','');
 //                result.replace('<p>', '');
                 var result = result.replace('</p></body></html>', '');
-                var response_array = result.split('$123');
+                response_array = result.split('$123');
 //                console.log(response_array.length);
-//                for(var i = 0; i < response_array.length; i++){
-//                    console.log(response_array[i]);
-//                }
-                return response_array;
+                for(var i = 0; i < response_array.length; i++){
+                    console.log(response_array[i]);
+                }
+                
             }
         };
         xmlhttp.send(username);
+        this.setStatsRetrieved(response_array);
     };
     
     // this is where the addLossToDB.php page is called
@@ -242,6 +248,14 @@ function detailsValidation(){
     this.getLoginStatus = function(){
         return login_status;
     };
+    
+    this.setStatsRetrieved = function(stats){
+        stats_retrieved = stats;
+    };
+    this.getStatsRetrieved = function(){
+        return stats_retrieved;
+    };
+    
     
 }
 
