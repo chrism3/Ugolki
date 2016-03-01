@@ -527,6 +527,10 @@ function testView(){
         var red_and_black = document.getElementById("red_and_black");
         red_and_black.addEventListener("click", callback);
     };
+    this.setYellowAndPurpleButtonClickCallback = function(callback){
+        var yellow_and_purple = document.getElementById("yellow_and_purple");
+        yellow_and_purple.addEventListener("click", callback);
+    };
         
     
     this.highlightSelectedPiece = function(){

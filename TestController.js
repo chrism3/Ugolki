@@ -587,6 +587,15 @@ function testController(){
             test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
                                         test_model.getDarkBoardColour(), test_model.getLightBoardColour());
         });
+        test_view.setYellowAndPurpleButtonClickCallback( function() {
+            console.log("purple and yellow has been clicked");
+            test_model.setPlayer1Colour("rgb(218, 223, 72)");
+            test_model.setPlayer2Colour("rgb(175, 127, 208)");
+            test_model.setDarkBoardColour("rgb(138, 0, 230)");
+            test_model.setLightBoardColour("rgb(247, 255, 0)");
+            test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
+                                        test_model.getDarkBoardColour(), test_model.getLightBoardColour());
+        });
         
     // this should probably be in the model
     this.performPieceSelection = function(){ 
