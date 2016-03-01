@@ -767,7 +767,7 @@ function testView(){
         var white_squares = document.getElementsByClassName("white_square");
         var brown_squares = document.getElementsByClassName("brown_square"); 
         var all_circles = document.getElementsByTagName("circle");
-        for(var i = 0; i < white_squares.length; i++){            
+        for(var i = 0; i < white_squares.length; i++){   
             white_squares[i].style.fill = light_square_colour;
             brown_squares[i].style.fill = dark_square_colour;
         }

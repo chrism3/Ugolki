@@ -580,6 +580,12 @@ function testController(){
         // call code for the colour change buttons
         test_view.setRedAndBlackButtonClickCallback( function() {
             console.log("red and balck has been clicked");
+            test_model.setPlayer1Colour("rgb(255, 55, 55)");
+            test_model.setPlayer2Colour("rgb(87, 87, 87)");
+            test_model.setDarkBoardColour("rgb(0, 0, 0)");
+            test_model.setLightBoardColour("rgb(182, 32, 32)");
+            test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
+                                        test_model.getDarkBoardColour(), test_model.getLightBoardColour());
         });
         
     // this should probably be in the model

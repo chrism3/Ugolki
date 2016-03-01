@@ -493,9 +493,11 @@ function testModel() {
         return light_board_colour;
     };
     this.setDarkBoardColour = function(new_colour){
+        console.log("new dark colour: " + new_colour);
         dark_board_colour = new_colour;
     };
     this.setLightBoardColour = function(new_colour){
+        console.log("new light colour: " + new_colour);
         light_board_colour = new_colour;
     };
     
