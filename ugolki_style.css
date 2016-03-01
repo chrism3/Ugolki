@@ -93,6 +93,7 @@ button{
     float: left;
     background: transparent;
     color: #ffe815;
+    outline: none;
 }
 
 
