@@ -21,20 +21,50 @@ function mediumAI(){
             //console.log(all_moves);
             var good_moves = all_moves[0];
             var bad_moves = all_moves[1];
-            this.decideBestMove(good_moves, bad_moves, AI);                         
+            this.decideBestMove(good_moves, bad_moves, AI, pieces);                         
     }; 
     
     // this is how the better AI selects it's move
-    this.decideBestMove = function(good_moves, bad_moves, AI){
+    this.decideBestMove = function(good_moves, bad_moves, AI, pieces){
         // need to make sure there is a valid target
         this.updateTarget(AI);
+        var dls_moves_array = new Array();
         
-        var random_index = parseInt(Math.random()*good_moves.length);
-        this.setChoosenMove(good_moves[random_index][0]);
-        var random_piece = good_moves[random_index][0].getPieceToMove();
-        this.setSelectedPieceIndex(random_piece.getPieceId());
-        this.setAISelectedPieceXCoord(random_piece.getXCoord());
-        this.setAISelectedPieceYCoord(random_piece.getYCoord());
+        //console.log("best move: " + good_moves[0][0]);
+        
+        var best_index = 0;
+        var piece_to_move; 
+        if(good_moves.length > 0){
+            var best_eval = good_moves[best_index][1];
+            for(var i = 1; i < good_moves.length; i++){
+                var eval;
+                //console.log("check if " + eval + " is less than " + best_eval);
+                
+                   // console.log("it is");
+                    best_index = i;
+                    console.log("is this depths move stuff actually being called");
+                    console.log(good_moves[best_index][0].getPieceToMove().getPieceId());
+                    var depth_moves = AI.dls(0, good_moves[best_index][0], pieces, null);
+                    console.log("It has returned, but will break in a minute: " + depth_moves.length);
+                    console.log("depth_moves.length: " + depth_moves.length);
+                    for(var i = 0; i < depth_moves.length; i++){
+                        
+                    }
+                    best_eval = eval;
+                
+
+            }
+            
+            //console.log("best index: " + best_index);
+            //console.log("best eval: " + best_eval);
+            this.setChoosenMove(good_moves[best_index][0]);
+            piece_to_move = good_moves[best_index][0].getPieceToMove();
+        }
+        
+        
+        this.setSelectedPieceIndex(piece_to_move.getPieceId());
+        this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
+        this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
     };
     
     this.updateTarget = function(AI){
