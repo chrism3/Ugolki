@@ -28,30 +28,20 @@ function mediumAI(){
     this.decideBestMove = function(good_moves, bad_moves, AI, pieces){
         // need to make sure there is a valid target
         this.updateTarget(AI);
-        var dls_moves_array = new Array();
-        
         //console.log("best move: " + good_moves[0][0]);
-        
+        var dls_moves = new Array();
         var best_index = 0;
         var piece_to_move; 
         if(good_moves.length > 0){
-            var best_eval = good_moves[best_index][1];
+            var best_eval = good_moves[0][1];
             for(var i = 1; i < good_moves.length; i++){
-                var eval;
+                var eval = good_moves[i][1];
                 //console.log("check if " + eval + " is less than " + best_eval);
-                
+                if(eval < best_eval){
                    // console.log("it is");
                     best_index = i;
-                    console.log("is this depths move stuff actually being called");
-                    console.log(good_moves[best_index][0].getPieceToMove().getPieceId());
-                    var depth_moves = AI.dls(0, good_moves[best_index][0], pieces, null);
-                    console.log("It has returned, but will break in a minute: " + depth_moves.length);
-                    console.log("depth_moves.length: " + depth_moves.length);
-                    for(var i = 0; i < depth_moves.length; i++){
-                        
-                    }
                     best_eval = eval;
-                
+                }
 
             }
             
@@ -59,8 +49,19 @@ function mediumAI(){
             //console.log("best eval: " + best_eval);
             this.setChoosenMove(good_moves[best_index][0]);
             piece_to_move = good_moves[best_index][0].getPieceToMove();
+            //this.setSelectedPieceIndex(piece_to_move.getPieceId());
         }
-        
+        else{
+            var best_eval = bad_moves[0][1];
+            var depth_moves;
+            for(var i = 0; i < bad_moves.length; i++){
+                depth_moves = AI.dls(0, bad_moves[best_index][0], pieces, null);
+                for(var i = 0; i < depth_moves.length; i++){
+                    dls_moves.push(depth_moves[i]);
+                }
+            }
+            console.log(depth_moves.length);
+        }
         
         this.setSelectedPieceIndex(piece_to_move.getPieceId());
         this.setAISelectedPieceXCoord(piece_to_move.getXCoord());

@@ -136,37 +136,22 @@ function generalAI(){
     };
     
     this.dls = function(depth, move, pieces, all_moves){
-        console.log("this has been called");
+        //console.log("this has been called");
         //var best_move;
         if(depth < 1){
-            console.log(move.getPieceToMove());
-            var x = move.getX();
-            var y = move.getY();
+            var x_to_reset = move.getX();
+            var y_to_reset = move.getY();
             this.makeMove(move);
             var all_moves = this.evalAllMoves(this.findAllMoves(pieces, board_representation));
-            var good_moves = all_moves[0];
-            //var bad_moves = all_moves[1];
-            var best_eval = 100000; // onscenely high to make sure it can always be lowered
-            var eval_list = new Array();
-            for(var i = 0; i < good_moves.length; i++){
-                var second_x = good_moves[i][0].getX();
-                var second_y = good_moves[i][0].getY();
-                this.makeMove(good_moves[i][0]);
-                var move_eval = this.eval();
-                if(move_eval < best_eval){
-                    var new_eval = new Array();
-                    move_eval[0] = good_moves[i][0];
-                    move_eval[2] = move_eval;
-                    eval_list.push(new_eval);
-                }
-                this.undoMove(good_moves[i][0], second_x, second_y);
-            }
-            this.undoMove(move, x, y);
-        }
-        else
-            // need to return something
+            //var best_eval = 10000000; //obscenely large so that it must be reset with the first eval
             console.log(all_moves.length);
-            return all_moves;
+            for(var i = 0; i < all_moves.length; i++){
+                this.dls(depth + 1, all_moves[i], pieces, all_moves);
+                
+            }
+            this.undoMove(move, x_to_reset, y_to_reset);           
+        }
+        return all_moves;
     };
     
     
