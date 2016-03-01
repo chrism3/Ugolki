@@ -648,7 +648,8 @@ function testController(){
                 return;
             }
            if(test_view.wasMoveSuccessful()){
-                test_view.resetDefaultBoardColours();
+                test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
+                                        test_model.getDarkBoardColour(), test_model.getLightBoardColour());
                 test_model.resetForNextMove();
            }
            else{
@@ -703,7 +704,8 @@ function testController(){
                         test_view.movePiece2(AI_move.getX(), AI_move.getY());
                         // need to reset the board colour and the model, before the user can make their next turn
                         test_model.resetForNextMove();
-                        test_view.resetDefaultBoardColours();
+                        test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
+                                        test_model.getDarkBoardColour(), test_model.getLightBoardColour());
                    }, 750);                                 
                 }
             }

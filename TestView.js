@@ -763,22 +763,22 @@ function testView(){
 // may want to change how this works so that the user can alter the board colours
 // maybe pass in values from the model
     this.resetDefaultBoardColours = function (player_1_colour, player_2_colour, 
-                                    dark_square_color, light_square_colour){
+                                    dark_square_colour, light_square_colour){
         var white_squares = document.getElementsByClassName("white_square");
         var brown_squares = document.getElementsByClassName("brown_square"); 
         var all_circles = document.getElementsByTagName("circle");
         for(var i = 0; i < white_squares.length; i++){            
-            white_squares[i].style.fill = "rgb(255, 211, 155)";
-            brown_squares[i].style.fill = "rgb(130, 72, 21)";
+            white_squares[i].style.fill = light_square_colour;
+            brown_squares[i].style.fill = dark_square_colour;
         }
         
         // not sure why this would be needed, might change it. 
         for(var i = 0; i < all_circles.length; i++){
             if(all_circles[i].attributes.class.value === "white_circles"){
-                all_circles[i].style.fill = "rgb(255, 235, 205);";
+                all_circles[i].style.fill = player_1_colour;
             }
             else{
-                all_circles[i].style.fill = "rgb(92, 64, 51)";
+                all_circles[i].style.fill = player_2_colour;
             }
             all_circles[i].style.stroke = "rgb(0,0,0)";
         }
