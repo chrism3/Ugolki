@@ -521,6 +521,12 @@ function testView(){
         var back = document.getElementById("sign_up_back_button");
         back.addEventListener("click", callback);
     };
+    
+    // listeners for the colour options
+    this.setRedAndBlackButtonClickCallback = function(callback) {
+        var red_and_black = document.getElementById("red_and_black");
+        red_and_black.addEventListener("click", callback);
+    };
         
     
     this.highlightSelectedPiece = function(){
@@ -756,7 +762,8 @@ function testView(){
 
 // may want to change how this works so that the user can alter the board colours
 // maybe pass in values from the model
-    this.resetDefaultBoardColours = function (){
+    this.resetDefaultBoardColours = function (player_1_colour, player_2_colour, 
+                                    dark_square_color, light_square_colour){
         var white_squares = document.getElementsByClassName("white_square");
         var brown_squares = document.getElementsByClassName("brown_square"); 
         var all_circles = document.getElementsByTagName("circle");

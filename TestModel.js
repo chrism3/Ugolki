@@ -33,6 +33,11 @@ function testModel() {
     var screen_width = 0,
     screen_height = 0;
     
+    var player_1_colour = "rgb(255, 235, 205)";
+    var player_2_colour = "rgb(92, 64, 51)";
+    var dark_board_colour = "rgb(255, 211, 155)";
+    var light_board_colour = "rgb(130, 72, 21)";
+    
     //please rename test_board
    this.setTestBoard = function(screen_to_board_map){
        var white_id = 1;
@@ -466,5 +471,33 @@ function testModel() {
         }
         return status;
     };
+    
+    
+    // getter and setter methods for the board and piece colours
+    this.getPlayer1Colour = function(){
+        return player_1_colour;
+    };
+    this.getPlayer2Colour = function(){
+        return player_2_colour;
+    };
+    this.setPlayer1Colour = function(new_colour){
+        player_1_colour = new_colour;
+    };
+    this.setPlayer2Colour = function(new_colour){
+        player_2_colour = new_colour;
+    };
+    this.getDarkBoardColour = function(){
+        return dark_board_colour;
+    };
+    this.getLightBoardColour = function(){
+        return light_board_colour;
+    };
+    this.setDarkBoardColour = function(new_colour){
+        dark_board_colour = new_colour;
+    };
+    this.setLightBoardColour = function(new_colour){
+        light_board_colour = new_colour;
+    };
+    
     
 }

@@ -575,7 +575,12 @@ function testController(){
         test_view.setSignUpBackButtonClickCallback( function(){
             console.log("the button has been clicked");
             test_view.returnToBoard();
-        });    
+        });
+        
+        // call code for the colour change buttons
+        test_view.setRedAndBlackButtonClickCallback( function() {
+            console.log("red and balck has been clicked");
+        });
         
     // this should probably be in the model
     this.performPieceSelection = function(){ 
