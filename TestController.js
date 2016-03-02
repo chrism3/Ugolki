@@ -626,45 +626,51 @@ function testController(){
          */
         
             //test_view.resetDefaultBoardColours();// call this incase there are all ready squares coloured
-            test_view.highlightSelectedPiece();
-            var current_piece = test_view.getSelectedPiece();
-            var id = current_piece.attributes.id.value,
-                screen_to_board_map = test_view.getScreenToBoardMap(),
-                x_coord = 0,
-                y_coord = 0;
-            //console.log("in controller (performPieceSelection) the id of slected piece is: " + id);
-            // console.log(screen_to_board_map[0][7][0].attributes.id.value);
-            moves = [];
-            //test_view.resetDefaultBoardColours();
-           // console.log("length of moves: " + moves.length);
-            for(var i = 0; i < 8; i++){
-                for(var j = 0; j < 8; j++){
-                    if(screen_to_board_map[i][j] !== undefined){
-                        if(screen_to_board_map[i][j][0].attributes.id.value === id){
-                            //console.log("found circle with id " + id);
-                            x_coord = i;
-                            y_coord = j;
-                            //console.log("it's x and y coords are: " + x_coord + "," + y_coord);
-                        }
-                        else{
-                            //console.log("[" + i + "][" + j + "]");
+            if(test_view.getSelectedPiece() !== "none"){
+                test_view.highlightSelectedPiece();
+                var current_piece = test_view.getSelectedPiece();
+                var id = current_piece.attributes.id.value,
+                    screen_to_board_map = test_view.getScreenToBoardMap(),
+                    x_coord = 0,
+                    y_coord = 0;
+                //console.log("in controller (performPieceSelection) the id of slected piece is: " + id);
+                // console.log(screen_to_board_map[0][7][0].attributes.id.value);
+                moves = [];
+                //test_view.resetDefaultBoardColours();
+               // console.log("length of moves: " + moves.length);
+                for(var i = 0; i < 8; i++){
+                    for(var j = 0; j < 8; j++){
+                        if(screen_to_board_map[i][j] !== undefined){
+                            if(screen_to_board_map[i][j][0].attributes.id.value === id){
+                                //console.log("found circle with id " + id);
+                                x_coord = i;
+                                y_coord = j;
+                                //console.log("it's x and y coords are: " + x_coord + "," + y_coord);
+                            }
+                            else{
+                                //console.log("[" + i + "][" + j + "]");
+                            }
                         }
                     }
                 }
-            }
-            moves = test_model.findMoves2(x_coord, y_coord);
-            if(test_model.wasFindMovesSuccessful()){
-                //console.log(moves.length);
-                for(var i = 0; i < moves.length; i++){
-                    var x_coord = moves[i].getX(),
-                        y_coord = moves[i].getY();
-                    test_view.updateBoardWithMoves2(x_coord, y_coord);
+                moves = test_model.findMoves2(x_coord, y_coord);
+                if(test_model.wasFindMovesSuccessful()){
+                    //console.log(moves.length);
+                    for(var i = 0; i < moves.length; i++){
+                        var x_coord = moves[i].getX(),
+                            y_coord = moves[i].getY();
+                        test_view.updateBoardWithMoves2(x_coord, y_coord);
+                    }
+                }
+                else{
+                    var colour = test_model.getCurrentPlayerColour();
+                    test_view.reportErrorToUser("It is " + colour + "s turn to move", "game");
+                    //test_view.fadeInfoBox();
                 }
             }
             else{
-                var colour = test_model.getCurrentPlayerColour();
-                test_view.reportErrorToUser("It is " + colour + "s turn to move", "game");
-                //test_view.fadeInfoBox();
+                test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
+                                        test_model.getDarkBoardColour(), test_model.getLightBoardColour());
             }
         };
         

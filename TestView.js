@@ -755,7 +755,7 @@ function testView(){
         }
         else if(selected_piece === piece){
             selected_piece = "none";
-            this.resetDefaultBoardColours();
+            //this.resetDefaultBoardColours();
         }
     };
 
