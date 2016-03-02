@@ -624,7 +624,8 @@ function testController(){
          * turn of the colour of piece that has been selected, can therefore bring
          * up a pop up box informing the user it isn't their turn
          */
-        
+        var selected_piece = new Audio('Sounds/piece_selected.wav');
+        selected_piece.play();
             //test_view.resetDefaultBoardColours();// call this incase there are all ready squares coloured
             if(test_view.getSelectedPiece() !== "none"){
                 test_view.highlightSelectedPiece();
@@ -678,6 +679,8 @@ function testController(){
         this.handleMovePiece = function() {                     
            var square_x = square[0];
            var square_y = square[1];
+           var piece_moved = new Audio('Sounds/piece_moved.wav');
+           piece_moved.play();
            //console.log("in handle move pieces: " + square_x + "   " + square_y);
            if(test_model.movePiece(square_x, square_y)){           
                 test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
