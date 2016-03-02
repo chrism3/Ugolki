@@ -35,8 +35,8 @@ function testModel() {
     
     var player_1_colour = "rgb(255, 235, 205)";
     var player_2_colour = "rgb(92, 64, 51)";
-    var dark_board_colour = "rgb(255, 211, 155)";
-    var light_board_colour = "rgb(130, 72, 21)";
+    var dark_board_colour = "rgb(130, 72, 21)";
+    var light_board_colour = "rgb(255, 211, 155)";
     
     //please rename test_board
    this.setTestBoard = function(screen_to_board_map){
