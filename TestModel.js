@@ -39,7 +39,7 @@ function testModel() {
     var light_board_colour = "rgb(255, 211, 155)";
     
     //please rename test_board
-   this.setTestBoard = function(screen_to_board_map){
+   this.setTestBoard = function(){
        var white_id = 1;
        var brown_id = 1;
       

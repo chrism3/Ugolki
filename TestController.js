@@ -747,6 +747,8 @@ function testController(){
                    setTimeout(function() {
                         test_view.movePiece2(AI_move.getX(), AI_move.getY());
                         // need to reset the board colour and the model, before the user can make their next turn
+                        var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
+                        AI_piece_moved.play();
                         test_model.resetForNextMove();
                         test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
                                         test_model.getDarkBoardColour(), test_model.getLightBoardColour());
