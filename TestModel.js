@@ -38,6 +38,8 @@ function testModel() {
     var dark_board_colour = "rgb(130, 72, 21)";
     var light_board_colour = "rgb(255, 211, 155)";
     
+    var pieces_in_goal = new Array();
+    
     //please rename test_board
    this.setTestBoard = function(){
        var white_id = 1;
@@ -113,7 +115,7 @@ function testModel() {
              */
             find_moves.multipleJump3(x_coord, y_coord);
             possible_moves = find_moves.getPossibleMoves();
-            console.log("in the model possible moves length: " + possible_moves.length);
+            //console.log("in the model possible moves length: " + possible_moves.length);
         }
         else{
             find_moves_successful = false;
@@ -174,7 +176,7 @@ function testModel() {
                    
                 }
                 else{
-                    console.log("something has went wrong");
+                    //console.log("something has went wrong");
                     // not sure whether or not this should have a return in here or what it should be
                     // if i do use this, will need to alter return statement from being a boolean
                 }
@@ -239,7 +241,7 @@ function testModel() {
         return player_2_type;
     };    
     this.setPlayerTwoType = function (player_type){
-        console.log("setting player 2 to: " + player_type);
+        //console.log("setting player 2 to: " + player_type);
         player_2_type = player_type;
     };
     
@@ -279,7 +281,7 @@ function testModel() {
      * Use the following method to check which AI we currently have set, simple, hard, good ect...
      * Then call the appropriate AI class
      */
-    this.checkAIType = function (){
+    this.checkAIType = function (model){
         // need to get the pieces that the AI can actually move
         
         // call this to make sure the AI board rep is up to date
@@ -287,6 +289,7 @@ function testModel() {
         var pieces = new Array();
         var count = 0;
         for(var i = test_board.length-1; i > 0; i--){
+            //console.log(i);
             for(var j = 0; j < test_board.length; j++){
                  if(test_board[i][j] !== 0){
                      // currently only works if the Ai is player 2
@@ -294,7 +297,17 @@ function testModel() {
                          //console.log("index the peice is added to: " + count);
                          //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
                          //        "," + test_board[i][j].getYCoord());
-                         pieces.push(test_board[i][j]);
+                         var reached_goal = false;
+                         //console.log("pieces in their goal location: " + pieces_in_goal.length);
+                         for(var k = 0; k < pieces_in_goal.length; k++){
+                             if(test_board[i][j].getPieceId() === pieces_in_goal[k]){
+                                 reached_goal = true;
+                             }
+                         }
+                         if(!reached_goal){
+                            //console.log("pushing to the pieces list");
+                            pieces.push(test_board[i][j]);
+                         }
                          count++;
                      }
                  }
@@ -302,10 +315,11 @@ function testModel() {
         }
         var find_moves = new findMoves();
         find_moves.init(test_board);
+        console.log(pieces.length);
         if(AI_type === "simpleAI"){            
             //current_AI_player.findAllMoves(pieces, test_board);
             //current_AI_player.findAllMoves2(pieces, test_board);
-            current_AI_player.simpleAI(pieces, test_board);
+            current_AI_player.simpleAI(pieces, test_board, model);
         }
         else if(AI_type === "mediumAI"){
             current_AI_player.mediumAI(pieces, test_board);
@@ -382,7 +396,7 @@ function testModel() {
         var player_1_won = true;
         var player_2_won = true;
         
-        console.log("checking if player 2 has won");
+        //console.log("checking if player 2 has won");
         for(var i = 0; i < 4; i++){
             for(var j = 7; j > 3; j--){
 //                console.log("");
@@ -392,7 +406,7 @@ function testModel() {
                     
 //                    console.log("found piece: " + piece.getPieceColour());
                     if(piece.getPieceColour() !== "black"){
-                        console.log("piece of colour " + piece.getPieceColour() + " is at location: " + piece.getXCoord() + "," + piece.getYCoord());
+                        //console.log("piece of colour " + piece.getPieceColour() + " is at location: " + piece.getXCoord() + "," + piece.getYCoord());
                             player_2_won = false;
                             break;
                     }
@@ -410,7 +424,7 @@ function testModel() {
             return "player 2";
         }
         
-        console.log("checking if player 1 has won");
+        //console.log("checking if player 1 has won");
         for(var i = 7; i > 3; i--){
             //console.log(test_board[7][0].getPieceColour());
             for(var j = 0; j < 4; j++){
@@ -418,7 +432,7 @@ function testModel() {
                     var piece = test_board[i][j];
                     //console.log("piece of colour " + piece.getPieceColour() + " is at location: " + piece.getXCoord() + "," + piece.getYCoord());
                     if(piece.getPieceColour() !== "white"){
-                        console.log("piece of colour " + piece.getPieceColour() + " is at location: " + piece.getXCoord() + "," + piece.getYCoord());
+                        //console.log("piece of colour " + piece.getPieceColour() + " is at location: " + piece.getXCoord() + "," + piece.getYCoord());
                         player_1_won = false;
                         break;
                     }
@@ -464,7 +478,7 @@ function testModel() {
             // not sure what will needed to be returned here... if anything
         }
         else if(validation_status === "retrieve stats"){
-            console.log(user_details);
+            //console.log(user_details);
             var stats = validate.retrieveStatsValidation(user_details);
             //console.log("in model: " +stats.length);
             return stats;
@@ -493,13 +507,26 @@ function testModel() {
         return light_board_colour;
     };
     this.setDarkBoardColour = function(new_colour){
-        console.log("new dark colour: " + new_colour);
+        //console.log("new dark colour: " + new_colour);
         dark_board_colour = new_colour;
     };
     this.setLightBoardColour = function(new_colour){
-        console.log("new light colour: " + new_colour);
+        //console.log("new light colour: " + new_colour);
         light_board_colour = new_colour;
     };
     
+    
+    // I dont like doing this like this but it might work
+    this.getAIPiecesInGoalLocation = function(){
+        return pieces_in_goal;
+    };
+    
+    this.addPieceToGoalLocationList = function(piece){
+        pieces_in_goal.push(piece);
+    };
+    
+    this.removeGoalPiecesFromList = function(pieces, goal_pieces){
+        
+    };
     
 }

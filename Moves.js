@@ -55,13 +55,13 @@ function findMoves(){
     this.jumpRight = function(right, y_coord, piece){
         if(right+1 <= board.length && board[right][y_coord] !== 0 ){
             if(right+1 < board.length && board[right+1][y_coord] === 0){
-                console.log("adding jump right");
-                console.log(piece);
-                                if(piece === undefined){
-                    console.log("there is no piece");
+                //console.log("adding jump right");
+                //console.log(piece);
+                if(piece === undefined){
+                //    console.log("there is no piece");
                 }
                 else{
-                    console.log("there is a piece");
+                   // console.log("there is a piece");
                 }
                 var move = new possibleMove;
                 move.newMove(right+1, y_coord, piece);
@@ -95,13 +95,13 @@ function findMoves(){
     this.jumpLeft = function(left, y_coord, piece){
         if(left-1 >= 0 && board[left][y_coord] !== 0){                
             if(left-1 >= 0 && board[left-1][y_coord] === 0){
-                console.log("adding jump left");
-                console.log(piece);
-                                if(piece === undefined){
-                    console.log("there is no piece");
+                //console.log("adding jump left");
+                //console.log(piece);
+                if(piece === undefined){
+                  //  console.log("there is no piece");
                 }
                 else{
-                    console.log("there is a piece");
+                    //console.log("there is a piece");
                 }
                 var move = new possibleMove;
                 move.newMove(left-1, y_coord, piece);
@@ -115,13 +115,13 @@ function findMoves(){
         //console.log("jump up called... above = " + above);
         if(above-1 >= 0 && board[x_coord][above] !== 0){
             if(above-1 >= 0 && board[x_coord][above - 1] === 0){
-                console.log("adding jump above");
-                console.log(piece);
-                                if(piece === undefined){
-                    console.log("there is no piece");
+                //console.log("adding jump above");
+                //console.log(piece);
+                if(piece === undefined){
+                    //console.log("there is no piece");
                 }
                 else{
-                    console.log("there is a piece");
+                    //console.log("there is a piece");
                 }
                 var move = new possibleMove;
                 move.newMove(x_coord, above-1, piece);
@@ -156,13 +156,13 @@ function findMoves(){
         //console.log("jump down has been called");
         if(below+1 < board.length && board[x_coord][below] !== 0){
             if(below+1 < board.length && board[x_coord][below + 1] === 0){
-                console.log("adding jump below");
-                console.log(piece);
+               // console.log("adding jump below");
+                //console.log(piece);
                 if(piece === undefined){
-                    console.log("there is no piece");
+                    //console.log("there is no piece");
                 }
                 else{
-                    console.log("there is a piece");
+                    //console.log("there is a piece");
                 }
                 var move = new possibleMove;
                 move.newMove(x_coord, below+1, piece);
@@ -288,7 +288,7 @@ function findMoves(){
         
         
         if(piece !== undefined){
-            console.log(piece.getXCoord());
+            //console.log(piece.getXCoord());
         }
         // add xcoord and ycoord to the current cords array
         var current_coords = new Array();        
@@ -297,21 +297,21 @@ function findMoves(){
         // add the current coords to the coords array
         coords.push(current_coords);
         
-        console.log("current coords being added: " + coords[0][0], coords[0][1]);
+        //console.log("current coords being added: " + coords[0][0], coords[0][1]);
         
         var count = 0;
         // loop round while coords is not empty
         while(coords.length > 0){
-            console.log(count + " is the iteration count of the loop");
-            console.log("coords needed to be used: " + coords[0][0] + "," + coords[0][1]);
-            console.log("how many visted locations: " + visited_locations.length);
+//            console.log(count + " is the iteration count of the loop");
+//            console.log("coords needed to be used: " + coords[0][0] + "," + coords[0][1]);
+//            console.log("how many visted locations: " + visited_locations.length);
             for(var i = 0; i < visited_locations.length; i++){
                 //console.log(coords[i][0] + "," + coords[i][1]);
-                console.log(visited_locations[i]);
+                //console.log(visited_locations[i]);
             }
             // check if the first index is all ready visited, if not add it to visited list
             if(!this.isVisited(new Array(coords[0][0], coords[0][1]), visited_locations)){
-                console.log("adding new location with coord: " + coords[0][0] + "," + coords[0][1]);
+                //console.log("adding new location with coord: " + coords[0][0] + "," + coords[0][1]);
                 visited_locations.push(new Array(coords[0][0], coords[0][1]));
                 
                 var x = coords[0][0];
@@ -327,9 +327,9 @@ function findMoves(){
                 var above = y - 1;
                 var below = y + 1;
                 // call the jump methods
-                console.log(piece);
+                //console.log(piece);
                 if(piece !== undefined){
-                    console.log(piece.getXCoord());
+                    //console.log(piece.getXCoord());
                 }
                 this.jumpRight(right, y, piece);
                 this.jumpLeft(left, y, piece);
@@ -338,32 +338,32 @@ function findMoves(){
                 // get the jumps found
                 moves_found = this.getPossibleJumps();
                
-              console.log("number of moves found: " + moves_found.length);
+              //console.log("number of moves found: " + moves_found.length);
                 
                // need to check if every has all ready been visited                
                 for(var i = 0; i < moves_found.length; i++){
-                    console.log("the move is: " + moves_found[i].getX() + "," + moves_found[i].getY());
+                    //console.log("the move is: " + moves_found[i].getX() + "," + moves_found[i].getY());
                      var visited = new Array();
                      visited.push(new Array(coords[0][0], coords[0][1]));
-                     console.log("length of visited: " + visited.length);
+                     //console.log("length of visited: " + visited.length);
                     // check to see if the square of the move has all ready been visited
-                    console.log("the current value of i is: " + i);
+                    //console.log("the current value of i is: " + i);
                     if(!this.containsMove(visited, moves_found[i])){
                             // this must therefore be an unsees possible move, add it to possible_moves
                             var move = new possibleMove();
-                            console.log("moves_found coords in the contains if: " + moves_found[i].getX() + "," + moves_found[i].getY());
+                            //console.log("moves_found coords in the contains if: " + moves_found[i].getX() + "," + moves_found[i].getY());
                             move.newMove(moves_found[i].getX(), moves_found[i].getY(), piece);
                             possible_moves.push(move);
                             // also need to add to coords, to loop round
                             var new_move_coords = new Array(moves_found[i].getX(), moves_found[i].getY());
-                            console.log("");
-                            console.log("");
-                            console.log("new_move_coords value: " + new_move_coords[0] + "," + new_move_coords[1]);
+//                            console.log("");
+//                            console.log("");
+//                            console.log("new_move_coords value: " + new_move_coords[0] + "," + new_move_coords[1]);
                             coords.push(new_move_coords);
-                            console.log(move.getX() + "," + move.getY() + " has been added to possible_moves");
+                            //console.log(move.getX() + "," + move.getY() + " has been added to possible_moves");
                             visited.push(new_move_coords);
-                            console.log("added to coords value: " + moves_found[i].getX() + "," + moves_found[i].getY());
-                            console.log("number of locations to check: " + coords.length);                        
+//                            console.log("added to coords value: " + moves_found[i].getX() + "," + moves_found[i].getY());
+//                            console.log("number of locations to check: " + coords.length);                        
                     }
                 }
                 
@@ -391,9 +391,9 @@ function findMoves(){
             }
             // remove the first item from the array because it has now been used
             coords.shift();
-            console.log("after shift: " + coords.length);
+            //console.log("after shift: " + coords.length);
             if(coords.length > 0){
-                console.log("coords at first index: " + coords[0][0] + "," + coords[0][1]);
+                //console.log("coords at first index: " + coords[0][0] + "," + coords[0][1]);
             }
             count++;
             /*
@@ -403,13 +403,13 @@ function findMoves(){
             //console.log("possible_moves.length: " + possible_moves.length);
             possible_jumps.splice(0, possible_jumps.length);
         }
-        console.log(possible_moves.length);
+        //console.log(possible_moves.length);
             for(var i = 0; i < possible_moves.length; i++){
                 var text_x = possible_moves[i].getX();
                 var text_y = possible_moves[i].getY();
-                console.log("move coords: " + text_x + "," + text_y);
+                //console.log("move coords: " + text_x + "," + text_y);
             }
-        console.log("no more locations to check");        
+        //console.log("no more locations to check");        
     };
     
     // method to get all of the possible moves
@@ -419,7 +419,7 @@ function findMoves(){
     };
     
     this.getPossibleJumps = function(){
-        console.log("getting possible jumps");
+        //console.log("getting possible jumps");
         return possible_jumps;
     };
      
@@ -465,7 +465,7 @@ function findMoves(){
         var check_y = move.getY();
         
         if(visited_squares.length < 1){
-            console.log("doesnt contain move... adding new move with coords: " + check_x + "," + check_y);
+            //console.log("doesnt contain move... adding new move with coords: " + check_x + "," + check_y);
             return false;
         }
         
@@ -473,15 +473,15 @@ function findMoves(){
         for(var i = 0; i < visited_squares.length; i++){
             var current_x = visited_squares[i][0];
             var current_y = visited_squares[i][1];
-                console.log("compareing x values " + current_x + " and " + check_x);
-                console.log("comparing y values " + current_y + " and " + check_y);
+                //console.log("compareing x values " + current_x + " and " + check_x);
+                //console.log("comparing y values " + current_y + " and " + check_y);
                 if(current_x === check_x && current_y === check_y){
-                    console.log("contains move... not add move with coords: " + check_x + "," + check_y);
+                    //console.log("contains move... not add move with coords: " + check_x + "," + check_y);
                     return true;
                     break;
                 }               
         }
-        console.log("doesnt contain move... adding new move with coords: " + check_x + "," + check_y);
+        //console.log("doesnt contain move... adding new move with coords: " + check_x + "," + check_y);
         return false;
     };
     

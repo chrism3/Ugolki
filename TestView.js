@@ -541,7 +541,7 @@ function testView(){
     };        
     
     this.highlightSelectedPiece = function(){
-        console.log(selected_piece);
+        //console.log(selected_piece);
         if(selected_piece.attributes.class.value === "white_circles"){
             selected_piece.style.stroke = "rgb(210, 33, 33)";
         }
@@ -749,13 +749,10 @@ function testView(){
     };
     this.setSelectedPiece = function(piece) {
         if (selected_piece === "none"){
-            console.log("doing this bit");
-            console.log(piece);
             selected_piece = piece;
         }
         else if(selected_piece === piece){
             selected_piece = "none";
-            //this.resetDefaultBoardColours();
         }
     };
 
@@ -959,10 +956,10 @@ function testView(){
      };
      
      this.closeSettings = function(){
-         console.log("closing the settings menus");
+         //console.log("closing the settings menus");
          var panel = this.getCurrentSettingsPanel();
          var pane = this.getSettingsPane();
-         console.log(panel);
+         //console.log(panel);
          if(panel !== "none"){
             panel.style.display = "none";
             this.setCurrentSettingsPanel("none");
@@ -1008,7 +1005,7 @@ function testView(){
     };
     // this method is used to retrun to the board page if the user has navigated to the login page
     this.returnToBoard = function(from_page){
-        console.log("LOOK AT THIS: " + from_page);
+        //console.log("LOOK AT THIS: " + from_page);
         var game_board = document.getElementById("test_board");
         //var sign_up_page = document.getElementById("sign_up_page");
         game_board.style.display = "block";
@@ -1021,20 +1018,20 @@ function testView(){
         var login_name = document.getElementById("login_username").value;
         var sign_up_name = document.getElementById("sign_up_username").value;
         var player_name = document.getElementById("player_1_type");
-        console.log(login_name + " is the current logged in name");
-        console.log(sign_up_name + " is the current signed in name");
+//        console.log(login_name + " is the current logged in name");
+//        console.log(sign_up_name + " is the current signed in name");
         if(from_page === "sign_up"){
-            console.log("doing this");
+            //console.log("doing this");
             if(login_name !== ""){
-                console.log("settings player name to login name");
+                //console.log("settings player name to login name");
                 player_name.value = login_name;
             }
             else if(sign_up_name !== ""){
-                console.log("settings player name to signup name");
+                //console.log("settings player name to signup name");
                 player_name.value = sign_up_name;
             }
             else{
-                player_name.value = "human";
+                player_name.value = "Human";
             }
         }
     };
@@ -1091,9 +1088,9 @@ function testView(){
         //console.log("doing this");
         var username = document.getElementById("login_username").value;
         var password = document.getElementById("login_password").value;
-        console.log("username: " + username);
+        //console.log("username: " + username);
         var login_details = [username, password];
-        console.log(login_details[0]);
+        //console.log(login_details[0]);
         return login_details;
     };
     

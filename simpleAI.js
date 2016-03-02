@@ -10,19 +10,21 @@ function simpleAI(){
     var move;
     var origional_x;
     var origional_y;
+    var copy_of_model;
 //    var target_x = 0,
 //        target_y = 7; /* this is the target because player 2 is aiming to get to
 //                       * the bottom left hand corner. This is why the algorithm currently
 //                       * only works when the AI is player 2
                       // */
     
-        this.simpleAI = function(pieces_to_move, board){
+        this.simpleAI = function(pieces_to_move, board, model){
             board_representation = board;
             var AI = new generalAI();            
             var all_moves = AI.evalAllMoves(AI.findAllMoves(pieces_to_move, board));
             var good_moves = all_moves[0];
             var bad_moves = all_moves[1];
             this.decideBestMove(good_moves, bad_moves, AI);
+            copy_of_model = model;
         };
     
     
@@ -161,7 +163,8 @@ function simpleAI(){
             // update "black" to be AI.getPieceColour() ?
             if(board_representation[AI.getTargetX()][AI.getTargetY()] !== 0 &&
                     board_representation[AI.getTargetX()][AI.getTargetY()].getPieceColour() === "black"){
-                console.log("inside the if");
+                console.log("piece in goal location: " + board_representation[AI.getTargetX()][AI.getTargetY()].getPieceId());
+                copy_of_model.addPieceToGoalLocationList(board_representation[AI.getTargetX()][AI.getTargetY()].getPieceId());
                 var x = AI.getTargetX();
                 var y = AI.getTargetY();
                 
@@ -172,7 +175,7 @@ function simpleAI(){
                     AI.setTargetX(x + 1);
                     AI.setTargetY(0);
                 }
-                console.log("updating target");
+                //console.log("updating target");
             }
             else{
                 target_free = true;
@@ -279,7 +282,7 @@ function simpleAI(){
         move = choosen_move;
     };    
     this.getAIPieceIndex = function (){
-        console.log("The index to be returned is: " + piece_index);
+        //console.log("The index to be returned is: " + piece_index);
         return piece_index;
     };
     this.setSelectedPieceIndex = function(index){

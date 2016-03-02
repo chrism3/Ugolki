@@ -25,9 +25,11 @@ function generalAI(){
 //        var no_of_good_moves = 0;
 //        var unfavoured_moves = new Array();
         AI_moves.init(board_representation);
+        console.log(pieces_to_move.length);
         for(var i = 0; i < pieces_to_move.length; i++){
             //console.log(i);
             var current_piece = pieces_to_move[i];
+            //console.log(current_piece);
             var x_coord = current_piece.getXCoord();
             var y_coord = current_piece.getYCoord();
             var right = x_coord + 1;
@@ -47,11 +49,11 @@ function generalAI(){
 //            AI_moves.jumpLeft(left, y_coord, current_piece);
 //            AI_moves.jumpUp(above, x_coord, current_piece);
 //            AI_moves.jumpDown(below, x_coord, current_piece);
-            console.log(current_piece);
+            //console.log(current_piece);
             AI_moves.multipleJump3(x_coord, y_coord, current_piece);
         }
         possible_moves = AI_moves.getPossibleMoves();
-        console.log("number of moves possible " + possible_moves.length);
+        //console.log("number of moves possible " + possible_moves.length);
         return possible_moves;
         //this.evalAllMoves(possible_moves);
     };
@@ -91,8 +93,8 @@ function generalAI(){
             
             this.undoMove(possible_moves[i], x_to_reset, y_to_reset);
         }
-        console.log("no of good moves: " + good_moves.length);
-        console.log("no of bad moves: " + bad_moves.length);
+//        console.log("no of good moves: " + good_moves.length);
+//        console.log("no of bad moves: " + bad_moves.length);
         
         /*
          * I am doing this because. Without doing a depth search (which is why my this will be the easy AI)
@@ -144,7 +146,7 @@ function generalAI(){
             this.makeMove(move);
             var all_moves = this.evalAllMoves(this.findAllMoves(pieces, board_representation));
             //var best_eval = 10000000; //obscenely large so that it must be reset with the first eval
-            console.log(all_moves.length);
+            //console.log(all_moves.length);
             for(var i = 0; i < all_moves.length; i++){
                 this.dls(depth + 1, all_moves[i], pieces, all_moves);
                 

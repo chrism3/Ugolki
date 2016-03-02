@@ -17,7 +17,7 @@ function testController(){
      test_model.setTestBoard(test_view.getScreenToBoardMap());
 
      var test_check = test_model.hasPlayerWon();
-     console.log(test_check);
+     //console.log(test_check);
 
     this.init = function() {
         
@@ -420,26 +420,26 @@ function testController(){
        
         // this calls the methods to add the event listener to the buttons in the menu
         test_view.setMenuImgClickCallback(function (){
-            console.log("menu option clicked");
+            //console.log("menu option clicked");
             //test_view.toggleSettingsPanel();
             //test_view.toggleGeneralSettings();
             test_view.setScreenToDisplay("general");
             test_view.toggleSettings(test_view.getScreenToDisplay());
         });
         test_view.setPlayerImgClickCallback(function (){
-            console.log("player 2 button was clicked");
+            //console.log("player 2 button was clicked");
             //test_view.tooglePlayerSettings();
             test_view.setScreenToDisplay("player");
             test_view.toggleSettings(test_view.getScreenToDisplay());
         });
         test_view.setColoursImgClickCallback(function (){
-           console.log("colours img was clicked"); 
+           //console.log("colours img was clicked"); 
            //test_view.toogleColourSettings();
             test_view.setScreenToDisplay("colour");
             test_view.toggleSettings(test_view.getScreenToDisplay());
         });
         test_view.setSoundImgClickCallback( function(){
-            console.log("sounds img was clicked");
+            //console.log("sounds img was clicked");
             //test_view.toogleSoundSettings();
             test_view.setScreenToDisplay("sound");
             test_view.toggleSettings(test_view.getScreenToDisplay());
@@ -447,14 +447,14 @@ function testController(){
         
         // need Ugolki Varations called here
         test_view.setViewStatsClickCallback(function(){
-            console.log("stats clicked");
+            //console.log("stats clicked");
             test_view.togglePane("stats");
         });
         
         // need View Statistics called here
         
         test_view.setMoveOptionsClickCallback( function(){
-            console.log("move options has been clicked");
+            //console.log("move options has been clicked");
             // need to make code in the view that is responsible for toggling the buttons
             test_view.togglePane("move options");
         });
@@ -476,7 +476,7 @@ function testController(){
             test_view.togglePane("AI settings");
         });
         test_view.setSimpleAIClickCalback(function() {
-            console.log("simple AI clicked");
+            //console.log("simple AI clicked");
             test_model.setAIType("simpleAI");
             test_model.setPlayerTwoType("AI");
             test_view.setPlayerTwo("AI - Easy");
@@ -499,21 +499,21 @@ function testController(){
         });
         
         test_view.setPersonalStatsClickCallback( function(){
-            console.log("personal stats has been clicked");            
+            //console.log("personal stats has been clicked");            
             // need to check if a player is logged in
             if(test_model.getLoggedIn()){
                 // do something in the model
-                console.log("did this happen");
+                //console.log("did this happen");
                 //redirect to the stats page
                 test_view.displayPersonalStats();
                 var stats = test_model.validation(test_model.getLoggedInPlayer(), "retrieve stats");
-                console.log("in controller: " + stats.length);
+                //console.log("in controller: " + stats.length);
                 // call the view's function to set the stats text area's to hold the relevant info. 
                 test_view.setStatsTextAreas(stats);
             }
             else{
                 test_view.closeSettings();
-                console.log("reporting no logged in to user");
+                //console.log("reporting no logged in to user");
                 test_view.reportErrorToUser("There is no logged in player to get stats for", "game");
             }
         });
@@ -533,7 +533,7 @@ function testController(){
             * and then if all details are okay, calls the php to sign up the user to the app
             */
            var status = test_model.validation(user_details, "sign up");
-           console.log(status);
+           //console.log(status);
            // only return to the board if the sign up was sucessful
            if(status){
                test_view.returnToBoard("sign_up");
@@ -573,7 +573,7 @@ function testController(){
         });
         
         test_view.setSignUpBackButtonClickCallback( function(){
-            console.log("the button has been clicked");
+            //console.log("the button has been clicked");
             test_view.returnToBoard();
         });
         
@@ -588,7 +588,7 @@ function testController(){
             test_view.closeSettings();
         });
         test_view.setRedAndBlackButtonClickCallback( function() {
-            console.log("red and balck has been clicked");
+            //console.log("red and balck has been clicked");
             test_model.setPlayer1Colour("rgb(255, 55, 55)");
             test_model.setPlayer2Colour("rgb(87, 87, 87)");
             test_model.setDarkBoardColour("rgb(0, 0, 0)");
@@ -598,7 +598,7 @@ function testController(){
             test_view.closeSettings();
         });
         test_view.setYellowAndPurpleButtonClickCallback( function() {
-            console.log("purple and yellow has been clicked");
+            //console.log("purple and yellow has been clicked");
             test_model.setPlayer1Colour("rgb(218, 223, 72)");
             test_model.setPlayer2Colour("rgb(175, 127, 208)");
             test_model.setDarkBoardColour("rgb(138, 0, 230)");
@@ -686,7 +686,7 @@ function testController(){
                 test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
             }
             else{
-                console.log("need to selected a piece");
+                //console.log("need to selected a piece");
                 test_view.reportErrorToUser("Please selected a piece first", "game");
                 //test_view.fadeInfoBox();
                 return;
@@ -697,13 +697,13 @@ function testController(){
                 test_model.resetForNextMove();
            }
            else{
-               console.log("move not successful");
+               //console.log("move not successful");
                test_view.reportErrorToUser("Not a valid move for the selected piece", "game");
                //test_view.fadeInfoBox();            
            }
            
            var is_game_over = test_model.hasPlayerWon();
-           console.log(is_game_over);
+           //console.log(is_game_over);
            
            if(is_game_over !== "no winner"){
                // might change game to game_over
@@ -737,8 +737,8 @@ function testController(){
            }
            else{
                 if(test_model.getPlayerTwoType() === "AI"){
-                   test_model.checkAIType();
-                   console.log("about to get the id");
+                   test_model.checkAIType(test_model);
+                   //console.log("about to get the id");
                    test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()));
                    var AI_move = test_model.getAIChoosenMove();
                    test_view.highlightAIMove(AI_move.getX(), AI_move.getY());
