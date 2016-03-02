@@ -523,6 +523,10 @@ function testView(){
     };
     
     // listeners for the colour options
+    this.setCreamAndBrownButtonClickCallback = function(callback){
+        var cream_and_brown = document.getElementById("cream_and_brown");
+        cream_and_brown.addEventListener("click", callback);
+    };
     this.setRedAndBlackButtonClickCallback = function(callback) {
         var red_and_black = document.getElementById("red_and_black");
         red_and_black.addEventListener("click", callback);
@@ -531,7 +535,10 @@ function testView(){
         var yellow_and_purple = document.getElementById("yellow_and_purple");
         yellow_and_purple.addEventListener("click", callback);
     };
-        
+    this.setWhiteAndBlueButtonClickCallback = function(callback){
+        var white_and_blue = document.getElementById("white_and_blue");
+        white_and_blue.addEventListener("click", callback);
+    };        
     
     this.highlightSelectedPiece = function(){
         console.log(selected_piece);

@@ -578,6 +578,15 @@ function testController(){
         });
         
         // call code for the colour change buttons
+        test_view.setCreamAndBrownButtonClickCallback( function() {
+            test_model.setPlayer1Colour("rgb(255, 235, 205)");
+            test_model.setPlayer2Colour("rgb(92, 64, 51)");
+            test_model.setDarkBoardColour("rgb(130, 72, 21)");
+            test_model.setLightBoardColour("rgb(255, 211, 155)");
+            test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
+                                        test_model.getDarkBoardColour(), test_model.getLightBoardColour());
+            test_view.closeSettings();
+        });
         test_view.setRedAndBlackButtonClickCallback( function() {
             console.log("red and balck has been clicked");
             test_model.setPlayer1Colour("rgb(255, 55, 55)");
@@ -586,6 +595,7 @@ function testController(){
             test_model.setLightBoardColour("rgb(182, 32, 32)");
             test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
                                         test_model.getDarkBoardColour(), test_model.getLightBoardColour());
+            test_view.closeSettings();
         });
         test_view.setYellowAndPurpleButtonClickCallback( function() {
             console.log("purple and yellow has been clicked");
@@ -595,6 +605,16 @@ function testController(){
             test_model.setLightBoardColour("rgb(247, 255, 0)");
             test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
                                         test_model.getDarkBoardColour(), test_model.getLightBoardColour());
+            test_view.closeSettings();
+        });
+        test_view.setWhiteAndBlueButtonClickCallback( function() {
+            test_model.setPlayer1Colour("rgb(235, 240, 255)");
+            test_model.setPlayer2Colour("rgb(72, 229, 240)");
+            test_model.setDarkBoardColour("rgb(0, 128, 255)");
+            test_model.setLightBoardColour("rgb(255, 255, 255)");
+            test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
+                                        test_model.getDarkBoardColour(), test_model.getLightBoardColour());
+            test_view.closeSettings();
         });
         
     // this should probably be in the model
