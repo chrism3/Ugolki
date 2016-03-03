@@ -140,16 +140,19 @@ function mediumAI2(){
         else{
             console.log("doing the else statement");
             var bad_move_count = copy_of_model.getBadMoveCount();
+            console.log(bad_move_count);
             if(bad_move_count === 0){
-                copy_of_model.getBadMoveCount();
+                console.log("because bad move count = 0; set bad move made");
+                //copy_of_model.getBadMoveCount();
                 copy_of_model.setBadMoveMade();
             }
-            else if(bad_move_count === 5){
+            else if(bad_move_count >= 3){
+                console.log("because bad move count = 5; reset move count and set bad move to false");
                 copy_of_model.resetBadMoveCount();
                 copy_of_model.setBadMoveMade();
             }
-            for(var i = 1; i < bad_moves.length; i++){
-                var best_eval = bad_moves[0][1];
+            var best_eval = bad_moves[0][1];
+            for(var i = 1; i < bad_moves.length; i++){                
                 var eval = bad_moves[i][1];
                 if(eval > best_eval){
                     best_index = i;
@@ -158,9 +161,10 @@ function mediumAI2(){
             }
             this.setChoosenMove(bad_moves[best_index][0]);
             piece_to_move = bad_moves[best_index][0].getPieceToMove();
-            
+            copy_of_model.addBadPieceMoved(piece_to_move);
+            copy_of_model.incrementBadMoveCount();            
         }
-        copy_of_model.incrementBadMoveCount();
+        
         this.setSelectedPieceIndex(piece_to_move.getPieceId());
         this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
         this.setAISelectedPieceYCoord(piece_to_move.getYCoord());       

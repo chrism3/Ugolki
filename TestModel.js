@@ -43,6 +43,7 @@ function testModel() {
     var pieces_in_goal = new Array();
     var bad_move_made = false;
     var bad_move_count = 0;
+    var bad_pieces_moved = new Array();
     
     //please rename test_board
    this.setTestBoard = function(){
@@ -308,7 +309,13 @@ function testModel() {
                                  reached_goal = true;
                              }
                          }
-                         if(!reached_goal){
+                         var bad_piece_moved = false;
+                         for(var l = 0; l < bad_pieces_moved.length; l++){
+                             if(test_board[i][j].getPieceId() === bad_pieces_moved[l]){
+                                 bad_piece_moved = true;
+                             }
+                         }
+                         if(!reached_goal && !bad_piece_moved){
                             //console.log("pushing to the pieces list");
                             pieces.push(test_board[i][j]);
                          }
@@ -554,5 +561,14 @@ function testModel() {
     };
     this.resetBadMoveCount = function(){
         bad_move_count = 0;
+    };
+    this.addBadPieceMoved = function(piece){
+        bad_pieces_moved.push(piece);
+    };
+    this.getBadPiecesMoves = function(){
+        return bad_pieces_moved;
+    };
+    this.clearBadPiecesList = function(){
+        bad_pieces_moved = [];
     };
 }
