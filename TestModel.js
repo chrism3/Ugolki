@@ -38,7 +38,11 @@ function testModel() {
     var dark_board_colour = "rgb(130, 72, 21)";
     var light_board_colour = "rgb(255, 211, 155)";
     
+    
+    // i dont like putting these here, but not sure how else to do this
     var pieces_in_goal = new Array();
+    var bad_move_made = false;
+    var bad_move_count = 0;
     
     //please rename test_board
    this.setTestBoard = function(){
@@ -319,7 +323,13 @@ function testModel() {
         if(AI_type === "simpleAI"){            
             //current_AI_player.findAllMoves(pieces, test_board);
             //current_AI_player.findAllMoves2(pieces, test_board);
-            current_AI_player.simpleAI(pieces, test_board, model);
+            
+            //current_AI_player.simpleAI(pieces, test_board, model);
+            
+            
+            // this need to be changed, this is for testing sake; change back to the line above
+            current_AI_player = new mediumAI2();
+            current_AI_player.mediumAI(pieces, test_board, model);
         }
         else if(AI_type === "mediumAI"){
             current_AI_player.mediumAI(pieces, test_board);
@@ -525,8 +535,24 @@ function testModel() {
         pieces_in_goal.push(piece);
     };
     
-    this.removeGoalPiecesFromList = function(pieces, goal_pieces){
-        
+    this.getBadMoveMade = function(){
+        return bad_move_made;
     };
-    
+    this.setBadMoveMade = function(){
+        if(bad_move_made){
+            bad_move_made = false;
+        }
+        else{
+            bad_move_made = true;
+        }
+    };
+    this.getBadMoveCount = function(){
+        return bad_move_count;
+    };
+    this.incrementBadMoveCount = function(){
+        bad_move_count++;
+    };
+    this.resetBadMoveCount = function(){
+        bad_move_count = 0;
+    };
 }
