@@ -305,7 +305,7 @@ function testModel() {
                          var reached_goal = false;
                          //console.log("pieces in their goal location: " + pieces_in_goal.length);
                          for(var k = 0; k < pieces_in_goal.length; k++){
-                             if(test_board[i][j].getPieceId() === pieces_in_goal[k]){
+                             if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
                                  reached_goal = true;
                              }
                          }
@@ -540,6 +540,9 @@ function testModel() {
     
     this.addPieceToGoalLocationList = function(piece){
         pieces_in_goal.push(piece);
+    };
+    this.resetGoalList = function(){
+        pieces_in_goal = [];
     };
     
     this.getBadMoveMade = function(){
