@@ -21,15 +21,17 @@ function mediumAI2(){
         this.mediumAI = function(pieces_to_move, board, model, AI){
             board_representation = board;
             copy_of_model = model;
-            AI_player = AI;      
+            AI_player = AI;    
+            this.updateTarget2();
+            // make sure the AI's goal location us free before wasting a move
+            this.updateTarget3();
             console.log("The Goal square is: " + AI_player.getTargetX() + ", " + AI_player.getTargetY());
             var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
             var good_moves = all_moves[0];
             var bad_moves = all_moves[1];
             this.decideBestMove(good_moves, bad_moves);
             //this.findPiecesNotToMove();
-            this.updateTarget2();
-            this.updateTarget3();
+
         };
     
     
@@ -40,9 +42,21 @@ function mediumAI2(){
         var make_bad_move = copy_of_model.getBadMoveMade();
         console.log(make_bad_move);
         
+        
+        for(var i = 0; i < good_moves.length; i++){
+            if(good_moves[i][0].getX() === AI_player.getTargetX() &&
+                    good_moves[i][0].getY() === AI_player.getTargetY()){
+                this.setChoosenMove(good_moves[i][0]);
+                piece_to_move = good_moves[i][0].getPieceToMove();
+                this.setSelectedPieceIndex(piece_to_move.getPieceId());
+                this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
+                this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
+                return;
+            }
+        }
 
         
-        if(good_moves.length > 0 && !make_bad_move){
+        if(good_moves.length > 0){
             var best_eval = good_moves[0][1];
             for(var i = 1; i < good_moves.length; i++){
                 var eval = good_moves[i][1];
@@ -62,19 +76,19 @@ function mediumAI2(){
             //this.setSelectedPieceIndex(piece_to_move.getPieceId());
         }
         else{
-            console.log("doing the else statement");
-            var bad_move_count = copy_of_model.getBadMoveCount();
-            console.log(bad_move_count);
-            if(bad_move_count === 0){
-                console.log("because bad move count = 0; set bad move made");
-                //copy_of_model.getBadMoveCount();
-                copy_of_model.setBadMoveMade();
-            }
-            else if(bad_move_count >= 3){
-                console.log("because bad move count = 5; reset move count and set bad move to false");
-                copy_of_model.resetBadMoveCount();
-                copy_of_model.setBadMoveMade();
-            }
+//            console.log("doing the else statement");
+//            var bad_move_count = copy_of_model.getBadMoveCount();
+//            console.log(bad_move_count);
+//            if(bad_move_count === 0){
+//                console.log("because bad move count = 0; set bad move made");
+//                //copy_of_model.getBadMoveCount();
+//                copy_of_model.setBadMoveMade();
+//            }
+//            else if(bad_move_count >= 3){
+//                console.log("because bad move count = 5; reset move count and set bad move to false");
+//                copy_of_model.resetBadMoveCount();
+//                copy_of_model.setBadMoveMade();
+//            }
             var best_eval = bad_moves[0][1];
             for(var i = 1; i < bad_moves.length; i++){                
                 var eval = bad_moves[i][1];

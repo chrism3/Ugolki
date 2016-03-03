@@ -310,13 +310,13 @@ function testModel() {
                                  reached_goal = true;
                              }
                          }
-                         var bad_piece_moved = false;
-                         for(var l = 0; l < bad_pieces_moved.length; l++){
-                             if(test_board[i][j].getPieceId() === bad_pieces_moved[l]){
-                                 bad_piece_moved = true;
-                             }
-                         }
-                         if(!reached_goal && !bad_piece_moved){
+//                         var bad_piece_moved = false;
+//                         for(var l = 0; l < bad_pieces_moved.length; l++){
+//                             if(test_board[i][j].getPieceId() === bad_pieces_moved[l]){
+//                                 bad_piece_moved = true;
+//                             }
+//                         }
+                         if(!reached_goal){
                             //console.log("pushing to the pieces list");
                             pieces.push(test_board[i][j]);
                          }
