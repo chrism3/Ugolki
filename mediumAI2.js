@@ -65,10 +65,17 @@ function mediumAI2(){
                 if(eval <= best_eval){
                    // console.log("it is");
                    if(move.getX() >= AI_player.getTargetX() && move.getY() <= AI_player.getTargetY()){
-                       console.log("Doing this in good moves");
                         best_index = i;
                         best_eval = eval;
                     }
+                   // doing this to try recover the pieces that are in bad places
+//                   else if(move.getPieceToMove().getX() < AI_player.getTargetX() ||
+//                           move.getPieceToMove.getY() > AI_player.getTargetY()){
+//                       console.log("Doing this in good moves");
+//                       eval = eval * 2;
+//                       best_index = i;
+//                       best_eval = eval;
+//                   }
                 }
 
             }

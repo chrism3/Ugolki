@@ -18,6 +18,7 @@ function simpleAI(){
                       // */
     
         this.simpleAI = function(pieces_to_move, board, model){
+            console.log("simpleAI is happening");
             board_representation = board;
             var AI = new generalAI();            
             var all_moves = AI.evalAllMoves(AI.findAllMoves(pieces_to_move, board));
@@ -133,7 +134,8 @@ function simpleAI(){
             //console.log("best eval: " + best_eval);
             this.setChoosenMove(good_moves[best_index][0]);
             piece_to_move = good_moves[best_index][0].getPieceToMove();
-            //this.setSelectedPieceIndex(piece_to_move.getPieceId());
+            console.log(piece_to_move.getPieceId());
+            this.setSelectedPieceIndex(piece_to_move.getPieceId());
         }
         else{
             for(var i = 1; i < bad_moves.length; i++){

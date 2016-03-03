@@ -330,17 +330,11 @@ function testModel() {
         console.log(pieces.length);
         if(AI_type === "simpleAI"){            
             //current_AI_player.findAllMoves(pieces, test_board);
-            //current_AI_player.findAllMoves2(pieces, test_board);
-            
-            //current_AI_player.simpleAI(pieces, test_board, model);
-            
-            
-            // this need to be changed, this is for testing sake; change back to the line above
-            current_AI_player = new mediumAI2();
-            current_AI_player.mediumAI(pieces, test_board, model, AI);
+            //current_AI_player.findAllMoves2(pieces, test_board);            
+            current_AI_player.simpleAI(pieces, test_board, model);
         }
         else if(AI_type === "mediumAI"){
-            current_AI_player.mediumAI(pieces, test_board);
+            current_AI_player.mediumAI(pieces, test_board, model, AI);
         }
     };
     
@@ -359,12 +353,13 @@ function testModel() {
             //current_AI_player.updateBoard(test_board);
         }
         if(AI_type === "mediumAI"){
-            current_AI_player = new mediumAI();
+            current_AI_player = new mediumAI2();
         }
     };
     
     this.getAIChoosenMove = function(){
-        return current_AI_player.getChoosenMove();
+        var move = current_AI_player.getChoosenMove();
+        return move;
     };
     
     // i don't think i like how this is working
