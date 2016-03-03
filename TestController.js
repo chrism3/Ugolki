@@ -752,7 +752,12 @@ function testController(){
                         test_model.resetForNextMove();
                         test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
                                         test_model.getDarkBoardColour(), test_model.getLightBoardColour());
-                   }, 750);                                 
+                   }, 750); 
+                   var has_AI_won = test_model.hasPlayerWon();
+                   if(has_AI_won !== "no winner"){
+                       test_view.endGame();
+                       test_view.reportErrorToUser(has_AI_won + " is the winner", "game");
+                   }
                 }
             }
         };

@@ -60,11 +60,15 @@ function mediumAI2(){
             var best_eval = good_moves[0][1];
             for(var i = 1; i < good_moves.length; i++){
                 var eval = good_moves[i][1];
+                var move = good_moves[i][0];
                 //console.log("check if " + eval + " is less than " + best_eval);
                 if(eval <= best_eval){
                    // console.log("it is");
-                    best_index = i;
-                    best_eval = eval;
+                   if(move.getX() >= AI_player.getTargetX() && move.getY() <= AI_player.getTargetY()){
+                       console.log("Doing this in good moves");
+                        best_index = i;
+                        best_eval = eval;
+                    }
                 }
 
             }
