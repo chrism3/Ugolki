@@ -56,12 +56,12 @@ function mediumAI2(){
         }
 
         
-        if(good_moves.length > 0){
+        if(good_moves.length > 0 && !make_bad_move){
             var best_eval = good_moves[0][1];
             for(var i = 1; i < good_moves.length; i++){
                 var eval = good_moves[i][1];
                 //console.log("check if " + eval + " is less than " + best_eval);
-                if(eval < best_eval){
+                if(eval <= best_eval){
                    // console.log("it is");
                     best_index = i;
                     best_eval = eval;
@@ -76,23 +76,23 @@ function mediumAI2(){
             //this.setSelectedPieceIndex(piece_to_move.getPieceId());
         }
         else{
-//            console.log("doing the else statement");
-//            var bad_move_count = copy_of_model.getBadMoveCount();
-//            console.log(bad_move_count);
-//            if(bad_move_count === 0){
-//                console.log("because bad move count = 0; set bad move made");
-//                //copy_of_model.getBadMoveCount();
-//                copy_of_model.setBadMoveMade();
-//            }
-//            else if(bad_move_count >= 3){
-//                console.log("because bad move count = 5; reset move count and set bad move to false");
-//                copy_of_model.resetBadMoveCount();
-//                copy_of_model.setBadMoveMade();
-//            }
+            console.log("doing the else statement");
+            var bad_move_count = copy_of_model.getBadMoveCount();
+            console.log(bad_move_count);
+            if(bad_move_count === 0){
+                console.log("because bad move count = 0; set bad move made");
+                //copy_of_model.getBadMoveCount();
+                copy_of_model.setBadMoveMade();
+            }
+            else if(bad_move_count >= 2){
+                console.log("because bad move count = 5; reset move count and set bad move to false");
+                copy_of_model.resetBadMoveCount();
+                copy_of_model.setBadMoveMade();
+            }
             var best_eval = bad_moves[0][1];
             for(var i = 1; i < bad_moves.length; i++){                
                 var eval = bad_moves[i][1];
-                if(eval > best_eval){
+                if(eval >= best_eval){
                     best_index = i;
                     best_eval = eval;
                 }
@@ -149,7 +149,8 @@ function mediumAI2(){
             console.log(x + "," + y);
             if(board_representation[x][y].getPieceColour() === "black"){
                 console.log("doing this");
-                this.findPiecesNotToMove();
+                //this.findPiecesNotToMove();
+                copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
                 if(x < 3){
                     AI_player.setTargetX(x+1);
                 }
@@ -171,13 +172,12 @@ function mediumAI2(){
             for(var j = 0; j < 4; j++){
                 //console.log("j = " + j);
                 if(board_representation[j][i] !== 0){
-                    break;
                     if((board_representation[j][i].getPieceColour()) === "black"){ 
                         copy_of_model.addPieceToGoalLocationList(board_representation[j][i]);
                         break;
                     }
+                    break;
                 }
-                break;
             }
         }
     };
