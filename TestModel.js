@@ -44,6 +44,7 @@ function testModel() {
     var bad_move_made = false;
     var bad_move_count = 0;
     var bad_pieces_moved = new Array();
+    var AI = new generalAI();
     
     //please rename test_board
    this.setTestBoard = function(){
@@ -336,7 +337,7 @@ function testModel() {
             
             // this need to be changed, this is for testing sake; change back to the line above
             current_AI_player = new mediumAI2();
-            current_AI_player.mediumAI(pieces, test_board, model);
+            current_AI_player.mediumAI(pieces, test_board, model, AI);
         }
         else if(AI_type === "mediumAI"){
             current_AI_player.mediumAI(pieces, test_board);

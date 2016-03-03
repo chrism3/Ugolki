@@ -11,108 +11,29 @@ function mediumAI2(){
     var origional_x;
     var origional_y;
     var copy_of_model;
+    var AI_player;
 //    var target_x = 0,
 //        target_y = 7; /* this is the target because player 2 is aiming to get to
 //                       * the bottom left hand corner. This is why the algorithm currently
 //                       * only works when the AI is player 2
                       // */
     
-        this.mediumAI = function(pieces_to_move, board, model){
+        this.mediumAI = function(pieces_to_move, board, model, AI){
             board_representation = board;
             copy_of_model = model;
-            var AI = new generalAI();            
-            var all_moves = AI.evalAllMoves(AI.findAllMoves(pieces_to_move, board));
+            AI_player = AI;      
+            console.log("The Goal square is: " + AI_player.getTargetX() + ", " + AI_player.getTargetY());
+            var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
             var good_moves = all_moves[0];
             var bad_moves = all_moves[1];
-            this.decideBestMove(good_moves, bad_moves, AI);
+            this.decideBestMove(good_moves, bad_moves);
             //this.findPiecesNotToMove();
             this.updateTarget2();
-            this.updateTarget(AI);
+            this.updateTarget3();
         };
     
     
-//        this.findAllMoves2 = function (pieces_to_move, board){
-//        board_representation = board;
-//        var possible_moves = new Array();
-//        var AI_moves = new findMoves();
-////        var no_of_good_moves = 0;
-////        var unfavoured_moves = new Array();
-//        AI_moves.init(board_representation);
-//        for(var i = 0; i < pieces_to_move.length; i++){
-//            //console.log(i);
-//            var current_piece = pieces_to_move[i];
-//            var x_coord = current_piece.getXCoord();
-//            var y_coord = current_piece.getYCoord();
-//            var right = x_coord + 1;
-//            var left = x_coord - 1;
-//            var above = y_coord - 1;
-//            var below = y_coord + 1;            
-//            AI_moves.moveRight(right, y_coord, current_piece);
-//            AI_moves.moveLeft(left, y_coord, current_piece);
-//            AI_moves.moveUp(above, x_coord, current_piece);
-//            AI_moves.moveDown(below, x_coord, current_piece);
-////            AI_moves.jumpRight(right, y_coord, current_piece);
-////            AI_moves.jumpLeft(left, y_coord, current_piece);
-////            AI_moves.jumpUp(above, x_coord, current_piece);
-////            AI_moves.jumpDown(below, x_coord, current_piece);
-//            console.log(current_piece);
-//            AI_moves.multipleJump3(x_coord, y_coord, current_piece);
-//        }
-//        possible_moves = AI_moves.getPossibleMoves();
-//        console.log("number of moves possible " + possible_moves.length);
-//        
-//        this.evalAllMoves(possible_moves);
-//    };
-//    
-//    this.evalAllMoves = function(possible_moves){
-//        //var no_of_good_moves = 0;
-//        var good_moves = new Array();
-//        var bad_moves = new Array();
-//        //var eval_list = new Array();
-//        var current_eval = this.eval2();
-//        //console.log("current_eval: " + current_eval);
-//        for(var i = 0; i < possible_moves.length; i++){
-//            //var current_piece = possible_moves[i].getPieceToMove();
-//            
-////            for(var i = 0; i < possible_moves.length; i++){
-////                console.log(possible_moves[i].getPieceToMove().getXCoord());
-////            }
-//            
-//            // two variables needed to reset x and y after the move has been completed
-//            var x_to_reset = possible_moves[i].getPieceToMove().getXCoord();
-//            var y_to_reset = possible_moves[i].getPieceToMove().getYCoord();
-//            this.makeMove(possible_moves[i]);
-//            //var move_eval = this.eval(possible_moves[i].getX(), possible_moves[i].getY());
-//            var move_eval = this.eval2();
-//            var new_eval = new Array();
-//            new_eval[0] = possible_moves[i];
-//            new_eval[1] = move_eval;
-//            //console.log("move eval: " + move_eval);
-//            if(current_eval >= move_eval){
-//                //no_of_good_moves++;
-//                good_moves.push(new_eval);
-//            }
-//            else{
-//                 bad_moves.push(new_eval);
-//            }
-//            
-//            this.undoMove(possible_moves[i], x_to_reset, y_to_reset);
-//        }
-//        console.log("no of good moves: " + good_moves.length);
-//        console.log("no of bad moves: " + bad_moves.length);
-//        
-//        /*
-//         * I am doing this because. Without doing a depth search (which is why my this will be the easy AI)
-//         * it is possible for the pieces to get to a corner and not move because the move eval is worse than
-//         * the current eval. Therefore, including this so that if we are nearing a low number of good moves, 
-//         * the AI will make a bad move and potentially open up some more good moves. Not entirely convinced
-//         * this will work, but certainly worth the try
-//         */
-//        this.decideBestMove(good_moves, bad_moves);
-//        
-//    };
-    
-    this.decideBestMove = function(good_moves, bad_moves, AI){
+    this.decideBestMove = function(good_moves, bad_moves){
         // this function just needs to look for the move with the lowest eval
         var best_index = 0;        
         var piece_to_move;
@@ -173,7 +94,7 @@ function mediumAI2(){
         this.setAISelectedPieceYCoord(piece_to_move.getYCoord());       
     };
     
-    this.updateTarget = function(AI){
+    this.updateTarget = function(){
 //        console.log("target location contains: " + board_representation[this.getTargetX()][this.getTargetY()]);
 //        if(board_representation[this.getTargetX()][this.getTargetY()] !== 0){
 //            console.log(board_representation[this.getTargetX()][this.getTargetY()].getPieceColour());
@@ -181,20 +102,20 @@ function mediumAI2(){
         var target_free = false;
         do{
             // update "black" to be AI.getPieceColour() ?
-            if(board_representation[AI.getTargetX()][AI.getTargetY()] !== 0 &&
-                    board_representation[AI.getTargetX()][AI.getTargetY()].getPieceColour() === "black"){
+            if(board_representation[AI_player.getTargetX()][AI_player.getTargetY()] !== 0 &&
+                    board_representation[AI_player.getTargetX()][AI_player.getTargetY()].getPieceColour() === "black"){
 //                console.log("piece in goal location: " + board_representation[AI.getTargetX()][AI.getTargetY()].getPieceId());
-//                copy_of_model.addPieceToGoalLocationList(board_representation[AI.getTargetX()][AI.getTargetY()].getPieceId());
-                this.findPiecesNotToMove();
-                var x = AI.getTargetX();
-                var y = AI.getTargetY();
-                
-                if(y < 4){
-                    AI.setTargetY(y + 1);
+                copy_of_model.addPieceToGoalLocationList(board_representation[AI_player.getTargetX()][AI_player.getTargetY()]);
+                //this.findPiecesNotToMove();
+                var x = AI_player.getTargetX();
+                var y = AI_player.getTargetY();
+                if(x < 3){
+                    console.log("setting AI's new target");
+                    AI_player.setTargetX(x + 1);
                 }
                 else{
-                    AI.setTargetX(x + 1);
-                    AI.setTargetY(0);
+                    AI_player.setTargetY(y + 1);
+                    AI_player.setTargetX(0);
                 }
                 //console.log("updating target");
             }
@@ -203,6 +124,27 @@ function mediumAI2(){
             }
         }
         while(!target_free);
+    };
+    
+    this.updateTarget3 = function(){
+        var x = AI_player.getTargetX();
+        var y = AI_player.getTargetY();
+        
+        if(board_representation[x][y] !== 0){
+            console.log("There is a piece in that location");
+            console.log(x + "," + y);
+            if(board_representation[x][y].getPieceColour() === "black"){
+                console.log("doing this");
+                this.findPiecesNotToMove();
+                if(x < 3){
+                    AI_player.setTargetX(x+1);
+                }
+                else{
+                    AI_player.setTargetY(y-1);
+                    AI_player.setTargetX(0);
+                }
+            }            
+        }
     };
     
     this.findPiecesNotToMove = function(){
@@ -215,21 +157,18 @@ function mediumAI2(){
             for(var j = 0; j < 4; j++){
                 //console.log("j = " + j);
                 if(board_representation[j][i] !== 0){
-                    //console.log("has this habeen reached");
-//                    console.log("i = " + i);
-//                    console.log("j = " + j);
+                    break;
                     if((board_representation[j][i].getPieceColour()) === "black"){ 
-//                        console.log("found a piece in the goal postition");
-//                        console.log("i = " + i);
-//                        console.log("j = " + j);
                         copy_of_model.addPieceToGoalLocationList(board_representation[j][i]);
+                        break;
                     }
                 }
+                break;
             }
         }
     };
     
-    this.updateTarget2 = function(AI){
+    this.updateTarget2 = function(){
         var pieces_in_goal = copy_of_model.getAIPiecesInGoalLocation();
         console.log("pieces_in_goal.length: " + pieces_in_goal.length);
         for(var i = 0; i < pieces_in_goal.length; i++){
