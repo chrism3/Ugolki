@@ -747,11 +747,28 @@ function testView(){
     this.setSelectedSquare = function(square) {
         selected_square = square;
     };
-    this.setSelectedPiece = function(piece) {
-        if (selected_piece === "none"){
+    this.setSelectedPiece = function(piece, current_player_colour) {
+        //this.resetDefaultBoardColours();
+        console.log(current_player_colour);
+        if(current_player_colour === "white"){
+            var colour_to_move = "white_circles";
+        }
+        else{
+            colour_to_move = "brown_circles";
+        }
+        console.log("colour_to_move: " + colour_to_move);
+
+        if (selected_piece === "none" && 
+                piece.attributes.class.value === colour_to_move){
             selected_piece = piece;
         }
+        else if(selected_piece === "none" &&
+                piece.attributes.class.value !== colour_to_move){
+            this.reportErrorToUser("It is " + current_player_colour + "'s turn to move", "game");
+            
+        }        
         else if(selected_piece === piece){
+            console.log("setting selected piece to 'none' because the smae piece has been clicked");
             selected_piece = "none";
         }
     };
@@ -772,6 +789,7 @@ function testView(){
 // maybe pass in values from the model
     this.resetDefaultBoardColours = function (player_1_colour, player_2_colour, 
                                     dark_square_colour, light_square_colour){
+        console.log("resetting");
         var white_squares = document.getElementsByClassName("white_square");
         var brown_squares = document.getElementsByClassName("brown_square"); 
         var all_circles = document.getElementsByTagName("circle");
