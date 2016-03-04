@@ -62,6 +62,7 @@ function generalAI(){
         //var no_of_good_moves = 0;
         var good_moves = new Array();
         var bad_moves = new Array();
+        var all_moves = new Array();
         //var eval_list = new Array();
         var current_eval = this.eval();
         //console.log("current_eval: " + current_eval);
@@ -83,6 +84,7 @@ function generalAI(){
             new_eval[0] = possible_moves[i];
             new_eval[1] = move_eval;
             //console.log("move eval: " + move_eval);
+            all_moves.push(new_eval);
             if(current_eval >= move_eval){
                 //no_of_good_moves++;
                 good_moves.push(new_eval);
@@ -90,6 +92,7 @@ function generalAI(){
             else{
                  bad_moves.push(new_eval);
             }
+            
             
             this.undoMove(possible_moves[i], x_to_reset, y_to_reset);
         }
@@ -104,7 +107,7 @@ function generalAI(){
          * this will work, but certainly worth the try
          */
         //this.decideBestMove(good_moves, bad_moves);
-        var evaluated_moves = new Array(good_moves, bad_moves);
+        var evaluated_moves = new Array(good_moves, bad_moves, all_moves);
         return evaluated_moves;
     };
     
@@ -124,8 +127,23 @@ function generalAI(){
                 if(board_representation[i][j] !== 0){
                     if(board_representation[i][j].getPieceColour() === "black"){ 
                         // will need altered, maybe thi.getAIColour()
-                        var manhattan_x = board_representation[i][j].getXCoord() + this.getTargetX();
-                        var manhattan_y = this.getTargetY() - board_representation[i][j].getYCoord();
+                        var manhattan_x;
+                        var manhattan_y;
+//                        var manhattan_x = board_representation[i][j].getXCoord() + this.getTargetX();
+//                        var manhattan_y = this.getTargetY() - board_representation[i][j].getYCoord();
+//                        var manhattan_eval = manhattan_x + manhattan_y;
+                        if(board_representation[i][j].getXCoord() > this.getTargetX()){
+                            manhattan_x = board_representation[i][j].getXCoord() - this.getTargetX(); 
+                        }
+                        else{
+                            manhattan_x = this.getTargetX() - board_representation[i][j].getXCoord();
+                        }
+                        if(board_representation[i][j].getYCoord() > this.getTargetY()){
+                            manhattan_y = board_representation[i][j].getYCoord() - this.getTargetY();
+                        }
+                        else{
+                            manhattan_y = this.getTargetY() - board_representation[i][j].getYCoord();
+                        }
                         var manhattan_eval = manhattan_x + manhattan_y;
                         manhattan_distance += manhattan_eval;
 //                        console.log("manhattan_eval for piece " + board_representation[i][j].getPieceId() +

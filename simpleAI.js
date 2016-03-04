@@ -166,7 +166,7 @@ function simpleAI(){
             if(board_representation[AI.getTargetX()][AI.getTargetY()] !== 0 &&
                     board_representation[AI.getTargetX()][AI.getTargetY()].getPieceColour() === "black"){
                 console.log("piece in goal location: " + board_representation[AI.getTargetX()][AI.getTargetY()].getPieceId());
-                copy_of_model.addPieceToGoalLocationList(board_representation[AI.getTargetX()][AI.getTargetY()].getPieceId());
+                copy_of_model.addPieceToGoalLocationList(board_representation[AI.getTargetX()][AI.getTargetY()]);
                 var x = AI.getTargetX();
                 var y = AI.getTargetY();
                 

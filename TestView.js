@@ -749,14 +749,14 @@ function testView(){
     };
     this.setSelectedPiece = function(piece, current_player_colour) {
         //this.resetDefaultBoardColours();
-        console.log(current_player_colour);
+       // console.log(current_player_colour);
         if(current_player_colour === "white"){
             var colour_to_move = "white_circles";
         }
         else{
             colour_to_move = "brown_circles";
         }
-        console.log("colour_to_move: " + colour_to_move);
+        //console.log("colour_to_move: " + colour_to_move);
 
         if (selected_piece === "none" && 
                 piece.attributes.class.value === colour_to_move){
@@ -768,8 +768,7 @@ function testView(){
             
         }        
         else if(selected_piece === piece){
-            console.log("setting selected piece to 'none' because the smae piece has been clicked");
-            selected_piece = "none";
+             selected_piece = "none";
         }
     };
 

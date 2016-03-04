@@ -786,10 +786,24 @@ function testController(){
                                         test_model.getDarkBoardColour(), test_model.getLightBoardColour());
                    }, 750);
                    test_model.resetForNextMove();
+                   
                    var has_AI_won = test_model.hasPlayerWon();
                    if(has_AI_won !== "no winner"){
                        test_view.endGame();
                        test_view.reportErrorToUser(has_AI_won + " is the winner", "game");
+                       if(test_model.getSignedIn()){
+                            var winner;
+                            var player_name = test_model.getLoggedInPlayer();
+                            if(is_game_over === "player 1"){
+                                winner = test_view.getPlayerOne();
+                            }
+                            else{
+                                winner = test_view.getPlayerTwo();
+                            }
+                            var details = [player_name, winner];
+
+                            test_model.validation(details, "stats");
+                      }
                    }
                 }
             }
