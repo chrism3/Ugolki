@@ -444,7 +444,7 @@ function testView(){
     this.setHelpImgClickCallback = function (callback){
         var help_img = document.getElementById("help_img");
         help_img.addEventListener("click", callback);
-    }
+    };
     
     // need to put Ugolki Variations listener here
     this.setViewStatsClickCallback = function(callback){
@@ -990,7 +990,15 @@ function testView(){
             this.setSettingsPane("none");
          }
      };
-    
+    // this method shows the user the help page
+    this.showHelp = function(){
+        var help_page = document.getElementById("help_div");
+        var game_board = document.getElementById("test_board");
+        game_board.style.display = "none";
+        help_page.style.display = "block";
+        // set the alternatepage so returning from it is easier
+        this.setAlternatePage(help_page);
+    };
     // this method hides the game board and displays the stats screen
     this.displayPersonalStats = function(){
         var personal_stats_page = document.getElementById("personal_stats_page");

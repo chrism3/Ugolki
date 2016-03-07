@@ -478,7 +478,7 @@ function testController(){
         });
         test_view.setHelpImgClickCallback( function(){
             console.log("help has been clicked");
-            //test_view.showHelp();
+            test_view.showHelp();
         });
         
         // need Ugolki Varations called here
