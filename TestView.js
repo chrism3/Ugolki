@@ -441,6 +441,10 @@ function testView(){
         var sounds_img = document.getElementById("sound_img");
         sounds_img.addEventListener("click", callback);
     };
+    this.setHelpImgClickCallback = function (callback){
+        var help_img = document.getElementById("help_img");
+        help_img.addEventListener("click", callback);
+    }
     
     // need to put Ugolki Variations listener here
     this.setViewStatsClickCallback = function(callback){

@@ -476,6 +476,10 @@ function testController(){
             test_view.setScreenToDisplay("sound");
             test_view.toggleSettings(test_view.getScreenToDisplay());
         });
+        test_view.setHelpImgClickCallback( function(){
+            console.log("help has been clicked");
+            //test_view.showHelp();
+        });
         
         // need Ugolki Varations called here
         test_view.setViewStatsClickCallback(function(){

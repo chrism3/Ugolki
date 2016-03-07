@@ -49,6 +49,8 @@ function mediumAI2(){
         
         console.log("EVERY MOVE LENGTH: " + every_move.length);
         var best_eval = every_move[0][1];
+        
+        
         for(var i = 1; i < every_move.length; i++){
             var eval = every_move[i][1];
             var move = every_move[i][0];
