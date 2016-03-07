@@ -550,6 +550,7 @@ function testController(){
                                  test_model.getDarkBoardColour(), test_model.getLightBoardColour());
             }, 750);
             test_model.resetForNextMove();
+            test_view.closeSettings();
         });
         
         test_view.setPersonalStatsClickCallback( function(){

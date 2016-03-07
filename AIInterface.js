@@ -141,14 +141,17 @@ function generalAI(){
                         else{
                             manhattan_y = this.getTargetY() - board_representation[i][j].getYCoord();
                         }
+                        //console.log("current coords: " + i + "," + j);
+                        //console.log()
                         var manhattan_eval = manhattan_x + manhattan_y;
                         manhattan_distance += manhattan_eval;
-                        console.log("manhattan_eval for piece " + board_representation[i][j].getPieceId() +
-                                " = " + manhattan_eval + "(" + manhattan_x + " + " + manhattan_y);
+//                        console.log("manhattan_eval for piece " + board_representation[i][j].getPieceId() +
+//                                " = " + manhattan_eval + "(" + manhattan_x + " + " + manhattan_y);
                     }
                 }
             }
         }
+        console.log("distance to be returned: " + manhattan_distance);
         return manhattan_distance;
     };
     

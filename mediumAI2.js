@@ -162,7 +162,7 @@ function mediumAI2(){
         var y = AI_player.getTargetY();
         var target_free = true;
         // update the target when the AI is playing with black pieces
-        if(AI_player.getAIColour === "black"){
+        if(AI_player.getAIColour() === "black"){
             do{
                 if(board_representation[x][y] !== 0){
                     console.log("There is a piece in that location");
@@ -228,11 +228,19 @@ function mediumAI2(){
             //console.log("i = " + i);
             for(var j = 0; j < 4; j++){
                 //console.log("j = " + j);
+                if(AI_player.getAIColour() === "black"){
                 if(board_representation[j][i] !== 0){
                     if((board_representation[j][i].getPieceColour()) === "black"){ 
                         copy_of_model.addPieceToGoalLocationList(board_representation[j][i]);
                         break;
                     }
+                }
+                else{
+                    if((board_representation[j][i].getPieceColour()) === "white"){ 
+                        copy_of_model.addPieceToGoalLocationList(board_representation[j][i]);
+                        break;
+                    }
+                }
                     break;
                 }
             }
