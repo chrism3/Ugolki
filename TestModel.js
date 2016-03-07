@@ -329,9 +329,9 @@ function testModel() {
         }
         // need to do the same as above but for white pieces rather than black
         else{
-            for(var i = test_board.length-1; i > 0; i--){
+            for(var i = 0; i < test_board.length; i++){
                 //console.log(i);
-                for(var j = 0; j < test_board.length; j++){
+                for(var j = test_board.length -1; j > 0; j--){
                      if(test_board[i][j] !== 0){
                          // currently only works if the Ai is player 2
                          if(test_board[i][j].getPieceColour() === "white"){
@@ -345,12 +345,6 @@ function testModel() {
                                      reached_goal = true;
                                  }
                              }
-    //                         var bad_piece_moved = false;
-    //                         for(var l = 0; l < bad_pieces_moved.length; l++){
-    //                             if(test_board[i][j].getPieceId() === bad_pieces_moved[l]){
-    //                                 bad_piece_moved = true;
-    //                             }
-    //                         }
                              if(!reached_goal){
                                 //console.log("pushing to the pieces list");
                                 pieces.push(test_board[i][j]);
@@ -622,5 +616,5 @@ function testModel() {
     
     this.getAIColour = function(){
         return AI.getAIColour();
-    }
+    };
 }

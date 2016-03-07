@@ -122,7 +122,7 @@ function generalAI(){
             for(var j = 0; j < board_representation.length; j++){
 //                /var current_piece = board_representation[i][j];
                 if(board_representation[i][j] !== 0){
-                    if(board_representation[i][j].getPieceColour() === "black"){ 
+                    if(board_representation[i][j].getPieceColour() === this.getAIColour()){ 
                         // will need altered, maybe thi.getAIColour()
                         var manhattan_x;
                         var manhattan_y;
@@ -143,8 +143,8 @@ function generalAI(){
                         }
                         var manhattan_eval = manhattan_x + manhattan_y;
                         manhattan_distance += manhattan_eval;
-//                        console.log("manhattan_eval for piece " + board_representation[i][j].getPieceId() +
-//                                " = " + manhattan_eval + "(" + manhattan_x + " + " + manhattan_y);
+                        console.log("manhattan_eval for piece " + board_representation[i][j].getPieceId() +
+                                " = " + manhattan_eval + "(" + manhattan_x + " + " + manhattan_y);
                     }
                 }
             }

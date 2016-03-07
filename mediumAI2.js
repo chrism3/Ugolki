@@ -22,7 +22,10 @@ function mediumAI2(){
             board_representation = board;
             copy_of_model = model;
             AI_player = AI;    
-            
+            console.log(pieces_to_move.length);
+            for(var i = 0; i < pieces_to_move.length; i++){
+                console.log(pieces_to_move[i].getPieceId());
+            }
             console.log("The Goal square is: " + AI_player.getTargetX() + ", " + AI_player.getTargetY());
             var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
             var good_moves = all_moves[0];

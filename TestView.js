@@ -756,7 +756,7 @@ function testView(){
     };
     this.setSelectedPiece = function(piece, current_player_colour) {
         //this.resetDefaultBoardColours();
-      console.log(piece);
+      //console.log(piece);
       //console.log(colour_to_move);
        //console.log(current_player_colour);
         if(current_player_colour === "white"){
@@ -765,11 +765,11 @@ function testView(){
         else{
             colour_to_move = "brown_circles";
         }
-        console.log("colour_to_move: " + colour_to_move);
+        //console.log("colour_to_move: " + colour_to_move);
 
         if (selected_piece === "none" && 
                 piece.attributes.class.value === colour_to_move){
-            console.log("settings the current piece");
+            //console.log("settings the current piece");
             selected_piece = piece;
         }
         else if(selected_piece === "none" &&
