@@ -521,6 +521,11 @@ function testView(){
         back.addEventListener("click", callback);
     };
     
+    this.setHelpBackButtonClickCallback = function(callback){
+        var back = document.getElementById("help_back_button");
+        back.addEventListener("click", callback);
+    };
+    
     this.setSignUpBackButtonClickCallback = function(callback){
         var back = document.getElementById("sign_up_back_button");
         back.addEventListener("click", callback);

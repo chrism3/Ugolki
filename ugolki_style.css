@@ -118,6 +118,26 @@ button{
     display: none;
 }
 
+#help_title{
+    padding-top: 2.5%;
+    text-align: center;
+    height: 7.5%;
+    width: 100%;
+    color: #ffe815;
+    font-stretch: ultra-expanded;
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: 1.7rem;
+}
+
+#help_body{
+    text-align: center;
+    width: 100%;
+    color: #ffe815;
+    font-size: 1rem;
+    font-stretch: ultra-expanded;
+}
+
 #stats_div{
     margin-top: 20%;
     margin-left: 10%;

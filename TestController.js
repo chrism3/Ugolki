@@ -612,6 +612,9 @@ function testController(){
             //console.log("the button has been clicked");
             test_view.returnToBoard();
         });
+        test_view.setHelpBackButtonClickCallback( function(){
+            test_view.returnToBoard();
+        });
         
         // call code for the colour change buttons
         test_view.setCreamAndBrownButtonClickCallback( function() {
