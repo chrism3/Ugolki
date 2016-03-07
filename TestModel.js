@@ -294,37 +294,74 @@ function testModel() {
        //current_AI_player.updateBoard(test_board);
         var pieces = new Array();
         var count = 0;
-        for(var i = test_board.length-1; i > 0; i--){
-            //console.log(i);
-            for(var j = 0; j < test_board.length; j++){
-                 if(test_board[i][j] !== 0){
-                     // currently only works if the Ai is player 2
-                     if(test_board[i][j].getPiecePlayer() === "player_two"){
-                         //console.log("index the peice is added to: " + count);
-                         //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
-                         //        "," + test_board[i][j].getYCoord());
-                         var reached_goal = false;
-                         //console.log("pieces in their goal location: " + pieces_in_goal.length);
-                         for(var k = 0; k < pieces_in_goal.length; k++){
-                             if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
-                                 reached_goal = true;
+        if(AI.getAIColour() === "black"){
+            for(var i = test_board.length-1; i > 0; i--){
+                //console.log(i);
+                for(var j = 0; j < test_board.length; j++){
+                     if(test_board[i][j] !== 0){
+                         // currently only works if the Ai is player 2
+                         if(test_board[i][j].getPieceColour() === "black"){
+                             //console.log("index the peice is added to: " + count);
+                             //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
+                             //        "," + test_board[i][j].getYCoord());
+                             var reached_goal = false;
+                             //console.log("pieces in their goal location: " + pieces_in_goal.length);
+                             for(var k = 0; k < pieces_in_goal.length; k++){
+                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
+                                     reached_goal = true;
+                                 }
                              }
+    //                         var bad_piece_moved = false;
+    //                         for(var l = 0; l < bad_pieces_moved.length; l++){
+    //                             if(test_board[i][j].getPieceId() === bad_pieces_moved[l]){
+    //                                 bad_piece_moved = true;
+    //                             }
+    //                         }
+                             if(!reached_goal){
+                                //console.log("pushing to the pieces list");
+                                pieces.push(test_board[i][j]);
+                             }
+                             count++;
                          }
-//                         var bad_piece_moved = false;
-//                         for(var l = 0; l < bad_pieces_moved.length; l++){
-//                             if(test_board[i][j].getPieceId() === bad_pieces_moved[l]){
-//                                 bad_piece_moved = true;
-//                             }
-//                         }
-                         if(!reached_goal){
-                            //console.log("pushing to the pieces list");
-                            pieces.push(test_board[i][j]);
-                         }
-                         count++;
                      }
-                 }
+                }
             }
         }
+        // need to do the same as above but for white pieces rather than black
+        else{
+            for(var i = test_board.length-1; i > 0; i--){
+                //console.log(i);
+                for(var j = 0; j < test_board.length; j++){
+                     if(test_board[i][j] !== 0){
+                         // currently only works if the Ai is player 2
+                         if(test_board[i][j].getPieceColour() === "white"){
+                             //console.log("index the peice is added to: " + count);
+                             //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
+                             //        "," + test_board[i][j].getYCoord());
+                             var reached_goal = false;
+                             //console.log("pieces in their goal location: " + pieces_in_goal.length);
+                             for(var k = 0; k < pieces_in_goal.length; k++){
+                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
+                                     reached_goal = true;
+                                 }
+                             }
+    //                         var bad_piece_moved = false;
+    //                         for(var l = 0; l < bad_pieces_moved.length; l++){
+    //                             if(test_board[i][j].getPieceId() === bad_pieces_moved[l]){
+    //                                 bad_piece_moved = true;
+    //                             }
+    //                         }
+                             if(!reached_goal){
+                                //console.log("pushing to the pieces list");
+                                pieces.push(test_board[i][j]);
+                             }
+                             count++;
+                         }
+                     }
+                }
+            }             
+        }
+
         var find_moves = new findMoves();
         find_moves.init(test_board);
         console.log(pieces.length);
@@ -570,4 +607,20 @@ function testModel() {
     this.clearBadPiecesList = function(){
         bad_pieces_moved = [];
     };
+    
+    this.alterAISettings = function(alteration){
+        if(alteration === "AI v human"){
+            // then we want to correct the so that AI is player 1
+            AI.setAIColour("white");
+            AI.setTargetForWhiteAIPlayer();
+        }
+        else if(alteration === "human v AI"){
+            AI.setColour("black");
+            AI.setTargetForBlackAIPlayer();
+        }
+    };
+    
+    this.getAIColour = function(){
+        return AI.getAIColour();
+    }
 }

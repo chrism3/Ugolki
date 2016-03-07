@@ -526,12 +526,30 @@ function testController(){
             test_view.setPlayerTwo("AI - Medium");
             test_view.closeSettings();
         });
-        test_view.setPlayer1OptionsClickCallback( function(){
-            console.log("player 1 options has been clicked");
-            // add the code here to toggle the settings panel
+        test_view.setHumanAIClickCallback(function(){
+            console.log("human v AI");
         });
-        test_view.setPlayer2OptionsClickCallback( function() {
-            console.log("player 2 options has been clicked");
+        test_view.setAIHumanClickCallback(function(){
+            //console.log("AI v human");
+            test_model.alterAISettings("AI v human");
+            test_model.checkAIType(test_model);
+            //console.log("about to get the id");
+            
+            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(test_model.getAIPieceIndex()),
+                                     test_model.getCurrentPlayerColour());
+            var AI_move = test_model.getAIChoosenMove();
+            test_view.highlightAIMove(AI_move.getX(), AI_move.getY());
+            test_model.updateModelWithAIMove();
+            test_view.updateBoardWithMoves2(AI_move.getX(), AI_move.getY());
+            setTimeout(function() {
+                 test_view.movePiece2(AI_move.getX(), AI_move.getY());
+                 // need to reset the board colour and the model, before the user can make their next turn
+                 var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
+                 AI_piece_moved.play();                        
+                 test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
+                                 test_model.getDarkBoardColour(), test_model.getLightBoardColour());
+            }, 750);
+            test_model.resetForNextMove();
         });
         
         test_view.setPersonalStatsClickCallback( function(){
@@ -778,8 +796,14 @@ function testController(){
                 if(test_model.getPlayerTwoType() === "AI"){
                    test_model.checkAIType(test_model);
                    //console.log("about to get the id");
-                   test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()),
-                                            test_model.getCurrentPlayerColour());
+                   if(test_model.getAIColour() === "black"){
+                        test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()),
+                                                 test_model.getCurrentPlayerColour());
+                   }
+                   else{
+                       test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(test_model.getAIPieceIndex()),
+                                                 test_model.getCurrentPlayerColour());
+                   }
                    var AI_move = test_model.getAIChoosenMove();
                    test_view.highlightAIMove(AI_move.getX(), AI_move.getY());
                    test_model.updateModelWithAIMove();

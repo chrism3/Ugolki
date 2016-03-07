@@ -116,7 +116,7 @@ function mediumAI2(){
 //            copy_of_model.addBadPieceMoved(piece_to_move);
 //            copy_of_model.incrementBadMoveCount();            
 //        }
-        
+        console.log("the best move has been deiced and is: " + piece_to_move.getPieceId());
         this.setSelectedPieceIndex(piece_to_move.getPieceId());
         this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
         this.setAISelectedPieceYCoord(piece_to_move.getYCoord());       

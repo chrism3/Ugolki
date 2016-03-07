@@ -495,15 +495,13 @@ function testView(){
         personal_stats.addEventListener("click", callback);
     };
     
-    // callback for the player_1_options button
-    this.setPlayer1OptionsClickCallback = function (callback){
-        var player_1_options = document.getElementById("player_1_settings");
-        player_1_options.addEventListener("click", callback);
+    this.setHumanAIClickCallback = function (callback){
+        var human_v_AI = document.getElementById("Human_v_AI");
+        human_v_AI.addEventListener("click", callback);
     };
-    // callback for the player_2_options button
-    this.setPlayer2OptionsClickCallback = function (callback){
-        var player_2_options = document.getElementById("player_2_settings");
-        player_2_options.addEventListener("click", callback);
+    this.setAIHumanClickCallback = function (callback){
+        var AI_v_human = document.getElementById("AI_v_Human");
+        AI_v_human.addEventListener("click", callback);
     };
     
     // this is the callback for the actual sign up button in the sign in page
@@ -758,17 +756,20 @@ function testView(){
     };
     this.setSelectedPiece = function(piece, current_player_colour) {
         //this.resetDefaultBoardColours();
-       // console.log(current_player_colour);
+      console.log(piece);
+      //console.log(colour_to_move);
+       //console.log(current_player_colour);
         if(current_player_colour === "white"){
             var colour_to_move = "white_circles";
         }
         else{
             colour_to_move = "brown_circles";
         }
-        //console.log("colour_to_move: " + colour_to_move);
+        console.log("colour_to_move: " + colour_to_move);
 
         if (selected_piece === "none" && 
                 piece.attributes.class.value === colour_to_move){
+            console.log("settings the current piece");
             selected_piece = piece;
         }
         else if(selected_piece === "none" &&
