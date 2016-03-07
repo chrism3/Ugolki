@@ -158,34 +158,62 @@ function mediumAI2(){
         var x = AI_player.getTargetX();
         var y = AI_player.getTargetY();
         var target_free = true;
-        do{
-            if(board_representation[x][y] !== 0){
-                console.log("There is a piece in that location");
-                console.log(x + "," + y);
-                if(board_representation[x][y].getPieceColour() === "black"){
-                    console.log("doing this");
-                    //this.findPiecesNotToMove();
-                    copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
-                    if(x < 3){
-                        AI_player.setTargetX(x+1);
-                        x = x + 1;
+        // update the target when the AI is playing with black pieces
+        if(AI_player.getAIColour === "black"){
+            do{
+                if(board_representation[x][y] !== 0){
+                    console.log("There is a piece in that location");
+                    console.log(x + "," + y);
+                    if(board_representation[x][y].getPieceColour() === "black"){
+                        console.log("doing this");
+                        //this.findPiecesNotToMove();
+                        copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
+                        if(x < 3){
+                            AI_player.setTargetX(x+1);
+                            x = x + 1;
+                        }
+                        else{
+                            AI_player.setTargetY(y-1);
+                            AI_player.setTargetX(0);
+                            y = y - 1;
+                            x = 0;
+                        }
                     }
                     else{
-                        AI_player.setTargetY(y-1);
-                        AI_player.setTargetX(0);
-                        y = y - 1;
-                        x = 0;
+                       target_free = false;
                     }
                 }
                 else{
-                   target_free = false;
+                    target_free = false;
                 }
-            }
-            else{
-                target_free = false;
-            }
-        }while(target_free);
-        
+            }while(target_free);
+        }
+        // else, update the target if the AI is playing with white pieces
+        else{
+            do{
+                if(board_representation[x][y] !== 0){
+                    if(board_representation[x][y].getPieceColour === "white"){
+                        copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
+                        if(x > 4){
+                            this.setTargetY(x-1);
+                            x = x - 1;
+                        }
+                        else{
+                            this.setTargetY(y+1);
+                            this.setTargetX(7);
+                            y = y + 1;
+                            x = 7;
+                        }
+                    }
+                    else{
+                        target_free = false;
+                    }
+                }
+                else{
+                    target_free = false;
+                }
+            }while(target_free);
+        }        
     };
     
     this.findPiecesNotToMove = function(){

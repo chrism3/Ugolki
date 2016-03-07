@@ -8,15 +8,12 @@ function generalAI(){
     // genreally AI will be player 2, but would be nice to be able to swap it
     var AI_player = "player_2",
         board_representation,
-        piece_index,
-        move,
-        origional_x,
-        origional_y,
         target_x = 0,
         target_y = 7; /* this is the target because player 2 is aiming to get to
                        * the bottom left hand corner. This is why the algorithm currently
                        * only works when the AI is player 2
                        */
+    var AI_colour = "black";
 
     this.findAllMoves = function (pieces_to_move, board){
         board_representation = board;
@@ -226,5 +223,28 @@ function generalAI(){
     // will allow me to switch AI between player 1 and 2
     this.setAIPlayer = function(new_player){
         AI_player = new_player;
+    };
+    
+    // these methods will be used to allow the user to swap AI to player 1
+    this.setTargetForWhiteAIPlayer = function(){
+        this.setTargetX(7);
+        this.setTargetY(0);
+    };
+    this.setTargetForBlackAIPlayer = function(){
+        this.setTargetX(0);
+        this.setTargetY(7);
+    };
+    
+    this.setAIColour = function(){
+        if(this.getAIColour() === 'black'){
+            AI_colour = "white";
+        }
+        else{
+            AI_colour = "black";
+        }
+    };
+    
+    this.getAIColour = function(){
+        return AI_colour;
     };
 }
