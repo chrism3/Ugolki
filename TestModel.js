@@ -294,87 +294,87 @@ function testModel() {
        //current_AI_player.updateBoard(test_board);
         var pieces = new Array();
         var count = 0;
-        if(AI.getAIColour() === "black"){
-            for(var i = test_board.length-1; i >= 0; i--){
-                //console.log(i);
-                for(var j = 0; j < test_board.length; j++){
-                     if(test_board[i][j] !== 0){
-                         // currently only works if the Ai is player 2
-                         if(test_board[i][j].getPieceColour() === "black"){
-                             //console.log("index the peice is added to: " + count);
-                             //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
-                             //        "," + test_board[i][j].getYCoord());
-                             var reached_goal = false;
-                             //console.log("pieces in their goal location: " + pieces_in_goal.length);
-                             for(var k = 0; k < pieces_in_goal.length; k++){
-                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
-                                     reached_goal = true;
-                                 }
-                             }
-    //                         var bad_piece_moved = false;
-    //                         for(var l = 0; l < bad_pieces_moved.length; l++){
-    //                             if(test_board[i][j].getPieceId() === bad_pieces_moved[l]){
-    //                                 bad_piece_moved = true;
-    //                             }
-    //                         }
-                             if(!reached_goal){
-                                //console.log("pushing to the pieces list");
-                                console.log("pushing piece in coords: " + i + "," + j + " with id: " + test_board[i][j].getPieceId());
-                                pieces.push(test_board[i][j]);
-                             }
-                             else{
-                                 console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
-                                         " has the current coords " + test_board[i][j].getXCoord() + "," +
-                                         test_board[i][j].getYCoord());
-                             }
-                         }
-                     }
-                }
-            }
-        }
-        // need to do the same as above but for white pieces rather than black
-        else{
-            for(var i = 0; i < test_board.length; i++){
-                //console.log(i);
-                for(var j = test_board.length -1; j >= 0; j--){
-                     if(test_board[i][j] !== 0){
-                         // currently only works if the Ai is player 2
-                         if(test_board[i][j].getPieceColour() === "white"){
-                             //console.log("index the peice is added to: " + count);
-                             //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
-                             //        "," + test_board[i][j].getYCoord());
-                             var reached_goal = false;
-                             //console.log("pieces in their goal location: " + pieces_in_goal.length);
-                             for(var k = 0; k < pieces_in_goal.length; k++){
-                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
-                                     reached_goal = true;
-//                                     console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
+//        if(AI.getAIColour() === "black"){
+//            for(var i = test_board.length-1; i >= 0; i--){
+//                //console.log(i);
+//                for(var j = 0; j < test_board.length; j++){
+//                     if(test_board[i][j] !== 0){
+//                         // currently only works if the Ai is player 2
+//                         if(test_board[i][j].getPieceColour() === "black"){
+//                             //console.log("index the peice is added to: " + count);
+//                             //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
+//                             //        "," + test_board[i][j].getYCoord());
+//                             var reached_goal = false;
+//                             //console.log("pieces in their goal location: " + pieces_in_goal.length);
+//                             for(var k = 0; k < pieces_in_goal.length; k++){
+//                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
+//                                     reached_goal = true;
+//                                 }
+//                             }
+//    //                         var bad_piece_moved = false;
+//    //                         for(var l = 0; l < bad_pieces_moved.length; l++){
+//    //                             if(test_board[i][j].getPieceId() === bad_pieces_moved[l]){
+//    //                                 bad_piece_moved = true;
+//    //                             }
+//    //                         }
+//                             if(!reached_goal){
+//                                //console.log("pushing to the pieces list");
+//                                console.log("pushing piece in coords: " + i + "," + j + " with id: " + test_board[i][j].getPieceId());
+//                                pieces.push(test_board[i][j]);
+//                             }
+//                             else{
+//                                 console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
+//                                         " has the current coords " + test_board[i][j].getXCoord() + "," +
+//                                         test_board[i][j].getYCoord());
+//                             }
+//                         }
+//                     }
+//                }
+//            }
+//        }
+//        // need to do the same as above but for white pieces rather than black
+//        else{
+//            for(var i = 0; i < test_board.length; i++){
+//                //console.log(i);
+//                for(var j = test_board.length -1; j >= 0; j--){
+//                     if(test_board[i][j] !== 0){
+//                         // currently only works if the Ai is player 2
+//                         if(test_board[i][j].getPieceColour() === "white"){
+//                             //console.log("index the peice is added to: " + count);
+//                             //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
+//                             //        "," + test_board[i][j].getYCoord());
+//                             var reached_goal = false;
+//                             //console.log("pieces in their goal location: " + pieces_in_goal.length);
+//                             for(var k = 0; k < pieces_in_goal.length; k++){
+//                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
+//                                     reached_goal = true;
+////                                     console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
+////                                         "has the current coords " + test_board[i][j].getXCoord() + "," +
+////                                         test_board[i][j].getYCoord());
+//                                 }
+//                             }
+//                             if(!reached_goal){
+//                                //console.log("pushing to the pieces list");
+//                                console.log("pushing piece in coords: " + i + "," + j + "with id: " + test_board[i][j].getPieceId());
+//                                pieces.push(test_board[i][j]);
+//                             }
+//                             else{
+//                                 console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
 //                                         "has the current coords " + test_board[i][j].getXCoord() + "," +
 //                                         test_board[i][j].getYCoord());
-                                 }
-                             }
-                             if(!reached_goal){
-                                //console.log("pushing to the pieces list");
-                                console.log("pushing piece in coords: " + i + "," + j + "with id: " + test_board[i][j].getPieceId());
-                                pieces.push(test_board[i][j]);
-                             }
-                             else{
-                                 console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
-                                         "has the current coords " + test_board[i][j].getXCoord() + "," +
-                                         test_board[i][j].getYCoord());
-                             }
-                             count++;
-                         }
-                     }
-                }
-            }             
-        }
+//                             }
+//                             count++;
+//                         }
+//                     }
+//                }
+//            }             
+//        }
 
         var find_moves = new findMoves();
         find_moves.init(test_board);
         console.log(pieces.length);
         if(AI_type === "simpleAI"){            
-            current_AI_player.simpleAI(pieces, test_board, model, AI);
+            current_AI_player.simpleAI(test_board, model, AI);
         }
         else if(AI_type === "mediumAI"){
             current_AI_player.mediumAI(pieces, test_board, model, AI);
@@ -628,5 +628,76 @@ function testModel() {
     
     this.getAIColour = function(){
         return AI.getAIColour();
+    };
+    
+    this.getPieces = function(){
+        for(var i = 0; i < pieces_in_goal.length; i++){
+            console.log(pieces_in_goal[i].getPieceId());
+        }
+        console.log("this has been called");
+        var pieces = new Array();
+        var reached_goal = false;
+        if(this.getAIColour() === "black"){
+            for(var i = test_board.length-1; i >= 0; i--){
+                for(var j = 0; j < test_board.length; j++){
+                    //console.log("the coords: " + i + "," + j);
+                     if(test_board[i][j] !== 0){
+                         // resetting this just in case
+                         reached_goal = false;
+                         // currently only works if the Ai is player 2
+                         if(test_board[i][j].getPieceColour() === "black"){
+                             for(var k = 0; k < pieces_in_goal.length; k++){                                 
+                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
+//                                     console.log(test_board[i][j].getPieceId() + " is the same as " +
+//                                             pieces_in_goal[k].getPieceId());
+                                     reached_goal = true;
+                                 }
+                             }
+                             if(!reached_goal){
+//                                 console.log("adding piece in coords: " + test_board[i][j].getXCoord() + "," 
+//                                         + test_board[i][j].getYCoord());
+                                 pieces.push(test_board[i][j]);
+                             }
+//                             else{
+//                                 console.log("NOT ADDING: " + test_board[i][j].getXCoord()
+//                                         + "," + test_board[i][j].getYCoord());
+//                                 console.log("it contains piece " + test_board[i][j].getPieceId() + " which is in\n\
+//                                    location: " + test_board[i][j].getXCoord() + "," + test_board[i][j].getYCoord());
+//                             }
+                         }                         
+                      }
+                  }
+              }
+          }
+        // need to do the same as above but for white pieces rather than black
+        else{
+            for(var i = 0; i < test_board.length; i++){
+                for(var j = test_board.length -1; j >= 0; j--){
+                     if(test_board[i][j] !== 0){
+                         // currently only works if the Ai is player 2
+                         if(test_board[i][j].getPieceColour() === "white"){
+                             var reached_goal = false;
+                             //console.log("pieces in their goal location: " + pieces_in_goal.length);
+                             for(var k = 0; k < pieces_in_goal.length; k++){
+                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
+                                     reached_goal = true;
+                                 }
+                             }
+                             if(!reached_goal){
+                                //console.log("pushing piece in coords: " + i + "," + j + "with id: " + test_board[i][j].getPieceId());
+                                pieces.push(test_board[i][j]);
+                             }
+//                             else{
+//                                 console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
+//                                         "has the current coords " + test_board[i][j].getXCoord() + "," +
+//                                         test_board[i][j].getYCoord());
+//                             }
+
+                         }
+                     }
+                }
+            }             
+        }
+        return pieces;
     };
 }

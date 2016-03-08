@@ -18,16 +18,20 @@ function simpleAI(){
 //                       * only works when the AI is player 2
                       // */
     
-        this.simpleAI = function(pieces_to_move, board, model, AI){
+        this.simpleAI = function(board, model, AI){
             board_representation = board;
-//            var AI = new generalAI(); 
             AI_player = AI;
+            copy_of_model = model;
+            this.updateTarget();
+            var pieces_to_move = model.getPieces();
+            console.log(pieces_to_move.length);            
             console.log("goal location is: " + AI.getTargetX() + "," + AI.getTargetY());
             var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
             var good_moves = all_moves[0];
             var bad_moves = all_moves[1];
             this.decideBestMove2(good_moves);
             copy_of_model = model;
+
         };
     
     this.decideBestMove = function(good_moves, bad_moves, AI){
@@ -35,7 +39,7 @@ function simpleAI(){
         var best_index = 0;        
         var piece_to_move;
         
-        this.updateTarget(AI);
+        //this.updateTarget(AI);
         
         if(good_moves.length >= 1){
             var best_eval = good_moves[0][1];
@@ -78,7 +82,7 @@ function simpleAI(){
     this.decideBestMove2 = function(good_moves){
         var best_index = 0;        
         var piece_to_move;        
-        this.updateTarget(AI_player);
+        //this.updateTarget(AI_player);
 //        for(var i = 0; i < good_moves.length; i++){
 //            console.log("Manhattan eval: " + good_moves[][])
 //        }
@@ -97,7 +101,7 @@ function simpleAI(){
         this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
     }; 
     
-    this.updateTarget = function(AI_player){
+    this.updateTarget = function(){
         var x = AI_player.getTargetX();
         var y = AI_player.getTargetY();
         var target_free = true;
