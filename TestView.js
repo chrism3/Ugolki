@@ -798,7 +798,7 @@ function testView(){
 // maybe pass in values from the model
     this.resetDefaultBoardColours = function (player_1_colour, player_2_colour, 
                                     dark_square_colour, light_square_colour){
-        console.log("resetting");
+        //console.log("resetting");
         var white_squares = document.getElementsByClassName("white_square");
         var brown_squares = document.getElementsByClassName("brown_square"); 
         var all_circles = document.getElementsByTagName("circle");

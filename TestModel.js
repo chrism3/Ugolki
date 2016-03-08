@@ -295,7 +295,7 @@ function testModel() {
         var pieces = new Array();
         var count = 0;
         if(AI.getAIColour() === "black"){
-            for(var i = test_board.length-1; i > 0; i--){
+            for(var i = test_board.length-1; i >= 0; i--){
                 //console.log(i);
                 for(var j = 0; j < test_board.length; j++){
                      if(test_board[i][j] !== 0){
@@ -319,9 +319,14 @@ function testModel() {
     //                         }
                              if(!reached_goal){
                                 //console.log("pushing to the pieces list");
+                                console.log("pushing piece in coords: " + i + "," + j + " with id: " + test_board[i][j].getPieceId());
                                 pieces.push(test_board[i][j]);
                              }
-                             count++;
+                             else{
+                                 console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
+                                         " has the current coords " + test_board[i][j].getXCoord() + "," +
+                                         test_board[i][j].getYCoord());
+                             }
                          }
                      }
                 }
@@ -331,7 +336,7 @@ function testModel() {
         else{
             for(var i = 0; i < test_board.length; i++){
                 //console.log(i);
-                for(var j = test_board.length -1; j > 0; j--){
+                for(var j = test_board.length -1; j >= 0; j--){
                      if(test_board[i][j] !== 0){
                          // currently only works if the Ai is player 2
                          if(test_board[i][j].getPieceColour() === "white"){
@@ -343,12 +348,20 @@ function testModel() {
                              for(var k = 0; k < pieces_in_goal.length; k++){
                                  if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
                                      reached_goal = true;
+//                                     console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
+//                                         "has the current coords " + test_board[i][j].getXCoord() + "," +
+//                                         test_board[i][j].getYCoord());
                                  }
                              }
                              if(!reached_goal){
                                 //console.log("pushing to the pieces list");
-                                //console.log("pushing value piece at: " + i + "," + j );
+                                console.log("pushing piece in coords: " + i + "," + j + "with id: " + test_board[i][j].getPieceId());
                                 pieces.push(test_board[i][j]);
+                             }
+                             else{
+                                 console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
+                                         "has the current coords " + test_board[i][j].getXCoord() + "," +
+                                         test_board[i][j].getYCoord());
                              }
                              count++;
                          }
@@ -361,8 +374,6 @@ function testModel() {
         find_moves.init(test_board);
         console.log(pieces.length);
         if(AI_type === "simpleAI"){            
-            //current_AI_player.findAllMoves(pieces, test_board);
-            //current_AI_player.findAllMoves2(pieces, test_board);            
             current_AI_player.simpleAI(pieces, test_board, model, AI);
         }
         else if(AI_type === "mediumAI"){
