@@ -347,7 +347,7 @@ function testModel() {
                              }
                              if(!reached_goal){
                                 //console.log("pushing to the pieces list");
-                                console.log("pushing value piece at: " + i + "," + j );
+                                //console.log("pushing value piece at: " + i + "," + j );
                                 pieces.push(test_board[i][j]);
                              }
                              count++;

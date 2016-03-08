@@ -151,7 +151,7 @@ function generalAI(){
                 }
             }
         }
-        console.log("distance to be returned: " + manhattan_distance);
+        //console.log("distance to be returned: " + manhattan_distance);
         return manhattan_distance;
     };
     

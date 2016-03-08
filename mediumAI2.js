@@ -60,27 +60,44 @@ function mediumAI2(){
             //console.log("check if " + eval + " is less than " + best_eval);
             if(eval <= best_eval){
                // console.log("it is");
-//               if(move.getX() === AI_player.getTargetX() && move.getY() === AI_player.getTargetY()){
-//                   console.log("the goal has been found");
-//                   best_index = i;
-//                   best_eval = 0;
-//                   return;
-//               }
-//               else 
-//               
-               if(move.getX() >= AI_player.getTargetX() && move.getY() <= AI_player.getTargetY()){
-                    best_index = i;
-                    best_eval = eval;
+               if(AI_player.getAIColour() === "black"){
+                    if(move.getX() === AI_player.getTargetX() && move.getY() === AI_player.getTargetY()){
+                        console.log("the goal has been found");
+                        best_index = i;
+                        best_eval = 0;
+                        return;
+                    }
+                    else if(move.getX() > AI_player.getTargetX() && move.getY() < AI_player.getTargetY()){
+                             best_index = i;
+                             best_eval = eval;
+                         }
+                    // doing this to try recover the pieces that are in bad places
+                    else if(move.getPieceToMove().getXCoord() < AI_player.getTargetX() ||
+                            move.getPieceToMove().getYCoord() > AI_player.getTargetY()){
+                        console.log("Doing this in good moves");
+                        eval = eval/2;
+                        best_index = i;
+                        best_eval = eval;
+                    }
                 }
-               // doing this to try recover the pieces that are in bad places
-               else if(move.getPieceToMove().getXCoord() < AI_player.getTargetX() ||
-                       move.getPieceToMove().getYCoord() > AI_player.getTargetY()){
-                   console.log("Doing this in good moves");
-                   eval = eval/2;
-                   best_index = i;
-                   best_eval = eval;
-               }
-                
+                // if the AI is using the white pieces do this instead of the above
+                else{
+                    if(move.getX() === AI_player.getTargetX() && move.getY() === AI_player.getTargetY()){
+                        eval = 0;
+                        best_eval = eval;
+                        best_index = i;
+                    }
+                    else if(move.getY() > AI_player.getTargetY() && move.getX() < AI_player.getTargetX()){
+                        best_index = i;
+                        best_eval = eval;
+                    }
+                    else if(move.getPieceToMove().getYCoord() < AI_player.getTargetY() ||
+                            move.getPieceToMove().getXCoord() > AI_player.getTargetX()){
+                        eval = eval/2;
+                        best_index = i;
+                        best_eval = eval;
+                    }
+                }
             }
             
             //console.log("best index: " + best_index);
@@ -165,10 +182,10 @@ function mediumAI2(){
         if(AI_player.getAIColour() === "black"){
             do{
                 if(board_representation[x][y] !== 0){
-                    console.log("There is a piece in that location");
-                    console.log(x + "," + y);
+                    //console.log("There is a piece in that location");
+                    //console.log(x + "," + y);
                     if(board_representation[x][y].getPieceColour() === "black"){
-                        console.log("doing this");
+                        //console.log("doing this");
                         //this.findPiecesNotToMove();
                         copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
                         if(x < 3){
@@ -194,21 +211,30 @@ function mediumAI2(){
         // else, update the target if the AI is playing with white pieces
         else{
             do{
+                console.log("***********");
+                console.log("coords this time: " + x + "," + y);
+                console.log(" ");
+                console.log("updating white target");
                 if(board_representation[x][y] !== 0){
-                    if(board_representation[x][y].getPieceColour === "white"){
+                    console.log("there is a piece in that location");
+                    console.log("piece colour is: " + board_representation[x][y].getPieceColour());
+                    if(board_representation[x][y].getPieceColour() === "white"){
                         copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
                         if(x > 4){
-                            this.setTargetY(x-1);
+                            console.log("x is greater than 4")
+                            AI_player.setTargetY(x-1);
                             x = x - 1;
                         }
                         else{
-                            this.setTargetY(y+1);
-                            this.setTargetX(7);
+                            console.log("x is not greater than 4");
+                            AI_player.setTargetY(y+1);
+                            AI_player.setTargetX(7);
                             y = y + 1;
                             x = 7;
                         }
                     }
                     else{
+                        console.log("piece was wrong colour");
                         target_free = false;
                     }
                 }
@@ -216,6 +242,7 @@ function mediumAI2(){
                     target_free = false;
                 }
             }while(target_free);
+            console.log("breaking the do while");
         }        
     };
     
