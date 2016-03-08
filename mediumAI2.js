@@ -181,6 +181,7 @@ function mediumAI2(){
         // update the target when the AI is playing with black pieces
         if(AI_player.getAIColour() === "black"){
             do{
+                console.log("black piece x and y are being updated");
                 if(board_representation[x][y] !== 0){
                     //console.log("There is a piece in that location");
                     //console.log(x + "," + y);
@@ -221,9 +222,10 @@ function mediumAI2(){
                     if(board_representation[x][y].getPieceColour() === "white"){
                         copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
                         if(x > 4){
-                            console.log("x is greater than 4")
-                            AI_player.setTargetY(x-1);
+                            console.log("x is greater than 4");
+                            AI_player.setTargetX(x-1);
                             x = x - 1;
+                            console.log("getting the new x value" + AI_player.getTargetX());
                         }
                         else{
                             console.log("x is not greater than 4");
@@ -235,6 +237,8 @@ function mediumAI2(){
                     }
                     else{
                         console.log("piece was wrong colour");
+                        console.log("These are the x and y values: " + x + "," + y);
+                        console.log("These are the AI x and y values: " + AI_player.getTargetX() + "," + AI_player.getTargetY());
                         target_free = false;
                     }
                 }
@@ -243,6 +247,7 @@ function mediumAI2(){
                 }
             }while(target_free);
             console.log("breaking the do while");
+            console.log("x = " + AI_player.getTargetX() + " y = " + AI_player.getTargetY());
         }        
     };
     
