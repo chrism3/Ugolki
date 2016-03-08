@@ -363,7 +363,7 @@ function testModel() {
         if(AI_type === "simpleAI"){            
             //current_AI_player.findAllMoves(pieces, test_board);
             //current_AI_player.findAllMoves2(pieces, test_board);            
-            current_AI_player.simpleAI(pieces, test_board, model);
+            current_AI_player.simpleAI(pieces, test_board, model, AI);
         }
         else if(AI_type === "mediumAI"){
             current_AI_player.mediumAI(pieces, test_board, model, AI);

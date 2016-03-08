@@ -212,7 +212,7 @@ function generalAI(){
         return target_y;
     };
     this.setTargetX = function (new_x_target){
-        console.log("setting target x to: " + new_x_target);
+        //console.log("setting target x to: " + new_x_target);
         target_x = new_x_target;
     };
     this.setTargetY = function (new_y_target){

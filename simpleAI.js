@@ -11,20 +11,22 @@ function simpleAI(){
     var origional_x;
     var origional_y;
     var copy_of_model;
+    var AI_player;
 //    var target_x = 0,
 //        target_y = 7; /* this is the target because player 2 is aiming to get to
 //                       * the bottom left hand corner. This is why the algorithm currently
 //                       * only works when the AI is player 2
                       // */
     
-        this.simpleAI = function(pieces_to_move, board, model){
-            console.log("simpleAI is happening");
+        this.simpleAI = function(pieces_to_move, board, model, AI){
             board_representation = board;
-            var AI = new generalAI();            
-            var all_moves = AI.evalAllMoves(AI.findAllMoves(pieces_to_move, board));
+//            var AI = new generalAI(); 
+            AI_player = AI;
+            console.log("goal location is: " + AI.getTargetX() + "," + AI.getTargetY());
+            var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
             var good_moves = all_moves[0];
             var bad_moves = all_moves[1];
-            this.decideBestMove(good_moves, bad_moves, AI);
+            this.decideBestMove2(good_moves);
             copy_of_model = model;
         };
     
@@ -73,126 +75,112 @@ function simpleAI(){
         this.setAISelectedPieceYCoord(piece_to_move.getYCoord());       
     };
     
-    this.updateTarget = function(AI){
-//        console.log("target location contains: " + board_representation[this.getTargetX()][this.getTargetY()]);
-//        if(board_representation[this.getTargetX()][this.getTargetY()] !== 0){
-//            console.log(board_representation[this.getTargetX()][this.getTargetY()].getPieceColour());
+    this.decideBestMove2 = function(good_moves){
+        var best_index = 0;        
+        var piece_to_move;        
+        this.updateTarget(AI_player);
+//        for(var i = 0; i < good_moves.length; i++){
+//            console.log("Manhattan eval: " + good_moves[][])
 //        }
-        var target_free = false;
-        do{
-            // update "black" to be AI.getPieceColour() ?
-            if(board_representation[AI.getTargetX()][AI.getTargetY()] !== 0 &&
-                    board_representation[AI.getTargetX()][AI.getTargetY()].getPieceColour() === "black"){
-                console.log("piece in goal location: " + board_representation[AI.getTargetX()][AI.getTargetY()].getPieceId());
-                copy_of_model.addPieceToGoalLocationList(board_representation[AI.getTargetX()][AI.getTargetY()]);
-                var x = AI.getTargetX();
-                var y = AI.getTargetY();
-                
-                if(y < 4){
-                    AI.setTargetY(y + 1);
-                }
-                else{
-                    AI.setTargetX(x + 1);
-                    AI.setTargetY(0);
-                }
-                //console.log("updating target");
-            }
-            else{
-                target_free = true;
+        var best_eval = good_moves[0][1];
+        for(var i = 1; i < good_moves.length; i++){
+            var eval = good_moves[i][1];
+            if(eval < best_eval){
+                best_eval = eval;
+                best_index = i;
             }
         }
-        while(!target_free);
-    };
+        this.setChoosenMove(good_moves[best_index][0]);
+        piece_to_move = good_moves[best_index][0].getPieceToMove();
+        this.setSelectedPieceIndex(piece_to_move.getPieceId());
+        this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
+        this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
+    }; 
     
-    // currently this method only works when AI is player 2
-//    this.eval = function(x_coord, y_coord){
-//        // square 0,7 is the first place to fill
-//        var manhattan_x = x_coord + this.getTargetX(); // this is becasue we aim for x value of 0
-//        var manhattan_y = this.getTargetY() - y_coord; // this is because we aim for y value of 7
-//        //console.log("for: " + x_coord + "," + y_coord +": eval returns; x dist = " + manhattan_x + " y =" + manhattan_y);
-//        var manhattan_distance = manhattan_x + manhattan_y;
-//        
-//        /*
-//         * Will need someway to identify when the taget location has a piece in it
-//         * and therefore update it. i.e. location (0,7) constains a piece, aim for
-//         * location (1,7)... until we are aming for (4,3) which is the last location
-//         * player 2 needs to fill.
-//         */
-//
-//        return manhattan_distance;        
-//    };
-//    
-//    this.eval2 = function(){
-//        var manhattan_distance = 0;
-////        for(var i = 0; i < pieces_to_move.length; i++){
-////            var manhattan_x = pieces_to_move[i].getXCoord() + this.getTargetX();
-////            var manhattan_y = this.getTargetY() - pieces_to_move[i].getYCoord();
-////            var manhattan_eval = manhattan_x + manhattan_y;
-////            manhattan_distance += manhattan_eval;
-////        }
-////        return manhattan_distance;
-//        
-//        for(var i = 0; i < board_representation.length; i++){
-//            for(var j = 0; j < board_representation.length; j++){
-////                /var current_piece = board_representation[i][j];
-//                if(board_representation[i][j] !== 0){
-//                    if(board_representation[i][j].getPieceColour() === "black"){ 
-//                        // will need altered, maybe thi.getAIColour()
-//                        var manhattan_x = board_representation[i][j].getXCoord() + this.getTargetX();
-//                        var manhattan_y = this.getTargetY() - board_representation[i][j].getYCoord();
-//                        var manhattan_eval = manhattan_x + manhattan_y;
-//                        manhattan_distance += manhattan_eval;
-////                        console.log("manhattan_eval for piece " + board_representation[i][j].getPieceId() +
-////                                " = " + manhattan_eval + "(" + manhattan_x + " + " + manhattan_y);
-//                    }
-//                }
-//            }
-//        }
-//        return manhattan_distance;
-//    };
-//    
-//    this.makeMove = function(move){
-////        console.log("moving piece: " + move.getPieceToMove().getPieceId() + " from (" + move.getPieceToMove().getXCoord() +
-////                "," + move.getPieceToMove().getYCoord() + ")");
-//        var current_piece = move.getPieceToMove();
-//        var current_x = current_piece.getXCoord();
-//        var current_y = current_piece.getYCoord();
-//       // console.log(current_x + "," + current_y);
-//        board_representation[current_x][current_y] = 0;
-//        current_piece.setXCoord(move.getX());
-//        current_piece.setYCoord(move.getY());
-//        board_representation[move.getX()][move.getY()] = current_piece;
-////        console.log("to: (" +move.getX() + "," + move.getY() + ")");
-//        //console.log("in make move: " + board_representation[current_x][current_y]);
-//    };
-//    
-//    this.undoMove = function(move, x_to_reset, y_to_reset){
-////        console.log("returning piece: " + move.getPieceToMove().getPieceId() + " to (" + x_to_reset +
-////                "," + y_to_reset + ")");
-//        var current_piece = move.getPieceToMove();
-//        board_representation[move.getX()][move.getY()] = 0;
-//        current_piece.setXCoord(x_to_reset);
-//        current_piece.setYCoord(y_to_reset);
-//        board_representation[x_to_reset][y_to_reset] = current_piece;
-//        
-//        
-//        
-//        //console.log(board_representation[current_x][current_y]);
-//    };
-//    
-//    // this method will return the move to the model... to the controller... to the view
-//    this.getTargetX = function (){
-//        return target_x;
-//    };
-//    this.getTargetY = function (){
-//        return target_y;
-//    };
-//    this.setTargetX = function (new_x_target){
-//        target_x = new_x_target;
-//    };
-//    this.setTargetY = function (new_y_target){
-//        target_y = new_y_target;
-//    };
+    this.updateTarget = function(AI_player){
+        var x = AI_player.getTargetX();
+        var y = AI_player.getTargetY();
+        var target_free = true;
+        var AI_goals_filled = new Array();
+        // update the target when the AI is playing with black pieces
+        if(AI_player.getAIColour() === "black"){
+            do{
+               // console.log("black piece x and y are being updated");
+                if(board_representation[x][y] !== 0){
+                    //console.log("There is a piece in that location");
+                    //console.log(x + "," + y);
+                    if(board_representation[x][y].getPieceColour() === "black"){
+                        //console.log("doing this");
+                        //this.findPiecesNotToMove();
+                        copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
+                        AI_goals_filled.push(x + "," + y);
+                        if(x < 3){
+                            AI_player.setTargetX(x+1);
+                            x = x + 1;
+                        }
+                        else{
+                            AI_player.setTargetY(y-1);
+                            AI_player.setTargetX(0);
+                            y = y - 1;
+                            x = 0;
+                        }
+                    }
+                    else{
+                       target_free = false;
+                    }
+                }
+                else{
+                    target_free = false;
+                }
+            }while(target_free);
+        }
+        // else, update the target if the AI is playing with white pieces
+        else{
+            do{
+                console.log("***********");
+                console.log("coords this time: " + x + "," + y);
+                console.log(" ");
+                //console.log("updating white target");
+                if(board_representation[x][y] !== 0){
+                    console.log("there is a piece in that location");
+                    console.log("piece colour is: " + board_representation[x][y].getPieceColour());
+                    if(board_representation[x][y].getPieceColour() === "white"){
+                        copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
+                        if(x > 4){
+                            console.log("x is greater than 4");
+                            AI_player.setTargetX(x-1);
+                            x = x - 1;
+                            console.log("getting the new x value" + AI_player.getTargetX());
+                        }
+                        else{
+                            console.log("x is not greater than 4");
+                            AI_player.setTargetY(y+1);
+                            AI_player.setTargetX(7);
+                            y = y + 1;
+                            x = 7;
+                        }
+                    }
+                    else{
+                        console.log("piece was wrong colour");
+                        console.log("These are the x and y values: " + x + "," + y);
+                        console.log("These are the AI x and y values: " + AI_player.getTargetX() + "," + AI_player.getTargetY());
+                        target_free = false;
+                    }
+                }
+                else{
+                    target_free = false;
+                }
+            }while(target_free);            
+            console.log("breaking the do while");
+            console.log("x = " + AI_player.getTargetX() + " y = " + AI_player.getTargetY());
+        }
+        if(AI_goals_filled.length > 0){
+                for(var i = 0; i < AI_goals_filled.length; i++){
+                    console.log("GOAL FILLED: " + AI_goals_filled);
+                }
+            }
+    };
+
     this.getChoosenMove = function() {
         return move;
     };
