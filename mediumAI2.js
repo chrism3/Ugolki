@@ -18,9 +18,11 @@ function mediumAI2(){
 //                       * only works when the AI is player 2
                       // */
     
-        this.mediumAI = function(pieces_to_move, board, model, AI){
+        this.mediumAI = function(board, model, AI){
             board_representation = board;
             copy_of_model = model;
+            this.updateTarget3();
+            var pieces_to_move = copy_of_model.getPieces();
             AI_player = AI;    
             console.log(pieces_to_move.length);
             for(var i = 0; i < pieces_to_move.length; i++){
@@ -37,9 +39,9 @@ function mediumAI2(){
 //            }
             this.decideBestMove(every_move);
             //this.findPiecesNotToMove();
-            this.updateTarget2();
-            // make sure the AI's goal location us free before wasting a move
-            this.updateTarget3();
+//            this.updateTarget2();
+//            // make sure the AI's goal location us free before wasting a move
+//            this.updateTarget3();
 
 
         };
@@ -51,14 +53,13 @@ function mediumAI2(){
         var piece_to_move;
         
         console.log("EVERY MOVE LENGTH: " + every_move.length);
-        var best_eval = every_move[0][1];
-        
+        var best_eval = every_move[0][1];        
         
         for(var i = 1; i < every_move.length; i++){
             var eval = every_move[i][1];
             var move = every_move[i][0];
             //console.log("check if " + eval + " is less than " + best_eval);
-            if(eval <= best_eval){
+            if(eval < best_eval){
                // console.log("it is");
                if(AI_player.getAIColour() === "black"){
                     if(move.getX() === AI_player.getTargetX() && move.getY() === AI_player.getTargetY()){
@@ -68,9 +69,9 @@ function mediumAI2(){
                         return;
                     }
                     else if(move.getX() > AI_player.getTargetX() && move.getY() < AI_player.getTargetY()){
-                             best_index = i;
-                             best_eval = eval;
-                         }
+                        best_index = i;
+                        best_eval = eval;
+                    }
                     // doing this to try recover the pieces that are in bad places
                     else if(move.getPieceToMove().getXCoord() < AI_player.getTargetX() ||
                             move.getPieceToMove().getYCoord() > AI_player.getTargetY()){

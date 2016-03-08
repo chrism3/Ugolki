@@ -293,7 +293,10 @@ function testModel() {
         // call this to make sure the AI board rep is up to date
        //current_AI_player.updateBoard(test_board);
         var pieces = new Array();
-        var count = 0;
+        // the commented code below can probably be deleted
+        
+        
+        
 //        if(AI.getAIColour() === "black"){
 //            for(var i = test_board.length-1; i >= 0; i--){
 //                //console.log(i);
@@ -363,7 +366,6 @@ function testModel() {
 //                                         "has the current coords " + test_board[i][j].getXCoord() + "," +
 //                                         test_board[i][j].getYCoord());
 //                             }
-//                             count++;
 //                         }
 //                     }
 //                }
@@ -377,7 +379,7 @@ function testModel() {
             current_AI_player.simpleAI(test_board, model, AI);
         }
         else if(AI_type === "mediumAI"){
-            current_AI_player.mediumAI(pieces, test_board, model, AI);
+            current_AI_player.mediumAI(test_board, model, AI);
         }
     };
     
