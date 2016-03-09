@@ -452,6 +452,11 @@ function testView(){
         ugolki_stats.addEventListener("click", callback);
     };
     
+    this.setNewGameClickCallback = function(callback){
+        var new_game = document.getElementById("new_game");
+        new_game.addEventListener("click", callback);
+    };
+    
     // need to put View Statistics listener here
     
 //    

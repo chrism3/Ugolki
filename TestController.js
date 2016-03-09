@@ -8,15 +8,11 @@ function testController(){
      square = new Array();
      //test_model.init();
      test_model.setScreenSize(); 
-    
-     /*
-      * needs to know number of squares per row, may be able to pass in a value later, 
-      * currently it is hard coded in scaleBoardToScreen
-     */
+
      test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
      test_model.setTestBoard(test_view.getScreenToBoardMap());
 
-     var test_check = test_model.hasPlayerWon();
+     //var test_check = test_model.hasPlayerWon();
      //console.log(test_check);
 
     this.init = function() {
@@ -485,6 +481,19 @@ function testController(){
         test_view.setViewStatsClickCallback(function(){
             //console.log("stats clicked");
             test_view.togglePane("stats");
+        });
+        test_view.setNewGameClickCallback(function(){
+            var controller = new testController();
+            controller.init();
+            test_view.closeSettings();
+            test_view = undefined;
+            test_model = undefined;
+            test_view = new testView();
+            test_model = new testModel();
+            test_model.setScreenSize();
+            test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
+            test_model.setTestBoard(test_view.getScreenToBoardMap());
+            
         });
         
         // need View Statistics called here
