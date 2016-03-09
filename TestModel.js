@@ -279,7 +279,7 @@ function testModel() {
     
     // I'm not sure how the AI should work... maybe like this
     var AI_type = "simpleAI";
-    var current_AI_player = new simpleAI();
+    var current_AI_player = new simpleAI2();
 
     
     /*
@@ -376,7 +376,8 @@ function testModel() {
         find_moves.init(test_board);
         console.log(pieces.length);
         if(AI_type === "simpleAI"){            
-            current_AI_player.simpleAI(test_board, model, AI);
+            //current_AI_player.simpleAI(test_board, model, AI);
+            current_AI_player.simpleAI2(test_board, model, AI);
         }
         else if(AI_type === "mediumAI"){
             current_AI_player.mediumAI(test_board, model, AI);
