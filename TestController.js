@@ -487,6 +487,9 @@ function testController(){
         });
         test_view.setNewGameClickCallback(function(){
             test_view.closeSettings();
+            if(test_model.hasPlayerWon() !== "no winner"){
+                test_view.newGame();
+            }
             test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
             test_model.setTestBoard(test_view.getScreenToBoardMap());
             //test_model.setCurrentPlayerColour();
@@ -494,9 +497,7 @@ function testController(){
                 console.log("resetting current player colour");
                 test_model.setCurrentPlayerColour();
             }
-            if(test_model.hasPlayerWon() !== "no winner"){
-                test_view.newGame();
-            }
+
             if(test_model.getPlayerOneType() === "AI" ||
                     test_model.getPlayerTwoType() === "AI"){
                 console.log("current colour: " + test_model.getCurrentPlayerColour());

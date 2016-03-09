@@ -1149,12 +1149,13 @@ function testView(){
     };
     this.alterEndGame = function(){
         document.getElementById("game_over").style.left = "40%";
-        //document.getElementById("game_over").style.cssFloat = "right";
         document.getElementById("game_over").style.width = "60%";
     };
     // unimplemented... will be used to start a new game
     this.newGame = function(){
         document.getElementById("game_over").style.display = "none";
+        document.getElementById("game_over").style.left = "0";
+        document.getElementById("game_over").style.width = "100%";
     };
     
     // method to get the name displayed as player 1
