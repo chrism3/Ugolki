@@ -45,19 +45,57 @@ function mediumAI3(){
             var best_eval = good_moves[0][1];
             for(var i = 1; i < good_moves.length; i++){
                 var eval = good_moves[i][1];
+                var move = good_moves[i][0]
                 //console.log("check if " + eval + " is less than " + best_eval);
+                
                 if(eval < best_eval){
-                   // console.log("it is");
-                    best_index = i;
-                    best_eval = eval;
+                   if(AI_player.getAIColour() === "black"){
+                    if(move.getX() === AI_player.getTargetX() && move.getY() === AI_player.getTargetY()){
+                        console.log("the goal has been found");
+                        best_index = i;
+                        best_eval = 0;
+                        return;
+                    }
+                    else if(move.getX() > AI_player.getTargetX() && move.getY() < AI_player.getTargetY()){
+                        best_index = i;
+                        best_eval = eval;
+                    }
+                    // doing this to try recover the pieces that are in bad places
+                    else if(move.getPieceToMove().getXCoord() < AI_player.getTargetX() ||
+                            move.getPieceToMove().getYCoord() > AI_player.getTargetY()){
+                        console.log("Doing this in good moves");
+                        eval = eval/2;
+                        best_index = i;
+                        best_eval = eval;
+                    }
+                }
+                // if the AI is using the white pieces do this instead of the above
+                else{
+                    if(move.getX() === AI_player.getTargetX() && move.getY() === AI_player.getTargetY()){
+                        eval = 0;
+                        best_eval = eval;
+                        best_index = i;
+                    }
+                    else if(move.getY() > AI_player.getTargetY() && move.getX() < AI_player.getTargetX()){
+                        best_index = i;
+                        best_eval = eval;
+                    }
+                    else if(move.getPieceToMove().getYCoord() < AI_player.getTargetY() ||
+                            move.getPieceToMove().getXCoord() > AI_player.getTargetX()){
+                        eval = eval/2;
+                        best_index = i;
+                        best_eval = eval;
+                    }
+                }
                 }
 
             }
-            
-            //console.log("best index: " + best_index);
-            //console.log("best eval: " + best_eval);
             this.setChoosenMove(good_moves[best_index][0]);
             piece_to_move = good_moves[best_index][0].getPieceToMove();
+            //console.log("best index: " + best_index);
+            //console.log("best eval: " + best_eval);
+            //this.setChoosenMove(good_moves[best_index][0]);
+            //piece_to_move = good_moves[best_index][0].getPieceToMove();
             console.log(piece_to_move.getPieceId());
             this.setSelectedPieceIndex(piece_to_move.getPieceId());
         }

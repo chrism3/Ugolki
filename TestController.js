@@ -572,7 +572,29 @@ function testController(){
             test_view.closeSettings();
         });
         test_view.setHumanAIClickCallback(function(){
-            console.log("human v AI");
+            //test_model.alterAISettings("human v AI");
+            test_model.setPlayerTwoType("AI");
+            test_view.setPlayerTwo("AI");
+            console.log("AI-Colour: " + test_model.getAIColour());
+            console.log("Current colour: " + test_model.getCurrentPlayerColour());
+            if(test_model.getAIColour() === test_model.getCurrentPlayerColour()){
+                test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(test_model.getAIPieceIndex()),
+                                         test_model.getCurrentPlayerColour());
+                var AI_move = test_model.getAIChoosenMove();
+                test_view.highlightAIMove(AI_move.getX(), AI_move.getY());
+                test_model.updateModelWithAIMove();
+                test_view.updateBoardWithMoves2(AI_move.getX(), AI_move.getY());
+                setTimeout(function() {
+                     test_view.movePiece2(AI_move.getX(), AI_move.getY());
+                     // need to reset the board colour and the model, before the user can make their next turn
+                     var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
+                     AI_piece_moved.play();                        
+                     test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
+                                     test_model.getDarkBoardColour(), test_model.getLightBoardColour());
+                }, 750);
+                test_model.resetForNextMove();                
+            }
+            
             test_view.closeSettings();
         });
         test_view.setHumanHumanClickcallback( function(){
@@ -583,26 +605,29 @@ function testController(){
         test_view.setAIHumanClickCallback(function(){
             //console.log("AI v human");
             test_model.alterAISettings("AI v human");
+            test_model.setPlayerTwoType("AI");
             test_model.checkAIType(test_model);
             //console.log("about to get the id");
-            
-            test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(test_model.getAIPieceIndex()),
-                                     test_model.getCurrentPlayerColour());
-            var AI_move = test_model.getAIChoosenMove();
-            test_view.highlightAIMove(AI_move.getX(), AI_move.getY());
-            test_model.updateModelWithAIMove();
-            test_view.updateBoardWithMoves2(AI_move.getX(), AI_move.getY());
-            setTimeout(function() {
-                 test_view.movePiece2(AI_move.getX(), AI_move.getY());
-                 // need to reset the board colour and the model, before the user can make their next turn
-                 var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
-                 AI_piece_moved.play();                        
-                 test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
-                                 test_model.getDarkBoardColour(), test_model.getLightBoardColour());
-            }, 750);
-            test_model.resetForNextMove();
+            if(test_model.getAIColour() === test_model.getCurrentPlayerColour()){
+                test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(test_model.getAIPieceIndex()),
+                                         test_model.getCurrentPlayerColour());
+                var AI_move = test_model.getAIChoosenMove();
+                test_view.highlightAIMove(AI_move.getX(), AI_move.getY());
+                test_model.updateModelWithAIMove();
+                test_view.updateBoardWithMoves2(AI_move.getX(), AI_move.getY());
+                setTimeout(function() {
+                     test_view.movePiece2(AI_move.getX(), AI_move.getY());
+                     // need to reset the board colour and the model, before the user can make their next turn
+                     var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
+                     AI_piece_moved.play();                        
+                     test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
+                                     test_model.getDarkBoardColour(), test_model.getLightBoardColour());
+                }, 750);
+                test_model.resetForNextMove();                
+            }
             test_view.closeSettings();
         });
+        
         
         test_view.setPersonalStatsClickCallback( function(){
             //console.log("personal stats has been clicked");            

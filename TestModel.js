@@ -630,8 +630,10 @@ function testModel() {
             AI.setTargetForWhiteAIPlayer();
         }
         else if(alteration === "human v AI"){
-            AI.setColour("black");
+            console.log("setting colour to black");
+            AI.setAIColour("black");
             AI.setTargetForBlackAIPlayer();
+            console.log("AI-colour in altersettings: " + AI.getAIColour());
         }
     };
     
