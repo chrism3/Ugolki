@@ -451,6 +451,9 @@ function testController(){
             //console.log("menu option clicked");
             //test_view.toggleSettingsPanel();
             //test_view.toggleGeneralSettings();
+            if(test_model.hasPlayerWon() !== "no winner"){
+                test_view.alterEndGame();
+            }
             test_view.setScreenToDisplay("general");
             test_view.toggleSettings(test_view.getScreenToDisplay());
         });
@@ -490,6 +493,9 @@ function testController(){
             if(test_model.getCurrentPlayerColour() === "black"){ 
                 console.log("resetting current player colour");
                 test_model.setCurrentPlayerColour();
+            }
+            if(test_model.hasPlayerWon() !== "no winner"){
+                test_view.newGame();
             }
             if(test_model.getPlayerOneType() === "AI" ||
                     test_model.getPlayerTwoType() === "AI"){

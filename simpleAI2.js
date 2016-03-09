@@ -50,9 +50,6 @@ function simpleAI2(){
     this.updateTarget = function(){
         var x = AI_player.getTargetX();
         var y = AI_player.getTargetY();
-        console.log(board_representation[x][y]);
-        console.log(board_representation[x][y].getPieceId());
-        console.log("AI_player colour: " + AI_player.getAIColour());
         var target_free = true;
         var AI_goals_filled = new Array();
         // update the target when the AI is playing with black pieces
@@ -60,8 +57,6 @@ function simpleAI2(){
             do{
                // console.log("black piece x and y are being updated");
                 if(board_representation[x][y] !== 0){
-                    console.log("x = " + x);
-                    console.log("y = " + y);
                     //console.log("There is a piece in that location");
                     //console.log(x + "," + y);
                     if(board_representation[x][y].getPieceColour() === "black"){
