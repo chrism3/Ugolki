@@ -602,6 +602,11 @@ function testController(){
             test_view.setPlayerTwo("Human");
             test_view.closeSettings();
         });
+        test_view.setAIAIClickCallback(function(){
+            console.log("clicked ai ai button");
+            test_view.closeSettings();
+            test_model.AIGame(test_model);
+        });
         test_view.setAIHumanClickCallback(function(){
             //console.log("AI v human");
             test_model.alterAISettings("AI v human");

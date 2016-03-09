@@ -22,6 +22,7 @@ function mediumAI3(){
             console.log("mediumAI3");
             board_representation = board;
             AI_player = AI;
+            console.log("medium colour: " + AI_player.getAIColour());
             copy_of_model = model;
             this.updateTarget();
             var pieces_to_move = model.getPieces();
@@ -45,7 +46,7 @@ function mediumAI3(){
             var best_eval = good_moves[0][1];
             for(var i = 1; i < good_moves.length; i++){
                 var eval = good_moves[i][1];
-                var move = good_moves[i][0]
+                var move = good_moves[i][0];
                 //console.log("check if " + eval + " is less than " + best_eval);
                 
                 if(eval < best_eval){
@@ -137,6 +138,7 @@ function mediumAI3(){
         this.setSelectedPieceIndex(piece_to_move.getPieceId());
         this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
         this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
+        console.log("moving: " + piece_to_move.getPieceId());
     }; 
     
     this.updateTarget = function(){
@@ -185,6 +187,7 @@ function mediumAI3(){
                 //console.log("updating white target");
                 if(board_representation[x][y] !== 0){
                     console.log("there is a piece in that location");
+                    console.log(board_representation[x][y]);
                     console.log("piece colour is: " + board_representation[x][y].getPieceColour());
                     if(board_representation[x][y].getPieceColour() === "white"){
                         copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);

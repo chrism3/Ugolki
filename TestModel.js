@@ -649,10 +649,10 @@ function testModel() {
     };
     
     this.getPieces = function(){
-        for(var i = 0; i < pieces_in_goal.length; i++){
-            console.log(pieces_in_goal[i].getPieceId());
-        }
-        console.log("this has been called");
+//        for(var i = 0; i < pieces_in_goal.length; i++){
+//            console.log(pieces_in_goal[i].getPieceId());
+//        }
+        //console.log("this has been called");
         var pieces = new Array();
         var reached_goal = false;
         if(this.getAIColour() === "black"){
@@ -717,5 +717,60 @@ function testModel() {
             }             
         }
         return pieces;
+    };
+    
+    this.AIGame = function(model){
+        console.log(model);
+        var AI_1 = new generalAI();
+        var AI_2 = new generalAI();
+        AI_2.setAIColour();
+        AI_2.setTargetForWhiteAIPlayer();
+        var AI_player_1 = new simpleAI2();
+        var AI_player_2 = new mediumAI3();
+        var whose_turn = 1;
+        var count = 0;
+        
+        console.log("AI plauyer 1: " + AI_1.getAIColour());
+        console.log("AI player 2: " + AI_2.getAIColour());
+        
+        while(this.hasPlayerWon() === "no winner"){
+            console.log("looped round: " + count + " time(s)");
+            count++;
+            if(whose_turn === 1){
+                current_AI_player = AI_player_1;
+                current_AI_player.simpleAI2(test_board, model, AI_1);
+                
+            }
+            else{
+                current_AI_player = AI_player_2;
+                current_AI_player.mediumAI3(test_board, model, AI_2);
+            }
+            if(whose_turn === 1){
+                whose_turn = 2;
+            }
+            else{
+                whose_turn = 1;
+            }
+            if(count > 150){
+                console.log("what is happening");
+                
+                for(var i = 0; i < 8; i++){
+                    for(var j = 0; j < 8; j++){
+                        if(test_board[j][i] !== 0){
+                            console.log("at location " + j + "," + i +" is piece: " +
+                                    test_board[j][i].getPieceId());
+                        }
+                        else{
+                            console.log("at location " + j + "," + i +" there is no piece");
+                        }
+                    }
+                }
+                
+                break;
+            }
+            this.updateModelWithAIMove();
+            this.resetForNextMove();
+        }
+        console.log(this.hasPlayerWon() + " is the winner");
     };
 }
