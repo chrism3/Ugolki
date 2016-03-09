@@ -503,6 +503,10 @@ function testView(){
         var AI_v_human = document.getElementById("AI_v_Human");
         AI_v_human.addEventListener("click", callback);
     };
+    this.setHumanHumanClickcallback = function(callback){
+        var human_v_human = document.getElementById("human_v_human");
+        human_v_human.addEventListener("click", callback);
+    };
     
     // this is the callback for the actual sign up button in the sign in page
     this.setSignUpButtonClickCallback = function (callback){

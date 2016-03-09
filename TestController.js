@@ -528,6 +528,12 @@ function testController(){
         });
         test_view.setHumanAIClickCallback(function(){
             console.log("human v AI");
+            test_view.closeSettings();
+        });
+        test_view.setHumanHumanClickcallback( function(){
+            test_model.setPlayerTwoType("human");
+            test_view.setPlayerTwo("Human");
+            test_view.closeSettings();
         });
         test_view.setAIHumanClickCallback(function(){
             //console.log("AI v human");
