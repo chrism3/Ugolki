@@ -483,17 +483,45 @@ function testController(){
             test_view.togglePane("stats");
         });
         test_view.setNewGameClickCallback(function(){
-            var controller = new testController();
-            controller.init();
             test_view.closeSettings();
-            test_view = undefined;
-            test_model = undefined;
-            test_view = new testView();
-            test_model = new testModel();
-            test_model.setScreenSize();
             test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
             test_model.setTestBoard(test_view.getScreenToBoardMap());
-            
+            //test_model.setCurrentPlayerColour();
+            if(test_model.getCurrentPlayerColour() === "black"){ 
+                console.log("resetting current player colour");
+                test_model.setCurrentPlayerColour();
+            }
+            if(test_model.getPlayerOneType() === "AI" ||
+                    test_model.getPlayerTwoType() === "AI"){
+                console.log("current colour: " + test_model.getCurrentPlayerColour());
+                console.log("AI's colour: " + test_model.getAIColour());
+                if(test_model.getCurrentPlayerColour() === test_model.getAIColour()){
+                    console.log("AI should move first");
+                    test_model.alterAISettings("AI v human");
+                    test_model.checkAIType(test_model);
+                    //console.log("about to get the id");
+
+                    test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(test_model.getAIPieceIndex()),
+                                             test_model.getCurrentPlayerColour());
+                    var AI_move = test_model.getAIChoosenMove();
+                    test_view.highlightAIMove(AI_move.getX(), AI_move.getY());
+                    test_model.updateModelWithAIMove();
+                    test_view.updateBoardWithMoves2(AI_move.getX(), AI_move.getY());
+                    setTimeout(function() {
+                         test_view.movePiece2(AI_move.getX(), AI_move.getY());
+                         // need to reset the board colour and the model, before the user can make their next turn
+                         var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
+                         AI_piece_moved.play();                        
+                         test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
+                                         test_model.getDarkBoardColour(), test_model.getLightBoardColour());
+                    }, 750);
+                    test_model.resetForNextMove();
+                }
+                else{
+                    console.log("Player should move first");
+                }
+            }
+            console.log("colour to move first: " + test_model.getCurrentPlayerColour());
         });
         
         // need View Statistics called here

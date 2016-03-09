@@ -633,6 +633,10 @@ function testModel() {
         return AI.getAIColour();
     };
     
+    this.setAIColour = function(){
+        AI.setAIColour();
+    };
+    
     this.getPieces = function(){
         for(var i = 0; i < pieces_in_goal.length; i++){
             console.log(pieces_in_goal[i].getPieceId());
