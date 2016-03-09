@@ -250,4 +250,8 @@ function generalAI(){
     this.getAIColour = function(){
         return AI_colour;
     };
+    
+    this.setNewGameAI = function(){
+        AI_colour = "white";
+    };
 }

@@ -497,8 +497,9 @@ function testController(){
                 console.log("AI's colour: " + test_model.getAIColour());
                 if(test_model.getCurrentPlayerColour() === test_model.getAIColour()){
                     console.log("AI should move first");
+                    console.log("Has AI colour changed: " + test_model.getAIColour());
                     test_model.alterAISettings("AI v human");
-                    test_model.checkAIType(test_model);
+                    test_model.checkAIType(test_model, "new game");
                     //console.log("about to get the id");
 
                     test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(test_model.getAIPieceIndex()),

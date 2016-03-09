@@ -287,12 +287,17 @@ function testModel() {
      * Use the following method to check which AI we currently have set, simple, hard, good ect...
      * Then call the appropriate AI class
      */
-    this.checkAIType = function (model){
+    this.checkAIType = function (model, condition){
         // need to get the pieces that the AI can actually move
         
         // call this to make sure the AI board rep is up to date
        //current_AI_player.updateBoard(test_board);
         var pieces = new Array();
+        if(condition === "new game"){
+            console.log("is it setting a new game AI");
+            AI.setNewGameAI();
+        }
+        
         // the commented code below can probably be deleted
         
         
@@ -377,6 +382,7 @@ function testModel() {
         console.log(pieces.length);
         if(AI_type === "simpleAI"){            
             //current_AI_player.simpleAI(test_board, model, AI);
+            console.log("Before calling the AI al: " + AI.getAIColour());
             current_AI_player.simpleAI2(test_board, model, AI);
         }
         else if(AI_type === "mediumAI"){
@@ -635,6 +641,9 @@ function testModel() {
     
     this.setAIColour = function(){
         AI.setAIColour();
+    };
+    this.setnewGameAI = function(){
+        AI.setNewGameAI();
     };
     
     this.getPieces = function(){
