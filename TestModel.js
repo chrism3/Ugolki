@@ -380,7 +380,7 @@ function testModel() {
             current_AI_player.simpleAI2(test_board, model, AI);
         }
         else if(AI_type === "mediumAI"){
-            current_AI_player.mediumAI(test_board, model, AI);
+            current_AI_player.mediumAI3(test_board, model, AI);
         }
     };
     
@@ -399,7 +399,7 @@ function testModel() {
             //current_AI_player.updateBoard(test_board);
         }
         if(AI_type === "mediumAI"){
-            current_AI_player = new mediumAI2();
+            current_AI_player = new mediumAI3();
         }
     };
     
