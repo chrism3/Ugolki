@@ -238,13 +238,8 @@ function generalAI(){
         this.setTargetY(7);
     };
     
-    this.setAIColour = function(){
-        if(this.getAIColour() === 'black'){
-            AI_colour = "white";
-        }
-        else{
-            AI_colour = "black";
-        }
+    this.setAIColour = function(colour){
+        AI_colour = colour;
     };
     
     this.getAIColour = function(){
