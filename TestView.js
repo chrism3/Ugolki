@@ -1176,6 +1176,9 @@ function testView(){
     this.setPlayerTwo = function(player_2_type){
         document.getElementById("player_2_type").value = player_2_type;
     };
+    this.setInfoBoxThree = function(type){
+        document.getElementById("player_3_type").value = type;
+    };
     
     
     // method to set which screen should be displayed
@@ -1186,41 +1189,6 @@ function testView(){
     // method to get the current screen that is to be displayed
     this.getScreenToDisplay = function(){
         return screen;
-    };
-    
-    this.updatePlayerInfo = function(condition){
-        var player_1 = document.getElementById("player_1_type").value;
-        var player_2 = document.getElementById("player_2_type").value;
-        
-        if(player_1 !== "Human"){
-            document.getElementById("player_2_type").value = player_1;
-        }
-        else{
-            if(condition === "AI v human"){
-               document.getElementById("player_2_type").value = "human";
-            }
-            else if(condition === "human v AI"){
-                document.getElementById("player_2_type").value = "AI";
-            }
-            else if(condition === "human v human"){
-                document.getElementById("player_2_type").value = "human";
-            }
-        }
-        
-        if(player_2 !== "Human"){
-            document.getElementById("player_1_type").value = player_2;
-        }
-        else{
-            if(condition === "AI v human"){
-                document.getElementByid("player_1_type").value = "AI";
-            }
-            else if(condition === "human v AI"){
-                document.getElementById("player_1_type").value = "human";
-            }
-            else if(condition === "human v human"){
-                document.getElementById("player_1_type").value = "human";
-            }
-        }
     };
 }
 

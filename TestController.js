@@ -518,8 +518,8 @@ function testController(){
                     setTimeout(function() {
                          test_view.movePiece2(AI_move.getX(), AI_move.getY());
                          // need to reset the board colour and the model, before the user can make their next turn
-                         var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
-                         AI_piece_moved.play();                        
+//                         var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
+//                         AI_piece_moved.play();                        
                          test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
                                          test_model.getDarkBoardColour(), test_model.getLightBoardColour());
                     }, 750);
@@ -573,6 +573,7 @@ function testController(){
         });
         test_view.setHumanAIClickCallback(function(){
             //test_model.alterAISettings("human v AI");
+            test_view.setInfoBoxThree("Human v AI");
             test_model.setPlayerTwoType("AI");
             test_view.setPlayerTwo("AI");
             console.log("AI-Colour: " + test_model.getAIColour());
@@ -587,8 +588,8 @@ function testController(){
                 setTimeout(function() {
                      test_view.movePiece2(AI_move.getX(), AI_move.getY());
                      // need to reset the board colour and the model, before the user can make their next turn
-                     var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
-                     AI_piece_moved.play();                        
+//                     var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
+//                     AI_piece_moved.play();                        
                      test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
                                      test_model.getDarkBoardColour(), test_model.getLightBoardColour());
                 }, 750);
@@ -598,6 +599,7 @@ function testController(){
             test_view.closeSettings();
         });
         test_view.setHumanHumanClickcallback( function(){
+            test_view.setInfoBoxThree("Human v Human");
             test_model.setPlayerTwoType("human");
             test_view.setPlayerTwo("Human");
             test_view.closeSettings();
@@ -608,7 +610,7 @@ function testController(){
             test_model.AIGame(test_model);
         });
         test_view.setAIHumanClickCallback(function(){
-            test_view.updatePlayerInfo("AI v human");
+            test_view.setInfoBoxThree("AI v Human");
             test_model.alterAISettings("AI v human");
             test_model.setPlayerTwoType("AI");
             test_model.checkAIType(test_model);
@@ -623,8 +625,8 @@ function testController(){
                 setTimeout(function() {
                      test_view.movePiece2(AI_move.getX(), AI_move.getY());
                      // need to reset the board colour and the model, before the user can make their next turn
-                     var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
-                     AI_piece_moved.play();                        
+//                     var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
+//                     AI_piece_moved.play();                        
                      test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
                                      test_model.getDarkBoardColour(), test_model.getLightBoardColour());
                 }, 750);
@@ -763,8 +765,8 @@ function testController(){
          * turn of the colour of piece that has been selected, can therefore bring
          * up a pop up box informing the user it isn't their turn
          */
-        var selected_piece = new Audio('Sounds/piece_selected.wav');
-        selected_piece.play();
+//        var selected_piece = new Audio('Sounds/piece_selected.wav');
+//        selected_piece.play();
             //test_view.resetDefaultBoardColours();// call this incase there are all ready squares coloured
             if(test_view.getSelectedPiece() !== "none"){
                 test_view.highlightSelectedPiece();
@@ -818,8 +820,8 @@ function testController(){
         this.handleMovePiece = function() {                     
            var square_x = square[0];
            var square_y = square[1];
-           var piece_moved = new Audio('Sounds/piece_moved.wav');
-           piece_moved.play();
+//           var piece_moved = new Audio('Sounds/piece_moved.wav');
+//           piece_moved.play();
            //console.log("in handle move pieces: " + square_x + "   " + square_y);
            if(test_model.movePiece(square_x, square_y)){           
                 test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
@@ -893,8 +895,8 @@ function testController(){
                    setTimeout(function() {
                         test_view.movePiece2(AI_move.getX(), AI_move.getY());
                         // need to reset the board colour and the model, before the user can make their next turn
-                        var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
-                        AI_piece_moved.play();                        
+//                        var AI_piece_moved = new Audio("Sounds/piece_moved.wav");
+//                        AI_piece_moved.play();                        
                         test_view.resetDefaultBoardColours(test_model.getPlayer1Colour(), test_model.getPlayer2Colour(),
                                         test_model.getDarkBoardColour(), test_model.getLightBoardColour());
                    }, 750);

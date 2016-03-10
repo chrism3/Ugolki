@@ -32,20 +32,32 @@ function simpleAI2(){
         copy_of_model = model;
         var pieces = copy_of_model.getPieces();        
         var all_moves = AI_player.evalAllMoves(AI.findAllMoves(pieces, board_rep));
-        var good_moves = all_moves[2];
-        this.decideBestMove(good_moves);                         
+        var good_moves = all_moves[0];
+        var bad_moves = all_moves[1];
+        this.decideBestMove(good_moves, bad_moves);                         
     }; 
     
     // this is how the better AI selects it's move
-    this.decideBestMove = function(good_moves){
+    this.decideBestMove = function(good_moves, bad_moves){
         // need to make sure there is a valid target
-        var random_index = parseInt(Math.random()*good_moves.length);
-        this.setChoosenMove(good_moves[random_index][0]);
-        var random_piece = good_moves[random_index][0].getPieceToMove();
-        this.setSelectedPieceIndex(random_piece.getPieceId());
-        this.setAISelectedPieceXCoord(random_piece.getXCoord());
-        this.setAISelectedPieceYCoord(random_piece.getYCoord());
-        console.log("moving: " + random_piece.getPieceId());
+        if(good_moves.length > 0){
+            var random_index = parseInt(Math.random()*good_moves.length);
+            this.setChoosenMove(good_moves[random_index][0]);
+            var random_piece = good_moves[random_index][0].getPieceToMove();
+            this.setSelectedPieceIndex(random_piece.getPieceId());
+            this.setAISelectedPieceXCoord(random_piece.getXCoord());
+            this.setAISelectedPieceYCoord(random_piece.getYCoord());
+            console.log("moving: " + random_piece.getPieceId());
+        }
+        else{
+            var random_index = parseInt(Math.random()*bad_moves.length);
+            this.setChoosenMove(bad_moves[random_index][0]);
+            var random_piece = bad_moves[random_index][0].getPieceToMove();
+            this.setSelectedPieceIndex(random_piece.getPieceId());
+            this.setAISelectedPieceXCoord(random_piece.getXCoord());
+            this.setAISelectedPieceYCoord(random_piece.getYCoord());
+            console.log("moving: " + random_piece.getPieceId());
+        }
     };
     
     this.updateTarget = function(){
