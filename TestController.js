@@ -572,14 +572,16 @@ function testController(){
             test_view.closeSettings();
         });
         test_view.setHumanAIClickCallback(function(){
-            //test_model.alterAISettings("human v AI");
+            test_model.alterAISettings("human v AI");
             test_view.setInfoBoxThree("Human v AI");
             test_model.setPlayerTwoType("AI");
             test_view.setPlayerTwo("AI");
             console.log("AI-Colour: " + test_model.getAIColour());
             console.log("Current colour: " + test_model.getCurrentPlayerColour());
             if(test_model.getAIColour() === test_model.getCurrentPlayerColour()){
-                test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(test_model.getAIPieceIndex()),
+                test_model.checkAIType(test_model);
+                console.log("in side the if statement");
+                test_view.setSelectedPiece(test_view.getBrownCircleCoordinates(test_model.getAIPieceIndex()),
                                          test_model.getCurrentPlayerColour());
                 var AI_move = test_model.getAIChoosenMove();
                 test_view.highlightAIMove(AI_move.getX(), AI_move.getY());
@@ -613,9 +615,10 @@ function testController(){
             test_view.setInfoBoxThree("AI v Human");
             test_model.alterAISettings("AI v human");
             test_model.setPlayerTwoType("AI");
-            test_model.checkAIType(test_model);
+//            test_model.checkAIType(test_model);
             //console.log("about to get the id");
             if(test_model.getAIColour() === test_model.getCurrentPlayerColour()){
+                test_model.checkAIType(test_model);
                 test_view.setSelectedPiece(test_view.getWhiteCircleCoordinates(test_model.getAIPieceIndex()),
                                          test_model.getCurrentPlayerColour());
                 var AI_move = test_model.getAIChoosenMove();

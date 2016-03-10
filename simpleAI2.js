@@ -23,7 +23,7 @@ function simpleAI2(){
     
     this.simpleAI2 = function(board_rep, model, AI){
         console.log("simpleAI2");
-        //console.log("AI colour: " + AI.getAIColour());
+        console.log("AI colour: " + AI.getAIColour());
         board_representation = board_rep;
         AI_player = AI;
         //console.log("AI_player colour: " + AI_player.getAIColour());
