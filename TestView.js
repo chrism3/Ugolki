@@ -1034,7 +1034,14 @@ function testView(){
         var wins = document.getElementById("no_of_wins");
         var losses = document.getElementById("no_of_losses");
         var percent = document.getElementById("percent_value");
-        var win_percent = (player_stats[2]/player_stats[1]) * 100;
+        var win_percent; 
+        //console.log("no of wins: " + player_stats[2]);
+        if(player_stats[2] == 0){
+            win_percent = 0;
+        }
+        else{
+            win_percent = (player_stats[2]/player_stats[1]) * 100;
+        }
         
         name.value = player_stats[0];
         games.value = player_stats[1];

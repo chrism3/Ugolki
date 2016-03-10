@@ -111,7 +111,7 @@ button{
 
 .player_info_textarea{
     font-variant: small-caps;
-    //font-size: 1.5rem;
+    font-stretch: ultra-expanded; 
     resize: none;
     border: 0;
     margin: 0;
