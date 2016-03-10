@@ -772,6 +772,7 @@ function testView(){
       //console.log(piece);
       //console.log(colour_to_move);
        //console.log(current_player_colour);
+       console.log("selected piece is: " + piece);
         if(current_player_colour === "white"){
             var colour_to_move = "white_circles";
         }

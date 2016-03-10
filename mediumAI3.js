@@ -29,7 +29,7 @@ function mediumAI3(){
             console.log(pieces_to_move.length);            
             console.log("goal location is: " + AI.getTargetX() + "," + AI.getTargetY());
             var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
-            var good_moves = all_moves[0];
+            var good_moves = all_moves[2];
             this.decideBestMove2(good_moves);
             copy_of_model = model;
 

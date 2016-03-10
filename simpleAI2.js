@@ -32,7 +32,7 @@ function simpleAI2(){
         copy_of_model = model;
         var pieces = copy_of_model.getPieces();        
         var all_moves = AI_player.evalAllMoves(AI.findAllMoves(pieces, board_rep));
-        var good_moves = all_moves[0];
+        var good_moves = all_moves[2];
         this.decideBestMove(good_moves);                         
     }; 
     
