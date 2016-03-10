@@ -560,7 +560,7 @@ function testController(){
             //console.log("simple AI clicked");
             test_model.setAIType("simpleAI");
             test_model.setPlayerTwoType("AI");
-            test_view.setPlayerTwo("AI - Easy");
+            test_view.setPlayerTwo("Easy");
             //test_view.updateSettingsPanel("AI difficulty");
             test_view.closeSettings();
         });
@@ -568,7 +568,7 @@ function testController(){
             test_model.setAIType("mediumAI");
             test_model.setPlayerTwoType("AI");
             // need to change this to check which player is AI
-            test_view.setPlayerTwo("AI - Medium");
+            test_view.setPlayerTwo("Medium");
             test_view.closeSettings();
         });
         test_view.setHumanAIClickCallback(function(){
@@ -608,7 +608,7 @@ function testController(){
             test_model.AIGame(test_model);
         });
         test_view.setAIHumanClickCallback(function(){
-            //console.log("AI v human");
+            test_view.updatePlayerInfo("AI v human");
             test_model.alterAISettings("AI v human");
             test_model.setPlayerTwoType("AI");
             test_model.checkAIType(test_model);
