@@ -648,14 +648,14 @@ function testModel() {
         AI.setNewGameAI();
     };
     
-    this.getPieces = function(){
+    this.getPieces = function(AI_player){
 //        for(var i = 0; i < pieces_in_goal.length; i++){
 //            console.log(pieces_in_goal[i].getPieceId());
 //        }
         //console.log("this has been called");
         var pieces = new Array();
         var reached_goal = false;
-        if(this.getAIColour() === "black"){
+        if(AI_player.getAIColour() === "black"){
             for(var i = test_board.length-1; i >= 0; i--){
                 for(var j = 0; j < test_board.length; j++){
                     //console.log("the coords: " + i + "," + j);
@@ -723,8 +723,8 @@ function testModel() {
         console.log(model);
         var AI_1 = new generalAI();
         var AI_2 = new generalAI();
-        AI_2.setAIColour();
-        AI_2.setTargetForWhiteAIPlayer();
+        AI_1.setAIColour("white");
+        AI_1.setTargetForWhiteAIPlayer();
         var AI_player_1 = new simpleAI2();
         var AI_player_2 = new mediumAI3();
         var whose_turn = 1;
@@ -751,7 +751,7 @@ function testModel() {
             else{
                 whose_turn = 1;
             }
-            if(count > 150){
+            if(count > 300){
                 console.log("what is happening");
                 
                 for(var i = 0; i < 8; i++){
@@ -768,6 +768,7 @@ function testModel() {
                 
                 break;
             }
+            console.log("making move: " + current_AI_player.getChoosenMove().getPieceToMove().getPieceId());
             this.updateModelWithAIMove();
             this.resetForNextMove();
         }

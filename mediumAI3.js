@@ -19,15 +19,18 @@ function mediumAI3(){
                       // */
     
         this.mediumAI3 = function(board, model, AI){
+            console.log("  ");
+            console.log("***********");
+            console.log(" ");
             console.log("mediumAI3");
             board_representation = board;
             AI_player = AI;
-            console.log("medium colour: " + AI_player.getAIColour());
+            //console.log("medium colour: " + AI_player.getAIColour());
             copy_of_model = model;
             this.updateTarget();
-            var pieces_to_move = model.getPieces();
-            console.log(pieces_to_move.length);            
-            console.log("goal location is: " + AI.getTargetX() + "," + AI.getTargetY());
+            var pieces_to_move = model.getPieces(AI_player);
+            //console.log(pieces_to_move.length);            
+            //console.log("goal location is: " + AI.getTargetX() + "," + AI.getTargetY());
             var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
             var good_moves = all_moves[2];
             this.decideBestMove2(good_moves);
@@ -52,7 +55,7 @@ function mediumAI3(){
                 if(eval < best_eval){
                    if(AI_player.getAIColour() === "black"){
                     if(move.getX() === AI_player.getTargetX() && move.getY() === AI_player.getTargetY()){
-                        console.log("the goal has been found");
+                        //console.log("the goal has been found");
                         best_index = i;
                         best_eval = 0;
                         return;
@@ -64,7 +67,7 @@ function mediumAI3(){
                     // doing this to try recover the pieces that are in bad places
                     else if(move.getPieceToMove().getXCoord() < AI_player.getTargetX() ||
                             move.getPieceToMove().getYCoord() > AI_player.getTargetY()){
-                        console.log("Doing this in good moves");
+                        //console.log("Doing this in good moves");
                         eval = eval/2;
                         best_index = i;
                         best_eval = eval;
@@ -97,7 +100,7 @@ function mediumAI3(){
             //console.log("best eval: " + best_eval);
             //this.setChoosenMove(good_moves[best_index][0]);
             //piece_to_move = good_moves[best_index][0].getPieceToMove();
-            console.log(piece_to_move.getPieceId());
+            //console.log(piece_to_move.getPieceId());
             this.setSelectedPieceIndex(piece_to_move.getPieceId());
         }
         else{
@@ -138,7 +141,7 @@ function mediumAI3(){
         this.setSelectedPieceIndex(piece_to_move.getPieceId());
         this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
         this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
-        console.log("moving: " + piece_to_move.getPieceId());
+        //console.log("moving: " + piece_to_move.getPieceId());
     }; 
     
     this.updateTarget = function(){
@@ -181,24 +184,24 @@ function mediumAI3(){
         // else, update the target if the AI is playing with white pieces
         else{
             do{
-                console.log("***********");
-                console.log("coords this time: " + x + "," + y);
-                console.log(" ");
+                //console.log("***********");
+                //console.log("coords this time: " + x + "," + y);
+                //console.log(" ");
                 //console.log("updating white target");
                 if(board_representation[x][y] !== 0){
-                    console.log("there is a piece in that location");
-                    console.log(board_representation[x][y]);
-                    console.log("piece colour is: " + board_representation[x][y].getPieceColour());
+                    //console.log("there is a piece in that location");
+                    //console.log(board_representation[x][y]);
+                    //console.log("piece colour is: " + board_representation[x][y].getPieceColour());
                     if(board_representation[x][y].getPieceColour() === "white"){
                         copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
                         if(x > 4){
-                            console.log("x is greater than 4");
+                            //console.log("x is greater than 4");
                             AI_player.setTargetX(x-1);
                             x = x - 1;
-                            console.log("getting the new x value" + AI_player.getTargetX());
+                            //console.log("getting the new x value" + AI_player.getTargetX());
                         }
                         else{
-                            console.log("x is not greater than 4");
+                            //console.log("x is not greater than 4");
                             AI_player.setTargetY(y+1);
                             AI_player.setTargetX(7);
                             y = y + 1;
@@ -206,9 +209,9 @@ function mediumAI3(){
                         }
                     }
                     else{
-                        console.log("piece was wrong colour");
-                        console.log("These are the x and y values: " + x + "," + y);
-                        console.log("These are the AI x and y values: " + AI_player.getTargetX() + "," + AI_player.getTargetY());
+                        //console.log("piece was wrong colour");
+                        //console.log("These are the x and y values: " + x + "," + y);
+                        //console.log("These are the AI x and y values: " + AI_player.getTargetX() + "," + AI_player.getTargetY());
                         target_free = false;
                     }
                 }
@@ -216,12 +219,12 @@ function mediumAI3(){
                     target_free = false;
                 }
             }while(target_free);            
-            console.log("breaking the do while");
-            console.log("x = " + AI_player.getTargetX() + " y = " + AI_player.getTargetY());
+            //console.log("breaking the do while");
+            //console.log("x = " + AI_player.getTargetX() + " y = " + AI_player.getTargetY());
         }
         if(AI_goals_filled.length > 0){
                 for(var i = 0; i < AI_goals_filled.length; i++){
-                    console.log("GOAL FILLED: " + AI_goals_filled);
+                    //console.log("GOAL FILLED: " + AI_goals_filled);
                 }
             }
     };

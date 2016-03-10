@@ -22,15 +22,22 @@ function simpleAI2(){
     var AI_player;
     
     this.simpleAI2 = function(board_rep, model, AI){
+        console.log("  ");
+        console.log("***********");
+        console.log(" ");
         console.log("simpleAI2");
-        console.log("AI colour: " + AI.getAIColour());
+        console.log("piece colour to move: " + AI.getAIColour());
+        //console.log("AI colour: " + AI.getAIColour());
         board_representation = board_rep;
         AI_player = AI;
         //console.log("AI_player colour: " + AI_player.getAIColour());
         this.updateTarget();
         //console.log("the goal location is: " + AI_player.getTargetX() + "," + AI_player.getTargetY());
         copy_of_model = model;
-        var pieces = copy_of_model.getPieces();        
+        var pieces = copy_of_model.getPieces(AI_player); 
+        for(var i = 0; i < pieces.length; i++){
+            console.log("piece: " + pieces[i].getPieceId());
+        }
         var all_moves = AI_player.evalAllMoves(AI.findAllMoves(pieces, board_rep));
         var good_moves = all_moves[0];
         var bad_moves = all_moves[1];
@@ -40,6 +47,7 @@ function simpleAI2(){
     // this is how the better AI selects it's move
     this.decideBestMove = function(good_moves, bad_moves){
         // need to make sure there is a valid target
+        console.log("AI_colour in simple decide move: " + AI_player.getAIColour());
         if(good_moves.length > 0){
             var random_index = parseInt(Math.random()*good_moves.length);
             this.setChoosenMove(good_moves[random_index][0]);
@@ -47,7 +55,7 @@ function simpleAI2(){
             this.setSelectedPieceIndex(random_piece.getPieceId());
             this.setAISelectedPieceXCoord(random_piece.getXCoord());
             this.setAISelectedPieceYCoord(random_piece.getYCoord());
-            console.log("moving: " + random_piece.getPieceId());
+            //console.log("moving: " + random_piece.getPieceId());
         }
         else{
             var random_index = parseInt(Math.random()*bad_moves.length);
@@ -56,7 +64,7 @@ function simpleAI2(){
             this.setSelectedPieceIndex(random_piece.getPieceId());
             this.setAISelectedPieceXCoord(random_piece.getXCoord());
             this.setAISelectedPieceYCoord(random_piece.getYCoord());
-            console.log("moving: " + random_piece.getPieceId());
+            //console.log("moving: " + random_piece.getPieceId());
         }
     };
     
@@ -139,7 +147,7 @@ function simpleAI2(){
         }
         if(AI_goals_filled.length > 0){
             for(var i = 0; i < AI_goals_filled.length; i++){
-                console.log("GOAL FILLED: " + AI_goals_filled);
+                //console.log("GOAL FILLED: " + AI_goals_filled);
             }
         }
     };
@@ -152,7 +160,7 @@ function simpleAI2(){
         return choosen_move;
     };
     this.getAIPieceIndex = function (){
-        console.log("The index to be returned is: " + piece_index);
+        //console.log("The index to be returned is: " + piece_index);
         return piece_index;
     };
     this.setSelectedPieceIndex = function(index){
