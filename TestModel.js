@@ -622,6 +622,9 @@ function testModel() {
     this.clearBadPiecesList = function(){
         bad_pieces_moved = [];
     };
+    this.clearPiecesInGoalList = function(){
+        pieces_in_goal = [];
+    };
     
     this.alterAISettings = function(alteration){
         if(alteration === "AI v human"){

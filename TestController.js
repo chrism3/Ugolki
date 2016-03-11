@@ -487,6 +487,7 @@ function testController(){
         });
         test_view.setNewGameClickCallback(function(){
             test_view.closeSettings();
+            test_model.clearPiecesInGoalList();
             if(test_model.hasPlayerWon() !== "no winner"){
                 test_view.newGame();
             }
@@ -831,7 +832,7 @@ function testController(){
             }
             else{
                 //console.log("need to selected a piece");
-                test_view.reportErrorToUser("Please selected a piece first", "game");
+                test_view.reportErrorToUser("Please select a piece first", "game");
                 //test_view.fadeInfoBox();
                 return;
             }
