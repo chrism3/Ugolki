@@ -792,4 +792,49 @@ function testModel() {
         turn_count++;
         console.log("turn count: " + turn_count);
     };
+    
+    this.findWinnerAfterStalemate = function(){
+        var p1_pieces_in_goal = 0;
+        var p2_pieces_in_goal = 0;
+        var winner;
+        // need to count the number of pieces in the top right hand corner
+        for(var i = 7; i > 3; i--){
+            for(var j = 0; j < 4; j++){
+                if(test_board[i][j] !== 0){
+                    if(test_board[i][j].getPieceColour() === "white"){
+                        p1_pieces_in_goal++;
+                    }
+                }
+            }
+        }       
+        
+        // need to count the number of pieces in the bottom left hand corner
+        for(var i = 0; i < 4; i++){
+            for(var j = 7; j > 3; j--){
+                if(test_board[i][j] !== 0){
+                    if(test_board[i][j].getPieceColour() === "black"){
+                        p2_pieces_in_goal++;
+                    }
+                }
+            }
+        }
+        console.log("number of player 1 pieces in goal: " + p1_pieces_in_goal);
+        console.log("number of player 2 pieces in goal: " + p2_pieces_in_goal);
+        // if top right is greater than bottom left, player 1 wins
+        if(p1_pieces_in_goal > p2_pieces_in_goal){
+            winner = "player 1";
+        }
+        
+        // if bottom left is greater than top right, player 2 wins
+        if(p1_pieces_in_goal < p2_pieces_in_goal){
+            winner = "player 2";
+        }
+        
+        // if they are the same, the players draw
+        if(p1_pieces_in_goal === p2_pieces_in_goal){
+            winner = "draw";
+        }        
+        
+        return winner;
+    };
 }

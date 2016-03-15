@@ -929,9 +929,9 @@ function testController(){
             }
             
             var turn_count = test_model.getTurnCount();
-            if(turn_count >= 79){
-                test_view.endGame();
-                var winner = test_view.findWinner();
+            if(turn_count > 79){                
+                var winner = test_model.findWinnerAfterStalemate();
+                console.log(winner);
                 var game_winner;
                 if(winner === "player 1"){
                     game_winner = "player 1 wins";
@@ -940,9 +940,11 @@ function testController(){
                     game_winner === "player 2 wins";
                 }
                 else if(winner === "draw"){
+                    console.log("no winner");
                     game_winner === "players draw";
                 }
                 test_view.reportErrorToUser("Stalemate Occured: " + game_winner);
+                test_view.endGame();
             }
             else{
                 test_model.incrementTurnCount();
