@@ -487,6 +487,7 @@ function testController(){
         });
         test_view.setNewGameClickCallback(function(){
             test_view.closeSettings();
+            test_model.resetTurnCount();
             test_model.clearPiecesInGoalList();
             if(test_model.hasPlayerWon() !== "no winner"){
                 test_view.newGame();
@@ -925,6 +926,26 @@ function testController(){
                       }
                    }
                 }
+            }
+            
+            var turn_count = test_model.getTurnCount();
+            if(turn_count >= 79){
+                test_view.endGame();
+                var winner = test_view.findWinner();
+                var game_winner;
+                if(winner === "player 1"){
+                    game_winner = "player 1 wins";
+                }
+                else if(winner === "player 2"){
+                    game_winner === "player 2 wins";
+                }
+                else if(winner === "draw"){
+                    game_winner === "players draw";
+                }
+                test_view.reportErrorToUser("Stalemate Occured: " + game_winner);
+            }
+            else{
+                test_model.incrementTurnCount();
             }
         };
     };

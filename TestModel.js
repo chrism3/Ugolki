@@ -46,6 +46,9 @@ function testModel() {
     var bad_pieces_moved = new Array();
     var AI = new generalAI();
     
+    // variable to store how many moves have happened
+    var turn_count = 0;
+    
     //please rename test_board
    this.setTestBoard = function(){
        var white_id = 1;
@@ -776,5 +779,17 @@ function testModel() {
             this.resetForNextMove();
         }
         console.log(this.hasPlayerWon() + " is the winner");
+    };
+    
+    this.resetTurnCount = function(){
+        turn_count = 0;
+    };
+    this.getTurnCount = function(){
+        return turn_count;
+    };
+    this.incrementTurnCount = function(){
+        console.log("incrementing turn count");
+        turn_count++;
+        console.log("turn count: " + turn_count);
     };
 }
