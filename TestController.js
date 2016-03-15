@@ -943,6 +943,7 @@ function testController(){
                     console.log("no winner");
                     game_winner === "players draw";
                 }
+                console.log("Stalemate occured: " + game_winner);
                 test_view.reportErrorToUser("Stalemate Occured: " + game_winner);
                 test_view.endGame();
             }

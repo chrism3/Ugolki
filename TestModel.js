@@ -732,11 +732,11 @@ function testModel() {
         AI_1.setAIColour("white");
         AI_1.setTargetForWhiteAIPlayer();
         var AI_player_1 = new simpleAI2();
-        var AI_player_2 = new mediumAI3();
+        var AI_player_2 = new simpleAI2();
         var whose_turn = 1;
         var count = 0;
         
-        console.log("AI plauyer 1: " + AI_1.getAIColour());
+        console.log("AI player 1: " + AI_1.getAIColour());
         console.log("AI player 2: " + AI_2.getAIColour());
         
         while(this.hasPlayerWon() === "no winner"){
@@ -749,7 +749,7 @@ function testModel() {
             }
             else{
                 current_AI_player = AI_player_2;
-                current_AI_player.mediumAI3(test_board, model, AI_2);
+                current_AI_player.simpleAI2(test_board, model, AI_2);
             }
             if(whose_turn === 1){
                 whose_turn = 2;
@@ -757,28 +757,34 @@ function testModel() {
             else{
                 whose_turn = 1;
             }
-            if(count > 300){
-                console.log("what is happening");
-                
-                for(var i = 0; i < 8; i++){
-                    for(var j = 0; j < 8; j++){
-                        if(test_board[j][i] !== 0){
-                            console.log("at location " + j + "," + i +" is piece: " +
-                                    test_board[j][i].getPieceId());
-                        }
-                        else{
-                            console.log("at location " + j + "," + i +" there is no piece");
-                        }
-                    }
-                }
-                
+            if(count > 79){
                 break;
             }
-            console.log("making move: " + current_AI_player.getChoosenMove().getPieceToMove().getPieceId());
-            this.updateModelWithAIMove();
+                
+//                console.log("what is happening");
+//                
+//                for(var i = 0; i < 8; i++){
+//                    for(var j = 0; j < 8; j++){
+//                        if(test_board[j][i] !== 0){
+//                            console.log("at location " + j + "," + i +" is piece: " +
+//                                    test_board[j][i].getPieceId());
+//                        }
+//                        else{
+//                            console.log("at location " + j + "," + i +" there is no piece");
+//                        }
+//                    }
+//                }
+//                this.findWinnerAfterStalemate();
+//                break;
+//            }
+//            console.log("making move: " + current_AI_player.getChoosenMove().getPieceToMove().getPieceId());
+            
+            this.updateModelWithAIMove();           
             this.resetForNextMove();
         }
-        console.log(this.hasPlayerWon() + " is the winner");
+        //console.log(this.hasPlayerWon() + " is the winner");
+        this.clearPiecesInGoalList();
+        this.findWinnerAfterStalemate();
     };
     
     this.resetTurnCount = function(){
@@ -822,16 +828,19 @@ function testModel() {
         console.log("number of player 2 pieces in goal: " + p2_pieces_in_goal);
         // if top right is greater than bottom left, player 1 wins
         if(p1_pieces_in_goal > p2_pieces_in_goal){
+            console.log("player 1 wins");
             winner = "player 1";
         }
         
         // if bottom left is greater than top right, player 2 wins
         if(p1_pieces_in_goal < p2_pieces_in_goal){
+            console.log("player 2 wins");
             winner = "player 2";
         }
         
         // if they are the same, the players draw
         if(p1_pieces_in_goal === p2_pieces_in_goal){
+            console.log("the game is a draw");
             winner = "draw";
         }        
         
