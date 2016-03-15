@@ -19,10 +19,10 @@ function mediumAI3(){
                       // */
     
         this.mediumAI3 = function(board, model, AI){
-            console.log("  ");
-            console.log("***********");
-            console.log(" ");
-            console.log("mediumAI3");
+//            console.log("  ");
+//            console.log("***********");
+//            console.log(" ");
+//            console.log("mediumAI3");
             board_representation = board;
             AI_player = AI;
             //console.log("medium colour: " + AI_player.getAIColour());

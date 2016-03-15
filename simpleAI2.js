@@ -22,11 +22,11 @@ function simpleAI2(){
     var AI_player;
     
     this.simpleAI2 = function(board_rep, model, AI){
-        console.log("  ");
-        console.log("***********");
-        console.log(" ");
-        console.log("simpleAI2");
-        console.log("piece colour to move: " + AI.getAIColour());
+//        console.log("  ");
+//        console.log("***********");
+//        console.log(" ");
+//        console.log("simpleAI2");
+//        console.log("piece colour to move: " + AI.getAIColour());
         //console.log("AI colour: " + AI.getAIColour());
         board_representation = board_rep;
         AI_player = AI;
@@ -35,9 +35,9 @@ function simpleAI2(){
         //console.log("the goal location is: " + AI_player.getTargetX() + "," + AI_player.getTargetY());
         copy_of_model = model;
         var pieces = copy_of_model.getPieces(AI_player); 
-        for(var i = 0; i < pieces.length; i++){
-            console.log("piece: " + pieces[i].getPieceId());
-        }
+//        for(var i = 0; i < pieces.length; i++){
+//            console.log("piece: " + pieces[i].getPieceId());
+//        }
         var all_moves = AI_player.evalAllMoves(AI.findAllMoves(pieces, board_rep));
         var good_moves = all_moves[0];
         var bad_moves = all_moves[1];

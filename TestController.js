@@ -610,8 +610,28 @@ function testController(){
         });
         test_view.setAIAIClickCallback(function(){
             console.log("clicked ai ai button");
+            var winners = new Array();
             test_view.closeSettings();
-            test_model.AIGame(test_model);
+            var count = 0;
+            while (count < 100){
+                var winner = test_model.AIGame(test_model);
+                winners.push(winner);
+                
+                // reset the game
+                test_view.closeSettings();
+                test_model.resetTurnCount();
+                test_model.clearPiecesInGoalList();
+                if(test_model.hasPlayerWon() !== "no winner"){
+                    test_view.newGame();
+                }
+                test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
+                test_model.setTestBoard(test_view.getScreenToBoardMap());
+                count++;
+             }
+             
+             for(var i = 0; i < winners.length; i++){
+                 console.log("Game " + (winners.length - i) + " winner: " + winners[i]);
+             }
         });
         test_view.setAIHumanClickCallback(function(){
             test_view.setInfoBoxThree("AI v Human");

@@ -731,8 +731,8 @@ function testModel() {
         var AI_2 = new generalAI();
         AI_1.setAIColour("white");
         AI_1.setTargetForWhiteAIPlayer();
-        var AI_player_1 = new simpleAI2();
-        var AI_player_2 = new simpleAI2();
+        var AI_player_1 = new mediumAI3();
+        var AI_player_2 = new mediumAI3();
         var whose_turn = 1;
         var count = 0;
         
@@ -744,12 +744,12 @@ function testModel() {
             count++;
             if(whose_turn === 1){
                 current_AI_player = AI_player_1;
-                current_AI_player.simpleAI2(test_board, model, AI_1);
+                current_AI_player.mediumAI3(test_board, model, AI_1);
                 
             }
             else{
                 current_AI_player = AI_player_2;
-                current_AI_player.simpleAI2(test_board, model, AI_2);
+                current_AI_player.mediumAI3(test_board, model, AI_2);
             }
             if(whose_turn === 1){
                 whose_turn = 2;
@@ -784,7 +784,8 @@ function testModel() {
         }
         //console.log(this.hasPlayerWon() + " is the winner");
         this.clearPiecesInGoalList();
-        this.findWinnerAfterStalemate();
+        var winner = this.findWinnerAfterStalemate();
+        return winner;
     };
     
     this.resetTurnCount = function(){
