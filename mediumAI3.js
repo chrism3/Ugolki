@@ -34,7 +34,7 @@ function mediumAI3(){
             var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
             var good_moves = all_moves[2];
             this.decideBestMove2(good_moves);
-            copy_of_model = model;
+            //copy_of_model = model;
 
         };
     
@@ -124,10 +124,6 @@ function mediumAI3(){
     this.decideBestMove2 = function(good_moves){
         var best_index = 0;        
         var piece_to_move;        
-        //this.updateTarget(AI_player);
-//        for(var i = 0; i < good_moves.length; i++){
-//            console.log("Manhattan eval: " + good_moves[][])
-//        }
         var best_eval = good_moves[0][1];
         for(var i = 1; i < good_moves.length; i++){
             var eval = good_moves[i][1];
