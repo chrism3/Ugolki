@@ -612,10 +612,23 @@ function testController(){
             console.log("clicked ai ai button");
             var winners = new Array();
             test_view.closeSettings();
+            var player_1_wins = new Array();
+            var player_2_wins = new Array();
+            var draws = new Array();
             var count = 0;
-            while (count < 100){
+            while (count < 500){
                 var winner = test_model.AIGame(test_model);
+                
                 winners.push(winner);
+                if(winner === "player 1"){
+                    player_1_wins.push(winner);
+                }
+                else if(winner === "player 2"){
+                    player_2_wins.push(winner);
+                }
+                else if(winner === "draw"){
+                    draws.push(winner);
+                }
                 
                 // reset the game
                 test_view.closeSettings();
@@ -632,6 +645,9 @@ function testController(){
              for(var i = 0; i < winners.length; i++){
                  console.log("Game " + (winners.length - i) + " winner: " + winners[i]);
              }
+             console.log("player 1 won " + player_1_wins.length + " time(s)");
+             console.log("player 2 won " + player_2_wins.length + " time(s)");
+             console.log("there were " + draws.length + " draws");
         });
         test_view.setAIHumanClickCallback(function(){
             test_view.setInfoBoxThree("AI v Human");

@@ -19,15 +19,13 @@ function mediumAI2(){
                       // */
     
         this.mediumAI = function(board, model, AI){
+            console.log("using new medium AI");
             board_representation = board;
             copy_of_model = model;
+            AI_player = AI; 
             this.updateTarget3();
-            var pieces_to_move = copy_of_model.getPieces();
-            AI_player = AI;    
+            var pieces_to_move = copy_of_model.getPieces(AI_player);               
             console.log(pieces_to_move.length);
-            for(var i = 0; i < pieces_to_move.length; i++){
-                console.log(pieces_to_move[i].getPieceId());
-            }
             console.log("The Goal square is: " + AI_player.getTargetX() + ", " + AI_player.getTargetY());
             var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
             var good_moves = all_moves[0];
@@ -37,7 +35,7 @@ function mediumAI2(){
 //            for(var i = 0; i < every_move.length; i++){
 //                console.log(every_move[i][0]);
 //            }
-            this.decideBestMove(every_move);
+            this.decideBestMove(every_move, good_moves, bad_moves);
             //this.findPiecesNotToMove();
 //            this.updateTarget2();
 //            // make sure the AI's goal location us free before wasting a move
@@ -47,97 +45,94 @@ function mediumAI2(){
         };
     
     
-    this.decideBestMove = function(every_move){
+    this.decideBestMove = function(every_move, good_moves, bad_moves){
         // this function just needs to look for the move with the lowest eval
         var best_index = 0;        
         var piece_to_move;
         
-        console.log("EVERY MOVE LENGTH: " + every_move.length);
-        var best_eval = every_move[0][1];        
+        var move_generator = new Array("random", "good move", "good move", "random", "random",
+                                        "good move", "good move", "random", "good move", "good move");
+        var random = parseInt(Math.random()*move_generator.length);
+        var move_type = move_generator[random];
         
-        for(var i = 1; i < every_move.length; i++){
-            var eval = every_move[i][1];
-            var move = every_move[i][0];
-            //console.log("check if " + eval + " is less than " + best_eval);
-            if(eval < best_eval){
-               // console.log("it is");
-               if(AI_player.getAIColour() === "black"){
-                    if(move.getX() === AI_player.getTargetX() && move.getY() === AI_player.getTargetY()){
-                        console.log("the goal has been found");
-                        best_index = i;
-                        best_eval = 0;
-                        return;
+        //console.log("EVERY MOVE LENGTH: " + every_move.length);
+        if(move_type === "good move"){
+            console.log("making good move");
+            var best_eval = every_move[0][1];        
+
+            for(var i = 1; i < every_move.length; i++){
+                var eval = every_move[i][1];
+                var move = every_move[i][0];
+                //console.log("check if " + eval + " is less than " + best_eval);
+                if(eval < best_eval){
+                   // console.log("it is");
+                   if(AI_player.getAIColour() === "black"){
+                        if(move.getX() === AI_player.getTargetX() && move.getY() === AI_player.getTargetY()){
+                            console.log("the goal has been found");
+                            best_index = i;
+                            best_eval = 0;
+                            return;
+                        }
+                        else if(move.getX() > AI_player.getTargetX() && move.getY() < AI_player.getTargetY()){
+                            best_index = i;
+                            best_eval = eval;
+                        }
+                        // doing this to try recover the pieces that are in bad places
+                        else if(move.getPieceToMove().getXCoord() < AI_player.getTargetX() ||
+                                move.getPieceToMove().getYCoord() > AI_player.getTargetY()){
+                            console.log("Doing this in good moves");
+                            eval = eval/2;
+                            best_index = i;
+                            best_eval = eval;
+                        }
                     }
-                    else if(move.getX() > AI_player.getTargetX() && move.getY() < AI_player.getTargetY()){
-                        best_index = i;
-                        best_eval = eval;
-                    }
-                    // doing this to try recover the pieces that are in bad places
-                    else if(move.getPieceToMove().getXCoord() < AI_player.getTargetX() ||
-                            move.getPieceToMove().getYCoord() > AI_player.getTargetY()){
-                        console.log("Doing this in good moves");
-                        eval = eval/2;
-                        best_index = i;
-                        best_eval = eval;
+                    // if the AI is using the white pieces do this instead of the above
+                    else{
+                        if(move.getX() === AI_player.getTargetX() && move.getY() === AI_player.getTargetY()){
+                            eval = 0;
+                            best_eval = eval;
+                            best_index = i;
+                        }
+                        else if(move.getY() > AI_player.getTargetY() && move.getX() < AI_player.getTargetX()){
+                            best_index = i;
+                            best_eval = eval;
+                        }
+                        else if(move.getPieceToMove().getYCoord() < AI_player.getTargetY() ||
+                                move.getPieceToMove().getXCoord() > AI_player.getTargetX()){
+                            eval = eval/2;
+                            best_index = i;
+                            best_eval = eval;
+                        }
                     }
                 }
-                // if the AI is using the white pieces do this instead of the above
-                else{
-                    if(move.getX() === AI_player.getTargetX() && move.getY() === AI_player.getTargetY()){
-                        eval = 0;
-                        best_eval = eval;
-                        best_index = i;
-                    }
-                    else if(move.getY() > AI_player.getTargetY() && move.getX() < AI_player.getTargetX()){
-                        best_index = i;
-                        best_eval = eval;
-                    }
-                    else if(move.getPieceToMove().getYCoord() < AI_player.getTargetY() ||
-                            move.getPieceToMove().getXCoord() > AI_player.getTargetX()){
-                        eval = eval/2;
-                        best_index = i;
-                        best_eval = eval;
-                    }
-                }
+
+                //console.log("best index: " + best_index);
+                //console.log("best eval: " + best_eval);
+
+                //this.setSelectedPieceIndex(piece_to_move.getPieceId());
             }
-            
-            //console.log("best index: " + best_index);
-            //console.log("best eval: " + best_eval);
-            
-            //this.setSelectedPieceIndex(piece_to_move.getPieceId());
+            this.setChoosenMove(every_move[best_index][0]);
+            piece_to_move = every_move[best_index][0].getPieceToMove();
+            //console.log(best_eval + " is the lowest manhattan distance");
+
         }
-        this.setChoosenMove(every_move[best_index][0]);
-        piece_to_move = every_move[best_index][0].getPieceToMove();
-        console.log(best_eval + " is the lowest manhattan distance");
-//        else{
-////            console.log("doing the else statement");
-////            var bad_move_count = copy_of_model.getBadMoveCount();
-////            console.log(bad_move_count);
-////            if(bad_move_count === 0){
-////                console.log("because bad move count = 0; set bad move made");
-////                //copy_of_model.getBadMoveCount();
-////                copy_of_model.setBadMoveMade();
-////            }
-////            else if(bad_move_count >= 2){
-////                console.log("because bad move count = 2; reset move count and set bad move to false");
-////                copy_of_model.resetBadMoveCount();
-////                copy_of_model.setBadMoveMade();
-////            }
-//            console.log("bad moves length: " + bad_moves.length);
-//            var best_eval = bad_moves[0][1];
-//            for(var i = 1; i < bad_moves.length; i++){                
-//                var eval = bad_moves[i][1];
-//                if(eval <= best_eval){
-//                    best_index = i;
-//                    best_eval = eval;
-//                }
-//            }
-//            this.setChoosenMove(bad_moves[best_index][0]);
-//            piece_to_move = bad_moves[best_index][0].getPieceToMove();
-//            copy_of_model.addBadPieceMoved(piece_to_move);
-//            copy_of_model.incrementBadMoveCount();            
-//        }
-        console.log("the best move has been deiced and is: " + piece_to_move.getPieceId());
+        else if(move_type === "random"){
+            if(good_moves.length > 0){
+                console.log("making random move");
+                var random_index = parseInt(Math.random()*good_moves.length);
+                this.setChoosenMove(good_moves[random_index][0]);
+                var piece_to_move = good_moves[random_index][0].getPieceToMove();
+            }
+            else{
+                var random_index = parseInt(Math.random()*every_move.length);
+                this.setChoosenMove(bad_moves[random_index][0]);
+                var piece_to_move = bad_moves[random_index][0].getPieceToMove();
+            }
+//            this.setSelectedPieceIndex(random_piece.getPieceId());
+//            this.setAISelectedPieceXCoord(random_piece.getXCoord());
+//            this.setAISelectedPieceYCoord(random_piece.getYCoord());
+        }
+        //console.log("the best move has been deiced and is: " + piece_to_move.getPieceId());
         this.setSelectedPieceIndex(piece_to_move.getPieceId());
         this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
         this.setAISelectedPieceYCoord(piece_to_move.getYCoord());       
