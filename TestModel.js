@@ -297,7 +297,7 @@ function testModel() {
        //current_AI_player.updateBoard(test_board);
         var pieces = new Array();
         if(condition === "new game"){
-            console.log("is it setting a new game AI");
+            //console.log("is it setting a new game AI");
             AI.setNewGameAI();
         }
         
@@ -385,7 +385,7 @@ function testModel() {
         console.log(pieces.length);
         if(AI_type === "simpleAI"){            
             //current_AI_player.simpleAI(test_board, model, AI);
-            console.log("Before calling the AI al: " + AI.getAIColour());
+            //console.log("Before calling the AI al: " + AI.getAIColour());
             current_AI_player.simpleAI2(test_board, model, AI);
         }
         else if(AI_type === "mediumAI"){
@@ -636,10 +636,10 @@ function testModel() {
             AI.setTargetForWhiteAIPlayer();
         }
         else if(alteration === "human v AI"){
-            console.log("setting colour to black");
+            //console.log("setting colour to black");
             AI.setAIColour("black");
             AI.setTargetForBlackAIPlayer();
-            console.log("AI-colour in altersettings: " + AI.getAIColour());
+            //console.log("AI-colour in altersettings: " + AI.getAIColour());
         }
     };
     
@@ -736,11 +736,11 @@ function testModel() {
         var whose_turn = 1;
         var count = 0;
         
-        console.log("AI player 1: " + AI_1.getAIColour());
-        console.log("AI player 2: " + AI_2.getAIColour());
+        //console.log("AI player 1: " + AI_1.getAIColour());
+        //console.log("AI player 2: " + AI_2.getAIColour());
         
         while(this.hasPlayerWon() === "no winner"){
-            console.log("looped round: " + count + " time(s)");
+            //console.log("looped round: " + count + " time(s)");
             count++;
             if(whose_turn === 1){
                 current_AI_player = AI_player_1;
@@ -795,9 +795,9 @@ function testModel() {
         return turn_count;
     };
     this.incrementTurnCount = function(){
-        console.log("incrementing turn count");
+        //console.log("incrementing turn count");
         turn_count++;
-        console.log("turn count: " + turn_count);
+        //console.log("turn count: " + turn_count);
     };
     
     this.findWinnerAfterStalemate = function(){
@@ -825,23 +825,23 @@ function testModel() {
                 }
             }
         }
-        console.log("number of player 1 pieces in goal: " + p1_pieces_in_goal);
-        console.log("number of player 2 pieces in goal: " + p2_pieces_in_goal);
+        //console.log("number of player 1 pieces in goal: " + p1_pieces_in_goal);
+        //console.log("number of player 2 pieces in goal: " + p2_pieces_in_goal);
         // if top right is greater than bottom left, player 1 wins
         if(p1_pieces_in_goal > p2_pieces_in_goal){
-            console.log("player 1 wins");
+            //console.log("player 1 wins");
             winner = "player 1";
         }
         
         // if bottom left is greater than top right, player 2 wins
         if(p1_pieces_in_goal < p2_pieces_in_goal){
-            console.log("player 2 wins");
+            //console.log("player 2 wins");
             winner = "player 2";
         }
         
         // if they are the same, the players draw
         if(p1_pieces_in_goal === p2_pieces_in_goal){
-            console.log("the game is a draw");
+            //console.log("the game is a draw");
             winner = "draw";
         }        
         

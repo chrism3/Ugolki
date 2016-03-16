@@ -615,39 +615,82 @@ function testController(){
             var player_1_wins = new Array();
             var player_2_wins = new Array();
             var draws = new Array();
+            
+            var all_player_1_wins = new Array();
+            var all_player_2_wins = new Array();
+            var all_draws = new Array();
+            
             var count = 0;
-            while (count < 500){
-                var winner = test_model.AIGame(test_model);
-                
-                winners.push(winner);
-                if(winner === "player 1"){
-                    player_1_wins.push(winner);
-                }
-                else if(winner === "player 2"){
-                    player_2_wins.push(winner);
-                }
-                else if(winner === "draw"){
-                    draws.push(winner);
-                }
-                
-                // reset the game
-                test_view.closeSettings();
-                test_model.resetTurnCount();
-                test_model.clearPiecesInGoalList();
-                if(test_model.hasPlayerWon() !== "no winner"){
-                    test_view.newGame();
-                }
-                test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
-                test_model.setTestBoard(test_view.getScreenToBoardMap());
-                count++;
+            var average_count = 0;
+            while(average_count < 4){
+                console.log("the average count: " + average_count);
+                while (count < 500){
+                    console.log("the count: " + count);
+                    var winner = test_model.AIGame(test_model);
+
+                    winners.push(winner);
+                    if(winner === "player 1"){
+                        player_1_wins.push(winner);
+                    }
+                    else if(winner === "player 2"){
+                        player_2_wins.push(winner);
+                    }
+                    else if(winner === "draw"){
+                        draws.push(winner);
+                    }
+
+                    // reset the game
+                    test_view.closeSettings();
+                    test_model.resetTurnCount();
+                    test_model.clearPiecesInGoalList();
+                    if(test_model.hasPlayerWon() !== "no winner"){
+                        test_view.newGame();
+                    }
+                    test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
+                    test_model.setTestBoard(test_view.getScreenToBoardMap());
+                    count++;
+                 }
+                 all_player_1_wins.push(player_1_wins.length);
+                 all_player_2_wins.push(player_2_wins.length);
+                 all_draws.push(draws.length);
+                 average_count++;
+                 count = 0;
+                 player_1_wins = [];
+                 player_2_wins = [];
+                 draws = [];
              }
              
-             for(var i = 0; i < winners.length; i++){
-                 console.log("Game " + (winners.length - i) + " winner: " + winners[i]);
+             console.log("");
+             //console.log("All player 1 wins results: ");
+             var average_p1_wins = 0;
+             for(var i = 0; i < all_player_1_wins.length; i++){
+                 console.log(all_player_1_wins[i]);
+                 average_p1_wins += all_player_1_wins[i];
              }
-             console.log("player 1 won " + player_1_wins.length + " time(s)");
-             console.log("player 2 won " + player_2_wins.length + " time(s)");
-             console.log("there were " + draws.length + " draws");
+             console.log("average: " + average_p1_wins/4);
+             
+             console.log("");
+             var average_p2_wins = 0;
+             for(var i = 0; i < all_player_2_wins.length; i++){
+                 console.log(all_player_2_wins[i]);
+                 average_p2_wins += all_player_2_wins[i];
+             }
+             console.log("average: " + average_p2_wins/4);
+             
+             console.log("");
+             var draws_average = 0;
+             for(var i = 0; i < all_draws.length; i++){
+                 console.log(all_draws[i]);
+                 draws_average += all_draws[i];
+             }
+             console.log("average: " + draws_average/4);
+             
+//             for(var i = 0; i < winners.length; i++){
+//                 console.log("Game " + (winners.length - i) + " winner: " + winners[i]);
+//             }
+//             console.log("player 1 won " + player_1_wins.length + " time(s)");
+//             console.log("player 2 won " + player_2_wins.length + " time(s)");
+//             console.log("there were " + draws.length + " draws");
         });
         test_view.setAIHumanClickCallback(function(){
             test_view.setInfoBoxThree("AI v Human");

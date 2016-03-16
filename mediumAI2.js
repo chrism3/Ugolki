@@ -56,19 +56,21 @@ function mediumAI2(){
         var move_type = move_generator[random];
         
         //console.log("EVERY MOVE LENGTH: " + every_move.length);
+        //console.log(every_move.length);
         if(move_type === "good move"){
+            console.log("making good move");
             var best_index = 0;        
-        var piece_to_move;        
-        var best_eval = good_moves[0][1];
-        for(var i = 1; i < good_moves.length; i++){
-            var eval = good_moves[i][1];
-            if(eval < best_eval){
-                best_eval = eval;
-                best_index = i;
+            var piece_to_move;        
+            var best_eval = every_move[0][1];
+            for(var i = 1; i < every_move.length; i++){
+                var eval = every_move[i][1];
+                if(eval < best_eval){
+                    best_eval = eval;
+                    best_index = i;
+               }
             }
-        }
-        this.setChoosenMove(good_moves[best_index][0]);
-        piece_to_move = good_moves[best_index][0].getPieceToMove();
+            this.setChoosenMove(every_move[best_index][0]);
+            piece_to_move = every_move[best_index][0].getPieceToMove();
 //        this.setSelectedPieceIndex(piece_to_move.getPieceId());
 //        this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
 //        this.setAISelectedPieceYCoord(piece_to_move.getYCoord());

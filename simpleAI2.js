@@ -47,7 +47,7 @@ function simpleAI2(){
     // this is how the better AI selects it's move
     this.decideBestMove = function(good_moves, bad_moves){
         // need to make sure there is a valid target
-        console.log("AI_colour in simple decide move: " + AI_player.getAIColour());
+        //console.log("AI_colour in simple decide move: " + AI_player.getAIColour());
         if(good_moves.length > 0){
             var random_index = parseInt(Math.random()*good_moves.length);
             this.setChoosenMove(good_moves[random_index][0]);
@@ -145,11 +145,11 @@ function simpleAI2(){
             //console.log("breaking the do while");
             //console.log("x = " + AI_player.getTargetX() + " y = " + AI_player.getTargetY());
         }
-        if(AI_goals_filled.length > 0){
-            for(var i = 0; i < AI_goals_filled.length; i++){
-                //console.log("GOAL FILLED: " + AI_goals_filled);
-            }
-        }
+//        if(AI_goals_filled.length > 0){
+//            for(var i = 0; i < AI_goals_filled.length; i++){
+//                //console.log("GOAL FILLED: " + AI_goals_filled);
+//            }
+//        }
     };
     
     

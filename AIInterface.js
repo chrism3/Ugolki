@@ -22,7 +22,7 @@ function generalAI(){
 //        var no_of_good_moves = 0;
 //        var unfavoured_moves = new Array();
         AI_moves.init(board_representation);
-        console.log(pieces_to_move.length);
+        //console.log(pieces_to_move.length);
         for(var i = 0; i < pieces_to_move.length; i++){
             //console.log(i);
             var current_piece = pieces_to_move[i];
