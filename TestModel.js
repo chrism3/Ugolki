@@ -280,9 +280,9 @@ function testModel() {
     };
     
     
-    // I'm not sure how the AI should work... maybe like this
-    var AI_type = "simpleAI";
-    var current_AI_player = new simpleAI2();
+    // change this back to being easy once we are done
+    var AI_type = "hardAI";
+    var current_AI_player = new hardAI();
 
     
     /*
@@ -391,6 +391,9 @@ function testModel() {
         else if(AI_type === "mediumAI"){
             current_AI_player.mediumAI(test_board, model, AI);
         }
+        else if(AI_type === "hardAI"){
+            current_AI_player.hardAI(test_board, model, AI);
+        }
     };
     
     /* maybe need a get and set method for the AI, might not.
@@ -409,6 +412,9 @@ function testModel() {
         }
         if(AI_type === "mediumAI"){
             current_AI_player = new mediumAI2();
+        }
+        if(AI_type === "hardAI"){
+            current_AI_player.hardAI();
         }
     };
     
@@ -732,7 +738,7 @@ function testModel() {
         AI_1.setAIColour("white");
         AI_1.setTargetForWhiteAIPlayer();
         var AI_player_1 = new mediumAI3();
-        var AI_player_2 = new mediumAI3();
+        var AI_player_2 = new mediumAI2();
         var whose_turn = 1;
         var count = 0;
         
@@ -749,7 +755,7 @@ function testModel() {
             }
             else{
                 current_AI_player = AI_player_2;
-                current_AI_player.mediumAI3(test_board, model, AI_2);
+                current_AI_player.mediumAI(test_board, model, AI_2);
             }
             if(whose_turn === 1){
                 whose_turn = 2;

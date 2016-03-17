@@ -19,14 +19,14 @@ function mediumAI2(){
                       // */
     
         this.mediumAI = function(board, model, AI){
-            console.log("using new medium AI");
+           // console.log("using new medium AI");
             board_representation = board;
             copy_of_model = model;
             AI_player = AI; 
             this.updateTarget();
             var pieces_to_move = model.getPieces(AI_player);               
-            console.log(pieces_to_move.length);
-            console.log("The Goal square is: " + AI_player.getTargetX() + ", " + AI_player.getTargetY());
+            //console.log(pieces_to_move.length);
+            //console.log("The Goal square is: " + AI_player.getTargetX() + ", " + AI_player.getTargetY());
             var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
             var good_moves = all_moves[0];
             var bad_moves = all_moves[1];
@@ -78,7 +78,7 @@ function mediumAI2(){
         }
         else if(move_type === "random"){
             if(good_moves.length > 0){
-                console.log("making random move");
+                //console.log("making random move");
                 var random_index = parseInt(Math.random()*good_moves.length);
                 this.setChoosenMove(good_moves[random_index][0]);
                 var piece_to_move = good_moves[random_index][0].getPieceToMove();
