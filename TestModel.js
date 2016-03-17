@@ -281,8 +281,8 @@ function testModel() {
     
     
     // change this back to being easy once we are done
-    var AI_type = "hardAI";
-    var current_AI_player = new hardAI();
+    var AI_type = "simpleAI";
+    var current_AI_player = new simpleAI();
 
     
     /*
@@ -291,108 +291,23 @@ function testModel() {
      * Then call the appropriate AI class
      */
     this.checkAIType = function (model, condition){
-        // need to get the pieces that the AI can actually move
-        
-        // call this to make sure the AI board rep is up to date
-       //current_AI_player.updateBoard(test_board);
         var pieces = new Array();
         if(condition === "new game"){
             //console.log("is it setting a new game AI");
             AI.setNewGameAI();
         }
-        
-        // the commented code below can probably be deleted
-        
-        
-        
-//        if(AI.getAIColour() === "black"){
-//            for(var i = test_board.length-1; i >= 0; i--){
-//                //console.log(i);
-//                for(var j = 0; j < test_board.length; j++){
-//                     if(test_board[i][j] !== 0){
-//                         // currently only works if the Ai is player 2
-//                         if(test_board[i][j].getPieceColour() === "black"){
-//                             //console.log("index the peice is added to: " + count);
-//                             //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
-//                             //        "," + test_board[i][j].getYCoord());
-//                             var reached_goal = false;
-//                             //console.log("pieces in their goal location: " + pieces_in_goal.length);
-//                             for(var k = 0; k < pieces_in_goal.length; k++){
-//                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
-//                                     reached_goal = true;
-//                                 }
-//                             }
-//    //                         var bad_piece_moved = false;
-//    //                         for(var l = 0; l < bad_pieces_moved.length; l++){
-//    //                             if(test_board[i][j].getPieceId() === bad_pieces_moved[l]){
-//    //                                 bad_piece_moved = true;
-//    //                             }
-//    //                         }
-//                             if(!reached_goal){
-//                                //console.log("pushing to the pieces list");
-//                                console.log("pushing piece in coords: " + i + "," + j + " with id: " + test_board[i][j].getPieceId());
-//                                pieces.push(test_board[i][j]);
-//                             }
-//                             else{
-//                                 console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
-//                                         " has the current coords " + test_board[i][j].getXCoord() + "," +
-//                                         test_board[i][j].getYCoord());
-//                             }
-//                         }
-//                     }
-//                }
-//            }
-//        }
-//        // need to do the same as above but for white pieces rather than black
-//        else{
-//            for(var i = 0; i < test_board.length; i++){
-//                //console.log(i);
-//                for(var j = test_board.length -1; j >= 0; j--){
-//                     if(test_board[i][j] !== 0){
-//                         // currently only works if the Ai is player 2
-//                         if(test_board[i][j].getPieceColour() === "white"){
-//                             //console.log("index the peice is added to: " + count);
-//                             //console.log("x and y coords of piece: " + test_board[i][j].getXCoord()+
-//                             //        "," + test_board[i][j].getYCoord());
-//                             var reached_goal = false;
-//                             //console.log("pieces in their goal location: " + pieces_in_goal.length);
-//                             for(var k = 0; k < pieces_in_goal.length; k++){
-//                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
-//                                     reached_goal = true;
-////                                     console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
-////                                         "has the current coords " + test_board[i][j].getXCoord() + "," +
-////                                         test_board[i][j].getYCoord());
-//                                 }
-//                             }
-//                             if(!reached_goal){
-//                                //console.log("pushing to the pieces list");
-//                                console.log("pushing piece in coords: " + i + "," + j + "with id: " + test_board[i][j].getPieceId());
-//                                pieces.push(test_board[i][j]);
-//                             }
-//                             else{
-//                                 console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
-//                                         "has the current coords " + test_board[i][j].getXCoord() + "," +
-//                                         test_board[i][j].getYCoord());
-//                             }
-//                         }
-//                     }
-//                }
-//            }             
-//        }
 
         var find_moves = new findMoves();
         find_moves.init(test_board);
         console.log(pieces.length);
         if(AI_type === "simpleAI"){            
-            //current_AI_player.simpleAI(test_board, model, AI);
-            //console.log("Before calling the AI al: " + AI.getAIColour());
             current_AI_player.simpleAI2(test_board, model, AI);
         }
         else if(AI_type === "mediumAI"){
             current_AI_player.mediumAI(test_board, model, AI);
         }
         else if(AI_type === "hardAI"){
-            current_AI_player.hardAI(test_board, model, AI);
+            current_AI_player.mediumAI3(test_board, model, AI);
         }
     };
     
@@ -414,7 +329,7 @@ function testModel() {
             current_AI_player = new mediumAI2();
         }
         if(AI_type === "hardAI"){
-            current_AI_player.hardAI();
+            current_AI_player = new mediumAI3();
         }
     };
     

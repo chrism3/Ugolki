@@ -573,6 +573,12 @@ function testController(){
             test_view.setPlayerTwo("Medium");
             test_view.closeSettings();
         });
+        test_view.setHardAIClickCallback(function(){
+            test_model.setAIType("hardAI");
+            test_model.setPlayerTwoType("AI");
+            test_view.setPlayerTwo("Hard");
+            test_view.closeSettings();
+        });
         test_view.setHumanAIClickCallback(function(){
             test_model.alterAISettings("human v AI");
             test_view.setInfoBoxThree("Human v AI");

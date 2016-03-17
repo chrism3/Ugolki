@@ -485,6 +485,10 @@ function testView(){
         var medium_AI = document.getElementById("medium_AI");
         medium_AI.addEventListener("click", callback);
     };
+    this.setHardAIClickCallback = function (callback){
+        var hard_AI = document.getElementById("difficult_AI");
+        hard_AI.addEventListener("click", callback);
+    }
     this.setSignUpClickCallback = function (callback){
         var sign_up = document.getElementById("sign_up");
         sign_up.addEventListener("click", callback);
