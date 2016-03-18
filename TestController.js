@@ -505,6 +505,8 @@ function testController(){
             test_view.closeSettings();
             test_model.resetTurnCount();
             test_model.clearPiecesInGoalList();
+            console.log("why isnt this happnening");
+            test_view.resetMovesLeft();
             if(test_model.hasPlayerWon() !== "no winner"){
                 test_view.newGame();
             }
@@ -1030,7 +1032,7 @@ function testController(){
             }
             
             var turn_count = test_model.getTurnCount();
-            if(turn_count > 79){                
+            if(turn_count > 78){                
                 var winner = test_model.findWinnerAfterStalemate();
                 console.log(winner);
                 var game_winner;
@@ -1050,6 +1052,7 @@ function testController(){
             }
             else{
                 test_model.incrementTurnCount();
+                test_view.decrementMovesLeft();
             }
         };
     };

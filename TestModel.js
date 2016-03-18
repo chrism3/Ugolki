@@ -688,7 +688,7 @@ function testModel() {
         AI_1.setAIColour("white");
         AI_1.setTargetForWhiteAIPlayer();
         var AI_player_1 = new simpleAI2();
-        var AI_player_2 = new mediumAI2();
+        var AI_player_2 = new mediumAI3();
         var whose_turn = 1;
         var count = 0;
         
@@ -705,7 +705,7 @@ function testModel() {
             }
             else{
                 current_AI_player = AI_player_2;
-                current_AI_player.mediumAI(test_board, model, AI_2);
+                current_AI_player.mediumAI3(test_board, model, AI_2);
             }
             if(whose_turn === 1){
                 whose_turn = 2;

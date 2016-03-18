@@ -1219,6 +1219,14 @@ function testView(){
     this.getScreenToDisplay = function(){
         return screen;
     };
+    this.decrementMovesLeft = function(){
+        var moves = document.getElementById("moves_left").value;
+        moves--;
+        document.getElementById("moves_left").value = moves;
+    };
+    this.resetMovesLeft = function(){
+        document.getElementById("moves_left").value = 80;
+    };
 }
 
 
