@@ -904,6 +904,15 @@ function testView(){
             text_area_div.style.display = "block";
             this.fadeInfoBox(text_area_div);
         }
+        else if(screen_condition === "stalemate"){
+            var text_area = document.getElementById("inform_user");
+            var text_area_div = document.getElementById("info_div");
+            text_area.value = message_to_display;
+            // reset the opacity so that it is visible on callings after the first
+            text_area_div.style.opacity = 0.9;
+            text_area_div.style.display = "block";
+            this.fadeInfoBox(text_area_div);
+        }
         
     };
     

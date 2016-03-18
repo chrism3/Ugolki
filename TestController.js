@@ -484,28 +484,23 @@ function testController(){
            test_view.togglePane("game types");
         });
         test_view.setStandardGameClickCallback( function(){
-            console.log("standard game clicked");
             test_model.setGameType("standard");
         });
         test_view.setNoMutliJumpGameClickCallback( function(){
-            console.log("no multi jump game clicked");
             test_model.setGameType("no multi jump");
         });
         test_view.setTowardGoalGameClickCallback( function(){
-            console.log("toward game button clicked");
             test_model.setGameType("toward goal");
         });
         
         // need Ugolki Varations called here
         test_view.setViewStatsClickCallback(function(){
-            //console.log("stats clicked");
             test_view.togglePane("stats");
         });
         test_view.setNewGameClickCallback(function(){
             test_view.closeSettings();
             test_model.resetTurnCount();
             test_model.clearPiecesInGoalList();
-            console.log("why isnt this happnening");
             test_view.resetMovesLeft();
             if(test_model.hasPlayerWon() !== "no winner"){
                 test_view.newGame();
@@ -1047,7 +1042,8 @@ function testController(){
                     game_winner === "players draw";
                 }
                 console.log("Stalemate occured: " + game_winner);
-                test_view.reportErrorToUser("Stalemate Occured: " + game_winner);
+                var message_to_user = "Stalemate Occured: " + game_winner;
+                test_view.reportErrorToUser(message_to_user, "stalemate");
                 test_view.endGame();
             }
             else{
