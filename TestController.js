@@ -483,6 +483,15 @@ function testController(){
            //console.log("game types have been clicked"); 
            test_view.togglePane("game types");
         });
+        test_view.setStandardGameClickCallback( function(){
+            console.log("standard game clicked");
+        });
+        test_view.setNoMutliJumpGameClickCallback( function(){
+            console.log("no multi jump game clicked");
+        });
+        test_view.setTowardGoalGameClickCallback( function(){
+            console.log("toward game button clicked");
+        });
         
         // need Ugolki Varations called here
         test_view.setViewStatsClickCallback(function(){

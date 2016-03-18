@@ -502,6 +502,18 @@ function testView(){
         var game_options = document.getElementById("variations_button");
         game_options.addEventListener("click", callback);
     };
+    this.setStandardGameClickCallback = function (callback){
+        var standard = document.getElementById("standard_game");
+        standard.addEventListener("click", callback);
+    };
+    this.setNoMutliJumpGameClickCallback = function (callback){
+        var no_multi_jump = document.getElementById("multi_off");
+        no_multi_jump.addEventListener("click", callback);
+    };
+    this.setTowardGoalGameClickCallback = function (callback){
+        var toward_goal = document.getElementById("toward_goal");
+        toward_goal.addEventListener("click", callback);
+    };
     this.setPersonalStatsClickCallback = function (callback){
         var personal_stats = document.getElementById("personal_stats_button");
         personal_stats.addEventListener("click", callback);
