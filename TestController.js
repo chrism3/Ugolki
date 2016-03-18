@@ -479,6 +479,10 @@ function testController(){
             console.log("help has been clicked");
             test_view.showHelp();
         });
+        test_view.setGameTypesClickCallback( function(){
+           //console.log("game types have been clicked"); 
+           test_view.togglePane("game types");
+        });
         
         // need Ugolki Varations called here
         test_view.setViewStatsClickCallback(function(){
@@ -536,11 +540,11 @@ function testController(){
         
         // need View Statistics called here
         
-        test_view.setMoveOptionsClickCallback( function(){
-            //console.log("move options has been clicked");
-            // need to make code in the view that is responsible for toggling the buttons
-            test_view.togglePane("move options");
-        });
+//        test_view.setMoveOptionsClickCallback( function(){
+//            //console.log("move options has been clicked");
+//            // need to make code in the view that is responsible for toggling the buttons
+//            test_view.togglePane("move options");
+//        });
         
 //        
 //        these will be used eventually, not sure when i'll get round to them though

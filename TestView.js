@@ -488,17 +488,20 @@ function testView(){
     this.setHardAIClickCallback = function (callback){
         var hard_AI = document.getElementById("difficult_AI");
         hard_AI.addEventListener("click", callback);
-    }
+    };
     this.setSignUpClickCallback = function (callback){
         var sign_up = document.getElementById("sign_up");
         sign_up.addEventListener("click", callback);
     };
     
-    this.setMoveOptionsClickCallback = function (callback){
-        var move_options = document.getElementById("multi_jump_options");
-        move_options.addEventListener("click", callback);
+//    this.setMoveOptionsClickCallback = function (callback){
+//        var move_options = document.getElementById("multi_jump_options");
+//        move_options.addEventListener("click", callback);
+//    };
+    this.setGameTypesClickCallback = function (callback){
+        var game_options = document.getElementById("variations_button");
+        game_options.addEventListener("click", callback);
     };
-    
     this.setPersonalStatsClickCallback = function (callback){
         var personal_stats = document.getElementById("personal_stats_button");
         personal_stats.addEventListener("click", callback);
@@ -994,6 +997,9 @@ function testView(){
          }
          else if(pane_to_show === "stats"){
              pane = document.getElementById("statistics_options");
+         }
+         else if(pane_to_show === "game types"){
+             pane = document.getElementById("variations_panel");
          }
          current_settings_panel.style.display = "none";
          settings_pane = pane;

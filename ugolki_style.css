@@ -472,7 +472,10 @@ svg{
     background: rgb(241, 110, 3);
     display: none;
 }
-
+#variations_panel{
+    background: rgb(241, 110, 3);
+    display: none;
+}
 #player_settings{
     background: rgb(14, 194, 164);
     display: none;
