@@ -94,7 +94,7 @@ function testModel() {
         //console.log("In model (findMoves2) the x and y coords are: " + x_coord + "," + y_coord);
 
         var find_moves = new findMoves();
-        find_moves.init(test_board);
+        find_moves.init(test_board, game_type);
         // check the piece is the right players piece
         //console.log(x_coord);
         //console.log(y_coord);
@@ -117,15 +117,6 @@ function testModel() {
                 find_moves.moveLeft(left, y_coord);
                 find_moves.moveUp(above, x_coord);
                 find_moves.moveDown(below, x_coord);
-    //            find_moves.jumpRight(right, y_coord);
-    //            find_moves.jumpLeft(left, y_coord);
-    //            find_moves.jumpUp(above, x_coord);
-    //            find_moves.jumpDown(below, x_coord);
-
-                /*
-                 * multipe jump is a pretty cool feature, but the way its programmed right now
-                 * can be pretty slow. will come back to it to try find a faster way to do it
-                 */
                 find_moves.multipleJump3(x_coord, y_coord);
                 possible_moves = find_moves.getPossibleMoves();
                 //console.log("in the model possible moves length: " + possible_moves.length);

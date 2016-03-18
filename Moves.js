@@ -8,12 +8,14 @@ function findMoves(){
      var board = new Array();
      var possible_moves;
      var possible_jumps;
+     var game_type;
     
-    this.init = function(board_representation, current_game_type, current_player_colour){
+    this.init = function(board_representation, current_game_type){
         // not sure how I will use this yet,but it will be used
         board = board_representation;
         possible_moves = new Array();
         possible_jumps = new Array();
+        game_type = current_game_type;
     };
     
     // four functions to do the moves left, right, up, and down
@@ -67,6 +69,9 @@ function findMoves(){
                 move.newMove(right+1, y_coord, piece);
                 //possible_moves.push(move);
                 possible_jumps.push(move);
+                if(game_type === "no multi jump"){
+                    possible_moves.push(move);
+                }
             }
         }
     };    
@@ -107,6 +112,9 @@ function findMoves(){
                 move.newMove(left-1, y_coord, piece);
                 //possible_moves.push(move);
                 possible_jumps.push(move);
+                if(game_type === "no multi jump"){
+                    possible_moves.push(move);
+                }
             }
         }        
     }; 
@@ -127,6 +135,9 @@ function findMoves(){
                 move.newMove(x_coord, above-1, piece);
                 //possible_moves.push(move);
                 possible_jumps.push(move);
+                if(game_type === "no multi jump"){
+                    possible_moves.push(move);
+                }
             }
         }
     };
@@ -168,6 +179,9 @@ function findMoves(){
                 move.newMove(x_coord, below+1, piece);
                 possible_jumps.push(move);
                 //possible_moves.push(move);
+                if(game_type === "no multi jump"){
+                    possible_moves.push(move);
+                }
             }
         }        
     };
