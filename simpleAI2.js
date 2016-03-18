@@ -38,7 +38,7 @@ function simpleAI2(){
 //        for(var i = 0; i < pieces.length; i++){
 //            console.log("piece: " + pieces[i].getPieceId());
 //        }
-        var all_moves = AI_player.evalAllMoves(AI.findAllMoves(pieces, board_rep));
+        var all_moves = AI_player.evalAllMoves(AI.findAllMoves(pieces, board_rep, copy_of_model.getGameType()));
         var good_moves = all_moves[0];
         var bad_moves = all_moves[1];
         this.decideBestMove(good_moves, bad_moves);                         

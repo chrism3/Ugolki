@@ -69,7 +69,7 @@ function findMoves(){
                 move.newMove(right+1, y_coord, piece);
                 //possible_moves.push(move);
                 possible_jumps.push(move);
-                if(game_type === "no multi jump"){
+                if(game_type === "no multi jump" || game_type === "toward goal"){
                     possible_moves.push(move);
                 }
             }
@@ -112,7 +112,7 @@ function findMoves(){
                 move.newMove(left-1, y_coord, piece);
                 //possible_moves.push(move);
                 possible_jumps.push(move);
-                if(game_type === "no multi jump"){
+                if(game_type === "no multi jump" || game_type === "toward goal"){
                     possible_moves.push(move);
                 }
             }
@@ -135,7 +135,7 @@ function findMoves(){
                 move.newMove(x_coord, above-1, piece);
                 //possible_moves.push(move);
                 possible_jumps.push(move);
-                if(game_type === "no multi jump"){
+                if(game_type === "no multi jump" || game_type === "toward goal"){
                     possible_moves.push(move);
                 }
             }
@@ -179,7 +179,7 @@ function findMoves(){
                 move.newMove(x_coord, below+1, piece);
                 possible_jumps.push(move);
                 //possible_moves.push(move);
-                if(game_type === "no multi jump"){
+                if(game_type === "no multi jump" || game_type === "toward goal"){
                     possible_moves.push(move);
                 }
             }

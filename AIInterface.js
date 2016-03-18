@@ -15,7 +15,8 @@ function generalAI(){
                        */
     var AI_colour = "black";
 
-    this.findAllMoves = function (pieces_to_move, board){
+    this.findAllMoves = function (pieces_to_move, board, game_type){
+        console.log("game type: " + game_type);
         board_representation = board;
         var possible_moves = new Array();
         var AI_moves = new findMoves();
@@ -23,34 +24,58 @@ function generalAI(){
 //        var unfavoured_moves = new Array();
         AI_moves.init(board_representation);
         //console.log(pieces_to_move.length);
+
         for(var i = 0; i < pieces_to_move.length; i++){
             //console.log(i);
             var current_piece = pieces_to_move[i];
-            //console.log(current_piece);
             var x_coord = current_piece.getXCoord();
             var y_coord = current_piece.getYCoord();
             var right = x_coord + 1;
             var left = x_coord - 1;
             var above = y_coord - 1;
-            var below = y_coord + 1;            
-            AI_moves.moveRight(right, y_coord, current_piece);
-            AI_moves.moveLeft(left, y_coord, current_piece);
-            AI_moves.moveUp(above, x_coord, current_piece);
-            AI_moves.moveDown(below, x_coord, current_piece);
-     
-     /*
-      * need if statement to check if the mutli-jump rule is being played
-      */
-            
-//            AI_moves.jumpRight(right, y_coord, current_piece);
-//            AI_moves.jumpLeft(left, y_coord, current_piece);
-//            AI_moves.jumpUp(above, x_coord, current_piece);
-//            AI_moves.jumpDown(below, x_coord, current_piece);
-            //console.log(current_piece);
-            AI_moves.multipleJump3(x_coord, y_coord, current_piece);
+            var below = y_coord + 1;
+            if(game_type === "standard"){                
+                //console.log(current_piece);                            
+                AI_moves.moveRight(right, y_coord, current_piece);
+                AI_moves.moveLeft(left, y_coord, current_piece);
+                AI_moves.moveUp(above, x_coord, current_piece);
+                AI_moves.moveDown(below, x_coord, current_piece);
+                AI_moves.multipleJump3(x_coord, y_coord, current_piece);
+                possible_moves = AI_moves.getPossibleMoves();
+            }
+            else if(game_type === "no multi jump"){
+                console.log("need to find some different moves");
+                AI_moves.moveRight(right, y_coord, current_piece);
+                AI_moves.moveLeft(left, y_coord, current_piece);
+                AI_moves.moveUp(above, x_coord, current_piece);
+                AI_moves.moveDown(below, x_coord, current_piece);
+                AI_moves.jumpRight(right, y_coord, current_piece);
+                AI_moves.jumpLeft(left, y_coord, current_piece);
+                AI_moves.jumpUp(above, x_coord, current_piece);
+                AI_moves.jumpDown(below, x_coord, current_piece);
+                possible_moves = AI_moves.getPossibleMoves();                
+            }
+            else if(game_type === "toward goal"){
+                //console.log("need to find mvoes that go towards the goal");
+                //console.log("current player colour : " + current_player_colour);
+                if(AI_colour === "white"){
+                    //console.log("finding moves for white pieces");
+                    AI_moves.moveRight(right, y_coord, current_piece);
+                    AI_moves.moveUp(above, x_coord, current_piece);
+                    AI_moves.jumpUp(above, x_coord, current_piece);
+                    AI_moves.jumpRight(right, y_coord, current_piece);                    
+                }
+                if(AI_colour === "black"){
+                    AI_moves.moveLeft(left, y_coord, current_piece);
+                    AI_moves.moveDown(below, x_coord, current_piece);
+                    AI_moves.jumpLeft(left, y_coord, current_piece);
+                    AI_moves.jumpDown(below, x_coord, current_piece);
+                }
+                possible_moves = AI_moves.getPossibleMoves();
+            }
         }
-        possible_moves = AI_moves.getPossibleMoves();
-        //console.log("number of moves possible " + possible_moves.length);
+        //possible_moves = AI_moves.getPossibleMoves();
+        console.log("number of moves possible " + possible_moves.length);
         return possible_moves;
         //this.evalAllMoves(possible_moves);
     };
@@ -71,6 +96,7 @@ function generalAI(){
 //            }
             
             // two variables needed to reset x and y after the move has been completed
+            //console.log(possible_moves[i].getPieceToMove());
             var x_to_reset = possible_moves[i].getPieceToMove().getXCoord();
             var y_to_reset = possible_moves[i].getPieceToMove().getYCoord();
             this.makeMove(possible_moves[i]);

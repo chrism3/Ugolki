@@ -31,7 +31,7 @@ function mediumAI3(){
             var pieces_to_move = model.getPieces(AI_player);
             //console.log(pieces_to_move.length);            
             //console.log("goal location is: " + AI.getTargetX() + "," + AI.getTargetY());
-            var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
+            var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board, copy_of_model.getGameType()));
             var good_moves = all_moves[2];
             this.decideBestMove2(good_moves);
             //copy_of_model = model;

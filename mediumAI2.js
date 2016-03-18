@@ -27,7 +27,7 @@ function mediumAI2(){
             var pieces_to_move = model.getPieces(AI_player);               
             //console.log(pieces_to_move.length);
             //console.log("The Goal square is: " + AI_player.getTargetX() + ", " + AI_player.getTargetY());
-            var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board));
+            var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board, copy_of_model.getGameType()));
             var good_moves = all_moves[0];
             var bad_moves = all_moves[1];
             var every_move = all_moves[2];

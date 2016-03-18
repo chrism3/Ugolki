@@ -131,11 +131,25 @@ function testModel() {
                 find_moves.jumpLeft(left, y_coord);
                 find_moves.jumpUp(above, x_coord);
                 find_moves.jumpDown(below, x_coord);
-                possible_moves = find_moves.getPossibleMoves();
-                
+                possible_moves = find_moves.getPossibleMoves();                
             }
             else if(game_type === "toward goal"){
-                console.log("need to find moves that go toward the goal");
+                //console.log("need to find mvoes that go towards the goal");
+                //console.log("current player colour : " + current_player_colour);
+                if(current_player_colour === "white"){
+                    //console.log("finding moves for white pieces");
+                    find_moves.moveRight(right, y_coord);
+                    find_moves.moveUp(above, x_coord);
+                    find_moves.jumpUp(above, x_coord);
+                    find_moves.jumpRight(right, y_coord);                    
+                }
+                if(current_player_colour === "black"){
+                    find_moves.moveLeft(left, y_coord);
+                    find_moves.moveDown(below, x_coord);
+                    find_moves.jumpLeft(left, y_coord);
+                    find_moves.jumpDown(below, x_coord);
+                }
+                possible_moves = find_moves.getPossibleMoves();
             }
         }
         else{
@@ -246,6 +260,9 @@ function testModel() {
     this.setGameType = function(new_type){
         console.log("settings game type to: " + new_type);
         game_type = new_type;
+    };
+    this.getGameType = function (){
+        return game_type;
     };
     
     // getter method to get the success of find moves
