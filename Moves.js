@@ -9,7 +9,7 @@ function findMoves(){
      var possible_moves;
      var possible_jumps;
     
-    this.init = function(board_representation){
+    this.init = function(board_representation, current_game_type, current_player_colour){
         // not sure how I will use this yet,but it will be used
         board = board_representation;
         possible_moves = new Array();

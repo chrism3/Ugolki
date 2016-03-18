@@ -485,12 +485,15 @@ function testController(){
         });
         test_view.setStandardGameClickCallback( function(){
             console.log("standard game clicked");
+            test_model.setGameType("standard");
         });
         test_view.setNoMutliJumpGameClickCallback( function(){
             console.log("no multi jump game clicked");
+            test_model.setGameType("no multi jump");
         });
         test_view.setTowardGoalGameClickCallback( function(){
             console.log("toward game button clicked");
+            test_model.setGameType("toward goal");
         });
         
         // need Ugolki Varations called here

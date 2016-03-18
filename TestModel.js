@@ -49,6 +49,9 @@ function testModel() {
     // variable to store how many moves have happened
     var turn_count = 0;
     
+    // variable to store the current game 
+    var game_type = "standard";
+    
     //please rename test_board
    this.setTestBoard = function(){
        var white_id = 1;
@@ -109,22 +112,40 @@ function testModel() {
             var right = parseInt((test_board[x_coord][y_coord].getXCoord()) + 1);
             //console.log("right = " + right);            
            
-            find_moves.moveRight(right, y_coord);
-            find_moves.moveLeft(left, y_coord);
-            find_moves.moveUp(above, x_coord);
-            find_moves.moveDown(below, x_coord);
-//            find_moves.jumpRight(right, y_coord);
-//            find_moves.jumpLeft(left, y_coord);
-//            find_moves.jumpUp(above, x_coord);
-//            find_moves.jumpDown(below, x_coord);
-            
-            /*
-             * multipe jump is a pretty cool feature, but the way its programmed right now
-             * can be pretty slow. will come back to it to try find a faster way to do it
-             */
-            find_moves.multipleJump3(x_coord, y_coord);
-            possible_moves = find_moves.getPossibleMoves();
-            //console.log("in the model possible moves length: " + possible_moves.length);
+           if(game_type === "standard"){
+                find_moves.moveRight(right, y_coord);
+                find_moves.moveLeft(left, y_coord);
+                find_moves.moveUp(above, x_coord);
+                find_moves.moveDown(below, x_coord);
+    //            find_moves.jumpRight(right, y_coord);
+    //            find_moves.jumpLeft(left, y_coord);
+    //            find_moves.jumpUp(above, x_coord);
+    //            find_moves.jumpDown(below, x_coord);
+
+                /*
+                 * multipe jump is a pretty cool feature, but the way its programmed right now
+                 * can be pretty slow. will come back to it to try find a faster way to do it
+                 */
+                find_moves.multipleJump3(x_coord, y_coord);
+                possible_moves = find_moves.getPossibleMoves();
+                //console.log("in the model possible moves length: " + possible_moves.length);
+            }
+            else if(game_type === "no multi jump"){
+                console.log("need to find some different moves");
+                find_moves.moveRight(right, y_coord);
+                find_moves.moveLeft(left, y_coord);
+                find_moves.moveUp(above, x_coord);
+                find_moves.moveDown(below, x_coord);
+                find_moves.jumpRight(right, y_coord);
+                find_moves.jumpLeft(left, y_coord);
+                find_moves.jumpUp(above, x_coord);
+                find_moves.jumpDown(below, x_coord);
+                possible_moves = find_moves.getPossibleMoves();
+                
+            }
+            else if(game_type === "toward goal"){
+                console.log("need to find moves that go toward the goal");
+            }
         }
         else{
             find_moves_successful = false;
@@ -231,6 +252,11 @@ function testModel() {
         this.setCurrentPlayerColour();
     };
     
+    this.setGameType = function(new_type){
+        console.log("settings game type to: " + new_type);
+        game_type = new_type;
+    };
+    
     // getter method to get the success of find moves
     this.wasFindMovesSuccessful = function(){
         return find_moves_successful;
@@ -282,7 +308,7 @@ function testModel() {
     
     // change this back to being easy once we are done
     var AI_type = "simpleAI";
-    var current_AI_player = new simpleAI();
+    var current_AI_player = new simpleAI2();
 
     
     /*
@@ -300,6 +326,7 @@ function testModel() {
         var find_moves = new findMoves();
         find_moves.init(test_board);
         console.log(pieces.length);
+        console.log(AI_type);
         if(AI_type === "simpleAI"){            
             current_AI_player.simpleAI2(test_board, model, AI);
         }
@@ -652,7 +679,7 @@ function testModel() {
         var AI_2 = new generalAI();
         AI_1.setAIColour("white");
         AI_1.setTargetForWhiteAIPlayer();
-        var AI_player_1 = new mediumAI3();
+        var AI_player_1 = new simpleAI2();
         var AI_player_2 = new mediumAI2();
         var whose_turn = 1;
         var count = 0;
@@ -665,7 +692,7 @@ function testModel() {
             count++;
             if(whose_turn === 1){
                 current_AI_player = AI_player_1;
-                current_AI_player.mediumAI3(test_board, model, AI_1);
+                current_AI_player.simpleAI2(test_board, model, AI_1);
                 
             }
             else{
