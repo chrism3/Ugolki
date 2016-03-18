@@ -880,9 +880,7 @@ function testView(){
     // this method is needed to reset the model fields and change which players turn it is
     this.wasMoveSuccessful = function(){
         return move_successful;
-    };
-    
-    
+    };    
     
     // put this down here because it's not necessary functionality
     this.reportErrorToUser = function(message_to_display, screen_condition) {
@@ -919,6 +917,7 @@ function testView(){
     this.fadeInfoBox = function(text_area_div){
         var opacity = window.getComputedStyle(text_area_div).getPropertyValue("opacity");        
         var interval_count = 0;
+        window.clearInterval();
         var fade_out = setInterval(function () {
             interval_count++;
             opacity -= 0.01;

@@ -485,12 +485,15 @@ function testController(){
         });
         test_view.setStandardGameClickCallback( function(){
             test_model.setGameType("standard");
+            test_view.closeSettings();
         });
         test_view.setNoMutliJumpGameClickCallback( function(){
             test_model.setGameType("no multi jump");
+            test_view.closeSettings();
         });
         test_view.setTowardGoalGameClickCallback( function(){
             test_model.setGameType("toward goal");
+            test_view.closeSettings();
         });
         
         // need Ugolki Varations called here
@@ -931,7 +934,13 @@ function testController(){
             }
             else{
                 //console.log("need to selected a piece");
-                test_view.reportErrorToUser("Please select a piece first", "game");
+                if(test_view.getSelectedPiece() === "none"){
+                    test_view.reportErrorToUser("Please select a piece first", "game");
+                }
+                else{
+                    test_view.reportErrorToUser("Not a valid move for the selected piece", "game");
+                }
+                
                 //test_view.fadeInfoBox();
                 return;
             }
@@ -940,11 +949,16 @@ function testController(){
                                         test_model.getDarkBoardColour(), test_model.getLightBoardColour());
                 test_model.resetForNextMove();
            }
-           else{
-               //console.log("move not successful");
-               test_view.reportErrorToUser("Not a valid move for the selected piece", "game");
-               //test_view.fadeInfoBox();            
-           }
+           
+//          may be able to delete the commented code below, leaving it for now incase the aboe doesn't work
+//           else{
+//               //console.log("move not successful");
+//               console.log("getSelectedPiece: " + test_view.getSelectedPiece());
+//               if(test_view.getSelectedPiece() !== "none"){
+//                    test_view.reportErrorToUser("Not a valid move for the selected piece", "game");
+//               }
+//               //test_view.fadeInfoBox();            
+//           }
            
            var is_game_over = test_model.hasPlayerWon();
            //console.log(is_game_over);
