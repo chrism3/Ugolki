@@ -23,7 +23,8 @@ if($player_count === 0 && $stats_count === 0){
     $result2 = mysqli_query($conn, $query2);
     
     // also make a new entry in the player_stats table for the new user
-    $query4 = "insert into Player_Stats (username, played, won, lost) values ('$user', '$initial_stat', '$initial_stat', '$initial_stat')";
+    $query4 = "insert into Player_Stats (username, played, won, drawn, lost) values "
+            . "('$user', '$initial_stat', '$initial_stat', '$initial_stat', '$initial_stat')";
     $result4 = mysqli_query($conn, $query4);
     
     // echo 0, to signify that no users with this username and password already exist

@@ -1062,6 +1062,7 @@ function testView(){
         var name = document.getElementById("player_name_stats");
         var games = document.getElementById("games_played");
         var wins = document.getElementById("no_of_wins");
+        var draws = document.getElementById("no_of_draws");
         var losses = document.getElementById("no_of_losses");
         var percent = document.getElementById("percent_value");
         var win_percent; 
@@ -1076,7 +1077,8 @@ function testView(){
         name.value = player_stats[0];
         games.value = player_stats[1];
         wins.value = player_stats[2];
-        losses.value = player_stats[3];       
+        draws.value = player_stats[3];
+        losses.value = player_stats[4];       
         percent.value = win_percent + "%";
     };
 

@@ -17,7 +17,7 @@ $result = mysqli_query($conn, $query);
 if($result->num_rows > 0){
     //echo("maybe working?");
     while($row = $result->fetch_assoc()){
-        echo($row['username']."$123".$row['played']."$123".$row['won']."$123".$row['lost']);
+        echo($row['username']."$123".$row['played']."$123".$row['won']."$123".$row['drawn']."$123".$row['lost']);
     }
 }
 else{
