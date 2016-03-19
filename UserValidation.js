@@ -150,10 +150,18 @@ function detailsValidation(){
     // this is the method that calls the php to update the database after a game has been won
     this.statsUpdateValidation = function(user_details){
         console.log(user_details[0] + "    " + user_details[1]);
+        console.log("user_details as follows");
+        console.log(user_details[0]);
+        console.log(user_details[1]);
+        console.log(user_details[2]);
+        console.log(user_details[3]);
         // this if else, validate which player won and calls the correct php
-        if(user_details[0] === user_details[1]){
+        if(user_details[2] === user_details[3]){
             // call the method to handle the php call for a win
             this.addWin(user_details[0]);
+        }
+        else if(user_details[2] === "no winner"){
+            this.addDraw(user_details[0]);
         }
         else{
             // call the method to handle the php call for a loss
@@ -234,6 +242,25 @@ function detailsValidation(){
         }
         // remember to create the php page
         xmlhttp.open("POST", "addLossToDB.php", false);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.onreadystatechange = function () {
+            
+        };
+        xmlhttp.send(username);
+    };
+    this.addDraw = function(username){
+        var xmlhttp;
+        var username = "username=" + username;
+        if(window.XMLHttpRequest){
+            // chrome, firefox, safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else{
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        // remember to create the php page
+        xmlhttp.open("POST", "addDrawToDB.php", false);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.onreadystatechange = function () {
             

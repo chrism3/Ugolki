@@ -504,6 +504,7 @@ function testController(){
             test_view.closeSettings();
             test_model.resetTurnCount();
             test_model.clearPiecesInGoalList();
+            test_model.resetAIPlayersGoalLocation();
             test_view.resetMovesLeft();
             // make sure the model does not still store who won the last game
             test_model.setWinner("no winner");
@@ -992,7 +993,9 @@ function testController(){
                    else{
                        winner = test_view.getPlayerTwo();
                    }
-                   var details = [player_name, winner];
+                   console.log("winner is: " + test_model.getWinner());
+                   console.log("huamn player is: " + test_model.getHumanPlayer());
+                   var details = [player_name, winner, test_model.getWinner(), test_model.getHumanPlayer()];
                    
                    test_model.validation(details, "stats");
                }

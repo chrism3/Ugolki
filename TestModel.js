@@ -808,12 +808,18 @@ function testModel() {
         // if top right is greater than bottom left, player 1 wins
         if(p1_pieces_in_goal > p2_pieces_in_goal){
             //console.log("player 1 wins");
+            // set the global variable
+            this.setWinner("player 1");
+            // set the local variable
             winner = "player 1";
         }
         
         // if bottom left is greater than top right, player 2 wins
         if(p1_pieces_in_goal < p2_pieces_in_goal){
             //console.log("player 2 wins");
+            // set the global variable
+            this.setWinner("player 2");
+            // set the local variable
             winner = "player 2";
         }
         
@@ -824,5 +830,21 @@ function testModel() {
         }        
         
         return winner;
+    };
+    
+    /*
+     * this function is called when the new game button is pressed. It sets the AI players
+     * goal location back to the first target square. Without this function, after pressing
+     * new game, the AI would be inable to win
+     */
+    this.resetAIPlayersGoalLocation = function(){
+        if(AI.getAIColour() === "black"){
+            AI.setTargetX(0);
+            AI.setTargetY(7);
+        }
+        else if(AI.getTargetColour === "white"){
+            AI.setTargetX(7);
+            AI.setTargetY(0);
+        }
     };
 }

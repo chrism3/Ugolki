@@ -19,10 +19,10 @@ function mediumAI3(){
                       // */
     
         this.mediumAI3 = function(board, model, AI){
-//            console.log("  ");
-//            console.log("***********");
-//            console.log(" ");
-//            console.log("mediumAI3");
+            console.log("  ");
+            console.log("***********");
+            console.log(" ");
+            console.log("mediumAI3");
             board_representation = board;
             AI_player = AI;
             //console.log("medium colour: " + AI_player.getAIColour());
@@ -30,7 +30,7 @@ function mediumAI3(){
             this.updateTarget();
             var pieces_to_move = model.getPieces(AI_player);
             //console.log(pieces_to_move.length);            
-            //console.log("goal location is: " + AI.getTargetX() + "," + AI.getTargetY());
+            console.log("goal location is: " + AI.getTargetX() + "," + AI.getTargetY());
             var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board, copy_of_model.getGameType()));
             var good_moves = all_moves[2];
             this.decideBestMove2(good_moves);
