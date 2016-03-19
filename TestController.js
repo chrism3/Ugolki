@@ -505,6 +505,8 @@ function testController(){
             test_model.resetTurnCount();
             test_model.clearPiecesInGoalList();
             test_view.resetMovesLeft();
+            // make sure the model does not still store who won the last game
+            test_model.setWinner("no winner");
             if(test_model.hasPlayerWon() !== "no winner"){
                 test_view.newGame();
             }
@@ -597,10 +599,16 @@ function testController(){
         });
         test_view.setHumanAIClickCallback(function(){
             test_model.alterAISettings("human v AI");
+            // make sure the human player is set to player 1... incase player is signed in
+            test_model.setHumanPlayer('player 1');
             test_view.setInfoBoxThree("Human v AI");
             test_model.setPlayerTwoType("AI");
             test_view.setPlayerTwo("AI");
             console.log("AI-Colour: " + test_model.getAIColour());
+            /*
+             * the following code has been added in case the user switched the AI to be player 2
+             * in the middle of the game. This makes sure that the AI moves first if it is required. 
+             */
             console.log("Current colour: " + test_model.getCurrentPlayerColour());
             if(test_model.getAIColour() === test_model.getCurrentPlayerColour()){
                 test_model.checkAIType(test_model);
@@ -718,6 +726,8 @@ function testController(){
             test_view.setInfoBoxThree("AI v Human");
             test_model.alterAISettings("AI v human");
             test_model.setPlayerTwoType("AI");
+            // make sure human player is player 2... incase there is a player signed in. 
+            test_model.setHumanPlayer("player 2");
 //            test_model.checkAIType(test_model);
             //console.log("about to get the id");
             if(test_model.getAIColour() === test_model.getCurrentPlayerColour()){

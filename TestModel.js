@@ -24,6 +24,10 @@ function testModel() {
     
     // this variable is a boolean representation of whether or not a player is signed in
     var signed_in;
+    // variable used to keep track of which player the human is... helps for adding results to the database
+    var human_player = "player 1";
+    // variable to store who the winner is, default is no winner
+    var winner = "no winner";
     // this vairbale stores the name of the current player signed in 
     var logged_in_player;
     // variable to store boolean value if player is logged in
@@ -295,6 +299,22 @@ function testModel() {
     this.getSignedIn = function(){
         return signed_in;
     };
+    // method to get human player... will return 'player 1' or 'player 2'
+    this.getHumanPlayer = function(){
+        return human_player;
+    };
+    // method to set human player... paramater passes in will either be 'player 1' or 'player 2'
+    this.setHumanPlayer = function(new_player_value){
+        human_player = new_player_value;
+    };
+    // method to get who the winner is... either 'player 1' or 'player 2' or 'no winner'
+    this.getWinner = function(){
+        return winner;
+    };
+    // function to return who the winner is... will either be 'player 1' or 'player 2 or 'no winner'
+    this.setWinner = function(set_winner){
+        winner = set_winner;
+    };    
     
     //set and get methods for the current_player
     this.setLoggedInPlayer = function(player_name){
@@ -445,6 +465,7 @@ function testModel() {
             }
         }
         if(player_2_won){
+            this.setWinner("player 2");
             return "player 2";
         }
         
@@ -471,6 +492,7 @@ function testModel() {
             }
         }
         if (player_1_won){
+            this.setWinner("player 1");
             return "player 1";
         }
         
