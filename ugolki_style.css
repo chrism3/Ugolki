@@ -225,8 +225,8 @@ button{
 }
 
 #stats_div{
-    margin-top: 20%;
-    margin-left: 10%;
+    padding-top: 12.5%;
+    padding-left: 5%;
     //border: 2px solid #ffda39;
     height: 50%;
     width: 80%;
@@ -239,7 +239,7 @@ button{
     background: transparent;
     resize: none;
     padding-left: 5%;
-    width: 45%;
+    width: 60%;
     height: 20%;
     font-weight: bolder;
     outline: none;
@@ -251,10 +251,11 @@ button{
     background: transparent;
     resize: none;
     float: left;
-    width: 45%;
+    width: 30%;
     height: 20%;
     font-weight: bolder;
     outline: none;
+    font-size: 1.5rem;
 }
 
 #ugolki_sign_up{
