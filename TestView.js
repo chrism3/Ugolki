@@ -2,119 +2,13 @@
 
 "use strict";
 
-function testView(){
-    // move the squares and circles into the event listeners, to remove global variables
-    var square_1 = document.getElementById("test_square_1"),
-        square_2 = document.getElementById("test_square_2"),
-        square_3 = document.getElementById("test_square_3"),
-        square_4 = document.getElementById("test_square_4"),
-        square_5 = document.getElementById("test_square_5"),
-        square_6 = document.getElementById("test_square_6"),
-        square_7 = document.getElementById("test_square_7"),
-        square_8 = document.getElementById("test_square_8"),
-        square_9 = document.getElementById("test_square_9"),
-        square_10 = document.getElementById("test_square_10"),
-        square_11 = document.getElementById("test_square_11"),
-        square_12 = document.getElementById("test_square_12"),
-        square_13 = document.getElementById("test_square_13"),
-        square_14 = document.getElementById("test_square_14"),
-        square_15 = document.getElementById("test_square_15"),
-        square_16 = document.getElementById("test_square_16"),
-        square_17 = document.getElementById("test_square_17"),
-        square_18 = document.getElementById("test_square_18"),
-        square_19 = document.getElementById("test_square_19"),
-        square_20 = document.getElementById("test_square_20"),
-        square_21 = document.getElementById("test_square_21"),
-        square_22 = document.getElementById("test_square_22"),
-        square_23 = document.getElementById("test_square_23"),
-        square_24 = document.getElementById("test_square_24"),
-        square_25 = document.getElementById("test_square_25"),
-        square_26 = document.getElementById("test_square_26"),
-        square_27 = document.getElementById("test_square_27"),
-        square_28 = document.getElementById("test_square_28"),
-        square_29 = document.getElementById("test_square_29"),
-        square_30 = document.getElementById("test_square_30"),
-        square_31 = document.getElementById("test_square_31"),
-        square_32 = document.getElementById("test_square_32"),
-        square_33 = document.getElementById("test_square_33"),
-        square_34 = document.getElementById("test_square_34"),
-        square_35 = document.getElementById("test_square_35"),
-        square_36 = document.getElementById("test_square_36"),
-        square_37 = document.getElementById("test_square_37"),
-        square_38 = document.getElementById("test_square_38"),
-        square_39 = document.getElementById("test_square_39"),
-        square_40 = document.getElementById("test_square_40"),
-        square_41 = document.getElementById("test_square_41"),
-        square_42 = document.getElementById("test_square_42"),
-        square_43 = document.getElementById("test_square_43"),
-        square_44 = document.getElementById("test_square_44"),
-        square_45 = document.getElementById("test_square_45"),
-        square_46 = document.getElementById("test_square_46"),
-        square_47 = document.getElementById("test_square_47"),
-        square_48 = document.getElementById("test_square_48"),
-        square_49 = document.getElementById("test_square_49"),
-        square_50 = document.getElementById("test_square_50"),
-        square_51 = document.getElementById("test_square_51"),
-        square_52 = document.getElementById("test_square_52"),
-        square_53 = document.getElementById("test_square_53"),
-        square_54 = document.getElementById("test_square_54"),
-        square_55 = document.getElementById("test_square_55"),
-        square_56 = document.getElementById("test_square_56"),
-        square_57 = document.getElementById("test_square_57"),
-        square_58 = document.getElementById("test_square_58"),
-        square_59 = document.getElementById("test_square_59"),
-        square_60 = document.getElementById("test_square_60"),
-        square_61 = document.getElementById("test_square_61"),
-        square_62 = document.getElementById("test_square_62"),
-        square_63 = document.getElementById("test_square_63"),
-        square_64 = document.getElementById("test_square_64"),
-        //need to get the other squares & rename them
-
-        
-        //varibales to hold the white circle elements from the html
-        white_circle_1 = document.getElementById("white_circle_1"),
-        white_circle_2 = document.getElementById("white_circle_2"),
-        white_circle_3 = document.getElementById("white_circle_3"),
-        white_circle_4 = document.getElementById("white_circle_4"),
-        white_circle_5 = document.getElementById("white_circle_5"),
-        white_circle_6 = document.getElementById("white_circle_6"),
-        white_circle_7 = document.getElementById("white_circle_7"),
-        white_circle_8 = document.getElementById("white_circle_8"),
-        white_circle_9 = document.getElementById("white_circle_9"),
-        white_circle_10 = document.getElementById("white_circle_10"),
-        white_circle_11 = document.getElementById("white_circle_11"),
-        white_circle_12 = document.getElementById("white_circle_12"),
-        white_circle_13 = document.getElementById("white_circle_13"),
-        white_circle_14 = document.getElementById("white_circle_14"),
-        white_circle_15 = document.getElementById("white_circle_15"),
-        white_circle_16 = document.getElementById("white_circle_16"),        
-        
-        //variables to hold the brown circle elements from the html
-        brown_circle_1 = document.getElementById("brown_circle_1"),
-        brown_circle_2 = document.getElementById("brown_circle_2"),
-        brown_circle_3 = document.getElementById("brown_circle_3"),
-        brown_circle_4 = document.getElementById("brown_circle_4"),
-        brown_circle_5 = document.getElementById("brown_circle_5"),
-        brown_circle_6 = document.getElementById("brown_circle_6"),
-        brown_circle_7 = document.getElementById("brown_circle_7"),
-        brown_circle_8 = document.getElementById("brown_circle_8"),
-        brown_circle_9 = document.getElementById("brown_circle_9"),
-        brown_circle_10 = document.getElementById("brown_circle_10"),
-        brown_circle_11 = document.getElementById("brown_circle_11"),
-        brown_circle_12 = document.getElementById("brown_circle_12"),
-        brown_circle_13 = document.getElementById("brown_circle_13"),
-        brown_circle_14 = document.getElementById("brown_circle_14"),
-        brown_circle_15 = document.getElementById("brown_circle_15"),
-        brown_circle_16 = document.getElementById("brown_circle_16"),      
-
-
-        menu_img = document.getElementById("menu_img"),
+function testView(){       
         
         /*
          * global varibales to be used throughout the code... only used in test_view
          * try to find some way to remove these globals and have them passed between function?
          */
-        screen_to_board_map = new Array(8),
+        var screen_to_board_map = new Array(8),
         squares_array = new Array(8),
         //left_offset,
         current_settings_panel = "none",
@@ -123,306 +17,401 @@ function testView(){
         scale_size,
         move_successful,
         screen,
-        alternate_page = "none";
-
-    // keeping this separate because i don't like it
-    var selected_piece = "none",
+        alternate_page = "none",
+        selected_piece = "none",
         selected_square; // dont know where i'll use selected square
     
     // event listeners being added to the squares
     this.square1ClickCallback = function (callback) {
+        var square_1 = document.getElementById("square_1");
         square_1.addEventListener("click", callback);
     };
     this.square2ClickCallback = function (callback) {
+        var square_2 = document.getElementById("square_2");
         square_2.addEventListener("click", callback);
     };
     this.square3ClickCallback = function (callback) {
+        var square_3 = document.getElementById("square_3");
         square_3.addEventListener("click", callback);
     };
     this.square4ClickCallback = function (callback) {
+        var square_4 = document.getElementById("square_4");
         square_4.addEventListener("click", callback);
     };
     this.square5ClickCallback = function (callback) {
+        var square_5 = document.getElementById("square_5");
         square_5.addEventListener("click", callback);
     };
     this.square6ClickCallback = function (callback) {
+        var square_6 = document.getElementById("square_6");
         square_6.addEventListener("click", callback);
     };
     this.square7ClickCallback = function (callback) {
+        var square_7 = document.getElementById("square_7");
         square_7.addEventListener("click", callback);
     };
     this.square8ClickCallback = function (callback) {
+        var square_8 = document.getElementById("square_8");
         square_8.addEventListener("click", callback);
     };
     this.square9ClickCallback = function (callback) {
+        var square_9 = document.getElementById("square_9");
         square_9.addEventListener("click", callback);
     };
     this.square10ClickCallback = function (callback) {
+        var square_10 = document.getElementById("square_10");
         square_10.addEventListener("click", callback);
     };
     this.square11ClickCallback = function (callback) {
+        var square_11 = document.getElementById("square_11");
         square_11.addEventListener("click", callback);
     };
     this.square12ClickCallback = function (callback) {
+        var square_12 = document.getElementById("square_12");
         square_12.addEventListener("click", callback);
     };
     this.square13ClickCallback = function (callback) {
+        var square_13 = document.getElementById("square_13");
         square_13.addEventListener("click", callback);
     };
     this.square14ClickCallback = function (callback) {
+        var square_14 = document.getElementById("square_14");
         square_14.addEventListener("click", callback);
     };
     this.square15ClickCallback = function (callback) {
+        var square_15 = document.getElementById("square_15");
         square_15.addEventListener("click", callback);
     };
     this.square16ClickCallback = function (callback) {
+        var square_16 = document.getElementById("square_16");
         square_16.addEventListener("click", callback);
     };
     this.square17ClickCallback = function (callback) {
+        var square_17 = document.getElementById("square_17");
         square_17.addEventListener("click", callback);
     };
     this.square18ClickCallback = function (callback) {
+        var square_18 = document.getElementById("square_18");
         square_18.addEventListener("click", callback);
     };
     this.square19ClickCallback = function (callback) {
+        var square_19 = document.getElementById("square_19");
         square_19.addEventListener("click", callback);
     };
     this.square20ClickCallback = function (callback) {
+        var square_20 = document.getElementById("square_20");
         square_20.addEventListener("click", callback);
     };
     this.square21ClickCallback = function (callback) {
+        var square_21 = document.getElementById("square_21");
         square_21.addEventListener("click", callback);
     };
     this.square22ClickCallback = function (callback) {
+        var square_22 = document.getElementById("square_22");
         square_22.addEventListener("click", callback);
     };
     this.square23ClickCallback = function (callback) {
+        var square_23 = document.getElementById("square_23");
         square_23.addEventListener("click", callback);
     };
     this.square24ClickCallback = function (callback) {
+        var square_24 = document.getElementById("square_24");
         square_24.addEventListener("click", callback);
     };
     this.square25ClickCallback = function (callback) {
+        var square_25 = document.getElementById("square_25");
         square_25.addEventListener("click", callback);
     };
     this.square26ClickCallback = function (callback) {
+        var square_26 = document.getElementById("square_26");
         square_26.addEventListener("click", callback);
     };
     this.square27ClickCallback = function (callback) {
+        var square_27 = document.getElementById("square_27");
         square_27.addEventListener("click", callback);
     };    
     this.square28ClickCallback = function (callback) {
+        var square_28 = document.getElementById("square_28");
         square_28.addEventListener("click", callback);
     };
     this.square29ClickCallback = function (callback) {
+        var square_29 = document.getElementById("square_29");
         square_29.addEventListener("click", callback);
     };
     this.square30ClickCallback = function (callback) {
+        var square_30 = document.getElementById("square_30");
         square_30.addEventListener("click", callback);
     };
     this.square31ClickCallback = function (callback) {
+        var square_31 = document.getElementById("square_31");
         square_31.addEventListener("click", callback);
     };
     this.square32ClickCallback = function (callback) {
+        var square_32 = document.getElementById("square_32");
         square_32.addEventListener("click", callback);
     };
     this.square33ClickCallback = function (callback) {
+        var square_33 = document.getElementById("square_33");
         square_33.addEventListener("click", callback);
     };
     this.square34ClickCallback = function (callback) {
+        var square_34 = document.getElementById("square_34");
         square_34.addEventListener("click", callback);
     };
     this.square35ClickCallback = function (callback) {
+        var square_35 = document.getElementById("square_35");
         square_35.addEventListener("click", callback);
     };
     this.square36ClickCallback = function (callback) {
+        var square_36 = document.getElementById("square_36");
         square_36.addEventListener("click", callback);
     };
     this.square37ClickCallback = function (callback) {
+        var square_37 = document.getElementById("square_37");
         square_37.addEventListener("click", callback);
     };
     this.square38ClickCallback = function (callback) {
+        var square_38 = document.getElementById("square_38");
         square_38.addEventListener("click", callback);
     };
     this.square39ClickCallback = function (callback) {
+        var square_39 = document.getElementById("square_39");
         square_39.addEventListener("click", callback);
     };
     this.square40ClickCallback = function (callback) {
+        var square_40 = document.getElementById("square_40");
         square_40.addEventListener("click", callback);
     };
     this.square41ClickCallback = function (callback) {
+        var square_41 = document.getElementById("square_41");
         square_41.addEventListener("click", callback);
     };
     this.square42ClickCallback = function (callback) {
+        var square_42 = document.getElementById("square_42");
         square_42.addEventListener("click", callback);
     };
     this.square43ClickCallback = function (callback) {
+        var square_43 = document.getElementById("square_43");
         square_43.addEventListener("click", callback);
     };
     this.square44ClickCallback = function (callback) {
+        var square_44 = document.getElementById("square_44");
         square_44.addEventListener("click", callback);
     };
     this.square45ClickCallback = function (callback) {
+        var square_45 = document.getElementById("square_45");
         square_45.addEventListener("click", callback);
     };
     this.square46ClickCallback = function (callback) {
+        var square_46 = document.getElementById("square_46");
         square_46.addEventListener("click", callback);
     };
     this.square47ClickCallback = function (callback) {
+        var square_47 = document.getElementById("square_47");
         square_47.addEventListener("click", callback);
     };
     this.square48ClickCallback = function (callback) {
+        var square_48 = document.getElementById("square_48");
         square_48.addEventListener("click", callback);
     };
     this.square49ClickCallback = function (callback) {
+        var square_49 = document.getElementById("square_49");
         square_49.addEventListener("click", callback);
     };
     this.square50ClickCallback = function (callback) {
+        var square_50 = document.getElementById("square_50");
         square_50.addEventListener("click", callback);
     };
     this.square51ClickCallback = function (callback) {
+        var square_51 = document.getElementById("square_51");
         square_51.addEventListener("click", callback);
     };
     this.square52ClickCallback = function (callback) {
+        var square_52 = document.getElementById("square_52");
         square_52.addEventListener("click", callback);
     };
     this.square53ClickCallback = function (callback) {
+        var square_53 = document.getElementById("square_53");
         square_53.addEventListener("click", callback);
     };
     this.square54ClickCallback = function (callback) {
+        var square_54 = document.getElementById("square_54");
         square_54.addEventListener("click", callback);
     };
     this.square55ClickCallback = function (callback) {
+        var square_55 = document.getElementById("square_55");
         square_55.addEventListener("click", callback);
     };
     this.square56ClickCallback = function (callback) {
+        var square_56 = document.getElementById("square_56");
         square_56.addEventListener("click", callback);
     };
     this.square57ClickCallback = function (callback) {
+        var square_57 = document.getElementById("square_57");
         square_57.addEventListener("click", callback);
     };
     this.square58ClickCallback = function (callback) {
+        var square_58 = document.getElementById("square_58");
         square_58.addEventListener("click", callback);
     };
     this.square59ClickCallback = function (callback) {
+        var square_59 = document.getElementById("square_59");
         square_59.addEventListener("click", callback);
     };
     this.square60ClickCallback = function (callback) {
+        var square_60 = document.getElementById("square_60");
         square_60.addEventListener("click", callback);
     };
     this.square61ClickCallback = function (callback) {
+        var square_61 = document.getElementById("square_61");
         square_61.addEventListener("click", callback);
     };
     this.square62ClickCallback = function (callback) {
+        var square_62 = document.getElementById("square_62");
         square_62.addEventListener("click", callback);
     };
     this.square63ClickCallback = function (callback) {
+        var square_63 = document.getElementById("square_63");
         square_63.addEventListener("click", callback);
     };
     this.square64ClickCallback = function (callback) {
+        var square_64 = document.getElementById("square_64");
         square_64.addEventListener("click", callback);
     };
 
     // this is the listeners for all of the white circles, for the player with white pieces
     this.setWhiteCircle1ClickCallback = function (callback) {
+        var white_circle_1 = document.getElementById("white_circle_1");
         white_circle_1.addEventListener("click", callback);
     };
     this.setWhiteCircle2ClickCallback = function (callback) {
+        var white_circle_2 = document.getElementById("white_circle_2");
         white_circle_2.addEventListener("click", callback);
     };
     this.setWhiteCircle3ClickCallback = function (callback) {
+        var white_circle_3 = document.getElementById("white_circle_3");
         white_circle_3.addEventListener("click", callback);
     };
     this.setWhiteCircle4ClickCallback = function (callback) {
+        var white_circle_4 = document.getElementById("white_circle_4");
         white_circle_4.addEventListener("click", callback);
     };
     this.setWhiteCircle5ClickCallback = function (callback) {
+        var white_circle_5 = document.getElementById("white_circle_5");
         white_circle_5.addEventListener("click", callback);
     };
     this.setWhiteCircle6ClickCallback = function (callback) {
+        var white_circle_6 = document.getElementById("white_circle_6");
         white_circle_6.addEventListener("click", callback);
     };
     this.setWhiteCircle7ClickCallback = function (callback) {
+        var white_circle_7 = document.getElementById("white_circle_7");
         white_circle_7.addEventListener("click", callback);
     };
     this.setWhiteCircle8ClickCallback = function (callback) {
+        var white_circle_8 = document.getElementById("white_circle_8");
         white_circle_8.addEventListener("click", callback);
     };
     this.setWhiteCircle9ClickCallback = function (callback) {
+        var white_circle_9 = document.getElementById("white_circle_9");
         white_circle_9.addEventListener("click", callback);
     };
     this.setWhiteCircle10ClickCallback = function (callback) {
+        var white_circle_10 = document.getElementById("white_circle_10");
         white_circle_10.addEventListener("click", callback);
     };
     this.setWhiteCircle11ClickCallback = function (callback) {
+        var white_circle_11 = document.getElementById("white_circle_11");
         white_circle_11.addEventListener("click", callback);
     };
     this.setWhiteCircle12ClickCallback = function(callback){
+        var white_circle_12 = document.getElementById("white_circle_12");
         white_circle_12.addEventListener("click", callback);
     };
     this.setWhiteCircle13ClickCallback = function (callback) {
+        var white_circle_13 = document.getElementById("white_circle_13");
         white_circle_13.addEventListener("click", callback);
     };
     this.setWhiteCircle14ClickCallback = function (callback) {
+        var white_circle_14 = document.getElementById("white_circle_14");
         white_circle_14.addEventListener("click", callback);
     };
     this.setWhiteCircle15ClickCallback = function (callback) {
+        var white_circle_15 = document.getElementById("white_circle_15");
         white_circle_15.addEventListener("click", callback);
     };
     this.setWhiteCircle16ClickCallback = function(callback){
+        var white_circle_16 = document.getElementById("white_circle_16");
         white_circle_16.addEventListener("click", callback);
     };
     
     this.setBrownCircle1ClickCallBack = function (callback){
+        var brown_circle_1 = document.getElementById("brown_circle_1");
         brown_circle_1.addEventListener("click", callback);
     };
     this.setBrownCircle2ClickCallBack = function (callback){
+        var brown_circle_2 = document.getElementById("brown_circle_2");
         brown_circle_2.addEventListener("click", callback);
     };
     this.setBrownCircle3ClickCallBack = function (callback){
+        var brown_circle_3 = document.getElementById("brown_circle_3");
         brown_circle_3.addEventListener("click", callback);
     };
     this.setBrownCircle4ClickCallBack = function (callback){
+        var brown_circle_4 = document.getElementById("brown_circle_4");
         brown_circle_4.addEventListener("click", callback);
     };
     this.setBrownCircle5ClickCallBack = function (callback){
+        var brown_circle_5 = document.getElementById("brown_circle_5");
         brown_circle_5.addEventListener("click", callback);
     };
     this.setBrownCircle6ClickCallBack = function (callback){
+        var brown_circle_6 = document.getElementById("brown_circle_6");
         brown_circle_6.addEventListener("click", callback);
     };
     this.setBrownCircle7ClickCallBack = function (callback){
+        var brown_circle_7 = document.getElementById("brown_circle_7");
         brown_circle_7.addEventListener("click", callback);
     };
     this.setBrownCircle8ClickCallBack = function (callback){
+        var brown_circle_8 = document.getElementById("brown_circle_8");
         brown_circle_8.addEventListener("click", callback);
     };
     this.setBrownCircle9ClickCallBack = function (callback){
+        var brown_circle_9 = document.getElementById("brown_circle_9");
         brown_circle_9.addEventListener("click", callback);
     };
     this.setBrownCircle10ClickCallBack = function (callback){
+        var brown_circle_10 = document.getElementById("brown_circle_10");
         brown_circle_10.addEventListener("click", callback);
     };
     this.setBrownCircle11ClickCallBack = function (callback){
+        var brown_circle_11 = document.getElementById("brown_circle_11");
         brown_circle_11.addEventListener("click", callback);
     };
     this.setBrownCircle12ClickCallBack = function (callback){
+        var brown_circle_12 = document.getElementById("brown_circle_12");
         brown_circle_12.addEventListener("click", callback);
     };
     this.setBrownCircle13ClickCallBack = function (callback){
+        var brown_circle_13 = document.getElementById("brown_circle_13");
         brown_circle_13.addEventListener("click", callback);
     };
     this.setBrownCircle14ClickCallBack = function (callback){
+        var brown_circle_14 = document.getElementById("brown_circle_14");
         brown_circle_14.addEventListener("click", callback);
     };
     this.setBrownCircle15ClickCallBack = function (callback){
+        var brown_circle_15 = document.getElementById("brown_circle_15");
         brown_circle_15.addEventListener("click", callback);
     };
     this.setBrownCircle16ClickCallback = function (callback) {
+        var brown_circle_16 = document.getElementById("brown_circle_16");
         brown_circle_16.addEventListener("click", callback);
     };
     
     this.setMenuImgClickCallback = function (callback) {
+        var menu_img = document.getElementById("menu_img");
         menu_img.addEventListener("click", callback);
     };
     
@@ -769,7 +758,7 @@ function testView(){
     // this method is just a test just now, if it works it will improve efficieny
     this.getSquareCoordinates = function(id_number){
         var coordinates = new Array();
-        var square_id = "test_square_" + id_number;
+        var square_id = "square_" + id_number;
         for(var i = 0; i < 8; i++){
             for(var j = 0; j < 8; j++){
                 if(squares_array[i][j].attributes.id.value === square_id){

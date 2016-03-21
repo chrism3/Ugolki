@@ -939,7 +939,7 @@ function testController(){
            var square_y = square[1];
 //           var piece_moved = new Audio('Sounds/piece_moved.wav');
 //           piece_moved.play();
-           //console.log("in handle move pieces: " + square_x + "   " + square_y);
+           console.log("in handle move pieces: " + square_x + "   " + square_y);
            if(test_model.movePiece(square_x, square_y)){           
                 test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
             }
