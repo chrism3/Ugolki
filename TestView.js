@@ -1072,6 +1072,7 @@ function testView(){
         }
         else{
             win_percent = (player_stats[2]/player_stats[1]) * 100;
+            
         }
         
         name.value = player_stats[0];
@@ -1079,7 +1080,7 @@ function testView(){
         wins.value = player_stats[2];
         draws.value = player_stats[3];
         losses.value = player_stats[4];       
-        percent.value = win_percent + "%";
+        percent.value = win_percent.toFixed(3) + "%";
     };
 
     this.displaySignUpPage = function(){

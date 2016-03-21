@@ -811,7 +811,7 @@ function testModel() {
             // set the global variable
             this.setWinner("player 1");
             // set the local variable
-            winner = "player 1";
+            winner = "player 1";            
         }
         
         // if bottom left is greater than top right, player 2 wins
@@ -828,7 +828,8 @@ function testModel() {
             //console.log("the game is a draw");
             winner = "draw";
         }        
-        
+        var user_details = [this.getLoggedInPlayer(), "null", winner, this.getHumanPlayer()];
+        this.validation(user_details, "stats");
         return winner;
     };
     

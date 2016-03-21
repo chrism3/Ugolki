@@ -1001,10 +1001,6 @@ function testController(){
                }
                
                test_view.reportErrorToUser(is_game_over + " is the winner", "game");
-               // this is where we will need to call the code that will update the database with the results. 
-               if(test_model.getSignedIn()){
-                   // this means that there is a player signed in. 
-               }
            }
            else{
                 if(test_model.getPlayerTwoType() === "AI"){
@@ -1045,7 +1041,7 @@ function testController(){
                             else{
                                 winner = test_view.getPlayerTwo();
                             }
-                            var details = [player_name, winner];
+                            var details = [player_name, winner, test_model.getWinner(), test_model.getHumanPlayer()];
 
                             test_model.validation(details, "stats");
                       }
@@ -1062,14 +1058,14 @@ function testController(){
                     game_winner = "player 1 wins";
                 }
                 else if(winner === "player 2"){
-                    game_winner === "player 2 wins";
+                    game_winner = "player 2 wins";
                 }
                 else if(winner === "draw"){
                     console.log("no winner");
-                    game_winner === "players draw";
+                    game_winner = "players draw";
                 }
                 console.log("Stalemate occured: " + game_winner);
-                var message_to_user = "Stalemate Occured: " + game_winner;
+                var message_to_user = "No moves remaining: " + game_winner;
                 test_view.reportErrorToUser(message_to_user, "stalemate");
                 test_view.endGame();
             }

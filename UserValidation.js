@@ -160,7 +160,7 @@ function detailsValidation(){
             // call the method to handle the php call for a win
             this.addWin(user_details[0]);
         }
-        else if(user_details[2] === "no winner"){
+        else if(user_details[2] === "draw"){
             this.addDraw(user_details[0]);
         }
         else{
