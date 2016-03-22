@@ -826,6 +826,7 @@ function testModel() {
         // if they are the same, the players draw
         if(p1_pieces_in_goal === p2_pieces_in_goal){
             //console.log("the game is a draw");
+            this.setWinner("draw");
             winner = "draw";
         }        
         var user_details = [this.getLoggedInPlayer(), "null", winner, this.getHumanPlayer()];

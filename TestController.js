@@ -451,7 +451,10 @@ function testController(){
             //console.log("menu option clicked");
             //test_view.toggleSettingsPanel();
             //test_view.toggleGeneralSettings();
-            if(test_model.hasPlayerWon() !== "no winner"){
+            console.log(test_model.hasPlayerWon());
+            console.log(test_model.getWinner());
+            if(test_model.hasPlayerWon() !== "no winner" ||
+                    test_model.getWinner() !== "no winner"){
                 test_view.alterEndGame();
             }
             test_view.setScreenToDisplay("general");
@@ -507,8 +510,10 @@ function testController(){
             test_model.resetAIPlayersGoalLocation();
             test_view.resetMovesLeft();
             // make sure the model does not still store who won the last game
-            test_model.setWinner("no winner");
-            if(test_model.hasPlayerWon() !== "no winner"){
+            //test_model.setWinner("no winner");
+            if(test_model.hasPlayerWon() !== "no winner" ||
+                    test_model.getWinner() !== "no winner"){
+                test_model.setWinner("no winner");
                 test_view.newGame();
             }
             test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
@@ -1050,7 +1055,7 @@ function testController(){
             }
             
             var turn_count = test_model.getTurnCount();
-            if(turn_count > 78){                
+            if(turn_count > 1){                
                 var winner = test_model.findWinnerAfterStalemate();
                 console.log(winner);
                 var game_winner;

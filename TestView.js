@@ -414,10 +414,6 @@ function testView(){
         var menu_img = document.getElementById("menu_img");
         menu_img.addEventListener("click", callback);
     };
-    
-//    this.setPlayerImgClickCallback = function (callback) {
-//        var player_img = document.getElementById("players_img");
-//    };
     this.setPlayerImgClickCallback = function (callback){
         var player_img = document.getElementById("players_img");
         player_img.addEventListener("click", callback);
@@ -433,9 +429,7 @@ function testView(){
     this.setHelpImgClickCallback = function (callback){
         var help_img = document.getElementById("help_img");
         help_img.addEventListener("click", callback);
-    };
-    
-    // need to put Ugolki Variations listener here
+    };    
     this.setViewStatsClickCallback = function(callback){
         var ugolki_stats = document.getElementById("statistics_button");
         ugolki_stats.addEventListener("click", callback);
@@ -445,22 +439,6 @@ function testView(){
         var new_game = document.getElementById("new_game");
         new_game.addEventListener("click", callback);
     };
-    
-    // need to put View Statistics listener here
-    
-//    
-//    Check these and change the variable names and the ID's so that they
-//    work for the new code. 
-//    
-//    this.setHumanPlayerClickCallback = function (callback) {
-//        var player_1_settings = document.getElementById("player_1_settings");
-//        player_1_settings.addEventListener("click", callback);
-//    };
-//    this.setAIPlayerClickCallback = function (callback) {
-//        var player_2_settings = document.getElementById("player_2_settings");
-//        player_2_settings.addEventListener("click", callback);
-//    };
-
     this.setAISettingsClickCallback = function (callback) {
         var ai_settings = document.getElementById("AI_settings_button");
         ai_settings.addEventListener("click", callback);
@@ -482,11 +460,6 @@ function testView(){
         var sign_up = document.getElementById("sign_up");
         sign_up.addEventListener("click", callback);
     };
-    
-//    this.setMoveOptionsClickCallback = function (callback){
-//        var move_options = document.getElementById("multi_jump_options");
-//        move_options.addEventListener("click", callback);
-//    };
     this.setGameTypesClickCallback = function (callback){
         var game_options = document.getElementById("variations_button");
         game_options.addEventListener("click", callback);
@@ -530,6 +503,7 @@ function testView(){
         var sign_up_button = document.getElementById("sign_up_button");
         sign_up_button.addEventListener("click", callback);
     };
+    // listener for the log in page on the sign up page
     this.setLoginButtonClickCallback = function (callback){
         var login_button = document.getElementById("login_button");
         login_button.addEventListener("click", callback);

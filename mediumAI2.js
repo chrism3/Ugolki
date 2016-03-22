@@ -50,8 +50,9 @@ function mediumAI2(){
         var best_index = 0;        
         var piece_to_move;
         
-        var move_generator = new Array("random", "good move", "good move", "random", "random",
-                                        "good move", "good move", "random", "good move", "good move");
+        var move_generator = new Array("random", "good move", "good move", "random", 
+                                        "random", "good move", "good move", "random", 
+                                        "good move", "good move");
         var random = parseInt(Math.random()*move_generator.length);
         var move_type = move_generator[random];
         
