@@ -2,7 +2,7 @@
 
 "use strict";
 
-function testView(){       
+function View(){       
         
         /*
          * global varibales to be used throughout the code... only used in test_view

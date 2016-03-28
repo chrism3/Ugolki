@@ -2,7 +2,7 @@
 
 "use strict";
 
-function testModel() {
+function Model() {
     // need to create all of the pieces for the game
     var p = new gamePieces();
     p.newGamePiece("player_one", "white", 1, 0, 0);
