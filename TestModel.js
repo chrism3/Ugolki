@@ -704,7 +704,7 @@ function testModel() {
     };
     
     this.AIGame = function(model){
-        console.log(model);
+        //console.log(model);
         var AI_1 = new generalAI();
         var AI_2 = new generalAI();
         AI_1.setAIColour("white");

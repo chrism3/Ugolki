@@ -451,8 +451,8 @@ function testController(){
             //console.log("menu option clicked");
             //test_view.toggleSettingsPanel();
             //test_view.toggleGeneralSettings();
-            console.log(test_model.hasPlayerWon());
-            console.log(test_model.getWinner());
+            //console.log(test_model.hasPlayerWon());
+            //console.log(test_model.getWinner());
             if(test_model.hasPlayerWon() !== "no winner" ||
                     test_model.getWinner() !== "no winner"){
                 test_view.alterEndGame();
@@ -470,12 +470,6 @@ function testController(){
            //console.log("colours img was clicked"); 
            //test_view.toogleColourSettings();
             test_view.setScreenToDisplay("colour");
-            test_view.toggleSettings(test_view.getScreenToDisplay());
-        });
-        test_view.setSoundImgClickCallback( function(){
-            //console.log("sounds img was clicked");
-            //test_view.toogleSoundSettings();
-            test_view.setScreenToDisplay("sound");
             test_view.toggleSettings(test_view.getScreenToDisplay());
         });
         test_view.setHelpImgClickCallback( function(){
@@ -645,7 +639,7 @@ function testController(){
             test_view.closeSettings();
         });
         test_view.setAIAIClickCallback(function(){
-            console.log("clicked ai ai button");
+            console.log("simple AI vs. hard AI");
             var winners = new Array();
             test_view.closeSettings();
             var player_1_wins = new Array();
@@ -659,9 +653,9 @@ function testController(){
             var count = 0;
             var average_count = 0;
             while(average_count < 4){
-                console.log("the average count: " + average_count);
+                console.log("Test Count: " + average_count);
                 while (count < 500){
-                    console.log("the count: " + count);
+                    console.log("Game Count: " + count);
                     var winner = test_model.AIGame(test_model);
 
                     winners.push(winner);
@@ -700,33 +694,27 @@ function testController(){
              //console.log("All player 1 wins results: ");
              var average_p1_wins = 0;
              for(var i = 0; i < all_player_1_wins.length; i++){
-                 console.log(all_player_1_wins[i]);
+                 console.log("player 1 wins in block " + i + ": " + all_player_1_wins[i]);
                  average_p1_wins += all_player_1_wins[i];
              }
-             console.log("average: " + average_p1_wins/4);
+             console.log("average wins for player 1: " + average_p1_wins/4);
              
              console.log("");
              var average_p2_wins = 0;
              for(var i = 0; i < all_player_2_wins.length; i++){
-                 console.log(all_player_2_wins[i]);
+                 console.log("player 2 wins in block " + i + ": " + all_player_2_wins[i]);
                  average_p2_wins += all_player_2_wins[i];
              }
-             console.log("average: " + average_p2_wins/4);
+             console.log("average wins for player 2: " + average_p2_wins/4);
              
              console.log("");
              var draws_average = 0;
              for(var i = 0; i < all_draws.length; i++){
-                 console.log(all_draws[i]);
+                 console.log("draws in block " + i + ": " + all_draws[i]);
                  draws_average += all_draws[i];
              }
-             console.log("average: " + draws_average/4);
+             console.log("average number of draws: " + draws_average/4);
              
-//             for(var i = 0; i < winners.length; i++){
-//                 console.log("Game " + (winners.length - i) + " winner: " + winners[i]);
-//             }
-//             console.log("player 1 won " + player_1_wins.length + " time(s)");
-//             console.log("player 2 won " + player_2_wins.length + " time(s)");
-//             console.log("there were " + draws.length + " draws");
         });
         test_view.setAIHumanClickCallback(function(){
             test_view.setInfoBoxThree("AI v Human");
@@ -917,6 +905,7 @@ function testController(){
                         }
                     }
                 }
+                console.log("selected piece coords: " + x_coord + "," + y_coord);
                 moves = test_model.findMoves2(x_coord, y_coord);
                 if(test_model.wasFindMovesSuccessful()){
                     //console.log(moves.length);
@@ -944,7 +933,7 @@ function testController(){
            var square_y = square[1];
 //           var piece_moved = new Audio('Sounds/piece_moved.wav');
 //           piece_moved.play();
-           console.log("in handle move pieces: " + square_x + "   " + square_y);
+           console.log("new x and y coords: " + square_x + "," + square_y);
            if(test_model.movePiece(square_x, square_y)){           
                 test_view.movePiece2(test_model.getNewX(), test_model.getNewY());
             }
@@ -1055,7 +1044,7 @@ function testController(){
             }
             
             var turn_count = test_model.getTurnCount();
-            if(turn_count > 1){                
+            if(turn_count > 78){                
                 var winner = test_model.findWinnerAfterStalemate();
                 console.log(winner);
                 var game_winner;

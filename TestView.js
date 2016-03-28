@@ -422,10 +422,6 @@ function testView(){
         var colours_img = document.getElementById("change_colour_img");
         colours_img.addEventListener("click", callback);
     };
-    this.setSoundImgClickCallback = function (callback){
-        var sounds_img = document.getElementById("sound_img");
-        sounds_img.addEventListener("click", callback);
-    };
     this.setHelpImgClickCallback = function (callback){
         var help_img = document.getElementById("help_img");
         help_img.addEventListener("click", callback);

@@ -16,7 +16,7 @@ function generalAI(){
     var AI_colour = "black";
 
     this.findAllMoves = function (pieces_to_move, board, game_type){
-        console.log("game type: " + game_type);
+        //console.log("game type: " + game_type);
         board_representation = board;
         var possible_moves = new Array();
         var AI_moves = new findMoves();
@@ -75,7 +75,7 @@ function generalAI(){
             }
         }
         //possible_moves = AI_moves.getPossibleMoves();
-        console.log("number of moves possible " + possible_moves.length);
+        //console.log("number of moves possible " + possible_moves.length);
         return possible_moves;
         //this.evalAllMoves(possible_moves);
     };
