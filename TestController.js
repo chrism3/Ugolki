@@ -482,14 +482,17 @@ function testController(){
         });
         test_view.setStandardGameClickCallback( function(){
             test_model.setGameType("standard");
+            test_view.setGameType("standard game");
             test_view.closeSettings();
         });
         test_view.setNoMutliJumpGameClickCallback( function(){
             test_model.setGameType("no multi jump");
+            test_view.setGameType("no mutli jump");
             test_view.closeSettings();
         });
         test_view.setTowardGoalGameClickCallback( function(){
             test_model.setGameType("toward goal");
+            test_view.setGameType("toward goal");
             test_view.closeSettings();
         });
         
@@ -638,84 +641,94 @@ function testController(){
             test_view.setPlayerTwo("Human");
             test_view.closeSettings();
         });
-        test_view.setAIAIClickCallback(function(){
-            console.log("simple AI vs. hard AI");
-            var winners = new Array();
-            test_view.closeSettings();
-            var player_1_wins = new Array();
-            var player_2_wins = new Array();
-            var draws = new Array();
-            
-            var all_player_1_wins = new Array();
-            var all_player_2_wins = new Array();
-            var all_draws = new Array();
-            
-            var count = 0;
-            var average_count = 0;
-            while(average_count < 4){
-                console.log("Test Count: " + average_count);
-                while (count < 500){
-                    console.log("Game Count: " + count);
-                    var winner = test_model.AIGame(test_model);
-
-                    winners.push(winner);
-                    if(winner === "player 1"){
-                        player_1_wins.push(winner);
-                    }
-                    else if(winner === "player 2"){
-                        player_2_wins.push(winner);
-                    }
-                    else if(winner === "draw"){
-                        draws.push(winner);
-                    }
-
-                    // reset the game
-                    test_view.closeSettings();
-                    test_model.resetTurnCount();
-                    test_model.clearPiecesInGoalList();
-                    if(test_model.hasPlayerWon() !== "no winner"){
-                        test_view.newGame();
-                    }
-                    test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
-                    test_model.setTestBoard(test_view.getScreenToBoardMap());
-                    count++;
-                 }
-                 all_player_1_wins.push(player_1_wins.length);
-                 all_player_2_wins.push(player_2_wins.length);
-                 all_draws.push(draws.length);
-                 average_count++;
-                 count = 0;
-                 player_1_wins = [];
-                 player_2_wins = [];
-                 draws = [];
-             }
-             
-             console.log("");
-             //console.log("All player 1 wins results: ");
-             var average_p1_wins = 0;
-             for(var i = 0; i < all_player_1_wins.length; i++){
-                 console.log("player 1 wins in block " + i + ": " + all_player_1_wins[i]);
-                 average_p1_wins += all_player_1_wins[i];
-             }
-             console.log("average wins for player 1: " + average_p1_wins/4);
-             
-             console.log("");
-             var average_p2_wins = 0;
-             for(var i = 0; i < all_player_2_wins.length; i++){
-                 console.log("player 2 wins in block " + i + ": " + all_player_2_wins[i]);
-                 average_p2_wins += all_player_2_wins[i];
-             }
-             console.log("average wins for player 2: " + average_p2_wins/4);
-             
-             console.log("");
-             var draws_average = 0;
-             for(var i = 0; i < all_draws.length; i++){
-                 console.log("draws in block " + i + ": " + all_draws[i]);
-                 draws_average += all_draws[i];
-             }
-             console.log("average number of draws: " + draws_average/4);
-             
-        });
+        
+/*
+ * The function commented below is the method in the controller which handles to
+ * AI v AI games. It is repsonsible for calling the method in the model. To re-introduce
+ * the AI v AI functionality in the code, uncomment this as well as the AIGame function 
+ * in the model.
+ */        
+        
+//        test_view.setAIAIClickCallback(function(){
+//            console.log("simple AI vs. hard AI");
+//            var winners = new Array();
+//            test_view.closeSettings();
+//            var player_1_wins = new Array();
+//            var player_2_wins = new Array();
+//            var draws = new Array();
+//            
+//            var all_player_1_wins = new Array();
+//            var all_player_2_wins = new Array();
+//            var all_draws = new Array();
+//            
+//            var count = 0;
+//            var average_count = 0;
+//            while(average_count < 4){
+//                console.log("Test Count: " + average_count);
+//                while (count < 500){
+//                    console.log("Game Count: " + count);
+//                    var winner = test_model.AIGame(test_model);
+//
+//                    winners.push(winner);
+//                    if(winner === "player 1"){
+//                        player_1_wins.push(winner);
+//                    }
+//                    else if(winner === "player 2"){
+//                        player_2_wins.push(winner);
+//                    }
+//                    else if(winner === "draw"){
+//                        draws.push(winner);
+//                    }
+//
+//                    // reset the game
+//                    test_view.closeSettings();
+//                    test_model.resetTurnCount();
+//                    test_model.clearPiecesInGoalList();
+//                    if(test_model.hasPlayerWon() !== "no winner"){
+//                        test_view.newGame();
+//                    }
+//                    test_view.scaleBoardToScreen(test_model.getScreenHeight(), test_model.getScreenWidth(), 0);
+//                    test_model.setTestBoard(test_view.getScreenToBoardMap());
+//                    count++;
+//                 }
+//                 all_player_1_wins.push(player_1_wins.length);
+//                 all_player_2_wins.push(player_2_wins.length);
+//                 all_draws.push(draws.length);
+//                 average_count++;
+//                 count = 0;
+//                 player_1_wins = [];
+//                 player_2_wins = [];
+//                 draws = [];
+//             }
+//             
+//             console.log("");
+//             //console.log("All player 1 wins results: ");
+//             var average_p1_wins = 0;
+//             for(var i = 0; i < all_player_1_wins.length; i++){
+//                 console.log("player 1 wins in block " + i + ": " + all_player_1_wins[i]);
+//                 average_p1_wins += all_player_1_wins[i];
+//             }
+//             console.log("average wins for player 1: " + average_p1_wins/4);
+//             
+//             console.log("");
+//             var average_p2_wins = 0;
+//             for(var i = 0; i < all_player_2_wins.length; i++){
+//                 console.log("player 2 wins in block " + i + ": " + all_player_2_wins[i]);
+//                 average_p2_wins += all_player_2_wins[i];
+//             }
+//             console.log("average wins for player 2: " + average_p2_wins/4);
+//             
+//             console.log("");
+//             var draws_average = 0;
+//             for(var i = 0; i < all_draws.length; i++){
+//                 console.log("draws in block " + i + ": " + all_draws[i]);
+//                 draws_average += all_draws[i];
+//             }
+//             console.log("average number of draws: " + draws_average/4);
+//             
+//        });
+        
+        
         test_view.setAIHumanClickCallback(function(){
             test_view.setInfoBoxThree("AI v Human");
             test_model.alterAISettings("AI v human");

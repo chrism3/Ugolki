@@ -489,10 +489,24 @@ function testView(){
         var human_v_human = document.getElementById("human_v_human");
         human_v_human.addEventListener("click", callback);
     };
+    
+    
+    
+    /* this was the button used to make the AI players play against one another.
+     * 
+     * uncommet the below function to reintroduce the functionality.
+     * Will also need to uncomment:
+     *      - the button in the html
+     *      - the test_view.setAIAIClickCallabck(...) in the controller
+     *      - the function AIGame in the model. 
+     
     this.setAIAIClickCallback = function(callback){
         var ai_v_ai = document.getElementById("AI_v_AI");
         ai_v_ai.addEventListener("click", callback);
     };
+    */
+   
+   
     
     // this is the callback for the actual sign up button in the sign in page
     this.setSignUpButtonClickCallback = function (callback){
@@ -1196,6 +1210,11 @@ function testView(){
     };
     this.resetMovesLeft = function(){
         document.getElementById("moves_left").value = 80;
+    };
+    
+    this.setGameType = function(type){
+        var game_type = document.getElementById("game_type");
+        game_type.value = type;
     };
 }
 

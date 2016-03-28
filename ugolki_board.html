@@ -2,6 +2,7 @@
     
     <head>
         <title> Ugolki App </title>
+        <!-- the below lines of code, make the app able to be added to the homescreen-->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -14,6 +15,8 @@
     </head>
 
     <body>
+        <!-- this is the code for the top of the app, where the moves remaining
+        and game type is displayed to the user -->
     <main id ="main">    	
 
         <div id ="top">
@@ -21,15 +24,22 @@
              
              
              <div id ="move_count">
-                 Moves Left
+                 &nbsp Moves Left:
                  <textarea id ="moves_left" readonly>80</textarea>
              </div>
-<!--            don't think this text area will be needed now.
-            <textarea id ="player_name" readonly></textarea>-->
-        </div>
-        
+             <div id ="game_types">
+                 Game Type:
+                 <textarea class = "player_info_textarea" id ="game_type" readonly
+                           style = "padding-left: 0; height: 50%; font-size: 1rem; text-align: left;"
+                           > Standard Game </textarea>
+             </div>
+       </div>
+
          <div id ="test_board">
              
+             <!-- this div is responsible for display information to the user such as the current logged in
+             player, the AI difficulty and the player values (human v AI or human v human or AI v human). 
+             The variables here are poorly named because this was not their origional function -->
              <div id ="game_info">
                  <div id = "player_1_info_div">
                      <textarea class = "player_info_textarea" id="player_1_text_area" readonly> Player: </textarea>
@@ -40,17 +50,18 @@
                      <textarea class = "player_info_textarea" id="player_2_type" readonly> Easy </textarea>
                  </div> 
                  <div id = "player_3_info_div">
-                     <textarea class = "player_info_textarea" id="player_3_text_area" readonly> Game Type: </textarea>
+                     <textarea class = "player_info_textarea" id="player_3_text_area" readonly> Player Types: </textarea>
                      <textarea class = "player_info_textarea" id="player_3_type" readonly> Human v AI </textarea>
                  </div>
              </div>
             
             <!--
             This is where the elements of the board are drawn. Everything element has been given a height and width,
-            x and y, radius... of 0. This is because the actual sizes and coordinates are set in the view, when the board
+            x and y and radius of 0. This is because the actual sizes and coordinates are set in the view, when the board
             is scaled to size. 
             -->
             <svg id ="draw_board">
+            <!-- every value of <rect.../> is responsible for drawing one of the squares on the board -->
                 <!--row 1 -->
                 <rect class = "brown_square" id ="square_1" height = "0" width = "0" x = "0" y = "0"/>
                 <rect class = "white_square" id ='square_2' height = "0" width = "0" x = "0" y = "0"/>                
@@ -158,10 +169,12 @@
                 <circle class ="brown_circles" id ="brown_circle_13" r = "0" cx ="0" cy="0"/>
                 <circle class ="brown_circles" id ="brown_circle_14" r="0" cx="0" cy="0"/>
                 <circle class ="brown_circles" id="brown_circle_15" r="0" cx="0" cy="0"/>
-                <circle class ="brown_circles" id ="brown_circle_16" r="0" cx="0" cy="0"/>
+                <circle class ="brown_circles" id ="brown_circle_16" r="0" cx="0" cy="0"/>               
                                                
             </svg>
             
+            <!-- the following section of code has a lot of divs and buttons. This is where the different settings
+            menus have been created -->
             <div class ="settings_panel" id = "general_settings">
                     <button class = "settings_buttons" id ="variations_button"> Game Types</button>
                     <button class = "settings_buttons" id ="statistics_button"> View Statistics</button>
@@ -169,11 +182,15 @@
                     <button class = "settings_buttons" id ="new_game"> New Game </button> 
                </div>
                
-               <!-- this is where the user can pick if player 2 is AI or human player-->
+               <!-- this is where the user can pick if player 2 is AI or human player, or to change to the
+               AI difficulty menu-->
                <div class = "settings_panel" id ="player_settings">
                    <button class = "settings_buttons" id ="Human_v_AI"> Human v AI </button>
                    <button class = "settings_buttons" id ="AI_v_Human"> AI v Human </button>
-                   <button class = "settings_buttons" id ="AI_v_AI"> AI v AI </button>
+                   
+<!--               Uncomment this button to make the AI players able to play each other
+                   <button class = "settings_buttons" id ="AI_v_AI"> AI v AI </button>-->
+                   
                    <button class = "settings_buttons" id ="human_v_human"> Human v Human </button>
                    <button class = "settings_buttons" id ="AI_settings_button"> AI settings </button>
                </div>
@@ -185,14 +202,6 @@
                    <button class = "settings_buttons" id ="toward_goal"> Toward Goal Only </button>
                </div>
                
-               <div class ="settings_panel" id ="alter_player_1">
-                   <button class = "settings_buttons" id ="player_1_human"> Player 1 Human </button>
-                   <button class = "settings_buttons" id ="player_1_AI"> Player 1 AI </button>                   
-               </div>
-               <div class ="settings_panel" id="alter_player_2">
-                   <button class = "settings_buttons" id ="player_2_human"> Player 2 Human </button>
-                   <button class = "settings_buttons" id ="player_2_AI"> Player 2 AI </button>
-               </div>
                
                <!-- this is where the user can alter the colour of the board and pieces-->
                <div class ="settings_panel" id ="colour_settings">
@@ -200,7 +209,6 @@
                    <button class ="settings_buttons" id="red_and_black"> Red and Black </button>
                    <button class ="settings_buttons" id="yellow_and_purple"> Yellow and Purple</button>                   
                    <button class ="settings_buttons" id="white_and_blue"> White and Blue </button>
-                   <!-- may end up making two buttons, one for player 1 colour and another for player 2 colour -->
                </div>
                
                
@@ -211,24 +219,24 @@
                    <button class = "settings_buttons" id ="difficult_AI"> Hard </button>
                </div> 
                
-               <!-- this is where the user can choose whether or not multi-jump is on -->
-               <!--<div class = "settings_panel" id ="move_options_panel">
-                   <button class = "settings_buttons" id ="multi_on"> "Multiple Jump On </button>
-                   <button class = "settings_buttons" id ="multi_off"> Multiple Jump Off </button>
-               </div>-->
-               
                <!-- options panel to choose high scores or personal stats -->
                <div  class ="settings_panel" id ="statistics_options">
-                   <button class = "settings_buttons" id ="personal_stats_button"> Personal Stats </button>                   
+                   <button class = "settings_buttons" id ="personal_stats_button"> Personal Stats </button>   
+                   
+                   <!-- this is where the high scores option would have been added, if the functionality
+                   had been completed.-->
                </div>
                
+            <!-- the toolbar at the bottom of the page is created with the following div -->
             <div class ="footer">
                 <img class = "footer_images" id="menu_img" src="images/menu.png" alt="menu image"/> 
                 <img class = "footer_images" id="players_img" src="images/2player.png" alt ="two player"/>
                 <img class = "footer_images" id ="change_colour_img" src="images/paint_pallete.png" alt ="change colour"/>
                 <img class = "footer_images" id="help_img" src="images/help.png" alt="help icon"/>                
             </div>
-               
+              
+            
+            <!-- this is the info bar that reports errors to the user -->
             <div id ="info_div">
                 <textarea id ="inform_user" readonly></textarea>
             </div>
@@ -244,16 +252,18 @@
             <input type ="hidden" id="hidden_li_details">
             
             <div id = "login_div">
+                
+            <!-- this is the sign up half of the screen, with the three text entry areas for the user -->
             <div id ="ugolki_sign_up">
                 <textarea class = "sign_up_text_area" id = "sign_up_username" placeholder="Enter Username"></textarea>
-<!--                <textarea class = "sign_up_text_area" id = "sign_up_password" placeholder="Enter Password"></textarea>-->
-<!--                <textarea class = "sign_up_text_area" id = "confirm_password" placeholder="Confirm Password"></textarea>-->
                 <input type ="password" class ="sign_up_text_area" id = "sign_up_password"
                        placeholder ="Enter Password"/>
                 <input type ="password" class ="sign_up_text_area" id = "confirm_password"
                        placeholder ="Confirm Password"/>
                 <button class = "sign_up_button" id ="sign_up_button"> Sign Up </button>
             </div>
+            
+            <!-- this is the login half of the screen where the user can enter their details to access their account -->
             <div id ="ugolki_login">
                 <textarea class = "sign_up_text_area" id = "login_username" placeholder="Enter Username"></textarea>
 <!--                <textarea class = "sign_up_text_area" id = "login_password" placeholder="Enter Password"></textarea>-->
@@ -262,12 +272,17 @@
                 <button class = "sign_up_button" id="login_button"> Login </button>
             </div>
             </div>
+            
+            <!-- here there is another text area, this one is used to report errors to the user that
+            occur either during the login or sign up aspect of the code. -->
             <div id ="error_div">
             <div id ="login_error">
                 <textarea id ="login_error_textarea" readonly></textarea>
             </div>
             </div>
             
+            
+            <!-- this is the back button from the sign up page to the game board -->
             <div class ="footer">
                  <img class = "footer_images" id="sign_up_back_button" src="images/back_arrow.png" alt="arrow image"/> 
              </div>
@@ -276,6 +291,7 @@
             
         </div>
          
+         <!-- this page is made up of textareas to display information to the user regarding their statistics -->         
          <div id ="personal_stats_page">
              <!-- this is where the stats will actually be placed on the screen -->
              <div id ="stats_div">
@@ -298,11 +314,16 @@
                  <textarea class ="results" id="percent_value" readonly></textarea>
             </div>
              
+             <!-- this is the back button from the stats page to the game board -->
              <div class ="footer">
                  <img class = "footer_images" id="stats_back_button" src="images/back_arrow.png" alt="arrow image"/> 
              </div>
          </div>
          
+         <!-- this following section of code is the help screen for the application. It would have
+         been good to have included more aspects of this help screen, rather than just displaying how 
+         game is played. For example, this section could have explained the rules of the different
+         game types as well as including instructions for how to use the app.-->
          <div id ="help_div">
              <div id ="help_title">
                  The Rules of the Game                 
@@ -311,7 +332,8 @@
              <div id="help_body">
                  The game starts with the two sets of pieces placed in opposing 
                  corners. The aim for both players is to move their pieces into
-                 the opponents corner, using the rules below. 
+                 the opponents corner, using the rules below. The players must aim to
+                 win within 80 moves, or stalemate occurs.
              </div>
              
              <div class ="piece_movement">
@@ -339,45 +361,22 @@
                  <img class = "footer_images" id="help_back_button" src="images/back_arrow.png" alt="arrow image"/> 
              </div>
          </div>
-            
-<!--            <div id ="info_div">
-                <textarea id ="inform_user" readonly></textarea>
-            </div>  -->
-            
-<!--            <div id ="footer">
-                <img class = "footer_images" id="menu_img" src="images/menu.png" alt="menu image"/> 
-                <img class = "footer_images" id="players_img" src="images/2player.png" alt ="two player"/>
-                <img class = "footer_images" id ="change_colour_img" src="images/paint_pallete.png" alt ="change colour"/>
-                <img class = "footer_images" id="sound_img" src="images/speaker.png" alt="settings_img"/>                
-                <img class = "footer_images" id="help_img" src="images/help.png" alt="help icon"/>                
-            </div>           -->
-        
-<!--        <div id ="game_board">
-             may need some implementation here 
-            <svg id ="draw_board">
-            </svg>
-        </div>-->
 
         <!-- this div is just going to be a transparent screen, that stops the users from moving 
               any pieces once the game is over -->
         <div id = "game_over">
-            <!-- the only thing this will need is a new game button -->
+            
         </div>
 
         
     </main>
-        
+        <!-- below are the links to all of the javascript files needed -->
         <script type="text/javascript" src ="GamePieces.js"></script>
         <script type="text/javascript" src ="PossibleMove.js"></script>
-        
-        <!-- will need to delete this later -->
         <script type="text/javascript" src ="UserValidation.js"></script>
-        <!--<script type="text/javascript" src ="simpleAI.js"></script>-->
         <script type="text/javascript" src ="simpleAI2.js"></script>
-        <!--<script type="text/javascript" src="mediumAI.js"></script>-->
         <script type="text/javascript" src="mediumAI2.js"></script>
         <script type="text/javascript" src="mediumAI3.js"></script>
-        <!--<script type="text/javascript" src="hardAI-copy.js"></script>-->
         <script type="text/javascript" src="AIInterface.js"></script>
         <script type="text/javascript" src ="Moves.js"></script>
         <script type="text/javascript" src ="TestModel.js"></script>

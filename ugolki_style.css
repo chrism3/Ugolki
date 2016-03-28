@@ -61,6 +61,11 @@ button{
     //padding-right: 2.5%;
     font-size: 0.8rem;
 }
+#game_types{
+    width: 30%;
+    float: right;
+    font-size: 0.8rem;
+}
 
 #moves_left{
     background: transparent;

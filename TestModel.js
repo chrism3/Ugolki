@@ -702,7 +702,14 @@ function testModel() {
         }
         return pieces;
     };
-    
+    /*
+     * The below function is responsible for making the AI players play against each other
+     * and for reporting the information back to the controller. 
+     * 
+     * To reintrocude the feature of AI v AI games, the below code must be uncommented.  
+     * 
+     */
+    /*
     this.AIGame = function(model){
         //console.log(model);
         var AI_1 = new generalAI();
@@ -738,25 +745,6 @@ function testModel() {
             if(count > 79){
                 break;
             }
-                
-//                console.log("what is happening");
-//                
-//                for(var i = 0; i < 8; i++){
-//                    for(var j = 0; j < 8; j++){
-//                        if(test_board[j][i] !== 0){
-//                            console.log("at location " + j + "," + i +" is piece: " +
-//                                    test_board[j][i].getPieceId());
-//                        }
-//                        else{
-//                            console.log("at location " + j + "," + i +" there is no piece");
-//                        }
-//                    }
-//                }
-//                this.findWinnerAfterStalemate();
-//                break;
-//            }
-//            console.log("making move: " + current_AI_player.getChoosenMove().getPieceToMove().getPieceId());
-            
             this.updateModelWithAIMove();           
             this.resetForNextMove();
         }
@@ -765,6 +753,7 @@ function testModel() {
         var winner = this.findWinnerAfterStalemate();
         return winner;
     };
+    */
     
     this.resetTurnCount = function(){
         turn_count = 0;
