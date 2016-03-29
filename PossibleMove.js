@@ -3,8 +3,12 @@
 "use strict";
 
 /*
- * not entirely sure if this will be needed, but will include for now.
- * Final implementation may come up with better way of doing this most likely
+ * This is a data structure created for the possible moves that are found. It stores the x and
+ * y coords for the move (where the piece will be move to) as well as the actual piece that is to
+ * be moved. 
+ * 
+ * It contains get methods so all of the values can be collected during the running of the program, 
+ * and all information is set during the newMove() function which works as a constructor. 
  */
 
 function possibleMove(){

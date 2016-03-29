@@ -3,8 +3,20 @@
 "use strict";
 
 /*
- * Not sure entirely what variables will be needed at this time, will
- * need to exand on this depending on what else I decided is important.
+ * This is a data structure created to hold the values for every one of the game pieces. This
+ * is what is stored at the locations in the board array, when there is actually a piece in the
+ * given location. 
+ * 
+ * This stores:
+ *      - the player (player 1 or 2)
+ *      - the colour of the peice (not the actual visual colour, black or white instead)
+ *      - the id of the piece (white circle 1, brown circle 3...)
+ *      - the x coord (numerical value from 0-7)
+ *      - the y coord (numberical value for 0-7)
+ *      
+ * the functions in here are get at set methods for the above values. However, the majority of
+ * the sets (other than when a piece is moved) are performed in the newGamePiece() function
+ * which works as the constructor for this file. 
  */
 function gamePieces(new_player, new_colour, id, x, y){
     var player = new_player,
