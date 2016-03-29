@@ -1,6 +1,5 @@
 /*
- * This class will have a simple, simple AI. It might be made using a random function,
- * but this will be extended later on
+ * This is the medium AI in the program. 
  */
 
 function mediumAI2(){
@@ -12,52 +11,52 @@ function mediumAI2(){
     var origional_y;
     var copy_of_model;
     var AI_player;
-//    var target_x = 0,
-//        target_y = 7; /* this is the target because player 2 is aiming to get to
-//                       * the bottom left hand corner. This is why the algorithm currently
-//                       * only works when the AI is player 2
-                      // */
     
-        this.mediumAI = function(board, model, AI){
-           // console.log("using new medium AI");
-            board_representation = board;
-            copy_of_model = model;
-            AI_player = AI; 
-            this.updateTarget();
-            var pieces_to_move = model.getPieces(AI_player);               
-            //console.log(pieces_to_move.length);
-            //console.log("The Goal square is: " + AI_player.getTargetX() + ", " + AI_player.getTargetY());
-            var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board, copy_of_model.getGameType()));
-            var good_moves = all_moves[0];
-            var bad_moves = all_moves[1];
-            var every_move = all_moves[2];
-//            console.log("every_move: " + every_move.length);
-//            for(var i = 0; i < every_move.length; i++){
-//                console.log(every_move[i][0]);
-//            }
-            this.decideBestMove(every_move, good_moves, bad_moves);
-            //this.findPiecesNotToMove();
-//            this.updateTarget2();
-//            // make sure the AI's goal location us free before wasting a move
-//            this.updateTarget3();
-
-
-        };
+    /*
+     * This is a function to initialise the mediumAI player. It performs the essential
+     * features of initialissing the AI player such as board representation for the AI player, 
+     * passing in a reference to the AIInterface (AI) and the model. 
+     */
+    this.mediumAI = function(board, model, AI){
+        board_representation = board;
+        copy_of_model = model;
+        AI_player = AI; 
+        this.updateTarget();
+        var pieces_to_move = model.getPieces(AI_player);               
+        var all_moves = AI_player.evalAllMoves(AI_player.findAllMoves(pieces_to_move, board, copy_of_model.getGameType()));
+        var good_moves = all_moves[0];
+        var bad_moves = all_moves[1];
+        var every_move = all_moves[2];
+        this.decideBestMove(every_move, good_moves, bad_moves);
+    };
     
-    
+    /*
+     * @param {every_move, good_moves, bad_moves}
+     * 
+     * This function takes in 3 arguments. One is every move that is available, 
+     * on is the good moves and the last is the bad moves. 
+     */
     this.decideBestMove = function(every_move, good_moves, bad_moves){
-        // this function just needs to look for the move with the lowest eval
-        var best_index = 0;        
+        // variable to store the index of the best move
+        var best_index = 0;
+        // variable to store which piece should be moved
         var piece_to_move;
         
+        /*
+         * this section is what makes this AI a middle ground between the two other
+         * AI players (the hard and easy). The below array is filled with 10 values, 
+         * 4 random and 6 good move, therefore there is a greater probablity of the
+         * alogrithm performing a good move. 
+         */
         var move_generator = new Array("random", "good move", "good move", "random", 
                                         "random", "good move", "good move", "random", 
                                         "good move", "good move");
+        // this chooses a random number between 0 - 9 (to be one of the indices above)
         var random = parseInt(Math.random()*move_generator.length);
+        // picks the move type at the index of the random number
         var move_type = move_generator[random];
         
-        //console.log("EVERY MOVE LENGTH: " + every_move.length);
-        //console.log(every_move.length);
+        // if a good move has been chosen tha algorithm performs like the hard AI
         if(move_type === "good move"){
             console.log("making good move");
             var best_index = 0;        
@@ -72,11 +71,8 @@ function mediumAI2(){
             }
             this.setChoosenMove(every_move[best_index][0]);
             piece_to_move = every_move[best_index][0].getPieceToMove();
-//        this.setSelectedPieceIndex(piece_to_move.getPieceId());
-//        this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
-//        this.setAISelectedPieceYCoord(piece_to_move.getYCoord());
-
         }
+        // if the move type is random then the AI performs like the simple AI
         else if(move_type === "random"){
             if(good_moves.length > 0){
                 //console.log("making random move");
@@ -89,39 +85,42 @@ function mediumAI2(){
                 this.setChoosenMove(bad_moves[random_index][0]);
                 var piece_to_move = bad_moves[random_index][0].getPieceToMove();
             }
-//            this.setSelectedPieceIndex(random_piece.getPieceId());
-//            this.setAISelectedPieceXCoord(random_piece.getXCoord());
-//            this.setAISelectedPieceYCoord(random_piece.getYCoord());
         }
-        //console.log("the best move has been deiced and is: " + piece_to_move.getPieceId());
         this.setSelectedPieceIndex(piece_to_move.getPieceId());
         this.setAISelectedPieceXCoord(piece_to_move.getXCoord());
         this.setAISelectedPieceYCoord(piece_to_move.getYCoord());       
     };
     
+    /*
+     * @returns {undefined}
+     *  
+     * as mentioned in the simpleAI2.js file, this function was mentioned saying that it should
+     * have been put in the AIInterface.js to reduce code repetition.  To see the comments for this
+     * 
+     */
     this.updateTarget = function(){
         var x = AI_player.getTargetX();
         var y = AI_player.getTargetY();
         var target_free = true;
         var AI_goals_filled = new Array();
-        // update the target when the AI is playing with black pieces
+        // check to see the colour of the AI
         if(AI_player.getAIColour() === "black"){
             do{
-               // console.log("black piece x and y are being updated");
                 if(board_representation[x][y] !== 0){
-                    //console.log("There is a piece in that location");
-                    //console.log(x + "," + y);
                     if(board_representation[x][y].getPieceColour() === "black"){
-                        //console.log("doing this");
-                        //this.findPiecesNotToMove();
                         copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
                         AI_goals_filled.push(x + "," + y);
+                        // this is < 3 because the target locations x coord for black peices range from 0-3
                         if(x < 3){
+                            // updated only the X coord for the AI player
                             AI_player.setTargetX(x+1);
                             x = x + 1;
                         }
+                         // if it is equal to 3, update both x and y coords
                         else{
+                            // lower y coord (i.e. from 7->6, 6->5...)
                             AI_player.setTargetY(y-1);
+                            // reset the x coord to 0
                             AI_player.setTargetX(0);
                             y = y - 1;
                             x = 0;
@@ -139,34 +138,25 @@ function mediumAI2(){
         // else, update the target if the AI is playing with white pieces
         else{
             do{
-                //console.log("***********");
-                //console.log("coords this time: " + x + "," + y);
-                //console.log(" ");
-                //console.log("updating white target");
                 if(board_representation[x][y] !== 0){
-                    //console.log("there is a piece in that location");
-                    //console.log(board_representation[x][y]);
-                    //console.log("piece colour is: " + board_representation[x][y].getPieceColour());
                     if(board_representation[x][y].getPieceColour() === "white"){
                         copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
+                        //this is great than four because the x coords range from 4-7
                         if(x > 4){
-                            //console.log("x is greater than 4");
+                            // update the x coord accordingly
                             AI_player.setTargetX(x-1);
                             x = x - 1;
-                            //console.log("getting the new x value" + AI_player.getTargetX());
                         }
                         else{
-                            //console.log("x is not greater than 4");
+                            // add 1 to the y coord
                             AI_player.setTargetY(y+1);
+                            // reset the x coord back to 7
                             AI_player.setTargetX(7);
                             y = y + 1;
                             x = 7;
                         }
                     }
                     else{
-                        //console.log("piece was wrong colour");
-                        //console.log("These are the x and y values: " + x + "," + y);
-                        //console.log("These are the AI x and y values: " + AI_player.getTargetX() + "," + AI_player.getTargetY());
                         target_free = false;
                     }
                 }
@@ -174,150 +164,81 @@ function mediumAI2(){
                     target_free = false;
                 }
             }while(target_free);            
-            //console.log("breaking the do while");
-            //console.log("x = " + AI_player.getTargetX() + " y = " + AI_player.getTargetY());
         }
     };
-    
-//    this.updateTarget3 = function(){
-//        var x = AI_player.getTargetX();
-//        var y = AI_player.getTargetY();
-//        var target_free = true;
-//        // update the target when the AI is playing with black pieces
-//        if(AI_player.getAIColour() === "black"){
-//            do{
-//                console.log("black piece x and y are being updated");
-//                if(board_representation[x][y] !== 0){
-//                    //console.log("There is a piece in that location");
-//                    //console.log(x + "," + y);
-//                    if(board_representation[x][y].getPieceColour() === "black"){
-//                        //console.log("doing this");
-//                        //this.findPiecesNotToMove();
-//                        copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
-//                        if(x < 3){
-//                            AI_player.setTargetX(x+1);
-//                            x = x + 1;
-//                        }
-//                        else{
-//                            AI_player.setTargetY(y-1);
-//                            AI_player.setTargetX(0);
-//                            y = y - 1;
-//                            x = 0;
-//                        }
-//                    }
-//                    else{
-//                       target_free = false;
-//                    }
-//                }
-//                else{
-//                    target_free = false;
-//                }
-//            }while(target_free);
-//        }
-//        // else, update the target if the AI is playing with white pieces
-//        else{
-//            do{
-//                console.log("***********");
-//                console.log("coords this time: " + x + "," + y);
-//                console.log(" ");
-//                console.log("updating white target");
-//                if(board_representation[x][y] !== 0){
-//                    console.log("there is a piece in that location");
-//                    console.log("piece colour is: " + board_representation[x][y].getPieceColour());
-//                    if(board_representation[x][y].getPieceColour() === "white"){
-//                        copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
-//                        if(x > 4){
-//                            console.log("x is greater than 4");
-//                            AI_player.setTargetX(x-1);
-//                            x = x - 1;
-//                            console.log("getting the new x value" + AI_player.getTargetX());
-//                        }
-//                        else{
-//                            console.log("x is not greater than 4");
-//                            AI_player.setTargetY(y+1);
-//                            AI_player.setTargetX(7);
-//                            y = y + 1;
-//                            x = 7;
-//                        }
-//                    }
-//                    else{
-//                        console.log("piece was wrong colour");
-//                        console.log("These are the x and y values: " + x + "," + y);
-//                        console.log("These are the AI x and y values: " + AI_player.getTargetX() + "," + AI_player.getTargetY());
-//                        target_free = false;
-//                    }
-//                }
-//                else{
-//                    target_free = false;
-//                }
-//            }while(target_free);
-//            console.log("breaking the do while");
-//            console.log("x = " + AI_player.getTargetX() + " y = " + AI_player.getTargetY());
-//        }        
-//    };
-//    
-//    this.findPiecesNotToMove = function(){
-//        // this only works for player2 just now, need to make it work for player 1 AI as well
-//        copy_of_model.resetGoalList();
-//        //console.log(board_representation[0][4].getPieceColour());
-//        console.log("is this acually being called");
-//        for(var i = 7; i > 3; i--){
-//            //console.log("i = " + i);
-//            for(var j = 0; j < 4; j++){
-//                //console.log("j = " + j);
-//                if(AI_player.getAIColour() === "black"){
-//                if(board_representation[j][i] !== 0){
-//                    if((board_representation[j][i].getPieceColour()) === "black"){ 
-//                        copy_of_model.addPieceToGoalLocationList(board_representation[j][i]);
-//                        break;
-//                    }
-//                }
-//                else{
-//                    if((board_representation[j][i].getPieceColour()) === "white"){ 
-//                        copy_of_model.addPieceToGoalLocationList(board_representation[j][i]);
-//                        break;
-//                    }
-//                }
-//                    break;
-//                }
-//            }
-//        }
-//    };
-//    
-//    this.updateTarget2 = function(){
-//        var pieces_in_goal = copy_of_model.getAIPiecesInGoalLocation();
-//        console.log("pieces_in_goal.length: " + pieces_in_goal.length);
-//        for(var i = 0; i < pieces_in_goal.length; i++){
-//            console.log(pieces_in_goal[i].getXCoord() + "," + pieces_in_goal[i].getYCoord() +  ":    " +
-//                    pieces_in_goal[i].getPieceId());
-//        }
-//
-//    };
 
+    /*
+     * @returns {type} move
+     * 
+     * this returns the AI players chosen move
+     */
     this.getChoosenMove = function() {
         return move;
     };
-    // not sure when i would use this method, best to have it incase i s'pose
+    
+    /*
+     * @param {type} move
+     *  this function sets the AI players move
+     */
     this.setChoosenMove = function(choosen_move) {
-       // console.log(choosen_move.getX() + "," + choosen_move.getY());
-        move = choosen_move;
-    };    
+       move = choosen_move;
+    }; 
+    
+    /*
+     * @return {type|string} piece index
+     * 
+     * this returns the piece index of the piece the AI player is going to move
+     */
     this.getAIPieceIndex = function (){
-        //console.log("The index to be returned is: " + piece_index);
         return piece_index;
     };
+    
+    /*
+     * @param {type} index
+     * 
+     * this function sets the index of the chosen piece to the value that is
+     * passed in
+     */
     this.setSelectedPieceIndex = function(index){
         piece_index = index;
-    };    
+    }; 
+    
+    /*
+     * @return {type|number}
+     * 
+     * this function returns the numerical value of the selected pieces x coord
+     */
     this.getAISelectedPieceXCoord = function(){
         return origional_x;
     };
+    
+    /*
+     * @param{type} x
+     * @return {undefined}
+     * 
+     * this function takes in a number and then sets the x coordinate of the
+     * piece to be this value. 
+     */
     this.setAISelectedPieceXCoord = function(x){
         origional_x = x;
     };
+    
+    /*
+     * @return {type|number}
+     * 
+     * this function returns the numerical value of the selected pieces y coord
+     */
     this.getAISelectedPieceYCoord = function(){
         return origional_y;
     };
+    
+    /*
+     * @param{type} x
+     * @return {undefined}
+     * 
+     * this function takes in a number and then sets the x coordinate of the
+     * piece to be this value
+     */
     this.setAISelectedPieceYCoord = function(y){
         origional_y = y;
     };   

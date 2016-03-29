@@ -20,9 +20,9 @@ function simpleAI2(){
     
     
     /*
-     * This is a function to initialise the simpleAI player. It performs some of the
-     * functionality of initialissing the board representation for the AI player, passing
-     * in a reference to the AIInterface (AI) and the model. 
+     * This is a function to initialise the simpleAI player. It performs the essential
+     * features of initialissing the AI player such as board representation for the AI player, 
+     * passing in a reference to the AIInterface (AI) and the model. 
      */
     this.simpleAI2 = function(board_rep, model, AI){
         board_representation = board_rep;

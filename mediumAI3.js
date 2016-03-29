@@ -140,29 +140,29 @@ function mediumAI3(){
         //console.log("moving: " + piece_to_move.getPieceId());
     }; 
     
-    this.updateTarget = function(){
+        this.updateTarget = function(){
         var x = AI_player.getTargetX();
         var y = AI_player.getTargetY();
         var target_free = true;
         var AI_goals_filled = new Array();
-        // update the target when the AI is playing with black pieces
+        // check to see the colour of the AI
         if(AI_player.getAIColour() === "black"){
             do{
-               // console.log("black piece x and y are being updated");
                 if(board_representation[x][y] !== 0){
-                    //console.log("There is a piece in that location");
-                    //console.log(x + "," + y);
                     if(board_representation[x][y].getPieceColour() === "black"){
-                        //console.log("doing this");
-                        //this.findPiecesNotToMove();
                         copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
                         AI_goals_filled.push(x + "," + y);
+                        // this is < 3 because the target locations x coord for black peices range from 0-3
                         if(x < 3){
+                            // updated only the X coord for the AI player
                             AI_player.setTargetX(x+1);
                             x = x + 1;
                         }
+                         // if it is equal to 3, update both x and y coords
                         else{
+                            // lower y coord (i.e. from 7->6, 6->5...)
                             AI_player.setTargetY(y-1);
+                            // reset the x coord to 0
                             AI_player.setTargetX(0);
                             y = y - 1;
                             x = 0;
@@ -180,34 +180,25 @@ function mediumAI3(){
         // else, update the target if the AI is playing with white pieces
         else{
             do{
-                //console.log("***********");
-                //console.log("coords this time: " + x + "," + y);
-                //console.log(" ");
-                //console.log("updating white target");
                 if(board_representation[x][y] !== 0){
-                    //console.log("there is a piece in that location");
-                    //console.log(board_representation[x][y]);
-                    //console.log("piece colour is: " + board_representation[x][y].getPieceColour());
                     if(board_representation[x][y].getPieceColour() === "white"){
                         copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
+                        //this is great than four because the x coords range from 4-7
                         if(x > 4){
-                            //console.log("x is greater than 4");
+                            // update the x coord accordingly
                             AI_player.setTargetX(x-1);
                             x = x - 1;
-                            //console.log("getting the new x value" + AI_player.getTargetX());
                         }
                         else{
-                            //console.log("x is not greater than 4");
+                            // add 1 to the y coord
                             AI_player.setTargetY(y+1);
+                            // reset the x coord back to 7
                             AI_player.setTargetX(7);
                             y = y + 1;
                             x = 7;
                         }
                     }
                     else{
-                        //console.log("piece was wrong colour");
-                        //console.log("These are the x and y values: " + x + "," + y);
-                        //console.log("These are the AI x and y values: " + AI_player.getTargetX() + "," + AI_player.getTargetY());
                         target_free = false;
                     }
                 }
@@ -215,14 +206,7 @@ function mediumAI3(){
                     target_free = false;
                 }
             }while(target_free);            
-            //console.log("breaking the do while");
-            //console.log("x = " + AI_player.getTargetX() + " y = " + AI_player.getTargetY());
         }
-        if(AI_goals_filled.length > 0){
-                for(var i = 0; i < AI_goals_filled.length; i++){
-                    //console.log("GOAL FILLED: " + AI_goals_filled);
-                }
-            }
     };
 
     this.getChoosenMove = function() {
