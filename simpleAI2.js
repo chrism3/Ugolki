@@ -1,15 +1,12 @@
-/*This version of the 'mediumAI' is very basic and uses only random moves that are good for the current 
-  the Manhattan Distance. This could be a a good idea for a easy AI instead, and maybe improve the current
-  easy AI to be the medium one and then work on the hard one
-*/
+/*
+ * This is the simpleAI algorithm for the project. It is names simpleAI2 because it is the 
+ * second version of this algorithm.  
+ */
 
 /*
  * This class will be used to make a slightly smarter AI, that will hopefully provide the user
  * a more challenging game than the easy AI
  */
-
-
-// one thing I might do is make an AI class and have it with all the repeated methods. 
 
 function simpleAI2(){
     
@@ -21,13 +18,13 @@ function simpleAI2(){
     var copy_of_model;
     var AI_player;
     
+    
+    /*
+     * This is a function to initialise the simpleAI player. It performs some of the
+     * functionality of initialissing the board representation for the AI player, passing
+     * in a reference to the AIInterface (AI) and the model. 
+     */
     this.simpleAI2 = function(board_rep, model, AI){
-//        console.log("  ");
-//        console.log("***********");
-//        console.log(" ");
-//        console.log("simpleAI2");
-//        console.log("piece colour to move: " + AI.getAIColour());
-        //console.log("AI colour: " + AI.getAIColour());
         board_representation = board_rep;
         AI_player = AI;
         //console.log("AI_player colour: " + AI_player.getAIColour());
@@ -44,14 +41,26 @@ function simpleAI2(){
         this.decideBestMove(good_moves, bad_moves);                         
     }; 
     
-    // this is how the better AI selects it's move
+    /*
+     * @param{good_moves, bad_moves}
+     * @returns{undefined}
+     * 
+     * this takes in two parameters, these are two arrays. Once including a list of 
+     * the moves evaluated to be good and another that is a list of bad moves. 
+     * It does not return any information, instead it uses getter and setter methods
+     * to set which it the best piece to move and which move to make for that peice
+     * 
+     * Algorithm works by randomly selecting a good move (when one exists) so that it
+     * gives the impression that the algorithm is playing intelligently and consistently
+     * making a move to its goal, but in reality it is doing so with no stratgey. 
+     */
     this.decideBestMove = function(good_moves, bad_moves){
-        // need to make sure there is a valid target
-        //console.log("AI_colour in simple decide move: " + AI_player.getAIColour());
+        // only make a bad move when the length of good move list is 0
         if(good_moves.length > 0){
             var random_index = parseInt(Math.random()*good_moves.length);
             this.setChoosenMove(good_moves[random_index][0]);
             var random_piece = good_moves[random_index][0].getPieceToMove();
+            // set the piece to the one at the random index
             this.setSelectedPieceIndex(random_piece.getPieceId());
             this.setAISelectedPieceXCoord(random_piece.getXCoord());
             this.setAISelectedPieceYCoord(random_piece.getYCoord());
@@ -61,6 +70,7 @@ function simpleAI2(){
             var random_index = parseInt(Math.random()*bad_moves.length);
             this.setChoosenMove(bad_moves[random_index][0]);
             var random_piece = bad_moves[random_index][0].getPieceToMove();
+            // set the piece to the one at the random index
             this.setSelectedPieceIndex(random_piece.getPieceId());
             this.setAISelectedPieceXCoord(random_piece.getXCoord());
             this.setAISelectedPieceYCoord(random_piece.getYCoord());
@@ -68,29 +78,36 @@ function simpleAI2(){
         }
     };
     
+    /*
+     * @returns {undefined}
+     * 
+     * This method is used to update the target location for the AI player. This method should
+     * have been put in the AIInterface.js to reduce the code repetition that exists in the 
+     * code between the 3 used AI algorithms.  
+     */
     this.updateTarget = function(){
         var x = AI_player.getTargetX();
         var y = AI_player.getTargetY();
         var target_free = true;
         var AI_goals_filled = new Array();
-        // update the target when the AI is playing with black pieces
+        // check to see the colour of the AI. 
         if(AI_player.getAIColour() === "black"){
             do{
-               // console.log("black piece x and y are being updated");
                 if(board_representation[x][y] !== 0){
-                    //console.log("There is a piece in that location");
-                    //console.log(x + "," + y);
                     if(board_representation[x][y].getPieceColour() === "black"){
-                        //console.log("doing this");
-                        //this.findPiecesNotToMove();
                         copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
                         AI_goals_filled.push(x + "," + y);
+                        // this is < 3 because the target locations x coord for black peices range from 0-3
                         if(x < 3){
+                            // updated only the X coord for the AI player
                             AI_player.setTargetX(x+1);
                             x = x + 1;
                         }
+                        // if it is equal to 3, update both x and y coords
                         else{
+                            // lower y coord (i.e. from 7->6, 6->5...)
                             AI_player.setTargetY(y-1);
+                            // reset the x coord to 0
                             AI_player.setTargetX(0);
                             y = y - 1;
                             x = 0;
@@ -108,33 +125,25 @@ function simpleAI2(){
         // else, update the target if the AI is playing with white pieces
         else{
             do{
-                //console.log("***********");
-                //console.log("coords this time: " + x + "," + y);
-                //console.log(" ");
-                //console.log("updating white target");
                 if(board_representation[x][y] !== 0){
-                    //console.log("there is a piece in that location");
-                    //console.log("piece colour is: " + board_representation[x][y].getPieceColour());
                     if(board_representation[x][y].getPieceColour() === "white"){
                         copy_of_model.addPieceToGoalLocationList(board_representation[x][y]);
+                         //this is great than four because the x coords range from 4-7
                         if(x > 4){
-                            //console.log("x is greater than 4");
+                            // update the x coord accordingly
                             AI_player.setTargetX(x-1);
                             x = x - 1;
-                            //console.log("getting the new x value" + AI_player.getTargetX());
                         }
                         else{
-                            //console.log("x is not greater than 4");
+                            // add 1 to the y coord
                             AI_player.setTargetY(y+1);
+                            // reset the x coord back to 7
                             AI_player.setTargetX(7);
                             y = y + 1;
                             x = 7;
                         }
                     }
                     else{
-                        //console.log("piece was wrong colour");
-                        //console.log("These are the x and y values: " + x + "," + y);
-                        //console.log("These are the AI x and y values: " + AI_player.getTargetX() + "," + AI_player.getTargetY());
                         target_free = false;
                     }
                 }
@@ -142,39 +151,85 @@ function simpleAI2(){
                     target_free = false;
                 }
             }while(target_free);            
-            //console.log("breaking the do while");
-            //console.log("x = " + AI_player.getTargetX() + " y = " + AI_player.getTargetY());
         }
-//        if(AI_goals_filled.length > 0){
-//            for(var i = 0; i < AI_goals_filled.length; i++){
-//                //console.log("GOAL FILLED: " + AI_goals_filled);
-//            }
-//        }
     };
     
-    
+    /*
+     * @param {move}
+     * this function sets the AIs move to whatever move is passed in
+     */
     this.setChoosenMove = function(move){
         choosen_move = move;
     };
+    
+    /*
+     * @return {move}
+     * 
+     * this returns the AI's move
+     */
     this.getChoosenMove = function(){
         return choosen_move;
     };
+    
+    /*
+     * @param {type| string}
+     * 
+     * this returns the index of the piece that has been chosen to move
+     */
     this.getAIPieceIndex = function (){
-        //console.log("The index to be returned is: " + piece_index);
         return piece_index;
     };
+    
+    /*
+     * @param {type|string}
+     * 
+     * an index is passed in, this is then set to be the piece index
+     */
     this.setSelectedPieceIndex = function(index){
         piece_index = index;
     };
-        this.getAISelectedPieceXCoord = function(){
+    
+    /*
+     * 
+     * @returns {type| number}
+     * 
+     * this returns the numerical value of the selects pieces x coord
+     * 
+     */
+    this.getAISelectedPieceXCoord = function(){
         return origional_x;
     };
+    
+    /*
+     * 
+     * @param {type} x
+     * @returns {undefined}
+     * 
+     * this sets the value of the x coord for the piece that is to be moved. This is
+     * the origional x coord for the piece, before it is moved. 
+     */
     this.setAISelectedPieceXCoord = function(x){
         origional_x = x;
     };
+    
+    /*
+     * @returns {type| number}
+     * 
+     * this returns the numerical value of the selects pieces y coord 
+     * 
+     */
     this.getAISelectedPieceYCoord = function(){
         return origional_y;
     };
+    
+    /*
+     * 
+     * @param {type} y
+     * @returns {undefined}
+     * 
+     * this sets the value of the y coord for the piece that is to be moved. This is
+     * the origional y coord for the piece, before it is moved. 
+     */
     this.setAISelectedPieceYCoord = function(y){
         origional_y = y;
     };
