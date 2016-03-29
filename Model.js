@@ -567,20 +567,14 @@ function Model() {
         }
         else if(AI_type === "hardAI"){
             // call code for hardAI move
-            current_AI_player.mediumAI3(board, model, AI);
-            
-            /*
-             * The hardAI player was origionally developed as a mediumAI player,
-             * that was made better. However it was much better than expected and 
-             * then made to be the hardAI. 
-             * 
-             *
-             * If an AI player has been created that a future developer would like to
-             * include within the code. All that would be necessary to do include the 
-             * a new algorithm would be to create a new else if statement above, and then
-             * call the new AI player that has been created. 
-             */
+            current_AI_player.hardAI(board, model, AI);
         }
+        
+        /* If an AI player has been created that a future developer would like to
+         * include within the code. All that would be necessary to do include the 
+         * a new algorithm would be to create a new else if statement above, and then
+         * call the new AI player that has been created. 
+         */
     };
     
    /*
@@ -610,7 +604,7 @@ function Model() {
             current_AI_player = new mediumAI2();
         }
         if(AI_type === "hardAI"){
-            current_AI_player = new mediumAI3();
+            current_AI_player = new hardAI();
         }
     };
     

@@ -1,9 +1,7 @@
-/*
- * This class will have a simple, simple AI. It might be made using a random function,
- * but this will be extended later on
- */
 
-function mediumAI3(){
+
+
+function hardAI(){
     
     var board_representation;
     var piece_index;
@@ -18,7 +16,7 @@ function mediumAI3(){
 //                       * only works when the AI is player 2
                       // */
     
-        this.mediumAI3 = function(board, model, AI){
+        this.hardAI = function(board, model, AI){
 //            console.log("  ");
 //            console.log("***********");
 //            console.log(" ");
