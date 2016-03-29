@@ -3,10 +3,6 @@
  * second version of this algorithm.  
  */
 
-/*
- * This class will be used to make a slightly smarter AI, that will hopefully provide the user
- * a more challenging game than the easy AI
- */
 
 function simpleAI2(){
     
