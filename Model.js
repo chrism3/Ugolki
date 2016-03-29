@@ -1,25 +1,44 @@
 /*jslint node: true, browser: true */
-
 "use strict";
 
+/*
+ * This file is the model for the application. This is where the majority of the actual
+ * functionality has been coded, such as moving pieces, calling the AI players, preparing
+ * validation of user entry. 
+ * 
+ */
+
 function Model() {
+    /*
+     * Unfortunately, due to the number of variables habe have to be used with get
+     * and set methods (to allow communication back to the controller & view) there
+     * are many global variables here. However, these are only directly accessed in this
+     * file, for the most part, they are accessed with the use of a get method. 
+     */
+    
     // need to create all of the pieces for the game
     var p = new gamePieces();
     p.newGamePiece("player_one", "white", 1, 0, 0);
     var p2 = new gamePieces();
     p2.newGamePiece("player_two", "black", 2, 1, 0);
     
-    var player_1_type = "human"; // this will be needed nearer the end of the project
+    var player_1_type = "human";
     var player_2_type = "AI";
     
-    var test_board = new Array(8);
+    // this array is used to store a representation of the board
+    var board = new Array(8);
+    // this variable used to store the possible moves, when they are found later in the file
     var possible_moves = new Array();
     var new_x_coord = -1;
     var new_y_coord = -1;
     var isPieceSelected = false;
     var current_player_colour = "white";
     var current_piece;
-    // don't like this being global but findMoves all ready has a return statement
+    
+    /*
+     * boolean variable that is used with get and set method, so the controller
+     * can check whether or not finding of moves has been successful
+     */
     var find_moves_successful;
     
     // this variable is a boolean representation of whether or not a player is signed in
@@ -43,12 +62,13 @@ function Model() {
     var light_board_colour = "rgb(255, 211, 155)";
     
     
-    // i dont like putting these here, but not sure how else to do this
+    // a list of all AI pieces that have made it to the goal will be kept here
     var pieces_in_goal = new Array();
-    var bad_move_made = false;
-    var bad_move_count = 0;
-    var bad_pieces_moved = new Array();
+    // this creates an object of AI interface, which is later updated by a more specific type
     var AI = new generalAI();
+    // this is where the AI is set to the simple AI, this is how its the defualt one
+    var AI_type = "simpleAI";
+    var current_AI_player = new simpleAI2();
     
     // variable to store how many moves have happened
     var turn_count = 0;
@@ -56,16 +76,23 @@ function Model() {
     // variable to store the current game 
     var game_type = "standard";
     
-    //please rename test_board
-   this.setTestBoard = function(){
+    /* 
+     * @returns {undefined}
+     * 
+     * This function of this method is to set the array for the baord, 
+     * to contain the locations which store a gamePiece. At the start of
+     * the game, the locations of pieces are always the same, therefore no 
+     * information from the view had to be passed in. 
+     */
+   this.setBoard = function(){
        var white_id = 1;
        var brown_id = 1;
       
-       // firstly, initilaise the board
-       for(var i = 0; i < test_board.length; i++){
-           test_board[i] = new Array(8);
-           for(var j = 0; j < test_board.length; j++){
-               test_board[i][j] = 0;
+       // firstly, initilaise the board, by creating an array at each index
+       for(var i = 0; i < board.length; i++){
+           board[i] = new Array(8);
+           for(var j = 0; j < board.length; j++){
+               board[i][j] = 0;
            }
        }
        // next we place the white sqaures in the bottom left
@@ -73,49 +100,73 @@ function Model() {
            for(var j = 0; j < 4; j++){
              var id_no = "white_circle_" + white_id;
              var white_piece = new gamePieces("player_one", "white", id_no, j, i);
-             test_board[j][i] = white_piece;
+             board[j][i] = white_piece;
              white_id++;
              var id_no = "brown_circle_" + brown_id;
              var black_piece = new gamePieces("player_two", "black", id_no, i, j);
-             test_board[i][j] = black_piece;
+             board[i][j] = black_piece;
              brown_id++;             
            }
        }
    };
-    
+   
+   /*
+    * 
+    * @returns {undefined}
+    * 
+    * This method is called by the controller, its only purpose is to detect
+    * the screen width and height
+    */
    this.setScreenSize = function(){
         screen_width = window.innerWidth;
         screen_height = window.innerWidth;
     };
 
-    // second, hopefully better version of this method
+    /*
+     * 
+     * @param {type} x_coord
+     * @param {type} y_coord
+     * @returns {Array|Model.possible_moves}
+     * 
+     * This function takes in the x and y coordinate of the piece that has been selected by
+     * the user. It uses these values to find the available moves for the given piece. Then 
+     * returns an array containing all found moves. 
+     */
     this.findMoves2 = function (x_coord, y_coord) {
         // set isPieceSelected to true
         isPieceSelected = true;
-        // this loop is used to clear the possible moves array
+        // this clears the possible moves
         possible_moves = [];
         
         //console.log("In model (findMoves2) the x and y coords are: " + x_coord + "," + y_coord);
 
+        // create the object of type findMoves
         var find_moves = new findMoves();
-        find_moves.init(test_board, game_type);
-        // check the piece is the right players piece
-        //console.log(x_coord);
-        //console.log(y_coord);
+        find_moves.init(board, game_type);
+        // set to true
         find_moves_successful = true;        
-        current_piece = test_board[x_coord][y_coord];
-        //console.log("In model (findMoves2) the id of the selected piece is: " + current_piece.getPieceId());
-        
+        current_piece = board[x_coord][y_coord];
+       
+        /*
+         * the condition of this if checks to see if the piece to be moved is
+         * the correct colour. If it is moves are found, else find_moves_successful
+         * is set to flase. 
+         */
         if (current_piece.getPieceColour() === current_player_colour) {
-            var above = parseInt((test_board[x_coord][y_coord].getYCoord()) - 1);
-            //console.log("above = " + above);
-            var below = parseInt((test_board[x_coord][y_coord].getYCoord()) + 1);
-            //console.log("below = " + below);
-            var left = parseInt((test_board[x_coord][y_coord].getXCoord()) - 1);
-            //console.log("left = " + left);
-            var right = parseInt((test_board[x_coord][y_coord].getXCoord()) + 1);
-            //console.log("right = " + right);            
-           
+            /*
+             * here the values that will be passed into the methods to find the
+             * available moves are culculated. 
+             */
+            var above = parseInt((board[x_coord][y_coord].getYCoord()) - 1);
+            var below = parseInt((board[x_coord][y_coord].getYCoord()) + 1);
+            var left = parseInt((board[x_coord][y_coord].getXCoord()) - 1);
+            var right = parseInt((board[x_coord][y_coord].getXCoord()) + 1);
+          
+          /*
+           * The game has 3 different variations of game type, that require different 
+           * moves to be made. Below are if statements that find the available moves
+           * for the given game type
+           */
            if(game_type === "standard"){
                 find_moves.moveRight(right, y_coord);
                 find_moves.moveLeft(left, y_coord);
@@ -123,10 +174,8 @@ function Model() {
                 find_moves.moveDown(below, x_coord);
                 find_moves.multipleJump3(x_coord, y_coord);
                 possible_moves = find_moves.getPossibleMoves();
-                //console.log("in the model possible moves length: " + possible_moves.length);
             }
             else if(game_type === "no multi jump"){
-                console.log("need to find some different moves");
                 find_moves.moveRight(right, y_coord);
                 find_moves.moveLeft(left, y_coord);
                 find_moves.moveUp(above, x_coord);
@@ -138,10 +187,7 @@ function Model() {
                 possible_moves = find_moves.getPossibleMoves();                
             }
             else if(game_type === "toward goal"){
-                //console.log("need to find mvoes that go towards the goal");
-                //console.log("current player colour : " + current_player_colour);
                 if(current_player_colour === "white"){
-                    //console.log("finding moves for white pieces");
                     find_moves.moveRight(right, y_coord);
                     find_moves.moveUp(above, x_coord);
                     find_moves.jumpUp(above, x_coord);
@@ -157,6 +203,7 @@ function Model() {
             }
         }
         else{
+            // this is where find_moves is set to false if the users choice of piece was incorect
             find_moves_successful = false;
         }
         //console.log("number of possible moves: " + possible_moves.length);
@@ -164,96 +211,131 @@ function Model() {
         return possible_moves;
     };
 
+    /* 
+     * @param {type} choosen_square_x
+     * @param {type} choosen_square_y
+     * @returns {Boolean}
+     * 
+     * This function takes in two variables, these are the x and y coordiantes of
+     * users choosen square. This method then returns a boolean value as to whether or
+     * not the move of the piece has been successful. 
+     */
     this.movePiece = function (choosen_square_x, choosen_square_y) {
-        //console.log(choosen_square);
-        //console.log(choosen_square_x + "     " + choosen_square_y);
         var move_successful;
         if (isPieceSelected) {
-            //console.log(possible_moves.length);
-            
-            
+            /*
+             * This for loop loops through the possible moves, and makes sure the x and y coordinate
+             * of the choosen squares are valid moves. 
+             */
             for (var i = 0; i < possible_moves.length; i++) {
                 if (choosen_square_x === possible_moves[i].getX() &&
                         choosen_square_y === possible_moves[i].getY()) {
-                    //console.log("got into the for loop when i shouldn't have")
                     var x_coord = possible_moves[i].getX();
                     var y_coord = possible_moves[i].getY();
 
                     // move the piece in the board array
-                    //console.log("in move piece (model): " + test_board[current_piece.getXCoord()][current_piece.getYCoord()]);
-                    test_board[current_piece.getXCoord()][current_piece.getYCoord()] = 0;
+                    board[current_piece.getXCoord()][current_piece.getYCoord()] = 0;
                     current_piece.setXCoord(choosen_square_x);
                     current_piece.setYCoord(choosen_square_y);
-                    test_board[choosen_square_x][choosen_square_y] = current_piece;
-                    //console.log("after resetting (model): " + test_board[current_piece.getXCoord()][current_piece.getYCoord()]);
+                    board[choosen_square_x][choosen_square_y] = current_piece;
+                    //console.log("after resetting (model): " + board[current_piece.getXCoord()][current_piece.getYCoord()]);
                     // reset the values for X and Y of the game piece
 
-
+                    // here the new x and y coords are set, so the controller can get the information to pass back to the view. 
                     new_x_coord = choosen_square_x;
                     new_y_coord = choosen_square_y;
+                    // move successful is set to true
                     move_successful = true;
-//                    
-//       console.log(" ");
-//       console.log(" ");
-//       console.log(" ");
-//       console.log(" ");
-//       for(var i = 0; i < test_board.length; i++){
-//           for(var j = 0; j < test_board.length; j++){
-//               var piece = test_board[i][j];
-//               if(piece !== 0){
-//               console.log("At index: (" + i + "," + j + ") is the peice with coords: (" +
-//                       piece.getXCoord() + "," + piece.getYCoord() + ") - " + piece.getPieceColour() + 
-//                       "with id: " + piece.getPieceId());
-//                }
-//                else{
-//                    console.log("At index (" + i + "," + j + ") there is no piece");
-//                }
-//           }
-//       }
-                    
-                    
                    
-                }
-                else{
-                    //console.log("something has went wrong");
-                    // not sure whether or not this should have a return in here or what it should be
-                    // if i do use this, will need to alter return statement from being a boolean
                 }
             }
         }
         else {
+            // here it is set to false
             move_successful = false;
         }
-//        isPieceSelected = false;
-//        this.setCurrentPlayerColour();    
-          return move_successful;
+        // the boolean value is then returned so the controller knows if the method has been successful. 
+        return move_successful;
     };
 
+    /*
+     * 
+     * @returns {choosen_square_x|Number}
+     * 
+     * this returns the value of the new x coord so that view can
+     * be updated with a move
+     */
     this.getNewX = function () {
         return new_x_coord;
     };
 
+    /*
+     * 
+     * @returns {choosen_square_y|Number}
+     * 
+     * this returns the value of the y coord so that the view can
+     * be updated with a move
+     */
     this.getNewY = function () {
         return new_y_coord;
     };
+    
+    /*
+     * 
+     * @returns {undefined}
+     * 
+     * This function alters which players turn it is. One way to ensure the correct
+     * piece has been choosen (and therefore the correct player has made a move) is
+     * by using the colour of the pieces. This method is called every time a piece is moved
+     * and set the board to the colour that should be moved next. 
+     */
     this.setCurrentPlayerColour = function(){
         if(current_player_colour === "white"){
             current_player_colour = "black";
         }
         else current_player_colour = "white";
     };
+    
+    /*
+     * 
+     * @returns {String}
+     * 
+     * This returns a string value of the current colour of
+     * piece that is to be moved. 
+     */
     this.getCurrentPlayerColour = function (){
         return current_player_colour;
     };
     
+    
+    /*
+     * 
+     * @returns {Number|Window.innerWidth}
+     * 
+     * this returns the height of the screen, that was set earlier in the model
+     */
     this.getScreenHeight = function(){
         return screen_height;
     };
     
+    /*
+     * 
+     * @returns {Number|Window.innerWidth}
+     * 
+     * this returns the width of the screen, that was set earlier in the model
+     */
     this.getScreenWidth = function() {
         return screen_width;
     };
     
+    /*
+     * 
+     * @returns {undefined}
+     * 
+     * This is where the conditions of the game are reset for the next move
+     * to occur. This is also where the above method setCurentPlayerColour()
+     * is called
+     */
     this.resetForNextMove = function() {
         new_x_coord = -1;
         new_y_coord = -1;
@@ -261,88 +343,208 @@ function Model() {
         this.setCurrentPlayerColour();
     };
     
+    /*
+     * 
+     * @param {type} new_type
+     * @returns {undefined}
+     * 
+     * This function is called from the controller upon the selection of one of
+     * the game types. The game types is set to whichever type is passed in.
+     */
     this.setGameType = function(new_type){
         console.log("settings game type to: " + new_type);
         game_type = new_type;
     };
+    
+    /*
+     * 
+     * @returns {new_type|String}
+     * 
+     * This function returns a string value representing the current game type
+     */
     this.getGameType = function (){
         return game_type;
     };
     
-    // getter method to get the success of find moves
+    /*
+     * 
+     * @returns {Boolean}
+     * 
+     * returns the booelan value representing whether or not a move has been amde successfully
+     * so that the view is only updated with the move actually was a valid move. This variable is
+     * set in the makeMove function above. 
+     */
     this.wasFindMovesSuccessful = function(){
         return find_moves_successful;
     };   
  
     
-    // I am making these methods so at some point i can make the AI play against itself
+    /*
+     * 
+     * @param {type} player_type
+     * @returns {undefined}
+     * 
+     * this function takes in a variable and the player one type is set to that value.
+     * The values passed in are either human or AI
+     */
     this.setPlayerOneType = function (player_type){
         player_1_type = player_type;
     };
+    /*
+     * 
+     * @returns {String|player_type}
+     * 
+     * this function returns the type of the player one, set in above method
+     */
     this.getPlayerOneType = function () {
         return player_1_type;
     };
     
-    // may need to not use these methods, will move them later if they are needed
+    /*
+     * 
+     * @returns {String|player_type}
+     * 
+     * this function returns the type of player two, either AI or human
+     */
     this.getPlayerTwoType = function (){
         return player_2_type;
     };    
+    
+    /*
+     * 
+     * @param {type} player_type
+     * @returns {undefined}
+     * 
+     * This function takes in a value and the player two type is set to that. 
+     * Either AI or Human will be passed in. 
+     */
     this.setPlayerTwoType = function (player_type){
         //console.log("setting player 2 to: " + player_type);
         player_2_type = player_type;
     };
     
-    // set and get methods for signed in
+    
+    /*
+     * 
+     * @param {type} player_signed_in
+     * @returns {undefined}
+     * 
+     * this function sets whether or not a player is signed in
+     */
     this.setSignedIn = function(player_signed_in){
         signed_in = player_signed_in;
     };
+    
+    /*
+     * 
+     * @returns {player_signed_in}
+     * 
+     * this returns the current value of whether or not a player is signed in
+     */
     this.getSignedIn = function(){
         return signed_in;
     };
-    // method to get human player... will return 'player 1' or 'player 2'
+   
+   
+   /*
+    * 
+    * @returns {String|new_player_value}
+    * 
+    * this returns a string value (player 1, or player 2) to state which player
+    * is the current user
+    */
     this.getHumanPlayer = function(){
         return human_player;
     };
-    // method to set human player... paramater passes in will either be 'player 1' or 'player 2'
+    
+    /*
+     * 
+     * @param {type} new_player_value
+     * @returns {undefined}
+     * 
+     * method to set human player... paramater passes in will either be 'player 1' or 'player 2'
+     */   
     this.setHumanPlayer = function(new_player_value){
         human_player = new_player_value;
     };
-    // method to get who the winner is... either 'player 1' or 'player 2' or 'no winner'
+    
+    /*
+     * 
+     * @returns {String|set_winner}
+     * 
+     * method to get who the winner is... either 'player 1' or 'player 2' or 'no winner'
+     */    
     this.getWinner = function(){
         return winner;
     };
-    // function to return who the winner is... will either be 'player 1' or 'player 2 or 'no winner'
+    
+    /*
+     * 
+     * @param {type} set_winner
+     * @returns {undefined}
+     * 
+     * function to return who the winner is... will either be 'player 1' or 'player 2 or 'no winner'
+     */    
     this.setWinner = function(set_winner){
         winner = set_winner;
     };    
     
-    //set and get methods for the current_player
+    /*
+     * 
+     * @param {type} player_name
+     * @returns {undefined}
+     * 
+     * this function takes in an argument and then sets the logged in player value
+     * to be the value passed in. This is also wehre setIsLoggedIn is called
+     */
     this.setLoggedInPlayer = function(player_name){
         logged_in_player = player_name;
         this.setIsloggedIn();
     };
+    
+    /*
+     * 
+     * @returns {player_name}
+     * 
+     * method returns the value of the logged in player name
+     */
     this.getLoggedInPlayer = function(){
         return logged_in_player;
     };
     
+    
+    /*
+     * 
+     * @returns {undefined}
+     * this sets that a player is logged in. 
+     */
     this.setIsloggedIn = function(){
         is_logged_in = true;
     };
     
+    /*
+     * 
+     * @returns {Boolean}
+     * returns the boolean value of whether or  not a player is signed in
+     */
     this.getLoggedIn = function(){
         return is_logged_in;
     };
     
     
-    // change this back to being easy once we are done
-    var AI_type = "simpleAI";
-    var current_AI_player = new simpleAI2();
-
-    
     /*
-     * Have a variable called AI_type
-     * Use the following method to check which AI we currently have set, simple, hard, good ect...
-     * Then call the appropriate AI class
+     * 
+     * @param {type} model
+     * @param {type} condition
+     * @returns {undefined}
+     * 
+     * this method checks the AI type as well as calling the code to make an AI move
+     * for the related AI player. This function also has to take in two conditions:
+     *  
+     *      - model: this is a representation of the current mode so the AI players
+     *               make valid moves. 
+     *      - condition: This is used so that if "new game" is passed in, the AI's goals can
+     *                   be reset with the use of the setNewGameAI function. 
      */
     this.checkAIType = function (model, condition){
         var pieces = new Array();
@@ -352,33 +554,57 @@ function Model() {
         }
 
         var find_moves = new findMoves();
-        find_moves.init(test_board);
-        console.log(pieces.length);
-        console.log(AI_type);
-        if(AI_type === "simpleAI"){            
-            current_AI_player.simpleAI2(test_board, model, AI);
+        find_moves.init(board);
+
+        // the following if statments are what check the AI
+        if(AI_type === "simpleAI"){ 
+            // call code for simple AI move
+            current_AI_player.simpleAI2(board, model, AI);
         }
         else if(AI_type === "mediumAI"){
-            current_AI_player.mediumAI(test_board, model, AI);
+            // call code for medium AI move
+            current_AI_player.mediumAI(board, model, AI);
         }
         else if(AI_type === "hardAI"){
-            current_AI_player.mediumAI3(test_board, model, AI);
+            // call code for hardAI move
+            current_AI_player.mediumAI3(board, model, AI);
+            
+            /*
+             * The hardAI player was origionally developed as a mediumAI player,
+             * that was made better. However it was much better than expected and 
+             * then made to be the hardAI. 
+             * 
+             *
+             * If an AI player has been created that a future developer would like to
+             * include within the code. All that would be necessary to do include the 
+             * a new algorithm would be to create a new else if statement above, and then
+             * call the new AI player that has been created. 
+             */
         }
     };
     
-    /* maybe need a get and set method for the AI, might not.
-     * might have to delete these methods later
-     */
+   /*
+    * 
+    * @returns {String|type}
+    * 
+    * returns the current AI type
+    */
     this.getAIType = function (){
        return AI_type;
     };
+    
+    /*
+     * 
+     * @param {type} type
+     * @returns {undefined}
+     * 
+     * takes in an argument to set the AI type
+     */
     this.setAIType = function (type) {
         AI_type = type;
         
         if(AI_type === "simpleAI"){
-            //console.log("making new simple AI player");
             current_AI_player = new simpleAI();
-            //current_AI_player.updateBoard(test_board);
         }
         if(AI_type === "mediumAI"){
             current_AI_player = new mediumAI2();
@@ -388,16 +614,36 @@ function Model() {
         }
     };
     
+    /*
+     * 
+     * @returns {choosen_move}
+     * 
+     * this function is used to return the AI players choosen move so that
+     * the view can be updated. 
+     */
     this.getAIChoosenMove = function(){
         var move = current_AI_player.getChoosenMove();
         return move;
     };
     
-    // i don't think i like how this is working
+    /*
+     * 
+     * @returns {index}
+     * 
+     * this returns the index of the AI's choosen piece so that the view can
+     * be updated with the AI move
+     */
     this.getAIPieceIndex = function () {
         return current_AI_player.getAIPieceIndex();
     };
     
+    /*
+     * 
+     * @returns {undefined}
+     * 
+     * This function is used to update the models representation of the board 
+     * with the move that has been made by the AI. 
+     */
     this.updateModelWithAIMove = function(){
         var moved_piece_x = current_AI_player.getAISelectedPieceXCoord();
         var moved_piece_y = current_AI_player.getAISelectedPieceYCoord();
@@ -405,48 +651,44 @@ function Model() {
         var new_x = move.getX();
         var new_y = move.getY();
         
-       // dont like this for loop, but think i need it
-       for(var i = 0; i < test_board.length; i++){
-           for(var j = 0; j < test_board.length; j++){
-               if(test_board[i][j] !== 0){
-                    if(test_board[i][j].getXCoord() === moved_piece_x &&
-                            test_board[i][j].getYCoord() === moved_piece_y){
-                        var piece_to_move = test_board[i][j];
-                        test_board[i][j] = 0;
+       // this loop is sued to find the right piece thats coordiantes are to be updated 
+       for(var i = 0; i < board.length; i++){
+           for(var j = 0; j < board.length; j++){
+               if(board[i][j] !== 0){
+                    if(board[i][j].getXCoord() === moved_piece_x &&
+                            board[i][j].getYCoord() === moved_piece_y){
+                        var piece_to_move = board[i][j];
+                        board[i][j] = 0;
                         piece_to_move.setXCoord(new_x);
                         piece_to_move.setYCoord(new_y);
-                        test_board[new_x][new_y] = piece_to_move;                    
+                        board[new_x][new_y] = piece_to_move;                    
                     }
                 }
            }
        }
-
-//       for(var i = 0; i < test_board.length; i++){
-//           for(var j = 0; j < test_board.length; j++){
-//               var piece = test_board[i][j];
-//               if(piece !== 0){
-//               console.log("At index: (" + i + "," + j + ") is the peice with coords: (" +
-//                       piece.getXCoord() + "," + piece.getYCoord() + ") - " + piece.getPieceColour() + " - id: "
-//                       + piece.getPieceId());
-//                }
-//                else{
-//                    console.log("At index (" + i + "," + j + ") there is no piece");
-//                }
-//           }
-//       }
    };
     
+    /*
+     * 
+     * @returns {String}
+     * 
+     * This function is used to calculate whether or not a player has won. It returns
+     * a string value to indicate which player is the winner. If neither player has won
+     * the method returns the value "no winner"
+     */
     this.hasPlayerWon = function(){
         var player_1_won = true;
         var player_2_won = true;
         
-        //console.log("checking if player 2 has won");
+        /*
+         *the following loop is used to calculate if player two has won
+         */
         for(var i = 0; i < 4; i++){
             for(var j = 7; j > 3; j--){
 //                console.log("");
 //                console.log("index + " + i + "," + j);
-                if(test_board[i][j] !== 0){                    
-                    var piece = test_board[i][j];
+                if(board[i][j] !== 0){                    
+                    var piece = board[i][j];
                     
 //                    console.log("found piece: " + piece.getPieceColour());
                     if(piece.getPieceColour() !== "black"){
@@ -466,15 +708,18 @@ function Model() {
         }
         if(player_2_won){
             this.setWinner("player 2");
+            // returns if the player has won
             return "player 2";
         }
         
-        //console.log("checking if player 1 has won");
+        /*
+         * the follwowing loop is used to calcualte if player two has won. 
+         */
         for(var i = 7; i > 3; i--){
-            //console.log(test_board[7][0].getPieceColour());
+            //console.log(board[7][0].getPieceColour());
             for(var j = 0; j < 4; j++){
-                if(test_board[i][j] !== 0){
-                    var piece = test_board[i][j];
+                if(board[i][j] !== 0){
+                    var piece = board[i][j];
                     //console.log("piece of colour " + piece.getPieceColour() + " is at location: " + piece.getXCoord() + "," + piece.getYCoord());
                     if(piece.getPieceColour() !== "white"){
                         //console.log("piece of colour " + piece.getPieceColour() + " is at location: " + piece.getXCoord() + "," + piece.getYCoord());
@@ -493,42 +738,52 @@ function Model() {
         }
         if (player_1_won){
             this.setWinner("player 1");
+            // this is where player 1 is returned if they have won
             return "player 1";
         }
         
         else{
+            // no winner yet
             return "no winner";
         }
         
     };
     
-    // this method is used to pass the details onto the correct validation method
+    /*
+     * 
+     * @param {type} user_details
+     * @param {type} validation_status
+     * @returns {Boolean|Array|stats}
+     * 
+     * this function is used to call the appropriate valiadation code in the
+     * UserValidation.js file. To do so, the user details are passed into this
+     * method and the validation status as well (which type of validation is to 
+     * be done).
+     * 
+     */
     this.validation = function(user_details, validation_status){
         var status;
         var validate = new detailsValidation();
         if(validation_status === "sign up"){
             // call the validation for signing up
-            //var validate = new detailsValidation();
             validate.signUpValidation(user_details);
             status = validate.getSignInStatus();
         }
         else if(validation_status === "login"){
-            //var validate = new detailsValidation();
+            // call the validation for loggin in 
             validate.loginValidation(user_details);
             status = validate.getLoginStatus();
         }
         else if(validation_status === "stats"){
-            // maybe not the best way to do this, stats doesn't really need validation?
-            //var validate = new detailsValidation();
+            // call the validation to update the stats
             validate.statsUpdateValidation(user_details);
-            // not sure what will needed to be returned here... if anything
         }
         else if(validation_status === "retrieve stats"){
-            //console.log(user_details);
+            // call the validateion to retrieve the stats. 
             var stats = validate.retrieveStatsValidation(user_details);
-            //console.log("in model: " +stats.length);
             return stats;
         }
+        // this returns the status of the validation from the USerValidation.js file
         return status;
     };
     
@@ -546,67 +801,97 @@ function Model() {
     this.setPlayer2Colour = function(new_colour){
         player_2_colour = new_colour;
     };
+    
+    /*
+     * 
+     * @returns {new_colour|String}
+     * 
+     * this returns a string value for the current set dark
+     * colour of the board
+     * 
+     */
     this.getDarkBoardColour = function(){
         return dark_board_colour;
     };
+    
+    /*
+     * 
+     * @returns {new_colour|String}
+     * 
+     * this returns a string value for the current set light
+     * colour of the board
+     */
     this.getLightBoardColour = function(){
         return light_board_colour;
     };
+    
+    /*
+     * 
+     * @param {type} new_colour
+     * @returns {undefined}
+     * 
+     * paramater passed in to set the dark colour of the board
+     */
     this.setDarkBoardColour = function(new_colour){
-        //console.log("new dark colour: " + new_colour);
         dark_board_colour = new_colour;
     };
+    
+    /*
+     * 
+     * @param {type} new_colour
+     * @returns {undefined}
+     * 
+     * parameter pased in to set the light colour of the board 
+     */
     this.setLightBoardColour = function(new_colour){
-        //console.log("new light colour: " + new_colour);
         light_board_colour = new_colour;
     };
     
     
-    // I dont like doing this like this but it might work
+    /*
+     * 
+     * @returns {Array|Model.pieces_in_goal}
+     * 
+     * this returns a list of the pieces that the AI player has
+     * successfully manage to put in a goal location. This list is
+     * used to make sure that the AI does not move pieces that have 
+     * found their goal
+     */
     this.getAIPiecesInGoalLocation = function(){
         return pieces_in_goal;
     };
     
+    /*
+     * 
+     * @param {type} piece
+     * @returns {undefined}
+     * 
+     * a game piece is passed in which is then added to the list of
+     * piece in the goal
+     */
     this.addPieceToGoalLocationList = function(piece){
         pieces_in_goal.push(piece);
     };
-    this.resetGoalList = function(){
-        pieces_in_goal = [];
-    };
     
-    this.getBadMoveMade = function(){
-        return bad_move_made;
-    };
-    this.setBadMoveMade = function(){
-        if(bad_move_made){
-            bad_move_made = false;
-        }
-        else{
-            bad_move_made = true;
-        }
-    };
-    this.getBadMoveCount = function(){
-        return bad_move_count;
-    };
-    this.incrementBadMoveCount = function(){
-        bad_move_count++;
-    };
-    this.resetBadMoveCount = function(){
-        bad_move_count = 0;
-    };
-    this.addBadPieceMoved = function(piece){
-        bad_pieces_moved.push(piece);
-    };
-    this.getBadPiecesMoves = function(){
-        return bad_pieces_moved;
-    };
-    this.clearBadPiecesList = function(){
-        bad_pieces_moved = [];
-    };
+    /*
+     * 
+     * @returns {undefined}
+     * 
+     * resets the piece in goal list, so that if new game is pressed
+     * the list of pieces in the goal is cleared. 
+     */
     this.clearPiecesInGoalList = function(){
         pieces_in_goal = [];
     };
     
+    /*
+     * 
+     * @param {type} alteration
+     * @returns {undefined}
+     * 
+     * this function is used to alter the AI's piece colour
+     * so that it can play with either white or black peices
+     */
     this.alterAISettings = function(alteration){
         if(alteration === "AI v human"){
             // then we want to correct the so that AI is player 1
@@ -621,51 +906,73 @@ function Model() {
         }
     };
     
+    
+    /*
+     * 
+     * @returns {colour|String}
+     * 
+     * returns the AI players colour
+     */
     this.getAIColour = function(){
         return AI.getAIColour();
     };
     
+    
+    /*
+     * 
+     * @returns {undefined}
+     * set the AI colour
+     */
     this.setAIColour = function(){
         AI.setAIColour();
     };
+    
+    /*
+     * 
+     * @returns {undefined}
+     * 
+     * function is used so the controller can call
+     * the method to set the AI back to the beginning of the game
+     * without directly communicating with the AI
+     */
     this.setnewGameAI = function(){
         AI.setNewGameAI();
     };
     
+    /*
+     * 
+     * @param {type} AI_player
+     * @returns {Array|Model.getPieces.pieces}
+     * 
+     * this is used by the AI to get all of the available pieces for moving, excluding
+     * those that have made it to a goal location. This method returns an array of
+     * pieces
+     */
     this.getPieces = function(AI_player){
-//        for(var i = 0; i < pieces_in_goal.length; i++){
-//            console.log(pieces_in_goal[i].getPieceId());
-//        }
-        //console.log("this has been called");
         var pieces = new Array();
         var reached_goal = false;
         if(AI_player.getAIColour() === "black"){
-            for(var i = test_board.length-1; i >= 0; i--){
-                for(var j = 0; j < test_board.length; j++){
+            for(var i = board.length-1; i >= 0; i--){
+                for(var j = 0; j < board.length; j++){
                     //console.log("the coords: " + i + "," + j);
-                     if(test_board[i][j] !== 0){
+                     if(board[i][j] !== 0){
                          // resetting this just in case
                          reached_goal = false;
                          // currently only works if the Ai is player 2
-                         if(test_board[i][j].getPieceColour() === "black"){
+                         if(board[i][j].getPieceColour() === "black"){
                              for(var k = 0; k < pieces_in_goal.length; k++){                                 
-                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
-//                                     console.log(test_board[i][j].getPieceId() + " is the same as " +
+                                 if(board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
+//                                     console.log(board[i][j].getPieceId() + " is the same as " +
 //                                             pieces_in_goal[k].getPieceId());
                                      reached_goal = true;
                                  }
                              }
                              if(!reached_goal){
-//                                 console.log("adding piece in coords: " + test_board[i][j].getXCoord() + "," 
-//                                         + test_board[i][j].getYCoord());
-                                 pieces.push(test_board[i][j]);
+//                                 console.log("adding piece in coords: " + board[i][j].getXCoord() + "," 
+//                                         + board[i][j].getYCoord());
+                                 pieces.push(board[i][j]);
                              }
-//                             else{
-//                                 console.log("NOT ADDING: " + test_board[i][j].getXCoord()
-//                                         + "," + test_board[i][j].getYCoord());
-//                                 console.log("it contains piece " + test_board[i][j].getPieceId() + " which is in\n\
-//                                    location: " + test_board[i][j].getXCoord() + "," + test_board[i][j].getYCoord());
-//                             }
+
                          }                         
                       }
                   }
@@ -673,26 +980,26 @@ function Model() {
           }
         // need to do the same as above but for white pieces rather than black
         else{
-            for(var i = 0; i < test_board.length; i++){
-                for(var j = test_board.length -1; j >= 0; j--){
-                     if(test_board[i][j] !== 0){
+            for(var i = 0; i < board.length; i++){
+                for(var j = board.length -1; j >= 0; j--){
+                     if(board[i][j] !== 0){
                          // currently only works if the Ai is player 2
-                         if(test_board[i][j].getPieceColour() === "white"){
+                         if(board[i][j].getPieceColour() === "white"){
                              var reached_goal = false;
                              //console.log("pieces in their goal location: " + pieces_in_goal.length);
                              for(var k = 0; k < pieces_in_goal.length; k++){
-                                 if(test_board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
+                                 if(board[i][j].getPieceId() === pieces_in_goal[k].getPieceId()){
                                      reached_goal = true;
                                  }
                              }
                              if(!reached_goal){
-                                //console.log("pushing piece in coords: " + i + "," + j + "with id: " + test_board[i][j].getPieceId());
-                                pieces.push(test_board[i][j]);
+                                //console.log("pushing piece in coords: " + i + "," + j + "with id: " + board[i][j].getPieceId());
+                                pieces.push(board[i][j]);
                              }
 //                             else{
-//                                 console.log("piece in goal location: " + i + "," + j + " is piece: " + test_board[i][j].getPieceId() +
-//                                         "has the current coords " + test_board[i][j].getXCoord() + "," +
-//                                         test_board[i][j].getYCoord());
+//                                 console.log("piece in goal location: " + i + "," + j + " is piece: " + board[i][j].getPieceId() +
+//                                         "has the current coords " + board[i][j].getXCoord() + "," +
+//                                         board[i][j].getYCoord());
 //                             }
 
                          }
@@ -729,12 +1036,12 @@ function Model() {
             count++;
             if(whose_turn === 1){
                 current_AI_player = AI_player_1;
-                current_AI_player.simpleAI2(test_board, model, AI_1);
+                current_AI_player.simpleAI2(board, model, AI_1);
                 
             }
             else{
                 current_AI_player = AI_player_2;
-                current_AI_player.mediumAI3(test_board, model, AI_2);
+                current_AI_player.mediumAI3(board, model, AI_2);
             }
             if(whose_turn === 1){
                 whose_turn = 2;
@@ -755,18 +1062,46 @@ function Model() {
     };
     */
     
+    /*
+     * 
+     * @returns {undefined}
+     * resets the turn count to 0. This value is used to check when stalemate
+     * has occured after the given number of moves for the game. 
+     */
     this.resetTurnCount = function(){
         turn_count = 0;
     };
+    
+    /*
+     * 
+     * @returns {Number}
+     * 
+     * this function returns the current turn count
+     */
     this.getTurnCount = function(){
         return turn_count;
     };
+    
+    /*
+     * 
+     * @returns {undefined}
+     * 
+     * this method is used only to increment the turn count
+     */
     this.incrementTurnCount = function(){
         //console.log("incrementing turn count");
         turn_count++;
         //console.log("turn count: " + turn_count);
     };
     
+    /*
+     * 
+     * @returns {String}
+     * 
+     * this function uses for loops to count the numebr of pieces in the goal location
+     * for each player and then compare these values to see who has won. This is used to
+     * check who has won when stalemate due to 80 moves being made has occured. 
+     */
     this.findWinnerAfterStalemate = function(){
         var p1_pieces_in_goal = 0;
         var p2_pieces_in_goal = 0;
@@ -774,8 +1109,8 @@ function Model() {
         // need to count the number of pieces in the top right hand corner
         for(var i = 7; i > 3; i--){
             for(var j = 0; j < 4; j++){
-                if(test_board[i][j] !== 0){
-                    if(test_board[i][j].getPieceColour() === "white"){
+                if(board[i][j] !== 0){
+                    if(board[i][j].getPieceColour() === "white"){
                         p1_pieces_in_goal++;
                     }
                 }
@@ -785,16 +1120,15 @@ function Model() {
         // need to count the number of pieces in the bottom left hand corner
         for(var i = 0; i < 4; i++){
             for(var j = 7; j > 3; j--){
-                if(test_board[i][j] !== 0){
-                    if(test_board[i][j].getPieceColour() === "black"){
+                if(board[i][j] !== 0){
+                    if(board[i][j].getPieceColour() === "black"){
                         p2_pieces_in_goal++;
                     }
                 }
             }
         }
-        //console.log("number of player 1 pieces in goal: " + p1_pieces_in_goal);
-        //console.log("number of player 2 pieces in goal: " + p2_pieces_in_goal);
-        // if top right is greater than bottom left, player 1 wins
+        
+        // if bottom left is less than top right, player 1 wins
         if(p1_pieces_in_goal > p2_pieces_in_goal){
             //console.log("player 1 wins");
             // set the global variable
@@ -824,15 +1158,18 @@ function Model() {
     };
     
     /*
-     * this function is called when the new game button is pressed. It sets the AI players
-     * goal location back to the first target square. Without this function, after pressing
-     * new game, the AI would be inable to win
+     * @returns {undefined}
+     * 
+     * this function is used to reset the AI players goal location 
+     * when the new game button has been pressed. 
      */
     this.resetAIPlayersGoalLocation = function(){
+        // set the values to default for black peices
         if(AI.getAIColour() === "black"){
             AI.setTargetX(0);
             AI.setTargetY(7);
         }
+        // set the values to default for the white peices
         else if(AI.getTargetColour === "white"){
             AI.setTargetX(7);
             AI.setTargetY(0);

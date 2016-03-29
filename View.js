@@ -695,6 +695,19 @@ function View(){
 
     };
     
+    /*
+     * 
+     * @param {type} value
+     * @returns {undefined}
+     * 
+     * value is passed it that is the new setting for the AI. This text
+     * area and function are poorly named, because this was not their initial
+     * intention.  
+     */
+    this.setPlayerTwo = function(value){
+        var player_two = document.getElementById("player_2_type");
+        player_two.value = value;
+    };
     
     /*
      * 

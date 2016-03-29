@@ -38,7 +38,7 @@ function mediumAI3(){
 
         };
     
-    this.decideBestMove = function(good_moves, bad_moves, AI){
+    this.decideBestMove = function(good_moves, bad_moves){
         // this function just needs to look for the move with the lowest eval
         var best_index = 0;        
         var piece_to_move;

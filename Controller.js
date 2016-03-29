@@ -20,7 +20,7 @@ function Controller(){
       */
      model.setScreenSize(); 
      view.scaleBoardToScreen(model.getScreenHeight(), model.getScreenWidth(), 0);
-     model.setTestBoard(view.getScreenToBoardMap());
+     model.setBoard(view.getScreenToBoardMap());
 
     this.init = function() {
         
@@ -557,7 +557,7 @@ function Controller(){
             
             // rescaling the board sets the piece back into their starting locations.
             view.scaleBoardToScreen(model.getScreenHeight(), model.getScreenWidth(), 0);
-            model.setTestBoard(view.getScreenToBoardMap());
+            model.setBoard(view.getScreenToBoardMap());
             
             // make sure the app knows that the first pieces to move are white.
             if(model.getCurrentPlayerColour() === "black"){ 
